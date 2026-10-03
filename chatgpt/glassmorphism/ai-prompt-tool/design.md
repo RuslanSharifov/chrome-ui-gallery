@@ -13,21 +13,27 @@ Glassmorphism
 - HTML5
 - CSS3
 - Vanilla JavaScript
-- CSS backdrop-filter
+- CSS `backdrop-filter`
 
 ## Purpose
-A compact ChatGPT-inspired prompt tool with a translucent glass panel, blurred background, soft borders, and a single primary action.
+ChatGPT üçün glassmorphism üslubunda sadə AI prompt tool. Şəffaf glass panel, blur effekti, yumşaq border və tək əsas action düyməsindən istifadə edir.
 
-## Files
-- [HTML](./index.html)
+## Code
+
+- [Open HTML](./index.html)
 - [CSS](./style.css)
 - [JavaScript](./script.js)
 
-## Usage
-Open `index.html` in a modern browser. Enter a prompt and select **Run tool**. The JavaScript currently captures and displays the input locally; replace the result handler with the desired ChatGPT/API integration.
+## Files
 
-## Preview
-The component is responsive and designed to sit as a centered tool card on a dark atmospheric background.
+Bu design üç əsas kod faylından ibarətdir:
+
+- `index.html` — UI strukturu
+- `style.css` — glassmorphism görünüşü və responsive layout
+- `script.js` — prompt input və tool interaction
+
+## Usage
+`index.html` faylını browser-də açın. Prompt daxil edib **Run tool** düyməsinə klikləyin. Hazırkı JavaScript input-u lokal olaraq göstərir; real ChatGPT/API integration üçün həmin hissəni öz workflow-unuzla əvəz edə bilərsiniz.
 
 ## Suitable use cases
 - AI prompt panels
