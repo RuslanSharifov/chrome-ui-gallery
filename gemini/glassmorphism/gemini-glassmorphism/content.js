@@ -13,7 +13,7 @@
   function writeVars(){
     let el=document.getElementById(VARS);if(!el){el=document.createElement("style");el.id=VARS;(document.head||root).appendChild(el);}
     const a=GUG.ACCENTS[settings.accent];
-    el.textContent="html[data-gug-glass]{--gug-set-blur:"+settings.blur+"px;--gug-set-alpha:"+(settings.opacity/100).toFixed(2)+";--gug-set-sat:"+settings.saturation+"%;--gug-set-radius:"+settings.radius+"px;--gug-set-accent-dark:"+a.dark+";--gug-set-accent-light:"+a.light+";}";
+    el.textContent="html[data-gug-glass]{--gug-set-blur:"+settings.blur+"px;--gug-set-alpha:"+(settings.opacity/100).toFixed(2)+";--gug-set-sat:"+settings.saturation+"%;--gug-set-veil:"+(settings.veil/100).toFixed(2)+";--gug-set-shine:"+(settings.shine/100).toFixed(2)+";--gug-set-radius:"+settings.radius+"px;--gug-set-accent-dark:"+a.dark+";--gug-set-accent-light:"+a.light+";}";
   }
   function syncMode(){if(!settings.enabled)return;const n=detectMode();if(n!==mode){mode=n;root.setAttribute("data-gug-mode",mode);fx?.update(GUGFX.paramsFrom(settings,n==="light"));}}
   function ensureAmbient(){let el=document.getElementById(AMBIENT);if(!el){el=document.createElement("div");el.id=AMBIENT;el.innerHTML="<canvas></canvas><i></i><i></i><i></i>";el.setAttribute("aria-hidden","true");root.appendChild(el);}return el;}
