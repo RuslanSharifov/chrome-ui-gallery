@@ -3,38 +3,47 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ChatGPT Glassmorphism Tool</title>
+  <title>ChatGPT Glassmorphism</title>
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
-  <main class="shell">
-    <section class="tool" aria-label="ChatGPT prompt tool">
-      <header class="tool__header">
-        <div class="tool__icon">✦</div>
+  <main class="popup">
+    <header class="popup__header">
+      <div class="brand">
+        <div class="brand__icon">✦</div>
         <div>
-          <p class="eyebrow">CHATGPT TOOL</p>
-          <h1>AI Prompt</h1>
-          <p class="subtitle">Write a prompt and send it to your AI workflow.</p>
+          <p class="eyebrow">CHATGPT UI</p>
+          <h1>Glassmorphism</h1>
         </div>
-      </header>
-
-      <div class="tool__body">
-        <label for="prompt">Your prompt</label>
-        <textarea id="prompt" placeholder="Ask anything..."></textarea>
-
-        <div class="tool__footer">
-          <span id="status">Ready</span>
-          <button id="run" type="button">
-            <span>Run tool</span>
-            <span aria-hidden="true">→</span>
-          </button>
-        </div>
-
-        <output id="result" class="result" hidden></output>
       </div>
-    </section>
-  </main>
+      <span id="version" class="version">v1.1.0</span>
+    </header>
 
+    <section class="control">
+      <div>
+        <strong>Glass effect</strong>
+        <p id="stateText">Loading status…</p>
+      </div>
+      <button id="toggle" class="switch" type="button" role="switch" aria-checked="false" aria-label="Toggle glassmorphism">
+        <span></span>
+      </button>
+    </section>
+
+    <section class="info">
+      <p>Open ChatGPT and turn the effect on or off from this panel. The setting is saved automatically.</p>
+    </section>
+
+    <nav class="links" aria-label="Project links">
+      <a id="repoLink" href="https://github.com/RuslanSharifov/chrome-ui-gallery" target="_blank" rel="noreferrer">
+        <span>Repository</span><span>↗</span>
+      </a>
+      <a id="profileLink" href="https://github.com/RuslanSharifov" target="_blank" rel="noreferrer">
+        <span>Creator profile</span><span>↗</span>
+      </a>
+    </nav>
+
+    <footer class="footer">Chrome UI Gallery · ChatGPT · Glassmorphism</footer>
+  </main>
   <script src="./script.js"></script>
 </body>
 </html>
