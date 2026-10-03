@@ -1,13 +1,21 @@
 # Chrome UI Gallery
 
-Chrome/Web UI üçün müxtəlif platforma və design style nümunələrinin toplandığı repository-dir.
+Chrome/Web UI design examples organized by platform and design style.
 
-Burada hər platforma ayrıca folder-də, hər design isə öz style folder-i altında saxlanılır. Hər design üçün kod faylları və qısa documentation mövcuddur.
+Each platform has its own folder, and each design is grouped under its style folder. Every design contains its code files and an English `design.md` with usage and CMD setup instructions.
 
 ## Platforms
 
 - [ChatGPT](./chatgpt/README.md)
 
-## Detailed setup
+## Setup Guides
 
-Design-i lokalda işlətmək, repository-ni CMD-dən clone etmək və faylları dəyişdirib GitHub-a göndərmək üçün [Setup Guide](./SETUP.md) faylına baxın.
+All general setup guides are stored in the `setup/` folder.
+
+- [Setup Guide — Azerbaijani](./setup/SETUP.az.md)
+- [Setup Guide — English](./setup/SETUP.en.md)
+- [Setup Guide — French](./setup/SETUP.fr.md)
+- [Setup Guide — German](./setup/SETUP.de.md)
+- [Setup Guide — Russian](./setup/SETUP.ru.md)
+- [Setup Guide — Turkish](./setup/SETUP.tr.md)
+- [Setup Guide — Language Index](./setup/README.md)
