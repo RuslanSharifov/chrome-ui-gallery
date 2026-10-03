@@ -1,10 +1,9 @@
 # ChatGPT UI Designs
 
-ChatGPT üçün hazırlanmış UI və tool nümunələri.
+ChatGPT UI and tool design examples.
 
 ## Glassmorphism
 
-- [AI Prompt Tool — Code](./glassmorphism/ai-prompt-tool/index.html)
-- [AI Prompt Tool — Documentation](./glassmorphism/ai-prompt-tool/design.md)
+- [AI Prompt Tool](./glassmorphism/ai-prompt-tool/)
 
-Kod nümunəsinə baxmaq üçün yuxarıdakı **Code** linkindən istifadə edin.
+The design folder contains the complete HTML, CSS, JavaScript, and documentation files.
