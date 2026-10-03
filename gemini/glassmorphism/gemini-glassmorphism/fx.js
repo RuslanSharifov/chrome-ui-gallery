@@ -190,7 +190,7 @@
       neon: s.neon / 100,
       light,
       colors: GUG.paletteColors(s),
-      base: light ? [0.93, 0.95, 0.98] : [0.027, 0.035, 0.07],
+      base: [0.012, 0.016, 0.026],
       quality: s.quality
     };
   }
