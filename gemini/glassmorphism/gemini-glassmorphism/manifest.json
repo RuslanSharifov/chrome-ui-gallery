@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Gemini Glassmorphism",
+  "version": "1.0.0",
+  "description": "Applies an adaptive glassmorphism visual layer to the existing Gemini web UI.",
+  "permissions": ["storage", "activeTab"],
+  "action": {
+    "default_title": "Gemini Glassmorphism",
+    "default_popup": "index.html"
+  },
+  "content_scripts": [{
+    "matches": ["https://gemini.google.com/*"],
+    "css": ["glass.css"],
+    "js": ["shared.js", "fx.js", "content.js"],
+    "run_at": "document_start"
+  }]
+}
