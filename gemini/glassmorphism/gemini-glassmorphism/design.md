@@ -55,11 +55,12 @@ The implementation follows the architecture of the ChatGPT Glassmorphism design 
 - Repository link.
 
 ## Files
-- manifest.json — Manifest V3 registration for gemini.google.com.
-- glass.css — Gemini-specific glassmorphism and theme token overrides.
+- manifest.json — Manifest V3 registration for gemini.google.com (icons + toolbar icon included).
+- icons/ — icon16/32/48/128.png (frosted-glass tile with a gold sparkle).
+- glass.css — Gemini-specific glassmorphism (10 documented sections: tokens, ambient light, shell, sidebar, conversation, composer, overlays, cards, a11y, fallbacks).
 - shared.js — Defaults, palettes, presets, validation, and storage helpers.
 - fx.js — Optional WebGL ambient-light renderer with CSS fallback.
-- content.js — Theme detection, settings synchronization, background lifecycle, and dialog dragging.
+- content.js — Theme detection (<html> and <body>), settings synchronization, background lifecycle, and dialog dragging.
 - index.html — Extension popup markup.
 - style.css — Popup visual system.
 - script.js — Popup controls and live preview.
@@ -72,17 +73,18 @@ cd gemini\glassmorphism\gemini-glassmorphism
 ```
 
 ## Install as an unpacked Chrome extension
+This folder (the one that directly contains manifest.json) is the extension root.
 1. Open Chrome.
 2. Go to chrome://extensions.
 3. Enable Developer mode.
 4. Click Load unpacked.
-5. Select gemini\glassmorphism\gemini-glassmorphism.
+5. Select this gemini-glassmorphism folder (the one containing manifest.json).
 6. Open or refresh https://gemini.google.com/.
 7. Click the extension toolbar button.
 8. Use the master switch to enable or disable the visual layer.
 
 ## Development loop
-1. Edit glass.css, content.js, shared.js, or popup files.
+1. Edit glass.css, content.js, shared.js, or popup files. See CHANGELOG.md for the 1.1.0 fixes.
 2. Return to chrome://extensions.
 3. Click Reload on the extension.
 4. Refresh the Gemini tab.

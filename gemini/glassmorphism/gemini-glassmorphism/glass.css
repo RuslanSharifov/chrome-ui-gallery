@@ -1,13 +1,32 @@
-/* Gemini Glassmorphism.
-   Selector strategy: prefer stable semantic elements, data attributes, ARIA roles and
-   known Gemini surface containers; class names are compatibility fallbacks only. */
+/* Gemini Glassmorphism — glass.css (v1.1)
+   1 Tokens · 2 Ambient light · 3 Page & transparent shell · 4 Sidebar & main area · 5 Conversation
+   6 Composer · 7 Overlays (menus/dialogs/tooltips) · 8 Cards · 9 Scrollbars & a11y · 10 Fallbacks
 
+   Strategy: touch only known structural surfaces, never `html *` colour rules. Every rule is gated by
+   html[data-gug-glass], so the stylesheet is inert while the extension is switched off.
+   Nested surfaces are made transparent on purpose: stacked backdrop-filters do not blur each other
+   and would draw double borders. Gemini's DOM is not a public API — extend section 4-8 when it changes. */
+
+/* ============ 1. TOKENS ============ */
 html[data-gug-glass] {
   color-scheme: dark;
   --gug-base: 7 9 18;
   --gug-panel: 18 22 35;
   --gug-fg: 247 248 255;
-  --gug-accent: var(--gug-accent-dark, 242 199 109);
+
+  /* fed by content.js (--gug-set-*), with safe defaults */
+  --gug-accent-dark: var(--gug-set-accent-dark, 242 199 109);
+  --gug-accent-light: var(--gug-set-accent-light, 166 107 0);
+  --gug-accent: var(--gug-accent-dark);
+  --gug-alpha: var(--gug-set-alpha, .54);
+  --gug-blurpx: var(--gug-set-blur, 28px);
+  --gug-sat: var(--gug-set-sat, 155%);
+  --gug-r: var(--gug-set-radius, 18px);
+  --gug-veil: var(--gug-set-veil, .10);
+  --gug-shine: var(--gug-set-shine, 1);
+
+  --gug-radius: var(--gug-r);
+  --gug-r-sm: calc(var(--gug-r) * .66);
   --gug-text: rgb(var(--gug-fg) / .96);
   --gug-text-2: rgb(var(--gug-fg) / .76);
   --gug-text-3: rgb(var(--gug-fg) / .54);
@@ -15,13 +34,19 @@ html[data-gug-glass] {
   --gug-line-soft: rgb(var(--gug-fg) / .08);
   --gug-hover: rgb(var(--gug-fg) / .075);
   --gug-active: rgb(var(--gug-fg) / .12);
-  --gug-veil: var(--gug-set-veil, .10);
-  --gug-shine: var(--gug-set-shine, 1);
-  --gug-glass: rgb(var(--gug-panel) / var(--gug-alpha, .54));
-  --gug-strong: rgb(var(--gug-panel) / .78);
-  --gug-blur: blur(var(--gug-blurpx, 28px)) saturate(var(--gug-sat, 155%));
-  --gug-radius: var(--gug-r, 18px);
-  --gug-sheen: linear-gradient(135deg,rgb(255 255 255 / calc(.10 * var(--gug-shine))),rgb(255 255 255 / calc(.025 * var(--gug-shine))) 58%);
+
+  /* every surface derives from the Panel-opacity slider */
+  --gug-glass: rgb(var(--gug-panel) / var(--gug-alpha));
+  --gug-strong: rgb(var(--gug-panel) / min(.96, calc(var(--gug-alpha) + .22)));
+  --gug-soft: rgb(var(--gug-panel) / calc(var(--gug-alpha) * .72));
+  --gug-code: rgb(var(--gug-panel) / min(.9, calc(var(--gug-alpha) + .06)));
+
+  --gug-blur: blur(var(--gug-blurpx)) saturate(var(--gug-sat));
+  --gug-blur-sm: blur(calc(var(--gug-blurpx) * .6)) saturate(var(--gug-sat));
+
+  /* "Edge shine" slider drives both the surface sheen and the inner top highlight */
+  --gug-sheen: linear-gradient(135deg, rgb(255 255 255 / calc(.10 * var(--gug-shine))), rgb(255 255 255 / calc(.025 * var(--gug-shine))) 58%);
+  --gug-edge: rgb(255 255 255 / calc(.09 * var(--gug-shine)));
   --gug-shadow: 0 24px 70px rgb(0 0 0 / .30);
 }
 html[data-gug-glass][data-gug-mode="light"] {
@@ -29,234 +54,202 @@ html[data-gug-glass][data-gug-mode="light"] {
   --gug-base: 238 242 249;
   --gug-panel: 255 255 255;
   --gug-fg: 24 28 40;
-  --gug-accent: var(--gug-accent-light, 166 107 0);
+  --gug-accent: var(--gug-accent-light);
   --gug-text-2: rgb(var(--gug-fg) / .78);
   --gug-text-3: rgb(var(--gug-fg) / .58);
   --gug-line: rgb(var(--gug-fg) / .15);
   --gug-hover: rgb(var(--gug-fg) / .06);
   --gug-active: rgb(var(--gug-fg) / .10);
-  --gug-glass: rgb(var(--gug-panel) / var(--gug-alpha, .54));
-  --gug-strong: rgb(var(--gug-panel) / .82);
-  --gug-sheen: linear-gradient(135deg,rgb(255 255 255 / .72),rgb(255 255 255 / .22) 60%);
+  --gug-strong: rgb(var(--gug-panel) / min(.97, calc(var(--gug-alpha) + .28)));
+  --gug-sheen: linear-gradient(135deg, rgb(255 255 255 / calc(.40 * var(--gug-shine) + .12)), rgb(255 255 255 / calc(.12 * var(--gug-shine) + .04)) 60%);
+  --gug-edge: rgb(255 255 255 / calc(.38 * var(--gug-shine)));
   --gug-shadow: 0 22px 60px rgb(40 52 90 / .18);
 }
-html[data-gug-glass] {
-  --gug-accent-dark: var(--gug-set-accent-dark, 242 199 109);
-  --gug-accent-light: var(--gug-set-accent-light, 166 107 0);
-  --gug-alpha: var(--gug-set-alpha, .54);
-  --gug-blurpx: var(--gug-set-blur, 28px);
-  --gug-sat: var(--gug-set-sat, 155%);
-  --gug-r: var(--gug-set-radius, 18px);
-  background: rgb(var(--gug-base)) !important;
+
+/* ============ 2. AMBIENT LIGHT ============ */
+html[data-gug-glass] #gug-ambient {
+  position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; contain: strict;
 }
-html[data-gug-glass] body {
-  background: transparent !important;
+html[data-gug-glass] #gug-ambient canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: none; }
+html[data-gug-glass][data-gug-fx="gl"] #gug-ambient canvas { display: block; }
+html[data-gug-glass] #gug-ambient i {
+  position: absolute; width: 56vmax; height: 56vmax; border-radius: 50%;
+  filter: blur(80px); opacity: .48; will-change: transform;
+}
+html[data-gug-glass] #gug-ambient i:nth-child(2) { left: -14vmax; top: -18vmax; background: radial-gradient(circle, rgb(122 96 255 / .80), transparent 68%); }
+html[data-gug-glass] #gug-ambient i:nth-child(3) { right: -16vmax; bottom: -20vmax; background: radial-gradient(circle, rgb(52 196 255 / .62), transparent 68%); }
+html[data-gug-glass] #gug-ambient i:nth-child(4) { left: 32%; top: 38%; width: 40vmax; height: 40vmax; background: radial-gradient(circle, rgb(var(--gug-accent) / .36), transparent 68%); }
+html[data-gug-glass][data-gug-mode="light"] #gug-ambient i { opacity: .34; }
+/* WebGL mode: the shader owns the palette, so drop the fixed violet/cyan blobs (they muddied Cyberpunk/Sunset) */
+html[data-gug-glass][data-gug-fx="gl"] #gug-ambient i:nth-child(-n+3) { display: none; }
+html[data-gug-glass][data-gug-fx="gl"] #gug-ambient i:nth-child(4) { opacity: .16; }
+/* CSS fallback (Minimal preset / no WebGL): slow drift */
+@keyframes gug-drift { from { transform: translate3d(0, 0, 0) scale(1); } to { transform: translate3d(6vmax, 4vmax, 0) scale(1.12); } }
+html[data-gug-glass][data-gug-fx="css"] #gug-ambient i { animation: gug-drift 38s ease-in-out infinite alternate; }
+html[data-gug-glass][data-gug-fx="css"] #gug-ambient i:nth-child(3) { animation-duration: 46s; animation-delay: -8s; }
+html[data-gug-glass][data-gug-fx="css"] #gug-ambient i:nth-child(4) { animation-duration: 54s; animation-delay: -16s; }
+
+/* ============ 3. PAGE & TRANSPARENT SHELL ============ */
+html[data-gug-glass] { background: rgb(var(--gug-base)) !important; }
+html[data-gug-glass] body { background: transparent !important; color: var(--gug-text) !important; }
+/* Gemini paints opaque surface colours on these wrappers; clear them so the ambient light shows through. */
+html[data-gug-glass] :is(
+  main, [role="main"], chat-app, bard-sidenav-container, mat-sidenav-container,
+  .sidenav-container, .mat-drawer-container, .main-content,
+  chat-window, .chat-window, .chat-container, .conversation-container, infinite-scroller,
+  .bottom-bar-container, input-container, .input-container,
+  top-bar-actions, .top-bar-actions, .response-container, .response-container-content
+) { background: transparent !important; }
+
+/* ============ 4. SIDEBAR & MAIN AREA ============ */
+/* NB: bard-sidenav-content / mat-sidenav-content is the MAIN content area, not the sidebar. */
+html[data-gug-glass] :is(bard-sidenav-content, mat-sidenav-content, .mat-drawer-content) {
+  background: rgb(var(--gug-panel) / var(--gug-veil)) !important;   /* "Chat area opacity" slider */
   color: var(--gug-text) !important;
 }
-html[data-gug-glass] :is(body > div, main, [role="main"]) { background: transparent !important; }
-html[data-gug-glass] #gug-ambient {
-  position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none;
+/* Sidebar shell: one glass layer only */
+html[data-gug-glass] :is(bard-sidenav, mat-sidenav, .mat-sidenav, .mat-drawer),
+html[data-gug-glass] :is(side-navigation-v2, side-navigation-content):not(:is(bard-sidenav, mat-sidenav, .mat-sidenav, .mat-drawer) *) {
+  color: var(--gug-text) !important;
+  background: var(--gug-sheen), var(--gug-glass) !important;
+  border-color: var(--gug-line) !important;
+  -webkit-backdrop-filter: var(--gug-blur) !important;
+  backdrop-filter: var(--gug-blur) !important;
+  box-shadow: inset -1px 0 0 var(--gug-line-soft), 18px 0 60px rgb(0 0 0 / .12) !important;
 }
-html[data-gug-glass] #gug-ambient canvas { position:absolute; inset:0; width:100%; height:100%; display:none; }
-html[data-gug-glass][data-gug-fx="gl"] #gug-ambient canvas { display:block; }
-html[data-gug-glass] #gug-ambient i {
-  position:absolute; width:56vmax; height:56vmax; border-radius:50%;
-  filter:blur(80px); opacity:.48;
+/* ...and everything nested inside it stays transparent */
+html[data-gug-glass] :is(bard-sidenav, mat-sidenav, .mat-sidenav, .mat-drawer) :is(side-navigation-v2, side-navigation-content, .mat-drawer-inner-container) {
+  background: transparent !important;
 }
-html[data-gug-glass] #gug-ambient i:nth-child(2){left:-14vmax;top:-18vmax;background:radial-gradient(circle,rgb(122 96 255 / .80),transparent 68%);}
-html[data-gug-glass] #gug-ambient i:nth-child(3){right:-16vmax;bottom:-20vmax;background:radial-gradient(circle,rgb(52 196 255 / .62),transparent 68%);}
-html[data-gug-glass] #gug-ambient i:nth-child(4){left:32%;top:38%;width:40vmax;height:40vmax;background:radial-gradient(circle,rgb(var(--gug-accent) / .36),transparent 68%);}
-html[data-gug-glass][data-gug-mode="light"] #gug-ambient i { opacity:.34; }
-
-html[data-gug-glass] ::selection { background:rgb(var(--gug-accent) / .30); color:inherit; }
-html[data-gug-glass] :focus-visible { outline:2px solid rgb(var(--gug-accent) / .70) !important; outline-offset:2px; }
-html[data-gug-glass] ::placeholder { color:var(--gug-text-3) !important; opacity:1 !important; }
-html[data-gug-glass] * { scrollbar-width:thin; scrollbar-color:rgb(var(--gug-fg) / .22) transparent; }
-html[data-gug-glass] *::-webkit-scrollbar{width:9px;height:9px}
-html[data-gug-glass] *::-webkit-scrollbar-track{background:transparent}
-html[data-gug-glass] *::-webkit-scrollbar-thumb{background:rgb(var(--gug-fg) / .20);border-radius:999px;border:2px solid transparent;background-clip:padding-box}
-
-html[data-gug-glass] :is(
-  bard-sidenav-content,
-  .sidenav-container,
-  [role="navigation"],
-  nav,
-  aside
-):not(main) {
-  color:var(--gug-text) !important;
+html[data-gug-glass] :is(bard-sidenav, mat-sidenav, .mat-sidenav, .mat-drawer, side-navigation-v2, side-navigation-content) :is(a, button, [role="button"]) {
+  color: var(--gug-text-2) !important;
+  border-radius: var(--gug-r-sm);
+  transition: background .18s ease, color .18s ease, transform .22s cubic-bezier(.2, .8, .2, 1), box-shadow .22s ease;
 }
-html[data-gug-glass] :is(
-  bard-sidenav-content,
-  .sidenav-container,
-  [role="navigation"],
-  aside
-) {
-  background:var(--gug-sheen),var(--gug-glass) !important;
-  border-color:var(--gug-line) !important;
-  -webkit-backdrop-filter:var(--gug-blur) !important;
-  backdrop-filter:var(--gug-blur) !important;
-  box-shadow:inset -1px 0 0 var(--gug-line-soft),18px 0 60px rgb(0 0 0 / .12) !important;
+html[data-gug-glass] :is(bard-sidenav, mat-sidenav, .mat-sidenav, .mat-drawer, side-navigation-v2, side-navigation-content) :is(a, button, [role="button"]):hover {
+  color: var(--gug-text) !important;
+  background: var(--gug-hover) !important;
 }
-html[data-gug-glass] :is(
-  bard-sidenav-content,
-  .sidenav-container,
-  [role="navigation"],
-  aside
-) :is(a,button,[role="button"]) {
-  color:var(--gug-text-2) !important;
-  border-radius:var(--gug-r-sm, 12px);
-  transition:background .18s ease,color .18s ease,transform .18s ease;
-}
-html[data-gug-glass] :is(
-  bard-sidenav-content,
-  .sidenav-container,
-  [role="navigation"],
-  aside
-) :is(a,button,[role="button"]):hover {
-  color:var(--gug-text) !important;
-  background:var(--gug-hover) !important;
-}
-html[data-gug-glass][data-gug-hover3d="on"] :is(
-  bard-sidenav-content a,
-  .sidenav-container a,
-  nav a
-):hover { transform:translateX(2px); }
-
-html[data-gug-glass] :is(
-  .conversation-container,
-  main [class*="conversation"],
-  [role="main"] [class*="conversation"]
-) {
-  background:transparent !important;
-  color:var(--gug-text) !important;
-}
-html[data-gug-glass] :is(
-  user-query,
-  .user-query,
-  .user-query-content,
-  .user-query-bubble-with-background
-) {
-  color:var(--gug-text) !important;
-}
-html[data-gug-glass] :is(
-  .user-query-bubble-with-background,
-  user-query .query-content
-) {
-  background:linear-gradient(135deg,rgb(var(--gug-accent) / .16),var(--gug-hover)) !important;
-  border:1px solid rgb(var(--gug-accent) / .20) !important;
-  border-radius:calc(var(--gug-radius) + 4px) !important;
-  box-shadow:inset 0 1px 0 rgb(255 255 255 / .06),0 10px 30px rgb(0 0 0 / .10);
-}
-html[data-gug-glass] :is(
-  message-content,
-  message-content .markdown,
-  .model-response-text,
-  .response-container
-) { color:var(--gug-text) !important; }
-html[data-gug-glass] :is(message-content, .model-response-text) a {
-  color:rgb(var(--gug-accent)) !important;
-}
-html[data-gug-glass] :is(message-content, .model-response-text) code {
-  color:var(--gug-text) !important;
-  background:rgb(var(--gug-fg) / .07) !important;
-  border:1px solid var(--gug-line-soft, rgb(var(--gug-fg) / .08));
-}
-html[data-gug-glass] :is(pre, .code-block, [class*="code-block"]) {
-  background:rgb(var(--gug-panel) / .58) !important;
-  border:1px solid var(--gug-line) !important;
-  border-radius:var(--gug-radius) !important;
-  -webkit-backdrop-filter:blur(16px); backdrop-filter:blur(16px);
-}
-html[data-gug-glass] :is(table, .table-block) {
-  border-color:var(--gug-line) !important;
-  background:rgb(var(--gug-panel) / .28) !important;
-}
-html[data-gug-glass] :is(th,td) { border-color:var(--gug-line) !important; }
-
-html[data-gug-glass] :is(
-  .input-area-container,
-  .input-area,
-  [contenteditable="true"],
-  textarea
-) {
-  color:var(--gug-text) !important;
-}
-html[data-gug-glass] :is(.input-area-container, .input-area) {
-  background:var(--gug-sheen),var(--gug-strong) !important;
-  border:1px solid var(--gug-line) !important;
-  border-radius:calc(var(--gug-radius) + 8px) !important;
-  box-shadow:var(--gug-shadow),inset 0 1px 0 rgb(255 255 255 / .08) !important;
-  -webkit-backdrop-filter:var(--gug-blur) !important;
-  backdrop-filter:var(--gug-blur) !important;
-}
-html[data-gug-glass] :is(.input-area-container, .input-area) :is(button,[role="button"]) {
-  color:var(--gug-text-2) !important;
-  background:transparent !important;
-  border-radius:12px !important;
-}
-html[data-gug-glass] :is(.input-area-container, .input-area) :is(button,[role="button"]):hover {
-  color:var(--gug-text) !important;
-  background:var(--gug-hover) !important;
-}
-html[data-gug-glass] :is(.input-area-container, .input-area) svg { color:currentColor !important; }
-
-html[data-gug-glass] :is(
-  [role="dialog"],
-  [role="menu"],
-  [role="listbox"],
-  [role="tooltip"],
-  [role="alertdialog"],
-  .mat-menu-panel,
-  .cdk-overlay-pane
-) {
-  color:var(--gug-text) !important;
-  background:var(--gug-sheen),var(--gug-strong) !important;
-  border:1px solid var(--gug-line) !important;
-  border-radius:var(--gug-radius) !important;
-  box-shadow:var(--gug-shadow) !important;
-  -webkit-backdrop-filter:var(--gug-blur) !important;
-  backdrop-filter:var(--gug-blur) !important;
-}
-html[data-gug-glass] :is([role="menu"],[role="listbox"]) :is([role="menuitem"],[role="option"],button):hover {
-  background:var(--gug-hover) !important;
-}
-html[data-gug-glass] :is(
-  [role="dialog"],
-  [role="menu"],
-  [role="listbox"],
-  [role="tooltip"]
-) :is(h1,h2,h3,p,span,label) { color:inherit; }
-
-html[data-gug-glass] :is(
-  .gems-container,
-  [class*="gem"],
-  [class*="tool"],
-  [class*="research"]
-):not([class*="icon"]) {
-  border-color:var(--gug-line);
-}
-html[data-gug-glass] :is(
-  .gems-container,
-  .gem-card,
-  [class*="gem-card"],
-  [class*="tool-card"],
-  [class*="research"]
-) {
-  background:var(--gug-sheen),rgb(var(--gug-panel) / .42) !important;
-  border:1px solid var(--gug-line) !important;
-  border-radius:var(--gug-radius) !important;
-  -webkit-backdrop-filter:blur(18px) !important;
-  backdrop-filter:blur(18px) !important;
+/* Optional 3D hover on chat rows (real perspective tilt, not just a nudge) */
+html[data-gug-glass][data-gug-hover3d="on"] :is(bard-sidenav, mat-sidenav, .mat-sidenav, .mat-drawer, side-navigation-v2, side-navigation-content) a:hover {
+  transform: perspective(640px) translateX(3px) rotateY(-4deg);
+  box-shadow: 0 8px 22px rgb(0 0 0 / .16), inset 0 1px 0 var(--gug-edge);
 }
 
-@media (prefers-reduced-motion:reduce) {
-  html[data-gug-glass] *, html[data-gug-glass] *::before, html[data-gug-glass] *::after {
-    animation-duration:.001ms !important; animation-iteration-count:1 !important;
-    transition-duration:.001ms !important; scroll-behavior:auto !important;
-  }
+/* ============ 5. CONVERSATION ============ */
+html[data-gug-glass] :is(user-query, .user-query, .user-query-content, .user-query-bubble-with-background) { color: var(--gug-text) !important; }
+html[data-gug-glass] :is(.user-query-bubble-with-background, user-query .query-content) {
+  background: linear-gradient(135deg, rgb(var(--gug-accent) / .16), var(--gug-hover)) !important;
+  border: 1px solid rgb(var(--gug-accent) / .20) !important;
+  border-radius: calc(var(--gug-radius) + 4px) !important;
+  box-shadow: inset 0 1px 0 var(--gug-edge), 0 10px 30px rgb(0 0 0 / .10);
 }
-@supports not ((backdrop-filter:blur(1px))) {
-  html[data-gug-glass] :is(bard-sidenav-content,.sidenav-container,.input-area-container,[role="dialog"],[role="menu"]) {
-    background:rgb(24 28 44 / .96) !important;
+html[data-gug-glass] :is(message-content, message-content .markdown, .model-response-text) { color: var(--gug-text) !important; }
+html[data-gug-glass] message-content :is(p, li, h1, h2, h3, h4, h5, h6, strong, em, blockquote, td, th) { color: var(--gug-text) !important; }
+html[data-gug-glass] :is(message-content, .model-response-text) a { color: rgb(var(--gug-accent)) !important; }
+/* inline code only — code inside a block is styled by the block below */
+html[data-gug-glass] :is(message-content, .model-response-text) code:not(pre code, code-block code, .code-block code) {
+  color: var(--gug-text) !important;
+  background: rgb(var(--gug-fg) / .07) !important;
+  border: 1px solid var(--gug-line-soft);
+}
+/* code block: outermost wrapper only, inner wrappers transparent (no nested frames/blur) */
+html[data-gug-glass] :is(code-block, .code-block):not(:is(code-block, .code-block) *),
+html[data-gug-glass] pre:not(:is(code-block, .code-block) *) {
+  background: var(--gug-code) !important;
+  border: 1px solid var(--gug-line) !important;
+  border-radius: var(--gug-radius) !important;
+  box-shadow: inset 0 1px 0 var(--gug-edge);
+  -webkit-backdrop-filter: var(--gug-blur-sm);
+  backdrop-filter: var(--gug-blur-sm);
+  overflow: hidden;
+}
+html[data-gug-glass] :is(code-block, .code-block) :is(.code-block-decoration, .formatted-code-block-internal-container, pre) {
+  background: transparent !important;
+}
+html[data-gug-glass] :is(message-content table, .table-block) { border-color: var(--gug-line) !important; background: rgb(var(--gug-panel) / .28) !important; }
+html[data-gug-glass] message-content :is(th, td) { border-color: var(--gug-line) !important; }
+
+/* ============ 6. COMPOSER ============ */
+html[data-gug-glass] :is(.input-area-container, .input-area, [contenteditable="true"], textarea) { color: var(--gug-text) !important; }
+html[data-gug-glass] .input-area-container {
+  background: var(--gug-sheen), var(--gug-strong) !important;
+  border: 1px solid var(--gug-line) !important;
+  border-radius: calc(var(--gug-radius) + 8px) !important;
+  box-shadow: var(--gug-shadow), inset 0 1px 0 var(--gug-edge) !important;
+  -webkit-backdrop-filter: var(--gug-blur) !important;
+  backdrop-filter: var(--gug-blur) !important;
+}
+/* inner field wrappers must not add a second frame */
+html[data-gug-glass] .input-area-container :is(.input-area, .text-input-field, rich-textarea, .ql-editor) {
+  background: transparent !important; box-shadow: none !important; border-color: transparent !important;
+}
+html[data-gug-glass] .input-area-container :is(button, [role="button"]):not(.send-button, [class*="send"]) {
+  color: var(--gug-text-2) !important;
+  border-radius: 12px !important;
+}
+html[data-gug-glass] .input-area-container :is(button, [role="button"]):not(.send-button, [class*="send"]):hover {
+  color: var(--gug-text) !important;
+  background: var(--gug-hover) !important;
+}
+
+/* ============ 7. OVERLAYS (menus, dialogs, tooltips) ============ */
+/* Target the visible Material surface, not the cdk wrapper panes around it (those caused double frames). */
+html[data-gug-glass] :is(
+  .mdc-dialog__surface, .mat-mdc-menu-panel, .mat-mdc-select-panel, .mat-mdc-autocomplete-panel,
+  .mdc-tooltip__surface, .mdc-snackbar__surface,
+  [role="dialog"], [role="alertdialog"], [role="menu"], [role="listbox"], [role="tooltip"]
+):not(.cdk-overlay-pane, .mat-mdc-dialog-container, .mdc-dialog, .mdc-dialog__container, :has(.mdc-dialog__surface)) {
+  color: var(--gug-text) !important;
+  background: var(--gug-sheen), var(--gug-strong) !important;
+  border: 1px solid var(--gug-line) !important;
+  border-radius: var(--gug-radius) !important;
+  box-shadow: var(--gug-shadow), inset 0 1px 0 var(--gug-edge) !important;
+  -webkit-backdrop-filter: var(--gug-blur) !important;
+  backdrop-filter: var(--gug-blur) !important;
+}
+html[data-gug-glass] :is(.mdc-dialog__surface, .mat-mdc-menu-panel, [role="dialog"], [role="menu"], [role="listbox"]) :is(h1, h2, h3, h4, p, label, li, .mat-mdc-menu-item-text, .mdc-list-item__primary-text) { color: var(--gug-text) !important; }
+html[data-gug-glass] :is([role="menu"], [role="listbox"]) :is([role="menuitem"], [role="option"], button):hover { background: var(--gug-hover) !important; }
+/* modal scrim: soft frosted dimming instead of flat black */
+html[data-gug-glass] .cdk-overlay-dark-backdrop.cdk-overlay-backdrop-showing {
+  background: rgb(var(--gug-base) / .45) !important;
+  -webkit-backdrop-filter: blur(calc(var(--gug-blurpx) * .25));
+  backdrop-filter: blur(calc(var(--gug-blurpx) * .25));
+}
+
+/* ============ 8. CARDS ============ */
+/* Narrow on purpose: the old [class*="gem"] / [class*="tool"] matched logos, toolbars and tooltips. */
+html[data-gug-glass] :is([class*="gem-card"], [class*="tool-card"], [class*="research-card"]) {
+  background: var(--gug-sheen), var(--gug-soft) !important;
+  border: 1px solid var(--gug-line) !important;
+  border-radius: var(--gug-radius) !important;
+  -webkit-backdrop-filter: var(--gug-blur-sm) !important;
+  backdrop-filter: var(--gug-blur-sm) !important;
+}
+
+/* ============ 9. SCROLLBARS & A11Y ============ */
+html[data-gug-glass] ::selection { background: rgb(var(--gug-accent) / .30); color: inherit; }
+html[data-gug-glass] :focus-visible { outline: 2px solid rgb(var(--gug-accent) / .70) !important; outline-offset: 2px; }
+html[data-gug-glass] ::placeholder { color: var(--gug-text-3) !important; opacity: 1 !important; }
+/* Chrome 121+ ignores ::-webkit-scrollbar once scrollbar-width/color are set, so use the standard
+   properties and keep the webkit rules only as a fallback for older builds. */
+html[data-gug-glass], html[data-gug-glass] * { scrollbar-width: thin; scrollbar-color: rgb(var(--gug-fg) / .22) transparent; }
+@supports not (scrollbar-width: thin) {
+  html[data-gug-glass] *::-webkit-scrollbar { width: 9px; height: 9px; }
+  html[data-gug-glass] *::-webkit-scrollbar-track { background: transparent; }
+  html[data-gug-glass] *::-webkit-scrollbar-thumb { background: rgb(var(--gug-fg) / .20); border-radius: 999px; border: 2px solid transparent; background-clip: padding-box; }
+}
+/* Reduced motion: switch off only what THIS extension animates. A global `* { animation-duration: 0 }`
+   would also freeze Gemini's own spinners and loading shimmers. */
+@media (prefers-reduced-motion: reduce) {
+  html[data-gug-glass] #gug-ambient i { animation: none !important; }
+  html[data-gug-glass] :is(bard-sidenav, mat-sidenav, .mat-sidenav, .mat-drawer, side-navigation-v2, side-navigation-content) :is(a, button, [role="button"]) { transition: none; }
+  html[data-gug-glass][data-gug-hover3d="on"] :is(bard-sidenav, mat-sidenav, .mat-sidenav, .mat-drawer, side-navigation-v2, side-navigation-content) a:hover { transform: none; }
+}
+
+/* ============ 10. FALLBACKS ============ */
+@supports not (backdrop-filter: blur(1px)) {
+  html[data-gug-glass] :is(bard-sidenav, mat-sidenav, .mat-sidenav, .mat-drawer, .input-area-container, .mdc-dialog__surface, .mat-mdc-menu-panel, [role="dialog"], [role="menu"]) {
+    background: rgb(24 28 44 / .96) !important;
   }
 }

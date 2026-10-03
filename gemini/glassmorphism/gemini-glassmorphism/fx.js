@@ -1,25 +1,199 @@
-(function(global){
+/* Ambient-light renderer (WebGL 1). Renders at reduced resolution, pauses while the tab is hidden
+   and falls back to the CSS blobs when WebGL is unavailable or the context is lost. */
+(function (global) {
   "use strict";
-  const QUALITY={low:{scale:.30,fps:24},medium:{scale:.45,fps:30},high:{scale:.70,fps:60}};
-  function create(canvas){
-    const gl=canvas.getContext("webgl",{alpha:false,antialias:false,powerPreference:"low-power"});
-    if(!gl)return null;
-    const vs="attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}";
-    const fs="precision mediump float;uniform vec2 r;uniform float t;uniform vec2 m;uniform vec3 c1,c2,c3,b;uniform float i,s,l;void main(){vec2 u=gl_FragCoord.xy/r;float asp=r.x/r.y;vec2 q=(u-.5)*vec2(asp,1.);float tt=t*.08;vec2 p1=vec2(.34*sin(tt*.7),.30*cos(tt*.9));vec2 p2=vec2(.32*cos(tt*.55+2.),.36*sin(tt*.65+1.));vec2 p3=vec2(.40*sin(tt*.42+4.),.25*cos(tt*.72+3.));float a=exp(-dot(q-p1,q-p1)/(s*s*.35));float d=exp(-dot(q-p2,q-p2)/(s*s*.28));float e=exp(-dot(q-p3,q-p3)/(s*s*.42));float mg=exp(-dot(q-(m-.5),q-(m-.5))/.05);vec3 col=b+(c1*a+c2*d+c3*e)*i*.75+c2*mg*.18*l;col+=.015*sin(vec3(1.3,2.1,3.7)*t+u.xyx*6.);gl_FragColor=vec4(clamp(col,0.,1.),1.);}";
-    function compile(type,src){const sh=gl.createShader(type);gl.shaderSource(sh,src);gl.compileShader(sh);if(!gl.getShaderParameter(sh,gl.COMPILE_STATUS))throw Error(gl.getShaderInfoLog(sh));return sh;}
-    let p;
-    try{p=gl.createProgram();gl.attachShader(p,compile(gl.VERTEX_SHADER,vs));gl.attachShader(p,compile(gl.FRAGMENT_SHADER,fs));gl.linkProgram(p);if(!gl.getProgramParameter(p,gl.LINK_STATUS))return null;gl.useProgram(p);}catch(_){return null;}
-    const buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
-    const a=gl.getAttribLocation(p,"p");gl.enableVertexAttribArray(a);gl.vertexAttribPointer(a,2,gl.FLOAT,false,0,0);
-    const loc={};["r","t","m","c1","c2","c3","b","i","s","l"].forEach(n=>loc[n]=gl.getUniformLocation(p,n));
-    const state={p:{intensity:.58,scale:1,speed:.85,mouse:true,light:false,colors:[[.1,.72,1],[0,.95,.8],[.32,.42,1]],base:[.027,.035,.07],quality:"medium"},time:0,last:0,raf:0,running:false,mouse:[.5,.5],target:[.5,.5]};
-    function resize(){const q=QUALITY[state.p.quality]||QUALITY.medium;canvas.width=Math.max(2,Math.round(canvas.clientWidth*q.scale));canvas.height=Math.max(2,Math.round(canvas.clientHeight*q.scale));gl.viewport(0,0,canvas.width,canvas.height);}
-    function draw(){const p0=state.p;gl.uniform2f(loc.r,canvas.width,canvas.height);gl.uniform1f(loc.t,state.time);gl.uniform2f(loc.m,state.mouse[0],1-state.mouse[1]);gl.uniform3fv(loc.c1,p0.colors[0]);gl.uniform3fv(loc.c2,p0.colors[1]);gl.uniform3fv(loc.c3,p0.colors[2]);gl.uniform3fv(loc.b,p0.base);gl.uniform1f(loc.i,p0.intensity);gl.uniform1f(loc.s,p0.scale);gl.uniform1f(loc.l,p0.mouse?1:0);gl.drawArrays(gl.TRIANGLES,0,3);}
-    function frame(now){state.raf=requestAnimationFrame(frame);if(document.hidden)return;const q=QUALITY[state.p.quality]||QUALITY.medium;if(now-state.last<1000/q.fps)return;const dt=Math.min(.1,(now-(state.last||now))/1000);state.last=now;state.time+=dt*state.p.speed;const e=1-Math.pow(.001,dt);state.mouse[0]+=(state.target[0]-state.mouse[0])*e;state.mouse[1]+=(state.target[1]-state.mouse[1])*e;resize();draw();}
-    const move=e=>{state.target[0]=e.clientX/Math.max(1,innerWidth);state.target[1]=e.clientY/Math.max(1,innerHeight);};
-    window.addEventListener("pointermove",move,{passive:true});
-    return {update(x){Object.assign(state.p,x);resize();draw();},start(){if(!state.running){state.running=true;state.last=0;state.raf=requestAnimationFrame(frame);}},destroy(){state.running=false;cancelAnimationFrame(state.raf);window.removeEventListener("pointermove",move);try{gl.getExtension("WEBGL_lose_context")?.loseContext();}catch(_){}}};
+
+  const QUALITY = { low: { scale: 0.30, fps: 24 }, medium: { scale: 0.45, fps: 30 }, high: { scale: 0.70, fps: 60 } };
+
+  const VERT = "attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}";
+
+  // Uniforms: r=resolution t=time m=mouse c1..c3=palette b=base colour
+  //           i=intensity s=scale l=mouse-glow ca=caustics ry=rays ng=neon
+  const FRAG = [
+    "#ifdef GL_FRAGMENT_PRECISION_HIGH",
+    "precision highp float;",
+    "#else",
+    "precision mediump float;",
+    "#endif",
+    "uniform vec2 r;uniform float t;uniform vec2 m;",
+    "uniform vec3 c1,c2,c3,b;",
+    "uniform float i,s,l,ca,ry,ng;",
+    "void main(){",
+    "  vec2 u=gl_FragCoord.xy/r;",
+    "  float asp=r.x/r.y;",
+    "  vec2 q=(u-.5)*vec2(asp,1.);",
+    "  float tt=t*.08;",
+    "  vec2 p1=vec2(.34*sin(tt*.7),.30*cos(tt*.9));",
+    "  vec2 p2=vec2(.32*cos(tt*.55+2.),.36*sin(tt*.65+1.));",
+    "  vec2 p3=vec2(.40*sin(tt*.42+4.),.25*cos(tt*.72+3.));",
+    "  float a=exp(-dot(q-p1,q-p1)/(s*s*.35));",
+    "  float d=exp(-dot(q-p2,q-p2)/(s*s*.28));",
+    "  float e=exp(-dot(q-p3,q-p3)/(s*s*.42));",
+    // mouse is aspect-corrected so the glow sits exactly under the cursor on wide screens
+    "  vec2 mq=(m-.5)*vec2(asp,1.);",
+    "  float mg=exp(-dot(q-mq,q-mq)/.05);",
+    "  vec3 col=b+(c1*a+c2*d+c3*e)*i*.75+c2*mg*.18*l;",
+    // caustics: interference of two warped sine fields -> thin bright water lines
+    "  vec2 w=q/max(s,.2)*3.2;",
+    "  float k1=sin(w.x*3.1+sin(w.y*2.3+t*.55)*1.7+t*.40);",
+    "  float k2=sin(w.y*3.4+sin(w.x*2.1-t*.50)*1.5-t*.35);",
+    "  float caus=pow(1.-abs(k1+k2)*.5,7.);",
+    "  col+=c2*caus*ca*i*.55*(.45+.55*u.y);",
+    // light rays: diagonal beams fading toward the bottom
+    "  float ang=q.x*1.5+q.y*.8;",
+    "  float beams=pow(max(0.,sin(ang*6.+sin(t*.3)*1.4)),6.)*pow(max(0.,sin(ang*2.3-t*.17)),2.);",
+    "  col+=c1*beams*ry*i*.35*smoothstep(.1,1.,u.y);",
+    // neon: glowing contour where the blob field crosses a threshold (no pow() on negatives)
+    "  float z=(a+d+e-.55)*7.;",
+    "  float nl=exp(-z*z);",
+    "  col+=(c3*.55+c1*.45)*nl*ng*i*.65;",
+    "  col+=.015*sin(vec3(1.3,2.1,3.7)*t+u.xyx*6.);",
+    "  gl_FragColor=vec4(clamp(col,0.,1.),1.);",
+    "}"
+  ].join("\n");
+
+  function create(canvas, onLost) {
+    const gl = canvas.getContext("webgl", { alpha: false, antialias: false, powerPreference: "low-power" });
+    if (!gl || gl.isContextLost()) return null;
+
+    function compile(type, src) {
+      const sh = gl.createShader(type);
+      gl.shaderSource(sh, src);
+      gl.compileShader(sh);
+      if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) throw Error(gl.getShaderInfoLog(sh));
+      return sh;
+    }
+
+    let prog, buf;
+    try {
+      prog = gl.createProgram();
+      gl.attachShader(prog, compile(gl.VERTEX_SHADER, VERT));
+      gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, FRAG));
+      gl.linkProgram(prog);
+      if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return null;
+      gl.useProgram(prog);
+    } catch (err) {
+      console.warn("[Gemini Glassmorphism] shader error:", err);
+      return null;
+    }
+
+    buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+    const attr = gl.getAttribLocation(prog, "p");
+    gl.enableVertexAttribArray(attr);
+    gl.vertexAttribPointer(attr, 2, gl.FLOAT, false, 0, 0);
+
+    const loc = {};
+    ["r", "t", "m", "c1", "c2", "c3", "b", "i", "s", "l", "ca", "ry", "ng"].forEach(n => { loc[n] = gl.getUniformLocation(prog, n); });
+
+    const state = {
+      p: {
+        intensity: 0.58, scale: 1, speed: 0.85, mouse: true, light: false,
+        caustics: 0.72, rays: 0.48, neon: 0.52,
+        colors: [[0.1, 0.72, 1], [0, 0.95, 0.8], [0.32, 0.42, 1]],
+        base: [0.027, 0.035, 0.07], quality: "medium"
+      },
+      time: 0, last: 0, raf: 0, running: false, dirty: true,
+      mouse: [0.5, 0.5], target: [0.5, 0.5]
+    };
+
+    // Only touch canvas.width/height when the size really changed: assigning them reallocates the buffer.
+    function resize() {
+      const q = QUALITY[state.p.quality] || QUALITY.medium;
+      const w = Math.max(2, Math.round(canvas.clientWidth * q.scale));
+      const h = Math.max(2, Math.round(canvas.clientHeight * q.scale));
+      if (canvas.width === w && canvas.height === h) return false;
+      canvas.width = w;
+      canvas.height = h;
+      gl.viewport(0, 0, w, h);
+      return true;
+    }
+
+    function draw() {
+      const p = state.p;
+      gl.uniform2f(loc.r, canvas.width, canvas.height);
+      gl.uniform1f(loc.t, state.time);
+      gl.uniform2f(loc.m, state.mouse[0], 1 - state.mouse[1]);
+      gl.uniform3fv(loc.c1, p.colors[0]);
+      gl.uniform3fv(loc.c2, p.colors[1]);
+      gl.uniform3fv(loc.c3, p.colors[2]);
+      gl.uniform3fv(loc.b, p.base);
+      gl.uniform1f(loc.i, p.intensity);
+      gl.uniform1f(loc.s, p.scale);
+      gl.uniform1f(loc.l, p.mouse ? 1 : 0);
+      gl.uniform1f(loc.ca, p.caustics);
+      gl.uniform1f(loc.ry, p.rays);
+      gl.uniform1f(loc.ng, p.neon);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+    }
+
+    function frame(now) {
+      state.raf = requestAnimationFrame(frame);
+      if (document.hidden) return;
+      const q = QUALITY[state.p.quality] || QUALITY.medium;
+      if (now - state.last < 1000 / q.fps - 2) return;      // -2ms slack avoids skipping every other vsync
+      const dt = Math.min(0.1, (now - (state.last || now)) / 1000);
+      state.last = now;
+      state.time += dt * state.p.speed;
+      const k = 1 - Math.pow(0.001, dt);
+      const dx = state.target[0] - state.mouse[0];
+      const dy = state.target[1] - state.mouse[1];
+      state.mouse[0] += dx * k;
+      state.mouse[1] += dy * k;
+      const moving = state.p.mouse && (Math.abs(dx) + Math.abs(dy) > 0.0008);
+      const resized = resize();
+      // Static scene (speed 0 / reduced motion) only re-renders when something actually changed.
+      if (state.p.speed > 0 || moving || resized || state.dirty) { draw(); state.dirty = false; }
+    }
+
+    const move = e => {
+      state.target[0] = e.clientX / Math.max(1, innerWidth);
+      state.target[1] = e.clientY / Math.max(1, innerHeight);
+    };
+    window.addEventListener("pointermove", move, { passive: true });
+
+    const api = {
+      update(x) { Object.assign(state.p, x); resize(); draw(); state.dirty = true; },
+      start() { if (!state.running) { state.running = true; state.last = 0; state.raf = requestAnimationFrame(frame); } },
+      destroy() {
+        state.running = false;
+        cancelAnimationFrame(state.raf);
+        window.removeEventListener("pointermove", move);
+        canvas.removeEventListener("webglcontextlost", lost);
+        // Free GPU resources but keep the context usable: a canvas whose context was force-lost can never
+        // produce a new one, which used to break re-enabling "Dynamic light background".
+        try { gl.deleteBuffer(buf); gl.deleteProgram(prog); } catch (_) {}
+        canvas.width = canvas.height = 1;
+      }
+    };
+
+    function lost(e) {
+      e.preventDefault();
+      api.destroy();
+      onLost?.();
+    }
+    canvas.addEventListener("webglcontextlost", lost, false);
+
+    return api;
   }
-  function paramsFrom(s,light){return{intensity:s.intensity/100,scale:s.scale/100,speed:s.speed/100,mouse:s.mouseGlow,light,colors:GUG.paletteColors(s),base:light?[.93,.95,.98]:[.027,.035,.07],quality:s.quality};}
-  global.GUGFX={create,paramsFrom};
+
+  function paramsFrom(s, light) {
+    const reduced = typeof matchMedia === "function" && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    return {
+      intensity: s.intensity / 100,
+      scale: s.scale / 100,
+      speed: reduced ? 0 : s.speed / 100,
+      mouse: s.mouseGlow && !reduced,
+      caustics: s.caustics / 100,
+      rays: s.rays / 100,
+      neon: s.neon / 100,
+      light,
+      colors: GUG.paletteColors(s),
+      base: light ? [0.93, 0.95, 0.98] : [0.027, 0.035, 0.07],
+      quality: s.quality
+    };
+  }
+
+  global.GUGFX = { create, paramsFrom };
 })(globalThis);

@@ -27,6 +27,6 @@
     $("presets").querySelectorAll(".pill").forEach(b=>{const p=GUG.PRESETS[b.dataset.preset].patch;b.setAttribute("aria-pressed",Object.keys(p).every(k=>settings[k]===p[k]))});
     document.documentElement.style.setProperty("--accent",GUG.ACCENTS[settings.accent].dark);previewFx();
   }
-  chrome.tabs.query({active:true,currentWindow:true}).then(([tab])=>{$("tabNotice").hidden=!/^https:\/\/gemini\.google\.com\//.test(tab?.url||"")}).catch(()=>{});
+  chrome.tabs.query({active:true,currentWindow:true}).then(([tab])=>{$("tabNotice").hidden=/^https:\/\/gemini\.google\.com\//.test(tab?.url||"")}).catch(()=>{});
   GUG.load().then(s=>{settings=s;render()});
 })();
