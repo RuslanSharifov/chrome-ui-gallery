@@ -14,89 +14,140 @@ Glassmorphism
 
 ## Technologies
 
+- Chrome Extension Manifest V3
+- Content script CSS injection
+- Chrome Storage API
+- Chrome Tabs API
 - HTML5
 - CSS3
 - Vanilla JavaScript
-- Chrome Extension Manifest V3
-- Chrome Storage API
-- Chrome Tabs API
-- Content script CSS injection
-- CSS `backdrop-filter`
+- CSS backdrop-filter
+- CSS custom properties
+- MutationObserver
+- Pointer Events
 
 ## Purpose
 
-This Chrome extension changes the existing ChatGPT website UI into a glassmorphism-style interface.
+This extension restyles the **existing ChatGPT website**. It does not open a second ChatGPT window, create a replacement chat client, send prompts, or call the OpenAI API.
 
-It is a **UI-only extension**:
+The extension is designed as a visual theme layer:
 
-- It does not open a separate ChatGPT window.
-- It does not create a prompt tool inside ChatGPT.
-- It does not send prompts.
-- It does not call the OpenAI API.
-- It only applies and removes CSS styling on the existing ChatGPT page.
+- Deep glass surfaces
+- Readable adaptive text colors
+- Amber/gold navigation accents
+- Glass sidebar and navigation hierarchy
+- Glass composer and prompt input
+- Distinct project labels
+- Glass settings, upgrade, plugin, menu, and dialog surfaces
+- Light/dark-compatible glass tokens
+- Subtle ambient background motion
+- Small 3D hover motion for chat rows
+- Optional dragging of supported modal/dialog surfaces from their upper area
 
-The extension can be enabled or disabled from the Chrome toolbar extension popup.
+## UI coverage
+
+The theme targets the major interface areas that can appear in current ChatGPT builds:
+
+- Chat / Work navigation
+- New chat and primary navigation
+- Images
+- Library
+- Scheduled
+- Projects
+- Codex
+- More/customization areas
+- Sidebar sections and headings
+- Chat titles and project labels
+- Upgrade / plan controls
+- Main conversation background
+- Composer and prompt input
+- User and assistant messages
+- Menus and dropdowns
+- Settings windows
+- Upgrade/plan dialogs
+- Plugin/customization dialogs
+- Code blocks
+- Scrollbars
+
+ChatGPT changes its DOM over time, so the stylesheet intentionally uses multiple semantic, ARIA, data-testid, data-attribute, token, and class-pattern selectors instead of depending on one generated CSS class.
+
+## Interaction design
+
+### Chat title hover
+
+Sidebar chat rows use a restrained 3D micro-interaction:
+
+- Slight scale increase
+- Small horizontal lift
+- Small perspective rotation
+- Soft glass highlight
+- Gold-tinted edge
+
+The motion is intentionally subtle so the sidebar remains usable.
+
+### New chat background
+
+The empty/new-chat state keeps the actual ChatGPT content intact but adds:
+
+- Layered translucent surfaces
+- Radial ambient gradients
+- A very slow background animation
+- Depth between foreground and background surfaces
+
+### Dialog positioning
+
+When a supported dialog exposes a recognizable upper/header area, the extension makes that area a drag handle. Dragging changes the dialog's fixed screen position without changing the underlying ChatGPT functionality.
+
+If ChatGPT uses a different dialog structure in a future release, that dialog may remain in its native position until its selector is updated.
+
+## Theme behavior
+
+The extension uses adaptive glass tokens.
+
+Dark mode uses:
+
+- Deep navy/black glass
+- White/blue-gray text
+- Purple/cyan ambient highlights
+- Amber/gold navigation accents
+
+Light mode uses:
+
+- Frosted white surfaces
+- Dark readable text
+- Muted gray secondary text
+- Gold and purple accents
+
+The extension does not force ChatGPT's application theme. It overlays its glass visual system on the current page theme.
 
 ## Files
 
 - [Design folder](./)
 - [HTML popup](./index.html)
-- [CSS](./style.css)
-- [JavaScript](./script.js)
-- [Content script](./content.js)
+- [CSS popup](./style.css)
+- [Popup JavaScript](./script.js)
+- [ChatGPT content script](./content.js)
 - [Manifest](./manifest.json)
 - [Documentation](./design.md)
 
-## How it works
+## Chrome installation
 
-1. Chrome loads `content.js` on `chatgpt.com` and `chat.openai.com`.
-2. The content script reads the saved `glassEnabled` setting.
-3. When enabled, it adds a dedicated style element to the ChatGPT page.
-4. The style targets ChatGPT surfaces, panels, composer areas, buttons, dialogs, and backgrounds.
-5. The glass effect uses translucent backgrounds, borders, shadows, saturation, and `backdrop-filter: blur(...)`.
-6. When disabled, the injected style is removed.
-7. The setting is stored with Chrome Storage, so it remains available after reopening Chrome.
-
-## Chrome toolbar popup
-
-Click the extension icon in the Chrome toolbar to open a small control panel.
-
-The popup contains:
-
-- Glass effect ON/OFF switch
-- Current activation status
-- Repository link
-- Creator GitHub profile link
-
-The popup is only a control panel. It does **not** open ChatGPT or replace the ChatGPT page.
-
-## Install from Chrome Extensions
-
-### Step 1 — Get the project
-
-Clone the repository:
-
+1. Update the repository:
 ```cmd
-git clone https://github.com/RuslanSharifov/chrome-ui-gallery.git
-cd chrome-ui-gallery
+cd /d "C:\path\to\chrome-ui-gallery"
+git pull
 ```
 
-### Step 2 — Open Chrome Extensions
-
-Open:
-
+2. Open:
 ```text
 chrome://extensions/
 ```
 
-Turn on **Developer mode**.
+3. Enable **Developer mode**.
 
-### Step 3 — Load the unpacked extension
+4. Click **Load unpacked**.
 
-Click **Load unpacked**.
-
-Select this exact folder:
-
+5. Select exactly:
 ```text
 chrome-ui-gallery
 └── chatgpt
@@ -104,89 +155,34 @@ chrome-ui-gallery
         └── ai-prompt-tool
 ```
 
-Do not select `index.html` itself.
+6. Click **Reload** on the extension after future code updates.
 
-The selected folder must contain:
+7. Reload the open ChatGPT tab with **Ctrl + Shift + R**.
 
-```text
-ai-prompt-tool/
-├── manifest.json
-├── index.html
-├── style.css
-├── script.js
-├── content.js
-└── design.md
-```
+8. Open the extension popup and set **Glass effect** to ON.
 
-### Step 4 — Open or reload ChatGPT
+## Troubleshooting
 
-Open `https://chatgpt.com/`.
+If a particular ChatGPT element remains unchanged:
 
-If ChatGPT was already open before the extension was loaded or updated, reload the ChatGPT tab.
+1. Reload the extension at `chrome://extensions/`.
+2. Hard-refresh ChatGPT.
+3. Open DevTools with `F12`.
+4. Inspect the unchanged element in **Elements**.
+5. Check **Console** for content-script errors.
+6. Check whether the element has a new semantic/data-testid/ARIA hook.
+7. Update `content.js` selectors instead of relying on a generated utility class.
 
-### Step 5 — Test the effect
+## Important compatibility note
 
-Click the extension icon in Chrome.
-
-Turn **Glass effect** on.
-
-The existing ChatGPT page should change visually without opening a new ChatGPT window.
-
-Turn it off to remove the glassmorphism CSS.
-
-### Step 6 — After editing extension files
-
-When you change extension files:
-
-1. Return to `chrome://extensions/`.
-2. Find **ChatGPT Glassmorphism UI**.
-3. Click **Reload**.
-4. Reload the ChatGPT tab.
-
-## Setup from CMD
-
-If you want to create the folder structure locally:
-
-```cmd
-git clone https://github.com/RuslanSharifov/chrome-ui-gallery.git
-cd chrome-ui-gallery
-mkdir chatgpt\glassmorphism\ai-prompt-tool
-cd chatgpt\glassmorphism\ai-prompt-tool
-```
-
-If the repository is already cloned, do not clone it again. Run:
-
-```cmd
-cd /d "C:\path\to\chrome-ui-gallery"
-git pull
-```
-
-Then load the `ai-prompt-tool` folder from Chrome Extensions.
-
-## Local development checklist
-
-Use this checklist when developing the extension:
-
-1. Confirm `manifest.json` exists.
-2. Confirm `content.js` exists.
-3. Confirm the manifest matches ChatGPT domains.
-4. Load the folder with **Load unpacked**.
-5. Reload the extension after code changes.
-6. Reload the ChatGPT tab after content-script changes.
-7. Open DevTools with `F12` or `Ctrl + Shift + I`.
-8. Check **Console** for extension errors.
-9. Check **Elements** to confirm the injected style element exists.
-10. Toggle the extension off and confirm that the injected style is removed.
+ChatGPT is a live web application and its DOM, labels, sidebar organization, and feature availability can change. Current product changes have moved or regrouped areas such as Projects, Scheduled, Library, Images, Customize/Plugins, Work, and Codex in different releases. The extension therefore uses layered fallbacks rather than assuming one permanent layout.
 
 ## Suitable use cases
 
-- Glassmorphism ChatGPT themes
-- Chrome UI experiments
-- Browser UI customization
-- Visual design prototypes
-- CSS-only interface experiments
+- Personal ChatGPT visual themes
+- Glassmorphism experiments
+- Chrome extension UI research
+- Browser interface customization
+- CSS design prototyping
+- Accessibility/readability experiments
 - Design system exploration
-
-## Important note
-
-ChatGPT can change its internal HTML structure or CSS class names. The content script therefore uses semantic attributes, role selectors, and class-pattern selectors where possible. If ChatGPT changes its DOM, the selectors may need to be updated.
