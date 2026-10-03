@@ -67,18 +67,6 @@ Open `index.html` in a browser. Enter a prompt and click **Run tool**.
 
 The current JavaScript displays the entered prompt locally. For a real ChatGPT/API integration, replace the relevant JavaScript logic with your own workflow.
 
-## Git workflow
-
-After editing the files:
-
-```cmd
-cd ..\..\..
-git status
-git add .
-git commit -m "Update ChatGPT glassmorphism AI prompt tool"
-git push origin main
-```
-
 ## Suitable use cases
 
 - AI prompt panels
