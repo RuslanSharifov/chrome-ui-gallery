@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "AI Prompt Tool — ChatGPT Glassmorphism",
+  "version": "1.0.0",
+  "description": "A glassmorphism AI prompt tool UI for Chrome.",
+  "action": {
+    "default_title": "AI Prompt Tool",
+    "default_popup": "index.html"
+  },
+  "permissions": []
+}
