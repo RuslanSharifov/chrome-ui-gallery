@@ -1,6 +1,13 @@
 const STYLE_ID = "chrome-ui-gallery-glassmorphism";
 const STORAGE_KEY = "glassEnabled";
 
+function buildStyle() {
+  const style = document.createElement("style");
+  style.id = STYLE_ID;
+  style.textContent = "\n    :root[data-cug-glass],\n    html[data-cug-glass] {\n      --cug-bg: #090b12;\n      --cug-surface: rgba(20, 23, 34, 0.62);\n      --cug-surface-strong: rgba(25, 29, 43, 0.78);\n      --cug-surface-soft: rgba(255, 255, 255, 0.055);\n      --cug-border: rgba(255, 255, 255, 0.14);\n      --cug-border-soft: rgba(255, 255, 255, 0.085);\n      --cug-text: rgba(248, 249, 255, 0.94);\n      --cug-text-secondary: rgba(226, 229, 242, 0.72);\n      --cug-text-muted: rgba(204, 209, 226, 0.50);\n      --cug-accent: #a99bff;\n      --cug-accent-strong: #c8c0ff;\n      --cug-shadow: 0 20px 60px rgba(0, 0, 0, 0.28);\n      --cug-blur: 24px;\n    }\n\n    html[data-cug-glass],\n    html[data-cug-glass] body {\n      background:\n        radial-gradient(circle at 8% 0%, rgba(126, 96, 255, 0.18), transparent 28%),\n        radial-gradient(circle at 92% 75%, rgba(34, 191, 255, 0.12), transparent 30%),\n        var(--cug-bg) !important;\n      color: var(--cug-text) !important;\n    }\n\n    html[data-cug-glass] body,\n    html[data-cug-glass] main,\n    html[data-cug-glass] section {\n      color: var(--cug-text) !important;\n    }\n\n    /* Current ChatGPT design tokens. */\n    html[data-cug-glass][data-theme=\"dark\"],\n    html[data-cug-glass].dark {\n      --color-surface: rgba(14, 17, 26, 0.76) !important;\n      --color-surface-secondary: rgba(20, 23, 34, 0.68) !important;\n      --color-background-panel: rgba(22, 25, 38, 0.72) !important;\n      --composer-surface-primary: rgba(24, 27, 40, 0.82) !important;\n      --sidebar-surface-primary: rgba(12, 15, 23, 0.66) !important;\n      --sidebar-surface-secondary: rgba(21, 24, 36, 0.62) !important;\n      --bg-elevated-secondary: rgba(31, 35, 49, 0.74) !important;\n    }\n\n    /* Main shell / content surfaces. */\n    html[data-cug-glass] .bg-token-main-surface-primary,\n    html[data-cug-glass] .bg-surface-primary,\n    html[data-cug-glass] .bg-token-main-surface-secondary,\n    html[data-cug-glass] .dark\\:bg-token-bg-secondary-surface,\n    html[data-cug-glass] [class*=\"bg-(--sidebar-surface-primary)\"] {\n      background: var(--cug-surface) !important;\n      color: var(--cug-text) !important;\n      -webkit-backdrop-filter: blur(var(--cug-blur)) saturate(150%) !important;\n      backdrop-filter: blur(var(--cug-blur)) saturate(150%) !important;\n    }\n\n    /* Sidebar: current docked + floating variants. */\n    html[data-cug-glass] aside.app-shell-left-panel,\n    html[data-cug-glass] aside[data-testid=\"app-shell-floating-left-panel\"],\n    html[data-cug-glass] #stage-slideover-sidebar,\n    html[data-cug-glass] nav[aria-label=\"Chat history\"] {\n      background:\n        linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.018)),\n        rgba(12, 15, 23, 0.68) !important;\n      color: var(--cug-text) !important;\n      border-color: var(--cug-border) !important;\n      -webkit-backdrop-filter: blur(28px) saturate(155%) !important;\n      backdrop-filter: blur(28px) saturate(155%) !important;\n      box-shadow: inset -1px 0 0 rgba(255,255,255,0.05), 18px 0 55px rgba(0,0,0,0.16) !important;\n    }\n\n    html[data-cug-glass] aside.app-shell-left-panel *,\n    html[data-cug-glass] aside[data-testid=\"app-shell-floating-left-panel\"] *,\n    html[data-cug-glass] #stage-slideover-sidebar *,\n    html[data-cug-glass] nav[aria-label=\"Chat history\"] * {\n      color: inherit;\n    }\n\n    html[data-cug-glass] aside.app-shell-left-panel a,\n    html[data-cug-glass] aside[data-testid=\"app-shell-floating-left-panel\"] a,\n    html[data-cug-glass] nav[aria-label=\"Chat history\"] a {\n      color: var(--cug-text-secondary) !important;\n      border-color: transparent !important;\n      background: transparent !important;\n      transition: background .18s ease, color .18s ease, transform .18s ease;\n    }\n\n    html[data-cug-glass] aside.app-shell-left-panel a:hover,\n    html[data-cug-glass] aside[data-testid=\"app-shell-floating-left-panel\"] a:hover,\n    html[data-cug-glass] nav[aria-label=\"Chat history\"] a:hover {\n      color: var(--cug-text) !important;\n      background: rgba(255,255,255,0.075) !important;\n      -webkit-backdrop-filter: blur(16px) !important;\n      backdrop-filter: blur(16px) !important;\n    }\n\n    html[data-cug-glass] aside.app-shell-left-panel h3,\n    html[data-cug-glass] aside.app-shell-left-panel [data-sidebar-group-label] {\n      color: var(--cug-text-muted) !important;\n    }\n\n    /* Top ChatGPT header. */\n    html[data-cug-glass] [data-testid=\"chat-header\"],\n    html[data-cug-glass] #page-header,\n    html[data-cug-glass] .app-header-tint {\n      background: rgba(12, 15, 23, 0.46) !important;\n      color: var(--cug-text) !important;\n      border-color: var(--cug-border-soft) !important;\n      -webkit-backdrop-filter: blur(22px) saturate(145%) !important;\n      backdrop-filter: blur(22px) saturate(145%) !important;\n    }\n\n    /* Composer: current stable hooks. */\n    html[data-cug-glass] [data-composer-surface=\"true\"],\n    html[data-cug-glass] form[data-type=\"unified-composer\"],\n    html[data-cug-glass] form.group\\/composer,\n    html[data-cug-glass] #thread-bottom-container form,\n    html[data-cug-glass] #thread-bottom-container {\n      background:\n        linear-gradient(135deg, rgba(255,255,255,0.075), rgba(255,255,255,0.025)),\n        var(--cug-surface-strong) !important;\n      color: var(--cug-text) !important;\n      border: 1px solid var(--cug-border) !important;\n      border-radius: 26px !important;\n      -webkit-backdrop-filter: blur(30px) saturate(155%) !important;\n      backdrop-filter: blur(30px) saturate(155%) !important;\n      box-shadow:\n        inset 0 1px 0 rgba(255,255,255,0.09),\n        0 20px 55px rgba(0,0,0,0.28) !important;\n    }\n\n    html[data-cug-glass] #prompt-textarea,\n    html[data-cug-glass] textarea[name=\"prompt-textarea\"],\n    html[data-cug-glass] form[data-chatgpt-composer] .ProseMirror[contenteditable=\"true\"],\n    html[data-cug-glass] .ProseMirror[contenteditable=\"true\"] {\n      color: #f7f8ff !important;\n      -webkit-text-fill-color: #f7f8ff !important;\n      caret-color: var(--cug-accent-strong) !important;\n      background: transparent !important;\n      border-color: transparent !important;\n      outline: none !important;\n      text-shadow: none !important;\n    }\n\n    html[data-cug-glass] #prompt-textarea::placeholder,\n    html[data-cug-glass] textarea[name=\"prompt-textarea\"]::placeholder,\n    html[data-cug-glass] .ProseMirror[contenteditable=\"true\"]::before {\n      color: var(--cug-text-muted) !important;\n      -webkit-text-fill-color: var(--cug-text-muted) !important;\n      opacity: 1 !important;\n    }\n\n    html[data-cug-glass] [data-composer-surface=\"true\"]:focus-within,\n    html[data-cug-glass] form[data-type=\"unified-composer\"]:focus-within {\n      border-color: rgba(177, 163, 255, 0.38) !important;\n      box-shadow:\n        inset 0 1px 0 rgba(255,255,255,0.10),\n        0 0 0 1px rgba(169,155,255,0.10),\n        0 22px 65px rgba(0,0,0,0.30) !important;\n    }\n\n    /* Composer controls and icons. */\n    html[data-cug-glass] [data-composer-surface=\"true\"] button,\n    html[data-cug-glass] form[data-type=\"unified-composer\"] button,\n    html[data-cug-glass] #thread-bottom-container button {\n      color: var(--cug-text-secondary) !important;\n      border-color: transparent !important;\n    }\n\n    html[data-cug-glass] [data-composer-surface=\"true\"] button:hover,\n    html[data-cug-glass] form[data-type=\"unified-composer\"] button:hover {\n      color: var(--cug-text) !important;\n      background: rgba(255,255,255,0.075) !important;\n    }\n\n    html[data-cug-glass] button.__composer-pill,\n    html[data-cug-glass] button.__composer-pill--neutral {\n      color: var(--cug-text-secondary) !important;\n      background: rgba(255,255,255,0.055) !important;\n      border: 1px solid var(--cug-border-soft) !important;\n      -webkit-backdrop-filter: blur(14px) !important;\n      backdrop-filter: blur(14px) !important;\n    }\n\n    html[data-cug-glass] button.__composer-pill span {\n      color: var(--cug-text-secondary) !important;\n    }\n\n    /* User / assistant message surfaces. */\n    html[data-cug-glass] [data-message-author-role=\"user\"],\n    html[data-cug-glass] [data-role=\"user\"],\n    html[data-cug-glass] .user-turn {\n      color: #f7f8ff !important;\n      background:\n        linear-gradient(135deg, rgba(122, 103, 255, 0.22), rgba(69, 185, 255, 0.10)),\n        rgba(255,255,255,0.055) !important;\n      border: 1px solid rgba(176, 161, 255, 0.18) !important;\n      border-radius: 22px !important;\n      -webkit-backdrop-filter: blur(20px) saturate(150%) !important;\n      backdrop-filter: blur(20px) saturate(150%) !important;\n      box-shadow: 0 12px 35px rgba(0,0,0,0.16) !important;\n    }\n\n    html[data-cug-glass] [data-message-author-role=\"assistant\"],\n    html[data-cug-glass] [data-role=\"assistant\"],\n    html[data-cug-glass] .agent-turn {\n      color: var(--cug-text) !important;\n    }\n\n    html[data-cug-glass] [data-message-author-role=\"assistant\"] .markdown,\n    html[data-cug-glass] [data-message-author-role=\"assistant\"] .prose,\n    html[data-cug-glass] [data-message-author-role=\"assistant\"] [class*=\"markdown\"] {\n      color: var(--cug-text) !important;\n    }\n\n    /* General text tokens without forcing SVG/icon colors. */\n    html[data-cug-glass] .text-token-text-primary {\n      color: var(--cug-text) !important;\n    }\n\n    html[data-cug-glass] .text-token-text-secondary {\n      color: var(--cug-text-secondary) !important;\n    }\n\n    html[data-cug-glass] .text-token-text-tertiary {\n      color: var(--cug-text-muted) !important;\n    }\n\n    /* Menus, popovers, dialogs and model picker. */\n    html[data-cug-glass] [role=\"dialog\"],\n    html[data-cug-glass] [role=\"menu\"],\n    html[data-cug-glass] [role=\"listbox\"],\n    html[data-cug-glass] [data-radix-popper-content-wrapper] > *,\n    html[data-cug-glass] .popover {\n      color: var(--cug-text) !important;\n      background:\n        linear-gradient(135deg, rgba(255,255,255,0.075), rgba(255,255,255,0.025)),\n        rgba(19, 22, 33, 0.82) !important;\n      border: 1px solid var(--cug-border) !important;\n      -webkit-backdrop-filter: blur(28px) saturate(155%) !important;\n      backdrop-filter: blur(28px) saturate(155%) !important;\n      box-shadow: var(--cug-shadow) !important;\n    }\n\n    html[data-cug-glass] [role=\"menuitem\"],\n    html[data-cug-glass] [role=\"option\"] {\n      color: var(--cug-text-secondary) !important;\n      background: transparent !important;\n      border-radius: 10px !important;\n    }\n\n    html[data-cug-glass] [role=\"menuitem\"]:hover,\n    html[data-cug-glass] [role=\"option\"]:hover {\n      color: var(--cug-text) !important;\n      background: rgba(255,255,255,0.075) !important;\n    }\n\n    /* Common buttons and interactive controls. */\n    html[data-cug-glass] button,\n    html[data-cug-glass] [role=\"button\"] {\n      color: var(--cug-text-secondary) !important;\n    }\n\n    html[data-cug-glass] button:hover,\n    html[data-cug-glass] [role=\"button\"]:hover {\n      color: var(--cug-text) !important;\n    }\n\n    /* Links and headings. */\n    html[data-cug-glass] a {\n      color: var(--cug-text-secondary);\n    }\n\n    html[data-cug-glass] h1,\n    html[data-cug-glass] h2,\n    html[data-cug-glass] h3,\n    html[data-cug-glass] h4 {\n      color: var(--cug-text) !important;\n    }\n\n    /* Code blocks remain readable while getting a glass surface. */\n    html[data-cug-glass] pre,\n    html[data-cug-glass] [data-testid*=\"code-block\"] {\n      background: rgba(7, 9, 15, 0.58) !important;\n      border: 1px solid var(--cug-border-soft) !important;\n      -webkit-backdrop-filter: blur(16px) !important;\n      backdrop-filter: blur(16px) !important;\n    }\n\n    /* Scrollbars. */\n    html[data-cug-glass] *::-webkit-scrollbar {\n      width: 8px;\n      height: 8px;\n    }\n\n    html[data-cug-glass] *::-webkit-scrollbar-track {\n      background: transparent;\n    }\n\n    html[data-cug-glass] *::-webkit-scrollbar-thumb {\n      background: rgba(255,255,255,0.16);\n      border-radius: 999px;\n      border: 2px solid transparent;\n      background-clip: padding-box;\n    }\n\n    html[data-cug-glass] *::-webkit-scrollbar-thumb:hover {\n      background: rgba(255,255,255,0.25);\n      background-clip: padding-box;\n    }\n\n    @media (prefers-reduced-motion: reduce) {\n      html[data-cug-glass] * {\n        scroll-behavior: auto !important;\n        transition-duration: 0.01ms !important;\n      }\n    }\n";
+  return style;
+}
+
 function applyGlass(enabled) {
   const existing = document.getElementById(STYLE_ID);
 
@@ -10,107 +17,16 @@ function applyGlass(enabled) {
     return;
   }
 
-  if (existing) return;
+  if (!existing) {
+    (document.head || document.documentElement).appendChild(buildStyle());
+  }
 
-  const style = document.createElement("style");
-  style.id = STYLE_ID;
-  style.textContent = `
-    :root {
-      --cug-glass-bg: rgba(18, 20, 31, 0.58);
-      --cug-glass-bg-strong: rgba(24, 27, 40, 0.72);
-      --cug-glass-border: rgba(255, 255, 255, 0.13);
-      --cug-glass-highlight: rgba(255, 255, 255, 0.08);
-      --cug-glass-shadow: 0 18px 55px rgba(0, 0, 0, 0.28);
-      --cug-glass-blur: 22px;
-    }
-
-    html[data-cug-glass] body {
-      background:
-        radial-gradient(circle at 12% 8%, rgba(122, 92, 255, 0.20), transparent 30%),
-        radial-gradient(circle at 88% 78%, rgba(39, 180, 255, 0.14), transparent 32%),
-        #08090d !important;
-    }
-
-    html[data-cug-glass] main,
-    html[data-cug-glass] nav,
-    html[data-cug-glass] header,
-    html[data-cug-glass] aside,
-    html[data-cug-glass] [role="dialog"],
-    html[data-cug-glass] [role="complementary"] {
-      border-color: var(--cug-glass-border) !important;
-    }
-
-    html[data-cug-glass] header,
-    html[data-cug-glass] aside,
-    html[data-cug-glass] [role="dialog"] {
-      background: var(--cug-glass-bg) !important;
-      -webkit-backdrop-filter: blur(var(--cug-glass-blur)) saturate(145%) !important;
-      backdrop-filter: blur(var(--cug-glass-blur)) saturate(145%) !important;
-      box-shadow: var(--cug-glass-shadow) !important;
-    }
-
-    html[data-cug-glass] main [class*="bg-token-main"],
-    html[data-cug-glass] [class*="bg-token-surface"],
-    html[data-cug-glass] [class*="bg-token-sidebar"] {
-      background: var(--cug-glass-bg) !important;
-      -webkit-backdrop-filter: blur(var(--cug-glass-blur)) saturate(145%) !important;
-      backdrop-filter: blur(var(--cug-glass-blur)) saturate(145%) !important;
-    }
-
-    html[data-cug-glass] form,
-    html[data-cug-glass] textarea,
-    html[data-cug-glass] [contenteditable="true"] {
-      background: var(--cug-glass-bg-strong) !important;
-      border: 1px solid var(--cug-glass-border) !important;
-      -webkit-backdrop-filter: blur(26px) saturate(150%) !important;
-      backdrop-filter: blur(26px) saturate(150%) !important;
-      box-shadow:
-        inset 0 1px 0 var(--cug-glass-highlight),
-        0 16px 45px rgba(0, 0, 0, 0.24) !important;
-    }
-
-    html[data-cug-glass] form:focus-within,
-    html[data-cug-glass] textarea:focus,
-    html[data-cug-glass] [contenteditable="true"]:focus {
-      border-color: rgba(190, 180, 255, 0.34) !important;
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.10),
-        0 0 0 1px rgba(155,140,255,0.10),
-        0 18px 50px rgba(0,0,0,0.28) !important;
-    }
-
-    html[data-cug-glass] button:not([aria-label*="Close"]):not([data-testid*="close"]) {
-      border-color: rgba(255,255,255,0.08) !important;
-    }
-
-    html[data-cug-glass] [class*="rounded-"] {
-      border-color: rgba(255,255,255,0.08);
-    }
-
-    html[data-cug-glass] [data-cug-glass-card] {
-      background: var(--cug-glass-bg) !important;
-      -webkit-backdrop-filter: blur(22px) saturate(145%) !important;
-      backdrop-filter: blur(22px) saturate(145%) !important;
-      border: 1px solid var(--cug-glass-border) !important;
-      box-shadow: var(--cug-glass-shadow) !important;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html[data-cug-glass] * {
-        scroll-behavior: auto !important;
-      }
-    }
-  `;
-
-  document.documentElement.appendChild(style);
   document.documentElement.setAttribute("data-cug-glass", "true");
 }
 
 async function sync() {
-  const { [STORAGE_KEY]: enabled = true } = await chrome.storage.local.get({
-    [STORAGE_KEY]: true
-  });
-  applyGlass(enabled);
+  const result = await chrome.storage.local.get({ [STORAGE_KEY]: true });
+  applyGlass(Boolean(result[STORAGE_KEY]));
 }
 
 chrome.storage.onChanged.addListener((changes, area) => {
@@ -124,5 +40,13 @@ chrome.runtime.onMessage.addListener((message) => {
     applyGlass(Boolean(message.enabled));
   }
 });
+
+const observer = new MutationObserver(() => {
+  if (document.documentElement.dataset.cugGlass === "true" && !document.getElementById(STYLE_ID)) {
+    applyGlass(true);
+  }
+});
+
+observer.observe(document.documentElement, { childList: true, subtree: true });
 
 sync();
