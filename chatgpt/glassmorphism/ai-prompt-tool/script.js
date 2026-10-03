@@ -13,6 +13,7 @@ chrome.storage.local.get({ glassEnabled: true }, ({ glassEnabled }) => {
 toggle.addEventListener("click", async () => {
   const { glassEnabled = true } = await chrome.storage.local.get("glassEnabled");
   const next = !glassEnabled;
+
   await chrome.storage.local.set({ glassEnabled: next });
   render(next);
 
@@ -21,11 +22,13 @@ toggle.addEventListener("click", async () => {
   });
 
   await Promise.allSettled(
-    tabs.map((tab) =>
-      chrome.tabs.sendMessage(tab.id, {
-        type: "SET_GLASSMORPHISM",
-        enabled: next
-      })
-    )
+    tabs
+      .filter((tab) => Number.isInteger(tab.id))
+      .map((tab) =>
+        chrome.tabs.sendMessage(tab.id, {
+          type: "SET_GLASSMORPHISM",
+          enabled: next
+        })
+      )
   );
 });
