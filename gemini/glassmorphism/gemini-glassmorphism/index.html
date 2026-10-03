@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gemini Glassmorphism</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="preview" aria-hidden="true"></canvas><div class="bg-fallback"></div>
+<main class="popup">
+<header class="header"><div><p class="eyebrow">GEMINI UI</p><h1>Glassmorphism</h1></div><span id="version" class="chip"></span></header>
+<section class="card hero"><div><strong>Visual layer</strong><p id="stateText">Active on Gemini</p></div><button id="enabled" class="switch" role="switch" aria-label="Enable Gemini Glassmorphism"><span></span></button></section>
+<p id="tabNotice" class="notice" hidden>Open gemini.google.com to apply the theme.</p>
+<div id="controls">
+<section class="card"><h2>Presets</h2><div id="presets" class="chips"></div></section>
+<div class="tabs" role="tablist" aria-label="Settings"><button class="tab" role="tab" data-tab="fx" aria-selected="true">Lights</button><button class="tab" role="tab" data-tab="glass" aria-selected="false">Glass</button><button class="tab" role="tab" data-tab="more" aria-selected="false">More</button></div>
+<section class="panel" id="panel-fx" role="tabpanel"></section>
+<section class="panel" id="panel-glass" role="tabpanel" hidden></section>
+<section class="panel" id="panel-more" role="tabpanel" hidden></section>
+</div>
+<div class="actions"><button id="reset" class="btn">Reset</button><a class="btn ghost" href="https://github.com/RuslanSharifov/chrome-ui-gallery" target="_blank" rel="noreferrer">Repository ↗</a></div>
+<footer>Gemini Glassmorphism · visual styling only</footer>
+</main>
+<script src="shared.js"></script><script src="fx.js"></script><script src="script.js"></script>
+</body></html>
