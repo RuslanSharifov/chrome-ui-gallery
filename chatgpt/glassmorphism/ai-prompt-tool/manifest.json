@@ -1,26 +1,16 @@
 {
   "manifest_version": 3,
   "name": "AI Prompt Tool — ChatGPT Glassmorphism",
-  "version": "1.3.0",
-  "description": "Apply and remove a glassmorphism theme to the existing ChatGPT UI.",
-  "permissions": [
-    "storage",
-    "tabs"
-  ],
+  "version": "1.4.0",
+  "description": "Apply a deep glassmorphism visual theme to the existing ChatGPT UI without opening a separate chat window.",
+  "permissions": ["storage", "tabs"],
   "action": {
     "default_title": "ChatGPT Glassmorphism",
     "default_popup": "index.html"
   },
-  "content_scripts": [
-    {
-      "matches": [
-        "https://chatgpt.com/*",
-        "https://chat.openai.com/*"
-      ],
-      "js": [
-        "content.js"
-      ],
-      "run_at": "document_idle"
-    }
-  ]
+  "content_scripts": [{
+    "matches": ["https://chatgpt.com/*", "https://chat.openai.com/*"],
+    "js": ["content.js"],
+    "run_at": "document_idle"
+  }]
 }
