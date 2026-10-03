@@ -8,14 +8,6 @@ Each platform has its own folder, and each design is grouped under its style fol
 
 - [ChatGPT](./chatgpt/README.md)
 
-## Setup Guides
+## Setup
 
-All general setup guides are stored in the `setup/` folder.
-
-- [Setup Guide — Azerbaijani](./setup/SETUP.az.md)
-- [Setup Guide — English](./setup/SETUP.en.md)
-- [Setup Guide — French](./setup/SETUP.fr.md)
-- [Setup Guide — German](./setup/SETUP.de.md)
-- [Setup Guide — Russian](./setup/SETUP.ru.md)
-- [Setup Guide — Turkish](./setup/SETUP.tr.md)
-- [Setup Guide — Language Index](./setup/README.md)
+For repository setup instructions, choose your language from the [Setup Guide](./setup/README.md).
