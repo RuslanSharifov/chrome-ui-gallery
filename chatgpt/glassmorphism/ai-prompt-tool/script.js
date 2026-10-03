@@ -1,20 +1,31 @@
-const promptInput = document.querySelector("#prompt");
-const runButton = document.querySelector("#run");
-const status = document.querySelector("#status");
-const result = document.querySelector("#result");
+const toggle = document.querySelector("#toggle");
+const stateText = document.querySelector("#stateText");
 
-runButton.addEventListener("click", () => {
-  const prompt = promptInput.value.trim();
+function render(enabled) {
+  toggle.setAttribute("aria-checked", String(enabled));
+  stateText.textContent = enabled ? "Active on ChatGPT" : "Disabled";
+}
 
-  if (!prompt) {
-    status.textContent = "Enter a prompt";
-    promptInput.focus();
-    result.hidden = true;
-    return;
-  }
+chrome.storage.local.get({ glassEnabled: true }, ({ glassEnabled }) => {
+  render(glassEnabled);
+});
 
-  status.textContent = "Ready to connect";
-  result.hidden = false;
-  result.textContent =
-    "Tool input captured. Connect your ChatGPT/API workflow here.\\n\\nPrompt:\\n" + prompt;
+toggle.addEventListener("click", async () => {
+  const { glassEnabled = true } = await chrome.storage.local.get("glassEnabled");
+  const next = !glassEnabled;
+  await chrome.storage.local.set({ glassEnabled: next });
+  render(next);
+
+  const tabs = await chrome.tabs.query({
+    url: ["https://chatgpt.com/*", "https://chat.openai.com/*"]
+  });
+
+  await Promise.allSettled(
+    tabs.map((tab) =>
+      chrome.tabs.sendMessage(tab.id, {
+        type: "SET_GLASSMORPHISM",
+        enabled: next
+      })
+    )
+  );
 });
