@@ -50,20 +50,22 @@ html[data-gug-glass] {
   --gug-shadow: 0 24px 70px rgb(0 0 0 / .30);
 }
 html[data-gug-glass][data-gug-mode="light"] {
-  color-scheme: light;
-  --gug-base: 238 242 249;
-  --gug-panel: 255 255 255;
-  --gug-fg: 24 28 40;
-  --gug-accent: var(--gug-accent-light);
+  /* Keep the visual canvas dark even when Gemini itself is in light mode.
+     The ambient shader needs a dark base so caustics, rays and neon colours remain visible. */
+  color-scheme: dark;
+  --gug-base: 5 7 13;
+  --gug-panel: 18 22 35;
+  --gug-fg: 247 248 255;
+  --gug-accent: var(--gug-accent-dark);
   --gug-text-2: rgb(var(--gug-fg) / .78);
   --gug-text-3: rgb(var(--gug-fg) / .58);
   --gug-line: rgb(var(--gug-fg) / .15);
-  --gug-hover: rgb(var(--gug-fg) / .06);
-  --gug-active: rgb(var(--gug-fg) / .10);
-  --gug-strong: rgb(var(--gug-panel) / min(.97, calc(var(--gug-alpha) + .28)));
-  --gug-sheen: linear-gradient(135deg, rgb(255 255 255 / calc(.40 * var(--gug-shine) + .12)), rgb(255 255 255 / calc(.12 * var(--gug-shine) + .04)) 60%);
-  --gug-edge: rgb(255 255 255 / calc(.38 * var(--gug-shine)));
-  --gug-shadow: 0 22px 60px rgb(40 52 90 / .18);
+  --gug-hover: rgb(var(--gug-fg) / .07);
+  --gug-active: rgb(var(--gug-fg) / .11);
+  --gug-strong: rgb(var(--gug-panel) / min(.97, calc(var(--gug-alpha) + .22)));
+  --gug-sheen: linear-gradient(135deg, rgb(255 255 255 / calc(.12 * var(--gug-shine))), rgb(255 255 255 / calc(.025 * var(--gug-shine))) 60%);
+  --gug-edge: rgb(255 255 255 / calc(.12 * var(--gug-shine)));
+  --gug-shadow: 0 22px 60px rgb(0 0 0 / .34);
 }
 
 /* ============ 2. AMBIENT LIGHT ============ */
@@ -88,6 +90,16 @@ html[data-gug-glass][data-gug-fx="gl"] #gug-ambient i:nth-child(4) { opacity: .1
 html[data-gug-glass][data-gug-fx="css"] #gug-ambient i { animation: gug-drift 38s ease-in-out infinite alternate; }
 html[data-gug-glass][data-gug-fx="css"] #gug-ambient i:nth-child(3) { animation-duration: 46s; animation-delay: -8s; }
 html[data-gug-glass][data-gug-fx="css"] #gug-ambient i:nth-child(4) { animation-duration: 54s; animation-delay: -16s; }
+
+/* The extension owns the visual canvas in both Gemini themes.
+   Keep the page black so the dynamic lighting has contrast, and use white UI text. */
+html[data-gug-glass] {
+  background: rgb(5 7 13) !important;
+}
+html[data-gug-glass] body {
+  background: transparent !important;
+  color: rgb(247 248 255) !important;
+}
 
 /* ============ 3. PAGE & TRANSPARENT SHELL ============ */
 html[data-gug-glass] { background: rgb(var(--gug-base)) !important; }
