@@ -188,9 +188,14 @@ html[data-gug-glass] .input-area-container {
   background: var(--gug-sheen), var(--gug-strong) !important;
   border: 1px solid var(--gug-line) !important;
   border-radius: calc(var(--gug-radius) + 8px) !important;
-  box-shadow: var(--gug-shadow), inset 0 1px 0 var(--gug-edge) !important;
+  box-shadow: none !important;
   -webkit-backdrop-filter: var(--gug-blur) !important;
   backdrop-filter: var(--gug-blur) !important;
+}
+/* Keep the last conversation content scrollable above the fixed/sticky composer. */
+html[data-gug-glass] .chat-history > infinite-scroller {
+  padding-bottom: 120px !important;
+  scroll-padding-bottom: 120px !important;
 }
 /* inner field wrappers must not add a second frame */
 html[data-gug-glass] .input-area-container :is(.input-area, .text-input-field, rich-textarea, .ql-editor) {
