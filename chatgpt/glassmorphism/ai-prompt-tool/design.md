@@ -16,7 +16,7 @@ Glassmorphism
 - CSS `backdrop-filter`
 
 ## Purpose
-ChatGPT üçün glassmorphism üslubunda sadə AI prompt tool. Şəffaf glass panel, blur effekti, yumşaq border və tək əsas action düyməsindən istifadə edir.
+A simple glassmorphism AI prompt tool for ChatGPT. It uses a transparent glass panel, blur effects, soft borders, and one primary action button.
 
 ## Code
 
@@ -26,16 +26,61 @@ ChatGPT üçün glassmorphism üslubunda sadə AI prompt tool. Şəffaf glass pa
 
 ## Files
 
-Bu design üç əsas kod faylından ibarətdir:
+This design contains four files:
 
-- `index.html` — UI strukturu
-- `style.css` — glassmorphism görünüşü və responsive layout
-- `script.js` — prompt input və tool interaction
+- `index.html` — UI structure
+- `style.css` — glassmorphism styling and responsive layout
+- `script.js` — prompt input and tool interaction
+- `design.md` — design documentation and setup instructions
 
-## Usage
-`index.html` faylını browser-də açın. Prompt daxil edib **Run tool** düyməsinə klikləyin. Hazırkı JavaScript input-u lokal olaraq göstərir; real ChatGPT/API integration üçün həmin hissəni öz workflow-unuzla əvəz edə bilərsiniz.
+## Setup from CMD
+
+If you want to create the same folder structure locally, copy and paste these commands into Windows CMD:
+
+```cmd
+git clone https://github.com/RuslanSharifov/chrome-ui-gallery.git
+cd chrome-ui-gallery
+mkdir chatgpt\glassmorphism\ai-prompt-tool
+cd chatgpt\glassmorphism\ai-prompt-tool
+```
+
+The design files can then be placed in this folder:
+
+```cmd
+type nul > index.html
+type nul > style.css
+type nul > script.js
+type nul > design.md
+```
+
+If you cloned the repository, the files already exist, so you do not need to run the `type nul` commands. You can simply open the folder in your editor:
+
+```cmd
+code .
+```
+
+If VS Code is not installed or `code` is not available in CMD, open the folder manually in your preferred editor.
+
+## Local usage
+
+Open `index.html` in a browser. Enter a prompt and click **Run tool**.
+
+The current JavaScript displays the entered prompt locally. For a real ChatGPT/API integration, replace the relevant JavaScript logic with your own workflow.
+
+## Git workflow
+
+After editing the files:
+
+```cmd
+cd ..\..\..
+git status
+git add .
+git commit -m "Update ChatGPT glassmorphism AI prompt tool"
+git push origin main
+```
 
 ## Suitable use cases
+
 - AI prompt panels
 - ChatGPT extensions
 - Browser extension popups
