@@ -1,44 +1,735 @@
 const STYLE_ID = "chrome-ui-gallery-glassmorphism";
 const STORAGE_KEY = "glassEnabled";
-const styleText = "html[data-cug-glass] {\n  --cug-bg: #080a10;\n  --cug-glass: rgba(19, 22, 32, .62);\n  --cug-glass-strong: rgba(24, 28, 41, .80);\n  --cug-glass-soft: rgba(255,255,255,.055);\n  --cug-border: rgba(255,255,255,.14);\n  --cug-border-soft: rgba(255,255,255,.075);\n  --cug-text: rgba(249,250,255,.95);\n  --cug-text-2: rgba(229,232,243,.74);\n  --cug-text-3: rgba(205,210,225,.52);\n  --cug-gold: #f2c76d;\n  --cug-gold-2: #ffe2a1;\n  --cug-purple: #b5a7ff;\n  --cug-cyan: #7ddcff;\n  --cug-blur: 26px;\n  --cug-shadow: 0 24px 70px rgba(0,0,0,.30);\n}\nhtml[data-cug-glass][data-theme=\"light\"], html[data-cug-glass]:not(.dark) {\n  --cug-bg: #eef2f8;\n  --cug-glass: rgba(255,255,255,.60);\n  --cug-glass-strong: rgba(255,255,255,.78);\n  --cug-glass-soft: rgba(255,255,255,.42);\n  --cug-border: rgba(30,39,58,.13);\n  --cug-border-soft: rgba(30,39,58,.08);\n  --cug-text: rgba(20,25,37,.94);\n  --cug-text-2: rgba(48,56,73,.74);\n  --cug-text-3: rgba(72,80,98,.58);\n  --cug-gold: #a66b00;\n  --cug-gold-2: #c68a16;\n  --cug-purple: #6758c9;\n  --cug-cyan: #167c9e;\n}\nhtml[data-cug-glass], html[data-cug-glass] body {\n  background: radial-gradient(circle at 8% 0%, rgba(119,92,255,.18), transparent 28%), radial-gradient(circle at 92% 82%, rgba(49,194,255,.13), transparent 31%), var(--cug-bg) !important;\n  color: var(--cug-text) !important;\n}\nhtml[data-cug-glass] body::before {\n  content: \"\"; position: fixed; inset: -15%; pointer-events: none; z-index: -1;\n  background: radial-gradient(circle at 25% 35%, rgba(242,199,109,.055), transparent 24%), radial-gradient(circle at 70% 62%, rgba(122,103,255,.07), transparent 28%);\n  animation: cug-ambient 18s ease-in-out infinite alternate;\n}\n@keyframes cug-ambient { from { transform: translate3d(-1.5%, -1%, 0) scale(1); } to { transform: translate3d(1.5%, 1%, 0) scale(1.04); } }\n\n/* LEFT NAVIGATION / SIDEBAR */\nhtml[data-cug-glass] aside.app-shell-left-panel,\nhtml[data-cug-glass] aside[data-testid=\"app-shell-floating-left-panel\"],\nhtml[data-cug-glass] #stage-slideover-sidebar,\nhtml[data-cug-glass] nav[aria-label=\"Chat history\"] {\n  background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.018)), rgba(10,13,21,.68) !important;\n  color: var(--cug-text) !important; border-color: var(--cug-border) !important;\n  backdrop-filter: blur(30px) saturate(155%) !important; -webkit-backdrop-filter: blur(30px) saturate(155%) !important;\n  box-shadow: inset -1px 0 rgba(255,255,255,.05), 18px 0 60px rgba(0,0,0,.18) !important;\n}\nhtml[data-cug-glass] aside.app-shell-left-panel a, html[data-cug-glass] nav[aria-label=\"Chat history\"] a {\n  color: var(--cug-text-2) !important; background: transparent !important; border: 1px solid transparent !important;\n  border-radius: 13px !important; transition: transform .18s ease, background .18s ease, color .18s ease, box-shadow .18s ease !important;\n}\nhtml[data-cug-glass] aside.app-shell-left-panel a:hover, html[data-cug-glass] nav[aria-label=\"Chat history\"] a:hover {\n  color: var(--cug-text) !important; background: rgba(255,255,255,.075) !important;\n  transform: perspective(500px) translate3d(3px,-1px,0) rotateX(1deg) scale(1.012);\n  box-shadow: 0 8px 24px rgba(0,0,0,.14);\n}\nhtml[data-cug-glass] aside.app-shell-left-panel [data-sidebar-group-label], html[data-cug-glass] aside.app-shell-left-panel h3 {\n  color: var(--cug-gold) !important; letter-spacing: .045em; text-transform: uppercase;\n}\n\n/* PRIMARY NAV LABELS: gold/yellow family for visual grouping */\nhtml[data-cug-glass] a[href*=\"/images\"], html[data-cug-glass] a[href*=\"/library\"],\nhtml[data-cug-glass] a[href*=\"/scheduled\"], html[data-cug-glass] a[href*=\"/projects\"],\nhtml[data-cug-glass] a[href*=\"/codex\"], html[data-cug-glass] a[href*=\"/settings\"],\nhtml[data-cug-glass] [data-testid*=\"images\"], html[data-cug-glass] [data-testid*=\"library\"],\nhtml[data-cug-glass] [data-testid*=\"scheduled\"], html[data-cug-glass] [data-testid*=\"project\"] {\n  position: relative; color: var(--cug-text-2) !important;\n}\nhtml[data-cug-glass] a[href*=\"/images\"] svg, html[data-cug-glass] a[href*=\"/library\"] svg,\nhtml[data-cug-glass] a[href*=\"/scheduled\"] svg, html[data-cug-glass] a[href*=\"/projects\"] svg,\nhtml[data-cug-glass] a[href*=\"/codex\"] svg, html[data-cug-glass] [data-testid*=\"images\"] svg,\nhtml[data-cug-glass] [data-testid*=\"library\"] svg, html[data-cug-glass] [data-testid*=\"scheduled\"] svg,\nhtml[data-cug-glass] [data-testid*=\"project\"] svg { color: var(--cug-gold) !important; }\n\n/* CHAT TITLES + PROJECT LABELS */\nhtml[data-cug-glass] nav[aria-label=\"Chat history\"] a, html[data-cug-glass] aside.app-shell-left-panel a[href*=\"/c/\"] {\n  transform-origin: left center; perspective: 700px;\n}\nhtml[data-cug-glass] nav[aria-label=\"Chat history\"] a:hover, html[data-cug-glass] aside.app-shell-left-panel a[href*=\"/c/\"]:hover {\n  transform: perspective(700px) translate3d(5px,-2px,4px) rotateY(-2deg) rotateX(2deg) scale(1.025);\n  background: linear-gradient(90deg, rgba(242,199,109,.10), rgba(255,255,255,.045)) !important;\n  border-color: rgba(242,199,109,.16) !important;\n}\nhtml[data-cug-glass] nav[aria-label=\"Chat history\"] a small, html[data-cug-glass] nav[aria-label=\"Chat history\"] a [class*=\"text-token-text-tertiary\"] {\n  color: var(--cug-gold) !important; font-size: .72rem !important; font-weight: 600 !important;\n}\n\n/* CHAT / WORK SWITCHER + UPGRADE */\nhtml[data-cug-glass] button, html[data-cug-glass] [role=\"button\"] { color: var(--cug-text-2) !important; }\nhtml[data-cug-glass] button:hover, html[data-cug-glass] [role=\"button\"]:hover { color: var(--cug-text) !important; }\nhtml[data-cug-glass] [aria-label*=\"Upgrade\"], html[data-cug-glass] [data-testid*=\"upgrade\"],\nhtml[data-cug-glass] button:has(span) { border-color: var(--cug-border-soft) !important; }\nhtml[data-cug-glass] [aria-label*=\"Upgrade\"] {\n  background: linear-gradient(135deg, rgba(242,199,109,.18), rgba(255,255,255,.055)) !important;\n  color: var(--cug-gold-2) !important; box-shadow: inset 0 1px rgba(255,255,255,.10) !important;\n}\n\n/* MAIN CHAT BACKGROUND + NEW CHAT */\nhtml[data-cug-glass] main, html[data-cug-glass] [role=\"main\"] {\n  background: transparent !important; color: var(--cug-text) !important;\n}\nhtml[data-cug-glass] main::before, html[data-cug-glass] [role=\"main\"]::before {\n  content: \"\"; position: absolute; inset: 0; pointer-events: none;\n  background: linear-gradient(135deg, rgba(255,255,255,.025), transparent 38%), radial-gradient(circle at 50% 20%, rgba(181,167,255,.06), transparent 34%);\n}\nhtml[data-cug-glass] #thread-bottom-container { background: linear-gradient(180deg, transparent, rgba(8,10,16,.16)) !important; }\n\n/* COMPOSER / INPUT */\nhtml[data-cug-glass] [data-composer-surface=\"true\"], html[data-cug-glass] form[data-type=\"unified-composer\"],\nhtml[data-cug-glass] form.group\\/composer {\n  background: linear-gradient(135deg, rgba(255,255,255,.085), rgba(255,255,255,.028)), var(--cug-glass-strong) !important;\n  border: 1px solid var(--cug-border) !important; border-radius: 27px !important;\n  backdrop-filter: blur(32px) saturate(155%) !important; -webkit-backdrop-filter: blur(32px) saturate(155%) !important;\n  box-shadow: inset 0 1px rgba(255,255,255,.10), 0 22px 65px rgba(0,0,0,.28) !important;\n}\nhtml[data-cug-glass] #prompt-textarea, html[data-cug-glass] textarea[name=\"prompt-textarea\"],\nhtml[data-cug-glass] .ProseMirror[contenteditable=\"true\"] {\n  color: var(--cug-text) !important; -webkit-text-fill-color: var(--cug-text) !important;\n  caret-color: var(--cug-gold-2) !important; background: transparent !important; border: 0 !important; outline: 0 !important;\n}\nhtml[data-cug-glass] #prompt-textarea::placeholder, html[data-cug-glass] textarea[name=\"prompt-textarea\"]::placeholder,\nhtml[data-cug-glass] .ProseMirror[contenteditable=\"true\"]::before { color: var(--cug-text-3) !important; -webkit-text-fill-color: var(--cug-text-3) !important; opacity: 1 !important; }\nhtml[data-cug-glass] [data-composer-surface=\"true\"]:focus-within, html[data-cug-glass] form[data-type=\"unified-composer\"]:focus-within {\n  border-color: rgba(242,199,109,.40) !important; box-shadow: inset 0 1px rgba(255,255,255,.11), 0 0 0 1px rgba(242,199,109,.08), 0 25px 70px rgba(0,0,0,.30) !important;\n}\n\n/* MESSAGE BUBBLES */\nhtml[data-cug-glass] [data-message-author-role=\"user\"], html[data-cug-glass] [data-role=\"user\"] {\n  color: var(--cug-text) !important; background: linear-gradient(135deg, rgba(242,199,109,.15), rgba(125,220,255,.07)), rgba(255,255,255,.045) !important;\n  border: 1px solid rgba(242,199,109,.15) !important; border-radius: 21px !important; backdrop-filter: blur(20px) !important;\n}\nhtml[data-cug-glass] [data-message-author-role=\"assistant\"], html[data-cug-glass] [data-role=\"assistant\"] { color: var(--cug-text) !important; }\nhtml[data-cug-glass] .text-token-text-primary { color: var(--cug-text) !important; }\nhtml[data-cug-glass] .text-token-text-secondary { color: var(--cug-text-2) !important; }\nhtml[data-cug-glass] .text-token-text-tertiary { color: var(--cug-text-3) !important; }\n\n/* SETTINGS / UPGRADE / PLUGINS / MODALS */\nhtml[data-cug-glass] [role=\"dialog\"], html[data-cug-glass] [role=\"menu\"], html[data-cug-glass] [role=\"listbox\"],\nhtml[data-cug-glass] [data-radix-popper-content-wrapper] > *, html[data-cug-glass] .popover {\n  color: var(--cug-text) !important;\n  background: linear-gradient(135deg, rgba(255,255,255,.085), rgba(255,255,255,.025)), rgba(20,23,35,.86) !important;\n  border: 1px solid var(--cug-border) !important; border-radius: 18px !important;\n  backdrop-filter: blur(30px) saturate(155%) !important; -webkit-backdrop-filter: blur(30px) saturate(155%) !important;\n  box-shadow: var(--cug-shadow) !important;\n}\nhtml[data-cug-glass] [role=\"dialog\"] *, html[data-cug-glass] [role=\"menu\"] *, html[data-cug-glass] [role=\"listbox\"] * {\n  border-color: var(--cug-border-soft);\n}\nhtml[data-cug-glass] [role=\"menuitem\"], html[data-cug-glass] [role=\"option\"] { color: var(--cug-text-2) !important; background: transparent !important; border-radius: 11px !important; }\nhtml[data-cug-glass] [role=\"menuitem\"]:hover, html[data-cug-glass] [role=\"option\"]:hover { color: var(--cug-text) !important; background: rgba(242,199,109,.10) !important; }\n\n/* DRAGGABLE DIALOG HEADER */\nhtml[data-cug-glass] [data-cug-draggable=\"true\"] { cursor: default; }\nhtml[data-cug-glass] [data-cug-drag-handle=\"true\"] { cursor: grab !important; user-select: none; }\nhtml[data-cug-glass] [data-cug-drag-handle=\"true\"]:active { cursor: grabbing !important; }\n\n/* GENERAL READABILITY */\nhtml[data-cug-glass] h1, html[data-cug-glass] h2, html[data-cug-glass] h3, html[data-cug-glass] h4 { color: var(--cug-text) !important; }\nhtml[data-cug-glass] a { color: var(--cug-text-2); }\nhtml[data-cug-glass] pre, html[data-cug-glass] [data-testid*=\"code-block\"] { background: rgba(5,7,12,.54) !important; border: 1px solid var(--cug-border-soft) !important; border-radius: 15px !important; }\nhtml[data-cug-glass] *::-webkit-scrollbar { width: 8px; height: 8px; }\nhtml[data-cug-glass] *::-webkit-scrollbar-track { background: transparent; }\nhtml[data-cug-glass] *::-webkit-scrollbar-thumb { background: rgba(255,255,255,.16); border-radius: 999px; border: 2px solid transparent; background-clip: padding-box; }\n@media (prefers-reduced-motion: reduce) { html[data-cug-glass] body::before { animation: none !important; } html[data-cug-glass] * { transition: none !important; } }";
+
+const styleText = `
+/* =========================================================
+   CHROME UI GALLERY — CHATGPT GLASSMORPHISM
+   Visual-only theme: no chat/API/navigation logic changes.
+   ========================================================= */
+
+html[data-cug-glass][data-cug-mode="dark"] {
+  --cug-bg: #030507;
+  --cug-bg-2: #070a0f;
+  --cug-surface: rgba(13, 17, 24, .66);
+  --cug-surface-2: rgba(18, 23, 32, .78);
+  --cug-surface-3: rgba(24, 30, 41, .88);
+  --cug-soft: rgba(255,255,255,.045);
+  --cug-soft-2: rgba(255,255,255,.075);
+  --cug-line: rgba(255,255,255,.105);
+  --cug-line-strong: rgba(255,255,255,.18);
+  --cug-text: #f7f9fc;
+  --cug-text-2: #cdd4df;
+  --cug-text-3: #8f99a8;
+  --cug-muted: #697585;
+  --cug-accent: #f4c96d;
+  --cug-accent-2: #ffe4a4;
+  --cug-blue: #8bdcff;
+  --cug-purple: #b9adff;
+  --cug-success: #8fe1b0;
+  --cug-danger: #ff9a9a;
+  --cug-shadow: 0 24px 80px rgba(0,0,0,.42);
+  --cug-shadow-soft: 0 12px 40px rgba(0,0,0,.26);
+}
+
+html[data-cug-glass][data-cug-mode="light"] {
+  --cug-bg: #e9edf3;
+  --cug-bg-2: #f4f6f9;
+  --cug-surface: rgba(255,255,255,.60);
+  --cug-surface-2: rgba(255,255,255,.74);
+  --cug-surface-3: rgba(255,255,255,.88);
+  --cug-soft: rgba(255,255,255,.38);
+  --cug-soft-2: rgba(255,255,255,.62);
+  --cug-line: rgba(24,31,43,.10);
+  --cug-line-strong: rgba(24,31,43,.17);
+  --cug-text: #18202c;
+  --cug-text-2: #414b5b;
+  --cug-text-3: #687386;
+  --cug-muted: #8b95a5;
+  --cug-accent: #986300;
+  --cug-accent-2: #bd7e08;
+  --cug-blue: #087797;
+  --cug-purple: #6659bd;
+  --cug-success: #17734a;
+  --cug-danger: #a52d2d;
+  --cug-shadow: 0 24px 70px rgba(43,52,68,.16);
+  --cug-shadow-soft: 0 12px 38px rgba(43,52,68,.11);
+}
+
+/* ---------- ROOT / ATMOSPHERE ---------- */
+html[data-cug-glass],
+html[data-cug-glass] body {
+  background:
+    radial-gradient(circle at 8% 8%, color-mix(in srgb, var(--cug-purple) 12%, transparent), transparent 28%),
+    radial-gradient(circle at 88% 78%, color-mix(in srgb, var(--cug-blue) 10%, transparent), transparent 30%),
+    var(--cug-bg) !important;
+  color: var(--cug-text) !important;
+}
+
+html[data-cug-glass] body {
+  min-height: 100vh !important;
+}
+
+html[data-cug-glass] body::before,
+html[data-cug-glass] body::after {
+  content: "";
+  position: fixed;
+  inset: -18%;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 22% 30%, color-mix(in srgb, var(--cug-accent) 7%, transparent), transparent 21%),
+    radial-gradient(circle at 74% 62%, color-mix(in srgb, var(--cug-purple) 8%, transparent), transparent 25%);
+  animation: cug-float 22s ease-in-out infinite alternate;
+}
+
+html[data-cug-glass] body::after {
+  animation-duration: 30s;
+  animation-direction: alternate-reverse;
+  opacity: .65;
+}
+
+@keyframes cug-float {
+  0% { transform: translate3d(-1.2%, -1%, 0) scale(1); }
+  50% { transform: translate3d(1%, .7%, 0) scale(1.025); }
+  100% { transform: translate3d(1.8%, -1.1%, 0) scale(1.045); }
+}
+
+/* ---------- UNIVERSAL TYPOGRAPHY / SURFACES ---------- */
+html[data-cug-glass] body,
+html[data-cug-glass] body * {
+  border-color: var(--cug-line) !important;
+}
+
+html[data-cug-glass] body,
+html[data-cug-glass] div,
+html[data-cug-glass] span,
+html[data-cug-glass] p,
+html[data-cug-glass] li,
+html[data-cug-glass] label,
+html[data-cug-glass] small,
+html[data-cug-glass] button,
+html[data-cug-glass] [role="button"],
+html[data-cug-glass] input,
+html[data-cug-glass] textarea,
+html[data-cug-glass] [contenteditable="true"] {
+  color: var(--cug-text);
+}
+
+html[data-cug-glass] h1,
+html[data-cug-glass] h2,
+html[data-cug-glass] h3,
+html[data-cug-glass] h4,
+html[data-cug-glass] h5,
+html[data-cug-glass] h6 {
+  color: var(--cug-text) !important;
+  text-shadow: 0 1px 18px color-mix(in srgb, var(--cug-text) 8%, transparent);
+}
+
+html[data-cug-glass] a {
+  color: var(--cug-text-2) !important;
+}
+
+html[data-cug-glass] a:hover {
+  color: var(--cug-text) !important;
+}
+
+html[data-cug-glass] svg {
+  color: currentColor;
+  transition: color .2s ease, transform .2s ease, opacity .2s ease, filter .2s ease;
+}
+
+html[data-cug-glass] button,
+html[data-cug-glass] [role="button"] {
+  transition:
+    color .2s ease,
+    background .2s ease,
+    border-color .2s ease,
+    box-shadow .2s ease,
+    transform .2s ease,
+    filter .2s ease !important;
+}
+
+/* ---------- LEFT SIDEBAR ---------- */
+html[data-cug-glass] aside,
+html[data-cug-glass] nav[aria-label*="Chat history"],
+html[data-cug-glass] [data-testid*="left-panel"],
+html[data-cug-glass] [data-testid*="sidebar"] {
+  background:
+    linear-gradient(180deg, var(--cug-soft-2), transparent 24%),
+    var(--cug-surface) !important;
+  color: var(--cug-text) !important;
+  backdrop-filter: blur(30px) saturate(145%) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(145%) !important;
+  box-shadow: inset -1px 0 var(--cug-line), 18px 0 60px rgba(0,0,0,.12) !important;
+}
+
+html[data-cug-glass] aside::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255,255,255,.035), transparent 35%);
+}
+
+/* Sidebar headings / group labels */
+html[data-cug-glass] aside h1,
+html[data-cug-glass] aside h2,
+html[data-cug-glass] aside h3,
+html[data-cug-glass] aside [data-sidebar-group-label],
+html[data-cug-glass] aside [class*="group-label"] {
+  color: var(--cug-accent) !important;
+  font-weight: 700 !important;
+  letter-spacing: .045em !important;
+}
+
+/* Sidebar navigation */
+html[data-cug-glass] aside a,
+html[data-cug-glass] aside button,
+html[data-cug-glass] aside [role="button"],
+html[data-cug-glass] nav a,
+html[data-cug-glass] nav button {
+  color: var(--cug-text-2) !important;
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  border-radius: 12px !important;
+}
+
+html[data-cug-glass] aside a:hover,
+html[data-cug-glass] aside button:hover,
+html[data-cug-glass] aside [role="button"]:hover,
+html[data-cug-glass] nav a:hover,
+html[data-cug-glass] nav button:hover {
+  color: var(--cug-text) !important;
+  background: linear-gradient(90deg, var(--cug-soft-2), var(--cug-soft)) !important;
+  border-color: var(--cug-line) !important;
+  transform: translate3d(3px,-1px,0) !important;
+  box-shadow: var(--cug-shadow-soft) !important;
+}
+
+/* Active sidebar item */
+html[data-cug-glass] aside a[aria-current="page"],
+html[data-cug-glass] aside button[aria-current="page"],
+html[data-cug-glass] aside [data-state="active"],
+html[data-cug-glass] nav a[aria-current="page"] {
+  color: var(--cug-text) !important;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--cug-accent) 15%, transparent), var(--cug-soft)) !important;
+  border-color: color-mix(in srgb, var(--cug-accent) 22%, transparent) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.08), var(--cug-shadow-soft) !important;
+}
+
+html[data-cug-glass] aside a[aria-current="page"] svg,
+html[data-cug-glass] aside [data-state="active"] svg {
+  color: var(--cug-accent) !important;
+}
+
+/* ---------- SPECIFIC NAV / CHAT-WORK ---------- */
+html[data-cug-glass] [data-cug-role],
+html[data-cug-glass] [data-cug-nav] {
+  color: var(--cug-text-2) !important;
+}
+
+html[data-cug-glass] [data-cug-nav="chat-work"],
+html[data-cug-glass] [data-cug-nav="new-chat"],
+html[data-cug-glass] [data-cug-nav="images"],
+html[data-cug-glass] [data-cug-nav="library"],
+html[data-cug-glass] [data-cug-nav="scheduled"],
+html[data-cug-glass] [data-cug-nav="plans"],
+html[data-cug-glass] [data-cug-nav="projects"],
+html[data-cug-glass] [data-cug-nav="codex"],
+html[data-cug-glass] [data-cug-nav="more"] {
+  color: var(--cug-text-2) !important;
+  background: linear-gradient(135deg, var(--cug-soft-2), var(--cug-soft)) !important;
+  border: 1px solid var(--cug-line) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.035) !important;
+}
+
+html[data-cug-glass] [data-cug-nav]:hover {
+  color: var(--cug-text) !important;
+  border-color: color-mix(in srgb, var(--cug-accent) 28%, var(--cug-line)) !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,.16), inset 0 1px rgba(255,255,255,.08) !important;
+  transform: translate3d(2px,-1px,0) scale(1.01) !important;
+}
+
+html[data-cug-glass] [data-cug-nav] svg {
+  color: var(--cug-accent) !important;
+}
+
+html[data-cug-glass] [data-cug-nav="claim-offer"],
+html[data-cug-glass] [data-cug-nav="upgrade"] {
+  color: var(--cug-accent-2) !important;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--cug-accent) 17%, transparent), var(--cug-soft)) !important;
+  border-color: color-mix(in srgb, var(--cug-accent) 27%, transparent) !important;
+}
+
+/* ---------- CHAT HISTORY / PROJECT AFFILIATION ---------- */
+html[data-cug-glass] nav[aria-label*="Chat history"] a,
+html[data-cug-glass] aside a[href*="/c/"] {
+  color: var(--cug-text-2) !important;
+  transform-origin: left center;
+  perspective: 800px;
+}
+
+html[data-cug-glass] nav[aria-label*="Chat history"] a:hover,
+html[data-cug-glass] aside a[href*="/c/"]:hover {
+  color: var(--cug-text) !important;
+  background: linear-gradient(105deg, color-mix(in srgb, var(--cug-accent) 11%, transparent), var(--cug-soft)) !important;
+  border-color: color-mix(in srgb, var(--cug-accent) 20%, transparent) !important;
+  transform: perspective(800px) translate3d(5px,-2px,4px) rotateY(-2deg) rotateX(1.5deg) scale(1.018) !important;
+}
+
+html[data-cug-glass] [data-cug-project-label="true"],
+html[data-cug-glass] nav[aria-label*="Chat history"] a small,
+html[data-cug-glass] nav[aria-label*="Chat history"] a [class*="tertiary"],
+html[data-cug-glass] nav[aria-label*="Chat history"] a [class*="secondary"] {
+  color: var(--cug-accent) !important;
+  font-size: .72rem !important;
+  font-weight: 700 !important;
+  letter-spacing: .01em !important;
+}
+
+/* ---------- MAIN CONTENT ---------- */
+html[data-cug-glass] main,
+html[data-cug-glass] [role="main"] {
+  position: relative !important;
+  isolation: isolate;
+  background: transparent !important;
+  color: var(--cug-text) !important;
+}
+
+html[data-cug-glass] main::before,
+html[data-cug-glass] [role="main"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 5%, color-mix(in srgb, var(--cug-purple) 7%, transparent), transparent 30%),
+    linear-gradient(180deg, transparent 60%, color-mix(in srgb, var(--cug-bg) 22%, transparent));
+}
+
+/* New-chat empty state: layered glass planes */
+html[data-cug-glass] main [class*="empty"],
+html[data-cug-glass] main [class*="welcome"] {
+  color: var(--cug-text) !important;
+}
+
+html[data-cug-glass] main [class*="empty"] > div,
+html[data-cug-glass] main [class*="welcome"] > div {
+  border-radius: 24px !important;
+}
+
+/* ---------- COMPOSER ---------- */
+html[data-cug-glass] [data-composer-surface="true"],
+html[data-cug-glass] form[data-type="unified-composer"],
+html[data-cug-glass] form.group\\/composer,
+html[data-cug-glass] [class*="composer"] {
+  background:
+    linear-gradient(135deg, var(--cug-soft-2), transparent 45%),
+    var(--cug-surface-2) !important;
+  border: 1px solid var(--cug-line-strong) !important;
+  border-radius: 26px !important;
+  backdrop-filter: blur(30px) saturate(145%) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(145%) !important;
+  box-shadow:
+    inset 0 1px rgba(255,255,255,.09),
+    0 24px 70px rgba(0,0,0,.22) !important;
+}
+
+html[data-cug-glass] [data-composer-surface="true"]:focus-within,
+html[data-cug-glass] form[data-type="unified-composer"]:focus-within,
+html[data-cug-glass] form.group\\/composer:focus-within {
+  border-color: color-mix(in srgb, var(--cug-accent) 48%, var(--cug-line)) !important;
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--cug-accent) 13%, transparent),
+    0 24px 75px rgba(0,0,0,.27) !important;
+}
+
+html[data-cug-glass] #prompt-textarea,
+html[data-cug-glass] textarea[name="prompt-textarea"],
+html[data-cug-glass] .ProseMirror[contenteditable="true"] {
+  color: var(--cug-text) !important;
+  -webkit-text-fill-color: var(--cug-text) !important;
+  background: transparent !important;
+  border: 0 !important;
+  outline: 0 !important;
+  caret-color: var(--cug-accent) !important;
+}
+
+html[data-cug-glass] #prompt-textarea::placeholder,
+html[data-cug-glass] textarea[name="prompt-textarea"]::placeholder,
+html[data-cug-glass] .ProseMirror[contenteditable="true"]::before {
+  color: var(--cug-text-3) !important;
+  -webkit-text-fill-color: var(--cug-text-3) !important;
+  opacity: 1 !important;
+}
+
+/* ---------- USER / ASSISTANT CONTENT ---------- */
+html[data-cug-glass] [data-message-author-role="user"],
+html[data-cug-glass] [data-role="user"] {
+  color: var(--cug-text) !important;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--cug-accent) 13%, transparent), var(--cug-soft)) !important;
+  border: 1px solid color-mix(in srgb, var(--cug-accent) 15%, var(--cug-line)) !important;
+  border-radius: 20px !important;
+  backdrop-filter: blur(18px) !important;
+}
+
+html[data-cug-glass] [data-message-author-role="assistant"],
+html[data-cug-glass] [data-role="assistant"] {
+  color: var(--cug-text) !important;
+  background: transparent !important;
+}
+
+/* ---------- MENUS / POPOVERS / SETTINGS / UPGRADE / PLUGINS ---------- */
+html[data-cug-glass] [role="dialog"],
+html[data-cug-glass] [role="menu"],
+html[data-cug-glass] [role="listbox"],
+html[data-cug-glass] [data-radix-popper-content-wrapper] > *,
+html[data-cug-glass] [data-state="open"][data-side],
+html[data-cug-glass] .popover,
+html[data-cug-glass] [class*="modal"],
+html[data-cug-glass] [class*="popover"] {
+  color: var(--cug-text) !important;
+  background:
+    linear-gradient(135deg, var(--cug-soft-2), transparent 46%),
+    var(--cug-surface-3) !important;
+  border: 1px solid var(--cug-line-strong) !important;
+  border-radius: 20px !important;
+  backdrop-filter: blur(32px) saturate(155%) !important;
+  -webkit-backdrop-filter: blur(32px) saturate(155%) !important;
+  box-shadow: var(--cug-shadow) !important;
+}
+
+html[data-cug-glass] [role="dialog"]::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--cug-accent) 55%, transparent), transparent);
+  pointer-events: none;
+}
+
+html[data-cug-glass] [role="menuitem"],
+html[data-cug-glass] [role="option"] {
+  color: var(--cug-text-2) !important;
+  background: transparent !important;
+  border-radius: 10px !important;
+}
+
+html[data-cug-glass] [role="menuitem"]:hover,
+html[data-cug-glass] [role="option"]:hover {
+  color: var(--cug-text) !important;
+  background: color-mix(in srgb, var(--cug-accent) 10%, transparent) !important;
+}
+
+/* ---------- UPGRADE / PLAN / CLAIM OFFER ---------- */
+html[data-cug-glass] [aria-label*="Upgrade"],
+html[data-cug-glass] [aria-label*="upgrade"],
+html[data-cug-glass] [data-testid*="upgrade"],
+html[data-cug-glass] [data-testid*="plan"] {
+  color: var(--cug-accent-2) !important;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--cug-accent) 15%, transparent), var(--cug-soft)) !important;
+  border-color: color-mix(in srgb, var(--cug-accent) 27%, var(--cug-line)) !important;
+}
+
+/* ---------- FORMS / CONTROLS ---------- */
+html[data-cug-glass] input,
+html[data-cug-glass] textarea,
+html[data-cug-glass] select,
+html[data-cug-glass] [contenteditable="true"] {
+  color: var(--cug-text) !important;
+  background: var(--cug-soft) !important;
+  border-color: var(--cug-line) !important;
+}
+
+html[data-cug-glass] input:focus,
+html[data-cug-glass] textarea:focus,
+html[data-cug-glass] select:focus,
+html[data-cug-glass] [contenteditable="true"]:focus {
+  border-color: color-mix(in srgb, var(--cug-accent) 45%, var(--cug-line)) !important;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--cug-accent) 9%, transparent) !important;
+}
+
+html[data-cug-glass] input::placeholder,
+html[data-cug-glass] textarea::placeholder {
+  color: var(--cug-text-3) !important;
+  opacity: 1 !important;
+}
+
+/* ---------- BUTTON SYSTEM ---------- */
+html[data-cug-glass] button,
+html[data-cug-glass] [role="button"] {
+  color: var(--cug-text-2) !important;
+}
+
+html[data-cug-glass] button:hover,
+html[data-cug-glass] [role="button"]:hover {
+  color: var(--cug-text) !important;
+}
+
+html[data-cug-glass] button:disabled,
+html[data-cug-glass] [role="button"][aria-disabled="true"] {
+  color: var(--cug-muted) !important;
+  opacity: .58 !important;
+}
+
+/* ---------- CODE / TABLES / QUOTES ---------- */
+html[data-cug-glass] pre,
+html[data-cug-glass] code,
+html[data-cug-glass] [data-testid*="code-block"] {
+  background: color-mix(in srgb, var(--cug-bg) 70%, var(--cug-surface)) !important;
+  color: var(--cug-text) !important;
+  border-color: var(--cug-line) !important;
+  border-radius: 14px !important;
+}
+
+html[data-cug-glass] blockquote {
+  color: var(--cug-text-2) !important;
+  border-left-color: var(--cug-accent) !important;
+}
+
+/* ---------- SELECTION / FOCUS ---------- */
+html[data-cug-glass] ::selection {
+  background: color-mix(in srgb, var(--cug-accent) 35%, transparent);
+  color: var(--cug-text);
+}
+
+html[data-cug-glass] :focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--cug-accent) 55%, transparent) !important;
+  outline-offset: 2px !important;
+}
+
+/* ---------- SCROLLBARS ---------- */
+html[data-cug-glass] *::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+html[data-cug-glass] *::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+html[data-cug-glass] *::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--cug-text-3) 38%, transparent) !important;
+  border: 2px solid transparent !important;
+  background-clip: padding-box !important;
+  border-radius: 999px !important;
+}
+
+html[data-cug-glass] *::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--cug-accent) 55%, transparent) !important;
+  background-clip: padding-box !important;
+}
+
+/* ---------- DRAGGABLE WINDOWS ---------- */
+html[data-cug-glass] [data-cug-draggable="true"] {
+  overflow: hidden;
+}
+
+html[data-cug-glass] [data-cug-drag-handle="true"] {
+  cursor: grab !important;
+  user-select: none !important;
+}
+
+html[data-cug-glass] [data-cug-drag-handle="true"]:active {
+  cursor: grabbing !important;
+}
+
+/* ---------- REDUCED MOTION ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html[data-cug-glass] *,
+  html[data-cug-glass] *::before,
+  html[data-cug-glass] *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+`;
+
+function detectMode() {
+  const root = document.documentElement;
+  const explicit =
+    root.getAttribute("data-theme") ||
+    root.getAttribute("data-color-scheme") ||
+    root.dataset.themeMode ||
+    (root.classList.contains("dark") ? "dark" : "");
+
+  const value = String(explicit || "").toLowerCase();
+  if (value.includes("light")) return "light";
+  if (value.includes("dark")) return "dark";
+
+  const bodyClass = String(document.body?.className || "").toLowerCase();
+  if (bodyClass.includes("dark")) return "dark";
+  if (bodyClass.includes("light")) return "light";
+
+  return window.matchMedia?.("(prefers-color-scheme: light)").matches ? "light" : "dark";
+}
+
+function syncMode() {
+  if (document.documentElement.dataset.cugGlass !== "true") return;
+  document.documentElement.setAttribute("data-cug-mode", detectMode());
+}
+
+function labelUI() {
+  if (document.documentElement.dataset.cugGlass !== "true") return;
+
+  const nodes = document.querySelectorAll("button, a, [role='button'], [role='menuitem']");
+  nodes.forEach((el) => {
+    if (el.dataset.cugLabeled === "true") return;
+
+    const raw = [
+      el.innerText,
+      el.getAttribute("aria-label"),
+      el.getAttribute("title"),
+      el.getAttribute("data-testid")
+    ].filter(Boolean).join(" ").replace(/\\s+/g, " ").trim().toLowerCase();
+
+    if (!raw) return;
+
+    const rules = [
+      ["chat-work", /chat\\s*[/·|-]\\s*work|^chat$|^work$/],
+      ["new-chat", /new chat|new conversation/],
+      ["images", /^(images?|image)$/],
+      ["library", /^(library|files)$/],
+      ["scheduled", /scheduled/],
+      ["plans", /^(plans?|pricing)$/],
+      ["projects", /projects?/],
+      ["codex", /codex/],
+      ["more", /^more(\\s|$)/],
+      ["upgrade", /upgrade|go plus|plus plan/],
+      ["claim-offer", /claim offer|claim|special offer/],
+      ["settings", /settings/],
+      ["hidden-chat", /hidden chat|hide chat|show hidden/]
+    ];
+
+    const match = rules.find(([, regex]) => regex.test(raw));
+    if (match) el.setAttribute("data-cug-nav", match[0]);
+
+    if (/project/.test(raw) && !/projects?\\s*$/.test(raw)) {
+      el.setAttribute("data-cug-project-label", "true");
+    }
+
+    el.dataset.cugLabeled = "true";
+  });
+}
 
 function applyGlass(enabled) {
   const root = document.documentElement;
   const old = document.getElementById(STYLE_ID);
-  if (!enabled) { old?.remove(); root.removeAttribute("data-cug-glass"); return; }
-  if (!old) { const style = document.createElement("style"); style.id = STYLE_ID; style.textContent = styleText; (document.head || root).appendChild(style); }
+
+  if (!enabled) {
+    old?.remove();
+    root.removeAttribute("data-cug-glass");
+    root.removeAttribute("data-cug-mode");
+    return;
+  }
+
+  if (!old) {
+    const style = document.createElement("style");
+    style.id = STYLE_ID;
+    style.textContent = styleText;
+    (document.head || root).appendChild(style);
+  }
+
   root.setAttribute("data-cug-glass", "true");
+  syncMode();
+  labelUI();
   setupDialogDrag();
 }
 
 function setupDialogDrag() {
   document.querySelectorAll('[role="dialog"]').forEach((dialog) => {
     if (dialog.dataset.cugDragReady === "true") return;
-    dialog.dataset.cugDragReady = "true";
-    dialog.setAttribute("data-cug-draggable", "true");
-    const handle = dialog.querySelector("header, [data-testid*=header], h1, h2, h3") || dialog.firstElementChild;
+
+    const handle =
+      dialog.querySelector("header") ||
+      dialog.querySelector('[data-testid*="header"]') ||
+      dialog.querySelector("h1, h2, h3") ||
+      dialog.firstElementChild;
+
     if (!handle) return;
+
+    dialog.dataset.cugDragReady = "true";
+    dialog.dataset.cugDraggable = "true";
     handle.dataset.cugDragHandle = "true";
-    let dragging = false, startX = 0, startY = 0, startLeft = 0, startTop = 0;
-    handle.addEventListener("pointerdown", (e) => {
-      if (e.button !== 0 || e.target.closest("button, a, input, textarea, [role=button]")) return;
+
+    let dragging = false;
+    let startX = 0;
+    let startY = 0;
+    let startLeft = 0;
+    let startTop = 0;
+
+    handle.addEventListener("pointerdown", (event) => {
+      if (event.button !== 0) return;
+      if (event.target.closest("button, a, input, textarea, select, [role='button']")) return;
+
       const rect = dialog.getBoundingClientRect();
-      dragging = true; startX = e.clientX; startY = e.clientY; startLeft = rect.left; startTop = rect.top;
-      dialog.style.position = "fixed"; dialog.style.left = rect.left + "px"; dialog.style.top = rect.top + "px";
-      dialog.style.margin = "0"; dialog.style.transform = "none"; dialog.setPointerCapture?.(e.pointerId);
+      dragging = true;
+      startX = event.clientX;
+      startY = event.clientY;
+      startLeft = rect.left;
+      startTop = rect.top;
+
+      dialog.style.position = "fixed";
+      dialog.style.left = rect.left + "px";
+      dialog.style.top = rect.top + "px";
+      dialog.style.margin = "0";
+      dialog.style.transform = "none";
+      dialog.style.zIndex = "2147483000";
+      handle.setPointerCapture?.(event.pointerId);
     });
-    handle.addEventListener("pointermove", (e) => {
+
+    handle.addEventListener("pointermove", (event) => {
       if (!dragging) return;
-      dialog.style.left = Math.max(8, Math.min(window.innerWidth - 80, startLeft + e.clientX - startX)) + "px";
-      dialog.style.top = Math.max(8, Math.min(window.innerHeight - 60, startTop + e.clientY - startY)) + "px";
+      const maxLeft = Math.max(8, window.innerWidth - dialog.offsetWidth - 8);
+      const maxTop = Math.max(8, window.innerHeight - dialog.offsetHeight - 8);
+      const nextLeft = Math.max(8, Math.min(maxLeft, startLeft + event.clientX - startX));
+      const nextTop = Math.max(8, Math.min(maxTop, startTop + event.clientY - startY));
+
+      dialog.style.left = nextLeft + "px";
+      dialog.style.top = nextTop + "px";
     });
-    handle.addEventListener("pointerup", () => { dragging = false; });
-    handle.addEventListener("pointercancel", () => { dragging = false; });
+
+    const stop = () => { dragging = false; };
+    handle.addEventListener("pointerup", stop);
+    handle.addEventListener("pointercancel", stop);
   });
 }
 
-async function sync() { const result = await chrome.storage.local.get({ [STORAGE_KEY]: true }); applyGlass(Boolean(result[STORAGE_KEY])); }
-chrome.storage.onChanged.addListener((changes, area) => { if (area === "local" && changes[STORAGE_KEY]) applyGlass(Boolean(changes[STORAGE_KEY].newValue)); });
-chrome.runtime.onMessage.addListener((message) => { if (message?.type === "SET_GLASSMORPHISM") applyGlass(Boolean(message.enabled)); });
-new MutationObserver(() => { if (document.documentElement.dataset.cugGlass === "true") { if (!document.getElementById(STYLE_ID)) applyGlass(true); setupDialogDrag(); } }).observe(document.documentElement, { childList: true, subtree: true });
+async function sync() {
+  const result = await chrome.storage.local.get({ [STORAGE_KEY]: true });
+  applyGlass(Boolean(result[STORAGE_KEY]));
+}
+
+chrome.storage.onChanged.addListener((changes, area) => {
+  if (area === "local" && changes[STORAGE_KEY]) {
+    applyGlass(Boolean(changes[STORAGE_KEY].newValue));
+  }
+});
+
+chrome.runtime.onMessage.addListener((message) => {
+  if (message?.type === "SET_GLASSMORPHISM") {
+    applyGlass(Boolean(message.enabled));
+  }
+});
+
+const observer = new MutationObserver(() => {
+  if (document.documentElement.dataset.cugGlass === "true") {
+    syncMode();
+    labelUI();
+    setupDialogDrag();
+  }
+});
+
+observer.observe(document.documentElement, {
+  childList: true,
+  subtree: true,
+  attributes: true,
+  attributeFilter: ["class", "data-theme", "data-color-scheme"]
+});
+
+window.matchMedia?.("(prefers-color-scheme: light)").addEventListener?.("change", syncMode);
+
 sync();
