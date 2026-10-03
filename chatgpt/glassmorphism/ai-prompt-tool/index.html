@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChatGPT Glassmorphism Tool</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <main class="shell">
+    <section class="tool" aria-label="ChatGPT prompt tool">
+      <header class="tool__header">
+        <div class="tool__icon">✦</div>
+        <div>
+          <p class="eyebrow">CHATGPT TOOL</p>
+          <h1>AI Prompt</h1>
+          <p class="subtitle">Write a prompt and send it to your AI workflow.</p>
+        </div>
+      </header>
+
+      <div class="tool__body">
+        <label for="prompt">Your prompt</label>
+        <textarea id="prompt" placeholder="Ask anything..."></textarea>
+
+        <div class="tool__footer">
+          <span id="status">Ready</span>
+          <button id="run" type="button">
+            <span>Run tool</span>
+            <span aria-hidden="true">→</span>
+          </button>
+        </div>
+
+        <output id="result" class="result" hidden></output>
+      </div>
+    </section>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>
