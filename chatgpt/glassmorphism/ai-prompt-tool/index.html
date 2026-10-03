@@ -7,43 +7,56 @@
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
+  <!-- live preview of the real shader: what you tune here is what ChatGPT gets -->
+  <canvas class="bg" id="preview" aria-hidden="true"></canvas>
+  <div class="bg-fallback" aria-hidden="true"></div>
+
   <main class="popup">
-    <header class="popup__header">
+    <header class="header">
       <div class="brand">
-        <div class="brand__icon">✦</div>
+        <img class="brand__icon" src="icons/icon48.png" alt="" width="40" height="40" />
         <div>
           <p class="eyebrow">CHATGPT UI</p>
           <h1>Glassmorphism</h1>
         </div>
       </div>
-      <span class="version">v1.2.0</span>
+      <span class="chip" id="version">v2</span>
     </header>
 
-    <section class="control">
+    <section class="card card--hero">
       <div>
         <strong>Glass effect</strong>
-        <p id="stateText">Loading status…</p>
+        <p id="stateText" aria-live="polite">Loading…</p>
       </div>
-      <button id="toggle" class="switch" type="button" role="switch" aria-checked="false" aria-label="Toggle glassmorphism">
-        <span></span>
-      </button>
+      <button id="enabled" class="switch" type="button" role="switch" aria-checked="false" aria-label="Toggle glass effect"><span></span></button>
     </section>
 
-    <section class="info">
-      <p>This extension changes ChatGPT's existing UI styling only. It does not open a new ChatGPT window or send prompts.</p>
-    </section>
+    <p class="notice" id="tabNotice" hidden>Open <b>chatgpt.com</b> in the current tab to see the effect.</p>
 
-    <nav class="links" aria-label="Project links">
-      <a href="https://github.com/RuslanSharifov/chrome-ui-gallery" target="_blank" rel="noreferrer">
-        <span>Repository</span><span>↗</span>
-      </a>
-      <a href="https://github.com/RuslanSharifov" target="_blank" rel="noreferrer">
-        <span>Creator profile</span><span>↗</span>
-      </a>
-    </nav>
+    <div id="controls">
+      <div class="presets" id="presets" role="group" aria-label="Presets"></div>
 
-    <footer class="footer">Chrome UI Gallery · ChatGPT · Glassmorphism</footer>
+      <div class="tabs" role="tablist" aria-label="Settings sections">
+        <button class="tab" role="tab" id="tab-fx"    data-tab="fx"    aria-selected="true"  aria-controls="panel-fx">Lights</button>
+        <button class="tab" role="tab" id="tab-glass" data-tab="glass" aria-selected="false" aria-controls="panel-glass">Glass</button>
+        <button class="tab" role="tab" id="tab-more"  data-tab="more"  aria-selected="false" aria-controls="panel-more">More</button>
+      </div>
+
+      <section class="panel" id="panel-fx" role="tabpanel" aria-labelledby="tab-fx"></section>
+      <section class="panel" id="panel-glass" role="tabpanel" aria-labelledby="tab-glass" hidden></section>
+      <section class="panel" id="panel-more" role="tabpanel" aria-labelledby="tab-more" hidden></section>
+    </div>
+
+    <div class="actions">
+      <button id="reset" class="btn" type="button">Reset to defaults</button>
+      <a class="btn btn--ghost" href="https://github.com/RuslanSharifov/chrome-ui-gallery" target="_blank" rel="noreferrer">Repository ↗</a>
+    </div>
+
+    <footer class="footer">Text and icon colours follow ChatGPT's light / dark theme automatically.</footer>
   </main>
+
+  <script src="./shared.js"></script>
+  <script src="./fx.js"></script>
   <script src="./script.js"></script>
 </body>
 </html>
