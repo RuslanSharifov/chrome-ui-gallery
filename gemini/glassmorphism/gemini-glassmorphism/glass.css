@@ -12,13 +12,16 @@ html[data-gug-glass] {
   --gug-text-2: rgb(var(--gug-fg) / .76);
   --gug-text-3: rgb(var(--gug-fg) / .54);
   --gug-line: rgb(var(--gug-fg) / .14);
+  --gug-line-soft: rgb(var(--gug-fg) / .08);
   --gug-hover: rgb(var(--gug-fg) / .075);
   --gug-active: rgb(var(--gug-fg) / .12);
+  --gug-veil: var(--gug-set-veil, .10);
+  --gug-shine: var(--gug-set-shine, 1);
   --gug-glass: rgb(var(--gug-panel) / var(--gug-alpha, .54));
   --gug-strong: rgb(var(--gug-panel) / .78);
   --gug-blur: blur(var(--gug-blurpx, 28px)) saturate(var(--gug-sat, 155%));
   --gug-radius: var(--gug-r, 18px);
-  --gug-sheen: linear-gradient(135deg,rgb(255 255 255 / .10),rgb(255 255 255 / .025) 58%);
+  --gug-sheen: linear-gradient(135deg,rgb(255 255 255 / calc(.10 * var(--gug-shine))),rgb(255 255 255 / calc(.025 * var(--gug-shine))) 58%);
   --gug-shadow: 0 24px 70px rgb(0 0 0 / .30);
 }
 html[data-gug-glass][data-gug-mode="light"] {
