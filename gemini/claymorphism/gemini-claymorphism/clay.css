@@ -1,0 +1,38 @@
+html[data-gug-clay],html[data-gug-clay] body{color-scheme:light}
+html[data-gug-clay][data-gug-mode=dark],html[data-gug-clay][data-gug-mode=dark] body{color-scheme:dark}
+html[data-gug-clay]{background:rgb(var(--gug-bg))!important}
+html[data-gug-clay] body{min-height:100vh!important;background:radial-gradient(circle at 18% 18%,rgb(255 255 255/.34),transparent 28%),radial-gradient(circle at 82% 78%,rgb(var(--gug-accent)/.09),transparent 30%),rgb(var(--gug-bg))!important;color:rgb(var(--gug-ink))!important}
+html[data-gug-clay][data-gug-mode=dark]{--gug-bg:29 34 45!important;--gug-surface:47 53 66!important;--gug-surface-2:37 43 55!important;--gug-ink:238 241 247!important;--gug-accent:157 181 211!important}
+html[data-gug-clay] :is(main,[role=main],.conversation-container,.chat-history,infinite-scroller,.content-container,.main-content){background:transparent!important}
+html[data-gug-clay] :is(nav,aside,[role=navigation],.side-nav,.sidenav,.conversation-list,mat-sidenav){background:rgb(var(--gug-surface)/.58)!important;border:0!important;box-shadow:12px 0 28px var(--gug-shadow-dark),-10px 0 24px var(--gug-shadow-light),inset -1px 0 0 rgb(255 255 255/.28)!important;border-radius:0 calc(var(--gug-radius) + 8px) calc(var(--gug-radius) + 8px) 0!important;backdrop-filter:blur(18px) saturate(105%)!important;-webkit-backdrop-filter:blur(18px) saturate(105%)!important}
+html[data-gug-clay] :is(.conversation-container,.chat-history,.input-area-container,.input-area,.text-input-field,.user-query-bubble-with-background,.response-container,.message-content,[role=dialog],.mat-mdc-menu-panel,.mat-menu-panel,.mdc-dialog__surface,.mat-mdc-card,.card){border-color:transparent!important;border-radius:var(--gug-radius)!important}
+html[data-gug-clay] :is(.input-area-container,.input-area,.text-input-field,.user-query-bubble-with-background,[role=dialog],.mdc-dialog__surface,.mat-mdc-menu-panel,.mat-menu-panel,.mat-mdc-card){background:linear-gradient(145deg,rgb(255 255 255/.38),transparent 42%),rgb(var(--gug-surface)/var(--gug-panel-alpha))!important;box-shadow:12px 16px 30px var(--gug-shadow-dark),-10px -10px 24px var(--gug-shadow-light),inset 1px 1px 0 rgb(255 255 255/.45),inset -1px -1px 0 rgb(74 84 99/.10)!important;backdrop-filter:blur(12px) saturate(105%)!important;-webkit-backdrop-filter:blur(12px) saturate(105%)!important}
+html[data-gug-clay] :is(.user-query-bubble-with-background,user-query,.user-query-content){background:linear-gradient(145deg,rgb(255 255 255/.40),transparent 40%),rgb(var(--gug-surface-2)/.88)!important;color:rgb(var(--gug-ink))!important;box-shadow:10px 12px 22px var(--gug-shadow-dark),-8px -8px 18px var(--gug-shadow-light),inset 1px 1px 0 rgb(255 255 255/.42)!important;border-radius:calc(var(--gug-radius) - 4px)!important}
+html[data-gug-clay] :is(message-content,.model-response-text,.markdown,.markdown-main-panel,.response-content){color:rgb(var(--gug-ink))!important}
+html[data-gug-clay] :is(message-content p,message-content li,.markdown p,.markdown li,.response-content p,.response-content li){color:rgb(var(--gug-ink)/.94)!important}
+html[data-gug-clay] :is(button,[role=button],a,input,textarea,select){color:rgb(var(--gug-ink))!important}
+html[data-gug-clay] :is(button,[role=button]){border-radius:16px!important}
+html[data-gug-clay] :is(button,[role=button]):not([aria-label="Gemini için bir istem girin"]){background:transparent!important}
+html[data-gug-clay] :is(button,[role=button]):hover{background:linear-gradient(145deg,rgb(255 255 255/.32),transparent 50%),rgb(var(--gug-surface-2)/.56)!important;box-shadow:6px 8px 16px var(--gug-shadow-dark),-5px -5px 12px var(--gug-shadow-light)!important}
+html[data-gug-clay] :is(input,textarea,[contenteditable=true]){background:transparent!important;color:rgb(var(--gug-ink))!important;caret-color:rgb(var(--gug-accent))!important;border-color:transparent!important;box-shadow:none!important}
+html[data-gug-clay] :is(input::placeholder,textarea::placeholder){color:rgb(var(--gug-ink)/.48)!important}
+html[data-gug-clay] [contenteditable=true]::before{color:rgb(var(--gug-ink)/.48)!important}
+html[data-gug-clay] :is(.input-area-container svg,button svg,[role=button] svg,mat-icon,.material-symbols-outlined){color:rgb(var(--gug-ink)/.70)!important;fill:currentColor!important}
+html[data-gug-clay] :is(.input-area-container,.input-area) :is(button,[role=button]){background:transparent!important;box-shadow:none!important}
+html[data-gug-clay] :is(.input-area-container,.input-area) :is(button,[role=button]):hover{background:rgb(var(--gug-surface-2)/.55)!important}
+html[data-gug-clay] :is(pre,code,.code-block,.code-container){background:linear-gradient(145deg,rgb(255 255 255/.22),transparent 40%),rgb(var(--gug-surface-2)/.78)!important;color:rgb(var(--gug-ink))!important;border-radius:calc(var(--gug-radius) - 8px)!important;box-shadow:8px 10px 18px var(--gug-shadow-dark),-6px -6px 14px var(--gug-shadow-light),inset 1px 1px 0 rgb(255 255 255/.30)!important}
+html[data-gug-clay] :is(table,th,td){border-color:rgb(var(--gug-ink)/.12)!important}
+html[data-gug-clay] :is(.mat-mdc-menu-panel,.mat-menu-panel,[role=menu],[role=listbox],[role=tooltip]){color:rgb(var(--gug-ink))!important;background:linear-gradient(145deg,rgb(255 255 255/.34),transparent 45%),rgb(var(--gug-surface)/.96)!important;box-shadow:14px 16px 30px var(--gug-shadow-dark),-10px -10px 24px var(--gug-shadow-light),inset 1px 1px 0 rgb(255 255 255/.42)!important;border-radius:calc(var(--gug-radius) - 4px)!important}
+html[data-gug-clay] :is(.mat-mdc-menu-item,[role=menuitem],[role=option]):hover{background:rgb(var(--gug-surface-2)/.70)!important}
+html[data-gug-clay] :is(.mdc-dialog__surface,[role=dialog]){max-height:min(88vh,900px)!important}
+html[data-gug-clay] :is(.mdc-dialog__surface,[role=dialog]) :is(h1,h2,h3,h4,p,span,label){color:rgb(var(--gug-ink))!important}
+html[data-gug-clay] :is(a,a:visited){color:rgb(var(--gug-accent))!important}
+html[data-gug-clay] ::selection{background:rgb(var(--gug-accent)/.25)!important;color:rgb(var(--gug-ink))!important}
+html[data-gug-clay] :focus-visible{outline:2px solid rgb(var(--gug-accent)/.65)!important;outline-offset:2px!important}
+html[data-gug-clay] ::-webkit-scrollbar{width:10px!important;height:10px!important}
+html[data-gug-clay] ::-webkit-scrollbar-track{background:transparent!important}
+html[data-gug-clay] ::-webkit-scrollbar-thumb{border:3px solid transparent!important;border-radius:999px!important;background-clip:padding-box!important;background:rgb(var(--gug-surface-2)/.92)!important;box-shadow:inset 1px 1px 0 rgb(255 255 255/.35),inset -1px -1px 0 rgb(65 75 88/.15)!important}
+html[data-gug-clay][data-gug-hover3d=on] :is(.conversation-list a,.conversation-list button,[role=navigation] a,[role=navigation] button):hover{transform:translateY(-1px) scale(1.012)!important;transition:transform 140ms ease,box-shadow 140ms ease!important}
+html[data-gug-clay] .chat-history > infinite-scroller{padding-bottom:120px!important;scroll-padding-bottom:120px!important}
+@media(prefers-reduced-motion:reduce){html[data-gug-clay] *,html[data-gug-clay] *::before,html[data-gug-clay] *::after{scroll-behavior:auto!important;animation-duration:.001ms!important;transition-duration:.001ms!important}}
+@supports not ((backdrop-filter:blur(1px))){html[data-gug-clay] :is(.input-area-container,[role=dialog],.mdc-dialog__surface,.mat-mdc-menu-panel){background:rgb(var(--gug-surface)/.98)!important}}
