@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "Gemini Claymorphism",
+  "version": "1.0.0",
+  "description": "Applies a soft claymorphism visual layer with animated 3D clouds to the existing Gemini web UI.",
+  "minimum_chrome_version": "111",
+  "permissions": ["storage", "activeTab"],
+  "action": {
+    "default_title": "Gemini Claymorphism",
+    "default_popup": "index.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://gemini.google.com/*"],
+      "css": ["clouds.css", "clay.css"],
+      "js": ["shared.js", "clouds.js", "content.js"],
+      "run_at": "document_start"
+    }
+  ]
+}
