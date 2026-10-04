@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.2.0
+
+### CSS (glass.css)
+- **Composer shadow / white band** — removed the leftover `box-shadow` on `.input-area-container`, deleted the stray `[_nghost-ng-c…]` rule (hard-coded shadows + `position:absolute`) and the old white `.ql-editor` rules (they won on `:focus` and turned the field white). Fade gradients, glow and blur on the composer's wrappers/ancestors are cleared (section 6b).
+- **Double frame** — `.input-area` inside `.input-area-container` no longer has its own border/blur; focus ring moved to the outer container.
+- **Sidebar legibility** — chat titles, section headings and the account row are forced to a high-contrast colour with a soft dark text-shadow; the selected chat is a glass pill instead of Gemini's opaque white one (section 4b).
+
+### Background (fx.js)
+- **Cursor-driven waves** — concentric waves around the pointer, the caustic field is dragged along pointer motion, caustic lines brighten under the cursor.
+- **Click ripples** — up to 3 expanding rings, 4 s lifetime.
+- New settings: `mouseWave` (0-100) and `clickRipple`; both disabled under `prefers-reduced-motion`.
+
+### Popup
+- "Cursor waves" slider, "Ripples on click" switch, explicit **Save** button and a "Saved ✓" indicator (settings still auto-save).
+
 ## 1.1.0
 
 ### Packaging
