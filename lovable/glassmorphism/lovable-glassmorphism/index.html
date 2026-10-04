@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Lovable Glassmorphism</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <canvas id="preview" aria-hidden="true"></canvas>
+  <main class="panel">
+    <header class="head">
+      <div class="logo"></div>
+      <div>
+        <h1>Lovable Glass</h1>
+        <p class="sub">Glassmorphism for lovable.dev</p>
+      </div>
+      <label class="switch" title="Enable">
+        <input type="checkbox" id="enabled" />
+        <span></span>
+      </label>
+    </header>
+
+    <section>
+      <h2>Presets</h2>
+      <div class="chips" id="presets"></div>
+    </section>
+
+    <section>
+      <h2>Lights</h2>
+      <div class="row"><span>Background lights</span><label class="switch"><input type="checkbox" id="lights" /><span></span></label></div>
+      <div class="row"><span>Palette</span>
+        <select id="palette">
+          <option value="lovable">Lovable</option>
+          <option value="ocean">Ocean</option>
+          <option value="aurora">Aurora</option>
+          <option value="sunset">Sunset</option>
+          <option value="mono">Mono</option>
+        </select>
+      </div>
+      <div class="row"><span>Intensity</span><input type="range" id="intensity" min="0" max="100" /></div>
+      <div class="row"><span>Size</span><input type="range" id="size" min="0" max="100" /></div>
+      <div class="row"><span>Speed</span><input type="range" id="speed" min="0" max="100" /></div>
+      <div class="row"><span>Cursor glow</span><label class="switch"><input type="checkbox" id="cursorGlow" /><span></span></label></div>
+      <div class="row"><span>Quality</span>
+        <select id="quality">
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+      </div>
+    </section>
+
+    <section>
+      <h2>Glass</h2>
+      <div class="row"><span>Accent</span><input type="color" id="accent" /></div>
+      <div class="row"><span>Blur</span><input type="range" id="blur" min="0" max="40" /></div>
+      <div class="row"><span>Panel opacity</span><input type="range" id="panelOpacity" min="0" max="100" /></div>
+      <div class="row"><span>Chat area opacity</span><input type="range" id="chatOpacity" min="0" max="100" /></div>
+      <div class="row"><span>Colour boost</span><input type="range" id="saturation" min="100" max="200" /></div>
+      <div class="row"><span>Roundness</span><input type="range" id="radius" min="0" max="32" /></div>
+      <div class="row"><span>Edge shine</span><label class="switch"><input type="checkbox" id="edgeShine" /><span></span></label></div>
+    </section>
+
+    <button id="reset" class="reset">Reset to defaults</button>
+  </main>
+  <script src="shared.js"></script>
+  <script src="fx.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

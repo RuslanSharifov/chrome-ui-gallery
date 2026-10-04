@@ -1,0 +1,163 @@
+/*
+ * Lovable Glassmorphism — scoped to html[data-lg-glass] so it is inert when disabled.
+ * Lovable uses shadcn/Tailwind HSL tokens (--background, --card, --popover, ...).
+ * We remap those tokens to translucent values and add blur only to leaf surfaces.
+ */
+
+/* ---------- Background canvas ---------- */
+#lg-fx {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  display: none;
+  filter: blur(40px) saturate(130%);
+}
+
+/* ---------- Base page ---------- */
+html[data-lg-glass][data-lg-mode="dark"] {
+  --lg-base: 230 25% 6%;
+  --lg-glass-rgb: 22, 22, 32;
+  --lg-text: rgba(255, 255, 255, 0.92);
+  --lg-hair: rgba(255, 255, 255, 0.12);
+  --lg-sheen: rgba(255, 255, 255, 0.10);
+  background: radial-gradient(ellipse at 20% 10%, #1a1030 0%, #0a0a14 55%, #05050a 100%) fixed !important;
+}
+
+html[data-lg-glass][data-lg-mode="light"] {
+  --lg-base: 0 0% 98%;
+  --lg-glass-rgb: 255, 255, 255;
+  --lg-text: rgba(15, 15, 25, 0.9);
+  --lg-hair: rgba(255, 255, 255, 0.55);
+  --lg-sheen: rgba(255, 255, 255, 0.55);
+  background: radial-gradient(ellipse at 20% 10%, #fff1f7 0%, #f3f0ff 55%, #eef4ff 100%) fixed !important;
+}
+
+html[data-lg-glass] body {
+  background: transparent !important;
+}
+
+/* Page wrappers / large regions become see-through. */
+html[data-lg-glass] body > div,
+html[data-lg-glass] #root,
+html[data-lg-glass] main,
+html[data-lg-glass] :is(.bg-background, [class*="bg-background"]) {
+  background-color: rgba(var(--lg-glass-rgb), var(--lg-chat-alpha)) !important;
+}
+html[data-lg-glass] body > div,
+html[data-lg-glass] #root {
+  background-color: transparent !important;
+}
+
+/* ---------- Leaf glass surfaces ---------- */
+html[data-lg-glass] :is(
+  aside,
+  nav,
+  header,
+  [role="dialog"],
+  [role="menu"],
+  [role="listbox"],
+  [role="tooltip"],
+  [data-radix-popper-content-wrapper] > *,
+  [data-sonner-toast],
+  form:has(textarea),
+  .bg-card,
+  .bg-popover,
+  .bg-muted,
+  .bg-secondary,
+  [class*="bg-sidebar"]
+) {
+  background-color: rgba(var(--lg-glass-rgb), var(--lg-panel-alpha)) !important;
+  -webkit-backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-sat));
+  backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-sat));
+  border-color: var(--lg-hair) !important;
+}
+
+/* Floating surfaces get rounded corners + depth. */
+html[data-lg-glass] :is(
+  [role="dialog"],
+  [role="menu"],
+  [role="listbox"],
+  [data-radix-popper-content-wrapper] > *,
+  [data-sonner-toast],
+  form:has(textarea)
+) {
+  border: 1px solid var(--lg-hair) !important;
+  border-radius: var(--lg-radius) !important;
+  box-shadow:
+    0 20px 50px -20px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(var(--lg-accent-rgb), 0.08);
+}
+
+/* Edge shine (top hairline highlight). */
+html[data-lg-glass][data-lg-shine] :is(
+  [role="dialog"],
+  [role="menu"],
+  form:has(textarea),
+  aside,
+  header
+) {
+  box-shadow:
+    inset 0 1px 0 var(--lg-sheen),
+    0 20px 50px -24px rgba(0, 0, 0, 0.45);
+}
+
+/* Composer focus glow uses the accent colour. */
+html[data-lg-glass] form:has(textarea):focus-within {
+  box-shadow:
+    inset 0 1px 0 var(--lg-sheen),
+    0 0 0 1px rgba(var(--lg-accent-rgb), 0.55),
+    0 0 32px -6px rgba(var(--lg-accent-rgb), 0.55) !important;
+}
+
+html[data-lg-glass] textarea {
+  background: transparent !important;
+}
+
+/* Inputs / buttons that are not primary. */
+html[data-lg-glass] :is(input, select):not([type="checkbox"]):not([type="radio"]):not([type="range"]) {
+  background-color: rgba(var(--lg-glass-rgb), calc(var(--lg-panel-alpha) * 0.6)) !important;
+  border-color: var(--lg-hair) !important;
+}
+
+/* Project cards on the dashboard. */
+html[data-lg-glass] :is(a[href*="/projects/"]) > div {
+  border-radius: var(--lg-radius) !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+html[data-lg-glass] :is(a[href*="/projects/"]):hover > div {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px -18px rgba(var(--lg-accent-rgb), 0.6);
+}
+
+/* Keep the preview iframe opaque so the user's app renders as-is. */
+html[data-lg-glass] iframe {
+  background: hsl(var(--lg-base));
+  border-radius: calc(var(--lg-radius) * 0.6);
+}
+
+/* Accent selection + scrollbar. */
+html[data-lg-glass] ::selection {
+  background: rgba(var(--lg-accent-rgb), 0.35);
+}
+html[data-lg-glass] ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+html[data-lg-glass] ::-webkit-scrollbar-thumb {
+  background: rgba(var(--lg-accent-rgb), 0.35);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+html[data-lg-glass] ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-lg-glass] :is(a[href*="/projects/"]) > div {
+    transition: none;
+  }
+}

@@ -12,6 +12,7 @@ Each design keeps its implementation files together with an English `design.md`.
 
 - [ChatGPT](./chatgpt/README.md)
 - [Gemini](./gemini/README.md)
+- [Lovable](./lovable/README.md)
 
 ## Setup
 
