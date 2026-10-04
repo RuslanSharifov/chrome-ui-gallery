@@ -54,16 +54,16 @@ The renderer creates seven rounded clay puffs per cloud. No remote image, CDN, e
 
 ## Files
 
-- manifest.json — Manifest V3 registration for gemini.google.com.
+- manifest.json — Manifest V3 registration.
 - shared.js — defaults, palettes, presets, validation, and storage helpers.
-- clouds.js — reusable 3D cloud generator for the content layer and popup preview.
-- clouds.css — animated cloud geometry and reduced-motion rules.
+- clouds.js — reusable 3D cloud generator.
+- clouds.css — animated cloud geometry.
 - content.js — theme detection, CSS variables, cloud lifecycle, and settings synchronization.
-- clay.css — Gemini-specific claymorphism selectors and surface overrides.
+- clay.css — Gemini-specific claymorphism selectors.
 - index.html — extension popup markup.
 - style.css — popup claymorphism styling.
 - script.js — popup controls, preview, and storage actions.
-- design.md — design documentation and setup instructions.
+- design.md — design documentation.
 - CHANGELOG.md — release notes.
 
 ## CMD setup
@@ -71,7 +71,7 @@ The renderer creates seven rounded clay puffs per cloud. No remote image, CDN, e
 ~~~cmd
 git clone https://github.com/RuslanSharifov/chrome-ui-gallery.git
 cd chrome-ui-gallery
-cd geminiclaymorphismgemini-claymorphism
+cd gemini/claymorphism/gemini-claymorphism
 ~~~
 
 ## Install as an unpacked Chrome extension
@@ -79,7 +79,7 @@ cd geminiclaymorphismgemini-claymorphism
 The folder containing manifest.json is the extension root.
 
 1. Open Chrome.
-2. Go to chrome://extensions.
+2. Go to the Chrome Extensions page.
 3. Enable Developer mode.
 4. Click Load unpacked.
 5. Select gemini-claymorphism.
@@ -90,7 +90,7 @@ The folder containing manifest.json is the extension root.
 ## Development loop
 
 1. Edit clay.css, clouds.css, clouds.js, content.js, or popup files.
-2. Return to chrome://extensions.
+2. Return to the Chrome Extensions page.
 3. Click Reload for Gemini Claymorphism.
 4. Refresh the Gemini tab.
 5. Adjust cloud speed, size, count, opacity, and depth from the popup.
