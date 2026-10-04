@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-label="Gemini claymorphism preview">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#dceeff"/><stop offset=".55" stop-color="#f4e7ff"/><stop offset="1" stop-color="#ffe8ef"/></linearGradient>
+  <filter id="shadow"><feDropShadow dx="0" dy="16" stdDeviation="12" flood-color="#9aa9bf" flood-opacity=".38"/></filter>
+  <filter id="soft"><feGaussianBlur stdDeviation="28"/></filter>
+  <linearGradient id="clay" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffffff"/><stop offset=".35" stop-color="#eaf2ff"/><stop offset="1" stop-color="#c9d8ee"/></linearGradient>
+</defs>
+<rect width="1200" height="700" rx="32" fill="url(#bg)"/>
+<g opacity=".55" filter="url(#soft)">
+ <circle cx="180" cy="120" r="90" fill="#fff"/>
+ <circle cx="960" cy="150" r="110" fill="#fff"/>
+ <circle cx="850" cy="590" r="130" fill="#fff"/>
+</g>
+<!-- clay clouds -->
+<g fill="url(#clay)" filter="url(#shadow)" opacity=".95">
+ <circle cx="250" cy="150" r="48"/><circle cx="300" cy="130" r="66"/><circle cx="360" cy="160" r="50"/><rect x="235" y="145" width="150" height="50" rx="25"/>
+ <circle cx="850" cy="120" r="42"/><circle cx="900" cy="105" r="58"/><circle cx="955" cy="135" r="48"/><rect x="835" y="130" width="150" height="48" rx="24"/>
+</g>
+<rect x="45" y="250" width="235" height="395" rx="30" fill="url(#clay)" filter="url(#shadow)"/>
+<rect x="325" y="250" width="825" height="395" rx="30" fill="#f7fbff" fill-opacity=".72" filter="url(#shadow)"/>
+<rect x="75" y="285" width="160" height="24" rx="12" fill="#b9c9df"/>
+<rect x="75" y="345" width="175" height="52" rx="22" fill="#dbe6f5" filter="url(#shadow)"/>
+<rect x="75" y="425" width="145" height="15" rx="7" fill="#b9c9df"/>
+<rect x="75" y="455" width="120" height="15" rx="7" fill="#cbd7e7"/>
+<rect x="380" y="290" width="500" height="88" rx="28" fill="url(#clay)" filter="url(#shadow)"/>
+<rect x="415" y="320" width="340" height="14" rx="7" fill="#aebfd7"/>
+<rect x="520" y="410" width="500" height="100" rx="28" fill="url(#clay)" filter="url(#shadow)"/>
+<rect x="555" y="442" width="380" height="14" rx="7" fill="#aebfd7"/>
+<rect x="380" y="555" width="710" height="62" rx="28" fill="url(#clay)" filter="url(#shadow)"/>
+<circle cx="1050" cy="586" r="17" fill="#9db8ff"/>
+<text x="380" y="535" fill="#64748b" font-family="Arial,sans-serif" font-size="28">Gemini · Claymorphism</text>
+</svg>
