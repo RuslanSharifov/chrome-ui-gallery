@@ -2,8 +2,10 @@
 
 Lovable web UI and Chrome extension design examples for `lovable.dev`.
 
-## Glassmorphism
+## Design styles
 
-- [Lovable Glassmorphism](./glassmorphism/lovable-glassmorphism/)
+- [Glassmorphism](./glassmorphism/README.md) — colorful translucent glass, gradient lights, blur, and premium workspace depth.
 
-The design folder contains the complete extension implementation and an English `design.md`.
+## Navigation
+
+Choose a style above, then open its design documentation and implementation files.
