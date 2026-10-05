@@ -299,15 +299,7 @@ html[data-gug-glass] .input-area-container {
   -webkit-backdrop-filter: var(--gug-blur) !important;
   backdrop-filter: var(--gug-blur) !important;
 }
-<<<<<<< HEAD
 
-=======
-/* Keep the last conversation content scrollable above the fixed/sticky composer. */
-html[data-gug-glass] .chat-history > infinite-scroller {
-  padding-bottom: 120px !important;
-  scroll-padding-bottom: 120px !important;
-}
->>>>>>> f48eb67903d8741d1b7583d87defe26f4e277c50
 /* inner field wrappers must not add a second frame */
 html[data-gug-glass] .input-area-container :is(.input-area, .text-input-field, rich-textarea, .ql-editor) {
   background: transparent !important;

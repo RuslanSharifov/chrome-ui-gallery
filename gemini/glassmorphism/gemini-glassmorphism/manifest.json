@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Gemini Glassmorphism",
-  "version": "1.2.1",
+  "version": "1.2.0",
   "description": "Applies an adaptive glassmorphism visual layer to the existing Gemini web UI.",
   "minimum_chrome_version": "111",
   "icons": {

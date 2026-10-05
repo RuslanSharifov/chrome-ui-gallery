@@ -1,1 +1,65 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GitHub Glassmorphism</title><link rel="stylesheet" href="./style.css"></head><body><main class="popup"><header class="header"><div class="brand"><span class="brand-mark"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 .7A11.3 11.3 0 0 0 8.43 22.9c.56.1.77-.24.77-.54v-2.12c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.73 1.16 1.73 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.57 0-1.23.44-2.24 1.16-3.03-.12-.28-.5-1.43.11-2.98 0 0 .95-.3 3.1 1.16a10.7 10.7 0 0 1 5.64 0c2.15-1.46 3.1-1.16 3.1-1.16.61 1.55.23 2.7.11 2.98.72.79 1.16 1.8 1.16 3.03 0 4.33-2.63 5.29-5.14 5.57.4.35.76 1.03.76 2.08v3.08c0 .3.2.65.78.54A11.3 11.3 0 0 0 12 .7Z"/></svg></span><div><p>GITHUB UI</p><h1>Glassmorphism</h1></div></div><span id="version" class="chip">v2.0.0</span></header><section class="card hero"><div><strong>Visual layer</strong><p id="stateText">Active on GitHub</p></div><button id="enabled" class="switch" role="switch" aria-checked="true"><span></span></button></section><p id="tabNotice" class="notice" hidden>Open github.com to apply the theme.</p><section class="card"><div class="section-head"><h2>Presets</h2><span>Instant styles</span></div><div id="presets" class="chips"></div></section><div class="tabs"><button class="tab" data-tab="glass" aria-selected="true">Glass</button><button class="tab" data-tab="light" aria-selected="false">Light</button><button class="tab" data-tab="motion" aria-selected="false">Motion</button></div><section class="panel" id="panel-glass"></section><section class="panel" id="panel-light" hidden></section><section class="panel" id="panel-motion" hidden></section><div class="actions"><button id="reset" class="btn">Reset</button><button id="save" class="btn primary">Save</button></div><p id="saveState" class="save-state"></p><footer>Styles GitHub itself · no API connection</footer></main><script src="./script.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GitHub Glassmorphism Pro</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<main class="popup">
+  <header class="header">
+    <div class="brand">
+      <span class="brand-mark">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d="M12 .7A11.3 11.3 0 0 0 8.43 22.9c.56.1.77-.24.77-.54v-2.12c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.73 1.16 1.73 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.57 0-1.23.44-2.24 1.16-3.03-.12-.28-.5-1.43.11-2.98 0 0 .95-.3 3.1 1.16a10.7 10.7 0 0 1 5.64 0c2.15-1.46 3.1-1.16 3.1-1.16.61 1.55.23 2.7.11 2.98.72.79 1.16 1.8 1.16 3.03 0 4.33-2.63 5.29-5.14 5.57.4.35.76 1.03.76 2.08v3.08c0 .3.2.65.78.54A11.3 11.3 0 0 0 12 .7Z"/>
+        </svg>
+      </span>
+      <div>
+        <p>GITHUB GLASS ENGINE</p>
+        <h1>Glassmorphism Pro</h1>
+      </div>
+    </div>
+    <span id="version" class="chip">v4.0</span>
+  </header>
+
+  <section class="card hero">
+    <div>
+      <strong>Live visual engine</strong>
+      <p id="stateText">Active on GitHub</p>
+    </div>
+    <button id="enabled" class="switch" role="switch" aria-checked="true"><span></span></button>
+  </section>
+
+  <p id="tabNotice" class="notice" hidden>⚠️ Open github.com to apply effects</p>
+
+  <section class="card preset-card">
+    <div class="section-head">
+      <h2>Quick themes</h2>
+      <span>Live</span>
+    </div>
+    <div id="presets" class="chips"></div>
+  </section>
+
+  <nav class="tabs" aria-label="Settings">
+    <button class="tab" data-tab="theme" aria-selected="true">Theme</button>
+    <button class="tab" data-tab="glass" aria-selected="false">Glass</button>
+    <button class="tab" data-tab="depth" aria-selected="false">3D/Proximity</button>
+    <button class="tab" data-tab="motion" aria-selected="false">Motion</button>
+  </nav>
+
+  <section class="panel" id="panel-theme"></section>
+  <section class="panel" id="panel-glass" hidden></section>
+  <section class="panel" id="panel-depth" hidden></section>
+  <section class="panel" id="panel-motion" hidden></section>
+
+  <div class="actions">
+    <button id="reset" class="btn">Reset</button>
+    <button id="save" class="btn primary">Save</button>
+  </div>
+  <p id="saveState" class="save-state"></p>
+  <footer>Live visual effects · No data collection · Changes apply instantly</footer>
+</main>
+<script src="./script.js"></script>
+</body>
+</html>
