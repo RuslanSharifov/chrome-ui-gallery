@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitHub Glassmorphism</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="ambient ambient--one" aria-hidden="true"></div>
+  <div class="ambient ambient--two" aria-hidden="true"></div>
+  <div class="ambient ambient--three" aria-hidden="true"></div>
+
+  <main class="shell">
+    <header class="topbar glass">
+      <a class="brand" href="#" aria-label="GitHub home">
+        <span class="github-mark">GH</span>
+        <span><small>GITHUB UI</small><strong>Glassmorphism</strong></span>
+      </a>
+      <nav class="nav" aria-label="Primary navigation">
+        <button class="nav__item is-active" data-view="overview">Overview</button>
+        <button class="nav__item" data-view="activity">Activity</button>
+        <button class="nav__item" data-view="settings">Settings</button>
+      </nav>
+      <button id="themeToggle" class="icon-button" type="button" aria-label="Toggle glow mode">◐</button>
+    </header>
+
+    <section class="hero glass">
+      <div>
+        <p class="eyebrow">DEVELOPER WORKSPACE</p>
+        <h1>Build in glass.</h1>
+        <p class="hero__copy">A translucent GitHub-inspired workspace with focused repository cards, contribution activity and developer shortcuts.</p>
+      </div>
+      <div class="hero__stats">
+        <div><strong>24</strong><span>Repositories</span></div>
+        <div><strong>86</strong><span>Contributions</span></div>
+        <div><strong>12</strong><span>Pull requests</span></div>
+      </div>
+    </section>
+
+    <section id="overview" class="view is-visible">
+      <div class="section-heading">
+        <div><p class="eyebrow">YOUR WORKSPACE</p><h2>Repositories</h2></div>
+        <button id="newRepo" class="button button--primary" type="button">+ New repository</button>
+      </div>
+
+      <div class="repo-grid">
+        <article class="repo glass">
+          <div class="repo__top"><span class="repo__icon">◈</span><span class="badge">Public</span></div>
+          <h3>chrome-ui-gallery</h3>
+          <p>Chrome and Web UI experiments organized by platform and visual style.</p>
+          <div class="repo__meta"><span>● JavaScript</span><span>★ 24</span><span>⑂ 8</span></div>
+        </article>
+        <article class="repo glass">
+          <div class="repo__top"><span class="repo__icon">◇</span><span class="badge">Public</span></div>
+          <h3>glass-components</h3>
+          <p>Reusable translucent interface primitives for modern developer tools.</p>
+          <div class="repo__meta"><span>● CSS</span><span>★ 18</span><span>⑂ 4</span></div>
+        </article>
+        <article class="repo glass">
+          <div class="repo__top"><span class="repo__icon">⬡</span><span class="badge">Private</span></div>
+          <h3>dev-dashboard</h3>
+          <p>A focused command center for projects, deployments and code review.</p>
+          <div class="repo__meta"><span>● TypeScript</span><span>★ 9</span><span>⑂ 3</span></div>
+        </article>
+      </div>
+
+      <div class="lower-grid">
+        <section class="panel glass">
+          <div class="section-heading section-heading--compact">
+            <div><p class="eyebrow">LATEST</p><h2>Activity</h2></div>
+            <span class="live"><i></i> Live</span>
+          </div>
+          <div class="activity">
+            <div class="activity__item"><span class="activity__dot"></span><p><b>pushed 4 commits</b> to <strong>chrome-ui-gallery</strong><small>12 minutes ago</small></p></div>
+            <div class="activity__item"><span class="activity__dot"></span><p><b>opened a pull request</b> in <strong>glass-components</strong><small>2 hours ago</small></p></div>
+            <div class="activity__item"><span class="activity__dot"></span><p><b>starred</b> <strong>developer-tools</strong><small>Yesterday</small></p></div>
+          </div>
+        </section>
+
+        <section class="panel glass">
+          <p class="eyebrow">CONTRIBUTIONS</p><h2>Contribution graph</h2>
+          <div id="graph" class="graph" aria-label="Contribution activity graph"></div>
+          <div class="graph__legend"><span>Less</span><i></i><i></i><i></i><i></i><span>More</span></div>
+        </section>
+      </div>
+    </section>
+
+    <section id="activity" class="view" hidden>
+      <section class="panel glass">
+        <p class="eyebrow">TIMELINE</p><h2>Developer activity</h2>
+        <div class="timeline">
+          <p><span>09:42</span> Merged <b>#184</b> into <strong>main</strong>.</p>
+          <p><span>08:15</span> Reviewed <b>#179</b> and left 3 comments.</p>
+          <p><span>Yesterday</span> Released <b>v2.4.0</b> to production.</p>
+        </div>
+      </section>
+    </section>
+
+    <section id="settings" class="view" hidden>
+      <section class="panel glass settings">
+        <p class="eyebrow">PREFERENCES</p><h2>Glass settings</h2>
+        <label>Blur <output id="blurValue">24px</output><input id="blur" type="range" min="8" max="40" value="24" /></label>
+        <label>Panel opacity <output id="opacityValue">18%</output><input id="opacity" type="range" min="8" max="35" value="18" /></label>
+        <label>Glow intensity <output id="glowValue">70%</output><input id="glow" type="range" min="0" max="100" value="70" /></label>
+      </section>
+    </section>
+
+    <footer class="footer">
+      <span>GitHub Glassmorphism · visual UI concept</span>
+      <a href="https://github.com/RuslanSharifov/chrome-ui-gallery" target="_blank" rel="noreferrer">Repository ↗</a>
+    </footer>
+  </main>
+
+  <div id="toast" class="toast glass" role="status" aria-live="polite"></div>
+  <script src="./script.js"></script>
+</body>
+</html>
