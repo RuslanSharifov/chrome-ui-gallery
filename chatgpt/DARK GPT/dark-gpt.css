@@ -1,0 +1,452 @@
+/* ==========================================================================
+   ChatGPT DARK GPT — everything is scoped to html[data-cug-darkgpt],
+   so the whole file is inert when the switch is off.
+
+   Strategy
+   1. Override ChatGPT's own design tokens (--text-*, --*-surface-*, --border-*)
+      per light/dark mode. Text, icons and borders therefore adapt to the
+      background automatically, everywhere, without per-element colour hacks.
+   2. Add real glass (blur + sheen + hairline border) only to "leaf" surfaces:
+      sidebar, top bar, composer, menus, dialogs, toasts. Never to a wrapper
+      that contains other blurred surfaces (that would break nested blur).
+   3. :is() lists are forgiving, so one unknown selector never kills a rule.
+   ========================================================================== */
+
+/* ---------- 1. Palette (dark is the default, light overrides) ---------- */
+html[data-cug-darkgpt] {
+  color-scheme: dark;
+  --cug-base: 18 3 7;
+  --cug-panel: 31 6 12;
+  --cug-fg: 255 239 242;
+  --cug-accent: var(--cug-set-accent, 239 38 58);
+  --cug-on-accent: #fff;
+
+  --cug-text:   rgb(var(--cug-fg) / .96);
+  --cug-text-2: rgb(var(--cug-fg) / .76);
+  --cug-text-3: rgb(var(--cug-fg) / .55);
+  --cug-text-4: rgb(var(--cug-fg) / .38);
+  --cug-line:      rgb(var(--cug-fg) / .14);
+  --cug-line-soft: rgb(var(--cug-fg) / .08);
+  --cug-hover:  rgb(var(--cug-fg) / .075);
+  --cug-active: rgb(var(--cug-fg) / .12);
+
+  --cug-alpha: var(--cug-set-alpha, .52);
+  --cug-shine: var(--cug-set-shine, 1);
+  --cug-r: var(--cug-set-radius, 18px);
+  --cug-r-lg: calc(var(--cug-r) + 10px);
+  --cug-r-sm: max(6px, calc(var(--cug-r) - 5px));
+  --cug-blurpx: var(--cug-set-blur, 28px);
+  --cug-glass:        rgb(var(--cug-panel) / var(--cug-alpha));
+  --cug-glass-strong: rgb(var(--cug-panel) / calc(var(--cug-alpha) + .2));
+  --cug-glass-main:   rgb(var(--cug-panel) / var(--cug-set-veil, .12));
+  --cug-glass-soft:   rgb(var(--cug-fg) / .055);
+  --cug-sheen: linear-gradient(135deg, rgb(255 255 255 / calc(.10 * var(--cug-shine))), rgb(255 255 255 / calc(.02 * var(--cug-shine))) 55%);
+  --cug-shadow: 0 24px 70px rgb(0 0 0 / .34);
+  --cug-inset: inset 0 1px 0 rgb(255 255 255 / calc(.10 * var(--cug-shine)));
+  --cug-blur: blur(var(--cug-blurpx)) saturate(var(--cug-set-sat, 160%));
+}
+
+html[data-cug-darkgpt][data-cug-mode="light"] {
+  color-scheme: dark;
+  --cug-base: 236 240 249;
+  --cug-panel: 255 255 255;
+  --cug-fg: 18 23 38;
+  --cug-accent: var(--cug-set-accent-light, 166 107 0);
+  --cug-on-accent: #fff;
+  --cug-text-2: rgb(var(--cug-fg) / .78);
+  --cug-text-3: rgb(var(--cug-fg) / .58);
+  --cug-line:      rgb(var(--cug-fg) / .15);
+  --cug-line-soft: rgb(var(--cug-fg) / .09);
+  --cug-hover:  rgb(var(--cug-fg) / .06);
+  --cug-active: rgb(var(--cug-fg) / .10);
+  --cug-glass-soft: rgb(255 255 255 / .45);
+  --cug-sheen: linear-gradient(135deg, rgb(255 255 255 / calc(.75 * var(--cug-shine))), rgb(255 255 255 / calc(.25 * var(--cug-shine))) 60%);
+  --cug-shadow: 0 22px 60px rgb(70 8 20 / .28);
+  --cug-inset: inset 0 1px 0 rgb(255 255 255 / calc(.9 * var(--cug-shine)));
+}
+
+/* ---------- 2. Re-map ChatGPT's own tokens (colour adapts everywhere) ---------- */
+html[data-cug-darkgpt] {
+  --text-primary: var(--cug-text);
+  --text-secondary: var(--cug-text-2);
+  --text-tertiary: var(--cug-text-3);
+  --text-quaternary: var(--cug-text-4);
+  --text-placeholder: var(--cug-text-3);
+  --link: rgb(var(--cug-accent));
+  --link-hover: rgb(var(--cug-accent));
+
+  --border-default: var(--cug-line);
+  --border-light: var(--cug-line-soft);
+  --border-xlight: var(--cug-line-soft);
+  --border-medium: var(--cug-line);
+  --border-heavy: rgb(var(--cug-fg) / .22);
+  --border-sharp: rgb(var(--cug-fg) / .22);
+
+  --main-surface-background: transparent;
+  --main-surface-primary: var(--cug-glass-main);
+  --main-surface-secondary: var(--cug-glass-soft);
+  --main-surface-tertiary: var(--cug-hover);
+  --sidebar-surface-primary: transparent;
+  --sidebar-surface-secondary: var(--cug-hover);
+  --sidebar-surface-tertiary: var(--cug-active);
+  --surface-primary: var(--cug-glass-main);
+  --surface-secondary: var(--cug-glass-soft);
+  --surface-tertiary: var(--cug-hover);
+  --surface-hover: var(--cug-hover);
+  --bg-primary: var(--cug-glass-main);
+  --bg-secondary: var(--cug-glass-soft);
+  --bg-tertiary: var(--cug-hover);
+  --bg-elevated-primary: var(--cug-glass-strong);
+  --bg-elevated-secondary: var(--cug-glass-soft);
+  --message-surface: rgb(var(--cug-accent) / .13);
+  --composer-surface: var(--cug-glass-strong);
+  --composer-surface-primary: var(--cug-glass-strong);
+
+  --interactive-bg-secondary-default: var(--cug-glass-soft);
+  --interactive-bg-secondary-hover: var(--cug-hover);
+  --interactive-bg-secondary-press: var(--cug-active);
+  --interactive-bg-secondary-selected: var(--cug-active);
+  --interactive-bg-tertiary-default: transparent;
+  --interactive-bg-tertiary-hover: var(--cug-hover);
+  --interactive-bg-tertiary-press: var(--cug-active);
+  --interactive-label-secondary-default: var(--cug-text);
+  --interactive-label-secondary-hover: var(--cug-text);
+  --interactive-label-tertiary-default: var(--cug-text-2);
+  --interactive-label-tertiary-hover: var(--cug-text);
+
+  /* Tailwind typography (markdown) */
+  --tw-prose-body: var(--cug-text);
+  --tw-prose-headings: var(--cug-text);
+  --tw-prose-lead: var(--cug-text-2);
+  --tw-prose-links: rgb(var(--cug-accent));
+  --tw-prose-bold: var(--cug-text);
+  --tw-prose-counters: var(--cug-text-3);
+  --tw-prose-bullets: var(--cug-text-3);
+  --tw-prose-hr: var(--cug-line);
+  --tw-prose-quotes: var(--cug-text-2);
+  --tw-prose-quote-borders: rgb(var(--cug-accent) / .55);
+  --tw-prose-captions: var(--cug-text-3);
+  --tw-prose-code: var(--cug-text);
+  --tw-prose-th-borders: var(--cug-line);
+  --tw-prose-td-borders: var(--cug-line-soft);
+  --tw-prose-invert-body: var(--cug-text);
+  --tw-prose-invert-headings: var(--cug-text);
+  --tw-prose-invert-links: rgb(var(--cug-accent));
+  --tw-prose-invert-bold: var(--cug-text);
+  --tw-prose-invert-counters: var(--cug-text-3);
+  --tw-prose-invert-bullets: var(--cug-text-3);
+  --tw-prose-invert-hr: var(--cug-line);
+  --tw-prose-invert-quotes: var(--cug-text-2);
+  --tw-prose-invert-code: var(--cug-text);
+  --tw-prose-invert-th-borders: var(--cug-line);
+  --tw-prose-invert-td-borders: var(--cug-line-soft);
+}
+
+/* ---------- 3. Canvas + ambient background ---------- */
+html[data-cug-darkgpt] {
+  background: rgb(var(--cug-base)) !important;
+}
+html[data-cug-darkgpt] body {
+  background: transparent !important;
+  color: var(--cug-text);
+}
+/* The ambient layer is injected by content.js as a direct child of <html>:
+   a WebGL canvas (caustics / rays / neon) with CSS blobs as a fallback. */
+#cug-ambient { display: none; }
+html[data-cug-darkgpt] #cug-ambient {
+  display: block; position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none;
+}
+#cug-ambient canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: none; }
+html[data-cug-darkgpt][data-cug-fx="gl"] #cug-ambient canvas { display: block; }
+html[data-cug-darkgpt][data-cug-fx="gl"] #cug-ambient i { display: none; }
+#cug-ambient i {
+  position: absolute; width: 56vmax; height: 56vmax; border-radius: 50%;
+  filter: blur(80px); opacity: .55; will-change: transform;
+}
+#cug-ambient i:nth-child(2) { left: -14vmax; top: -18vmax; background: radial-gradient(circle, rgb(239 38 58 / .82), transparent 68%); }
+#cug-ambient i:nth-child(3) { right: -16vmax; bottom: -20vmax; background: radial-gradient(circle, rgb(255 91 110 / .62), transparent 68%); }
+#cug-ambient i:nth-child(4) { left: 32%; top: 38%; width: 40vmax; height: 40vmax; background: radial-gradient(circle, rgb(var(--cug-accent) / .38), transparent 68%); }
+html[data-cug-darkgpt][data-cug-mode="light"] #cug-ambient i { opacity: .42; }
+html[data-cug-darkgpt][data-cug-motion="on"] #cug-ambient i:nth-child(2) { animation: cug-drift-a 26s ease-in-out infinite alternate; }
+html[data-cug-darkgpt][data-cug-motion="on"] #cug-ambient i:nth-child(3) { animation: cug-drift-b 32s ease-in-out infinite alternate; }
+html[data-cug-darkgpt][data-cug-motion="on"] #cug-ambient i:nth-child(4) { animation: cug-drift-c 38s ease-in-out infinite alternate; }
+@keyframes cug-drift-a { to { transform: translate3d(9vmax, 7vmax, 0) scale(1.08); } }
+@keyframes cug-drift-b { to { transform: translate3d(-8vmax, -9vmax, 0) scale(1.10); } }
+@keyframes cug-drift-c { to { transform: translate3d(-10vmax, 6vmax, 0) scale(.92); } }
+
+/* Every full-page wrapper must be see-through, otherwise it hides the lights */
+html[data-cug-darkgpt] :is(body > div, #root, #root > div, #__next, #__next > div) {
+  background-color: transparent !important; background-image: none;
+}
+html[data-cug-darkgpt] :is(.bg-white, .bg-gray-50, .bg-gray-100, .dark\:bg-gray-800, .dark\:bg-gray-900, .dark\:bg-black):not(button):not(a):not(input):not(textarea) {
+  background-color: var(--cug-glass-main) !important;
+}
+
+/* ---------- 4. Selection, focus, scrollbars ---------- */
+html[data-cug-darkgpt] ::selection { background: rgb(var(--cug-accent) / .35); color: inherit; }
+html[data-cug-darkgpt] :focus-visible { outline: 2px solid rgb(var(--cug-accent) / .7) !important; outline-offset: 2px; }
+html[data-cug-darkgpt] ::placeholder { color: var(--cug-text-3) !important; -webkit-text-fill-color: var(--cug-text-3) !important; opacity: 1 !important; }
+html[data-cug-darkgpt] * { scrollbar-width: thin; scrollbar-color: rgb(var(--cug-fg) / .22) transparent; }
+html[data-cug-darkgpt] *::-webkit-scrollbar { width: 9px; height: 9px; }
+html[data-cug-darkgpt] *::-webkit-scrollbar-track { background: transparent; }
+html[data-cug-darkgpt] *::-webkit-scrollbar-thumb {
+  background: rgb(var(--cug-fg) / .2); border-radius: 999px; border: 2px solid transparent; background-clip: padding-box;
+}
+html[data-cug-darkgpt] *::-webkit-scrollbar-thumb:hover { background: rgb(var(--cug-fg) / .34); background-clip: padding-box; }
+
+/* ---------- 5. Sidebar ---------- */
+html[data-cug-darkgpt] :is(
+  aside.app-shell-left-panel,
+  aside[data-testid="app-shell-floating-left-panel"],
+  #stage-slideover-sidebar
+) {
+  background: var(--cug-sheen), var(--cug-glass) !important;
+  color: var(--cug-text) !important;
+  border-color: var(--cug-line) !important;
+  -webkit-backdrop-filter: var(--cug-blur) !important; backdrop-filter: var(--cug-blur) !important;
+  box-shadow: inset -1px 0 0 var(--cug-line-soft), 18px 0 60px rgb(0 0 0 / .14) !important;
+}
+/* inner sidebar wrappers must not paint a second opaque layer */
+html[data-cug-darkgpt] :is(#stage-slideover-sidebar, aside.app-shell-left-panel) :is(nav, [class*="bg-token-sidebar-surface"]):not(a):not(button) {
+  background-color: transparent !important;
+}
+html[data-cug-darkgpt] :is(aside.app-shell-left-panel, #stage-slideover-sidebar, nav[aria-label="Chat history"]) :is(a, button, [role="button"]) {
+  color: var(--cug-text-2);
+  border-radius: var(--cug-r-sm);
+  transition: transform .18s ease, background-color .18s ease, color .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+html[data-cug-darkgpt] :is(aside.app-shell-left-panel, #stage-slideover-sidebar, nav[aria-label="Chat history"]) :is(a, button, [role="button"]):hover {
+  color: var(--cug-text); background-color: var(--cug-hover);
+}
+/* active / current chat */
+html[data-cug-darkgpt] :is(aside.app-shell-left-panel, #stage-slideover-sidebar, nav[aria-label="Chat history"]) :is([aria-current="page"], [data-active], .bg-token-sidebar-surface-tertiary) {
+  color: var(--cug-text) !important;
+  background: linear-gradient(90deg, rgb(var(--cug-accent) / .16), var(--cug-hover)) !important;
+  box-shadow: inset 0 0 0 1px rgb(var(--cug-accent) / .22);
+}
+/* section headings: "Your chats", "Projects", date groups */
+html[data-cug-darkgpt] :is(aside.app-shell-left-panel, #stage-slideover-sidebar) :is(h2, h3, [data-sidebar-group-label]) {
+  color: rgb(var(--cug-accent)) !important; letter-spacing: .05em; text-transform: uppercase; font-size: .72rem; font-weight: 650;
+}
+/* sidebar icons pick up the accent */
+html[data-cug-darkgpt] :is(aside.app-shell-left-panel, #stage-slideover-sidebar) :is(
+  a[href*="/images"], a[href*="/library"], a[href*="/scheduled"], a[href*="/projects"], a[href*="/codex"],
+  a[href$="/"], button[data-testid*="new-chat"], a[data-testid*="new-chat"]
+) svg { color: rgb(var(--cug-accent)); }
+/* small project labels under chat titles */
+html[data-cug-darkgpt] nav[aria-label="Chat history"] a :is(small, [class*="text-token-text-tertiary"]) {
+  color: rgb(var(--cug-accent)) !important; font-size: .72rem; font-weight: 600;
+}
+/* 3D hover on chat rows (toggle in popup) */
+html[data-cug-darkgpt][data-cug-hover3d="on"] :is(nav[aria-label="Chat history"] a, aside.app-shell-left-panel a[href*="/c/"], #stage-slideover-sidebar a[href*="/c/"]) {
+  transform-origin: left center;
+}
+html[data-cug-darkgpt][data-cug-hover3d="on"] :is(nav[aria-label="Chat history"] a, aside.app-shell-left-panel a[href*="/c/"], #stage-slideover-sidebar a[href*="/c/"]):hover {
+  transform: perspective(700px) translate3d(5px, -1px, 4px) rotateY(-2deg) rotateX(1.5deg) scale(1.022);
+  background: linear-gradient(90deg, rgb(var(--cug-accent) / .13), var(--cug-hover));
+  box-shadow: 0 10px 26px rgb(0 0 0 / .14), inset 0 0 0 1px rgb(var(--cug-accent) / .18);
+}
+/* Upgrade / plan call-to-action */
+html[data-cug-darkgpt] :is([data-testid*="upgrade"], [data-testid*="plan"], a[href*="/upgrade"], button[aria-label*="Upgrade"]) {
+  background: linear-gradient(135deg, rgb(var(--cug-accent) / .2), var(--cug-glass-soft)) !important;
+  color: rgb(var(--cug-accent)) !important;
+  border: 1px solid rgb(var(--cug-accent) / .25) !important;
+  box-shadow: var(--cug-inset);
+}
+/* Profile / account button pinned at the bottom of the sidebar */
+html[data-cug-darkgpt] :is([data-testid="accounts-profile-button"], button[data-testid*="profile"], [data-testid="user-menu-button"]) {
+  background: var(--cug-glass-soft) !important;
+  border: 1px solid var(--cug-line-soft) !important;
+  border-radius: var(--cug-r) !important;
+  color: var(--cug-text) !important;
+  box-shadow: var(--cug-inset);
+}
+html[data-cug-darkgpt] :is([data-testid="accounts-profile-button"], button[data-testid*="profile"]):hover { background: var(--cug-hover) !important; }
+
+/* ---------- 6. Top bar, main area ---------- */
+html[data-cug-darkgpt] :is(#page-header, header#page-header, main header, [data-testid="page-header"]) {
+  background: linear-gradient(180deg, rgb(var(--cug-panel) / calc(var(--cug-alpha) * .55)), transparent) !important;
+  color: var(--cug-text);
+  border-color: var(--cug-line-soft) !important;
+  -webkit-backdrop-filter: blur(calc(var(--cug-blurpx) * .6)) saturate(150%); backdrop-filter: blur(calc(var(--cug-blurpx) * .6)) saturate(150%);
+}
+html[data-cug-darkgpt] :is(main, [role="main"]) { background: transparent !important; color: var(--cug-text); }
+/* fade gradients ChatGPT puts above the composer */
+html[data-cug-darkgpt] :is(.vt-composer-bg, [class*="bg-gradient-to-t"][class*="from-token-bg"], [class*="from-token-main-surface-primary"]) {
+  --tw-gradient-from: transparent !important; --tw-gradient-via: transparent !important; --tw-gradient-to: transparent !important;
+  background: transparent !important;
+}
+
+/* ---------- 7. Conversation ---------- */
+html[data-cug-darkgpt] :is(.user-message-bubble-color, [data-message-author-role="user"] [class*="bg-token-message-surface"]) {
+  background: linear-gradient(135deg, rgb(var(--cug-accent) / .20), rgb(var(--cug-accent) / .06)), var(--cug-glass-soft) !important;
+  color: var(--cug-text) !important;
+  border: 1px solid rgb(var(--cug-accent) / .22);
+  border-radius: calc(var(--cug-r) + 4px) !important;
+  -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
+  box-shadow: var(--cug-inset), 0 10px 30px rgb(0 0 0 / .10);
+}
+html[data-cug-darkgpt] :is([data-message-author-role="assistant"], .markdown, .prose) { color: var(--cug-text); }
+html[data-cug-darkgpt] .markdown :is(h1, h2, h3, h4, h5, strong) { color: var(--cug-text); }
+html[data-cug-darkgpt] .markdown a { color: rgb(var(--cug-accent)); text-decoration-color: rgb(var(--cug-accent) / .45); }
+html[data-cug-darkgpt] .markdown blockquote { border-left-color: rgb(var(--cug-accent) / .55); color: var(--cug-text-2); }
+html[data-cug-darkgpt] .markdown hr { border-color: var(--cug-line); }
+html[data-cug-darkgpt] .markdown :is(table, th, td) { border-color: var(--cug-line) !important; }
+html[data-cug-darkgpt] .markdown th { background: var(--cug-glass-soft); }
+html[data-cug-darkgpt] .markdown :not(pre) > code {
+  background: var(--cug-glass-soft); border: 1px solid var(--cug-line-soft); border-radius: 8px; color: var(--cug-text);
+}
+html[data-cug-darkgpt] :is(pre, [data-testid*="code-block"], [class*="contain-inline-size"][class*="rounded"]) {
+  background: rgb(var(--cug-panel) / calc(var(--cug-alpha) + .12)) !important;
+  border: 1px solid var(--cug-line-soft) !important; border-radius: var(--cug-r) !important;
+  box-shadow: var(--cug-inset);
+}
+html[data-cug-darkgpt][data-cug-mode="dark"] pre { background: rgb(18 2 6 / .62) !important; }
+/* the code header bar (language label + copy) */
+html[data-cug-darkgpt] pre :is([class*="bg-token-bg-elevated"], [class*="bg-token-main-surface"]) { background: var(--cug-glass-soft) !important; color: var(--cug-text-2) !important; }
+/* message action row (copy, like, share…) */
+html[data-cug-darkgpt] :is(article, [data-testid^="conversation-turn"]) button { color: var(--cug-text-3); }
+html[data-cug-darkgpt] :is(article, [data-testid^="conversation-turn"]) button:hover { color: var(--cug-text); background: var(--cug-hover); }
+
+/* ---------- 8. Composer ---------- */
+html[data-cug-darkgpt] :is([data-composer-surface="true"], form[data-type="unified-composer"], form.group\/composer, #thread-bottom-container [class*="rounded-"][class*="shadow"]) {
+  background: var(--cug-sheen), var(--cug-glass-strong) !important;
+  border: 1px solid var(--cug-line) !important;
+  border-radius: var(--cug-r-lg) !important;
+  -webkit-backdrop-filter: var(--cug-blur) !important; backdrop-filter: var(--cug-blur) !important;
+  box-shadow: var(--cug-inset), var(--cug-shadow) !important;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+html[data-cug-darkgpt] :is([data-composer-surface="true"], form[data-type="unified-composer"]):focus-within {
+  border-color: rgb(var(--cug-accent) / .5) !important;
+  box-shadow: var(--cug-inset), 0 0 0 4px rgb(var(--cug-accent) / .10), var(--cug-shadow) !important;
+}
+html[data-cug-darkgpt] :is(#prompt-textarea, textarea[name="prompt-textarea"], .ProseMirror[contenteditable="true"]) {
+  color: var(--cug-text) !important; -webkit-text-fill-color: var(--cug-text) !important;
+  caret-color: rgb(var(--cug-accent)) !important; background: transparent !important; border: 0 !important; outline: 0 !important;
+}
+html[data-cug-darkgpt] .ProseMirror p.placeholder::before,
+html[data-cug-darkgpt] .ProseMirror[contenteditable="true"]::before { color: var(--cug-text-3) !important; }
+/* round secondary buttons inside the composer (+, voice, tools) */
+html[data-cug-darkgpt] :is([data-composer-surface="true"], form[data-type="unified-composer"]) button:not([data-testid="send-button"]):not(#composer-submit-button):not([data-testid="stop-button"]) {
+  color: var(--cug-text-2);
+}
+html[data-cug-darkgpt] :is([data-composer-surface="true"], form[data-type="unified-composer"]) button:not([data-testid="send-button"]):not(#composer-submit-button):hover {
+  background: var(--cug-hover); color: var(--cug-text);
+}
+/* send / stop button = accent, with a contrast-safe icon colour */
+html[data-cug-darkgpt] :is([data-testid="send-button"], #composer-submit-button, [data-testid="stop-button"], .btn-primary) {
+  background: linear-gradient(135deg, rgb(var(--cug-accent)), rgb(var(--cug-accent) / .72)) !important;
+  color: var(--cug-on-accent) !important;
+  border: 0 !important;
+  box-shadow: 0 8px 22px rgb(var(--cug-accent) / .30), inset 0 1px 0 rgb(255 255 255 / .35);
+  transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+}
+html[data-cug-darkgpt] :is([data-testid="send-button"], #composer-submit-button, .btn-primary):hover:not(:disabled) { transform: translateY(-1px) scale(1.04); }
+html[data-cug-darkgpt] :is([data-testid="send-button"], #composer-submit-button):disabled {
+  background: var(--cug-glass-soft) !important; color: var(--cug-text-4) !important; box-shadow: none; opacity: 1;
+}
+html[data-cug-darkgpt] :is([data-testid="send-button"], #composer-submit-button, [data-testid="stop-button"]) svg { color: inherit; fill: currentColor; }
+/* small disclaimer under the composer */
+html[data-cug-darkgpt] :is(#thread-bottom-container, [class*="min-h-8"]) [class*="text-xs"] { color: var(--cug-text-3); }
+
+/* ---------- 9. Menus, popovers, profile menu, tooltips ---------- */
+html[data-cug-darkgpt] :is(
+  [role="menu"], [role="listbox"], [cmdk-root], [data-radix-menu-content], [data-radix-popper-content-wrapper] > :not([data-cug-ambient]),
+  [data-sonner-toast], [role="tooltip"], .popover
+) {
+  background: var(--cug-sheen), var(--cug-glass-strong) !important;
+  color: var(--cug-text) !important;
+  border: 1px solid var(--cug-line) !important;
+  border-radius: var(--cug-r) !important;
+  -webkit-backdrop-filter: var(--cug-blur) !important; backdrop-filter: var(--cug-blur) !important;
+  box-shadow: var(--cug-inset), var(--cug-shadow) !important;
+}
+/* items inside menus (profile menu: Settings, Customize, Help, Log out…) */
+html[data-cug-darkgpt] :is([role="menu"], [role="listbox"], [cmdk-root]) :is([role^="menuitem"], [role="option"], [cmdk-item], a, button) {
+  color: var(--cug-text-2) !important; background: transparent; border-radius: var(--cug-r-sm) !important;
+  transition: background-color .15s ease, color .15s ease;
+}
+html[data-cug-darkgpt] :is([role="menu"], [role="listbox"], [cmdk-root]) :is([role^="menuitem"], [role="option"], [cmdk-item], a, button):is(:hover, [data-highlighted], [data-selected="true"], [aria-selected="true"]) {
+  color: var(--cug-text) !important; background: rgb(var(--cug-accent) / .13) !important;
+}
+html[data-cug-darkgpt] :is([role="menu"], [role="listbox"]) :is([role="separator"], hr) { background: var(--cug-line-soft) !important; border-color: var(--cug-line-soft) !important; }
+html[data-cug-darkgpt] :is([role="menu"], [role="listbox"]) svg { color: var(--cug-text-3); }
+html[data-cug-darkgpt] :is([role="menu"], [role="listbox"]) :is(.text-token-text-tertiary, .text-token-text-secondary) { color: var(--cug-text-3) !important; }
+/* destructive entries (Log out, Delete) keep a readable red in both modes */
+html[data-cug-darkgpt] :is([role="menu"], [role="dialog"]) :is([class*="text-red"], .text-token-text-error) { color: #ff5a70 !important; }
+html[data-cug-darkgpt][data-cug-mode="light"] :is([role="menu"], [role="dialog"]) :is([class*="text-red"], .text-token-text-error) { color: #ff3b57 !important; }
+
+/* ---------- 10. Dialogs: Settings, Upgrade/plans, Plugins/Customize ---------- */
+html[data-cug-darkgpt] :is(div[data-state="open"][class*="fixed"][class*="inset-0"], div[class*="fixed"][class*="inset-0"][class*="bg-black"], [data-radix-dialog-overlay]) {
+  /* tint only; a blur here would become a backdrop-root and kill the dialog's own blur */
+  background: rgb(var(--cug-base) / .52) !important;
+}
+html[data-cug-darkgpt] [role="dialog"] {
+  background: var(--cug-sheen), var(--cug-glass-strong) !important;
+  color: var(--cug-text) !important;
+  border: 1px solid var(--cug-line) !important;
+  border-radius: calc(var(--cug-r) + 8px) !important;
+  -webkit-backdrop-filter: var(--cug-blur) !important; backdrop-filter: var(--cug-blur) !important;
+  box-shadow: var(--cug-inset), 0 40px 110px rgb(0 0 0 / .45) !important;
+}
+html[data-cug-darkgpt][data-cug-mode="light"] [role="dialog"] { box-shadow: var(--cug-inset), 0 36px 100px rgb(70 8 20 / .32) !important; }
+/* inner wrappers go transparent so the glass shows through; cards stay soft glass */
+html[data-cug-darkgpt] [role="dialog"] :is([class*="bg-token-main-surface-primary"], [class*="bg-token-bg-primary"], [class*="bg-token-bg-elevated-primary"], [class*="bg-white"], [class*="dark:bg-gray-900"]) { background-color: transparent !important; }
+html[data-cug-darkgpt] [role="dialog"] :is([class*="bg-token-main-surface-secondary"], [class*="bg-token-main-surface-tertiary"], [class*="bg-token-bg-secondary"], [class*="bg-token-bg-tertiary"], [class*="bg-token-bg-elevated-secondary"]) {
+  background-color: var(--cug-glass-soft) !important; border-color: var(--cug-line-soft);
+}
+html[data-cug-darkgpt] [role="dialog"] :is(h1, h2, h3, h4, label, legend, th) { color: var(--cug-text) !important; }
+html[data-cug-darkgpt] [role="dialog"] :is(p, span, li, td, div) { border-color: var(--cug-line-soft); }
+html[data-cug-darkgpt] [role="dialog"] :is(hr, [role="separator"]) { border-color: var(--cug-line-soft) !important; background: var(--cug-line-soft); }
+/* Settings left navigation + tabs */
+html[data-cug-darkgpt] [role="dialog"] :is([role="tablist"], nav) :is([role="tab"], a, button) {
+  color: var(--cug-text-2); border-radius: var(--cug-r-sm); transition: background-color .15s ease, color .15s ease;
+}
+html[data-cug-darkgpt] [role="dialog"] :is([role="tablist"], nav) :is([role="tab"], a, button):hover { background: var(--cug-hover); color: var(--cug-text); }
+html[data-cug-darkgpt] [role="dialog"] :is([role="tab"][aria-selected="true"], [role="tab"][data-state="active"], [aria-current="page"], [data-state="active"]) {
+  color: var(--cug-text) !important;
+  background: linear-gradient(90deg, rgb(var(--cug-accent) / .18), var(--cug-hover)) !important;
+  box-shadow: inset 0 0 0 1px rgb(var(--cug-accent) / .22);
+}
+/* form controls */
+html[data-cug-darkgpt] [role="dialog"] :is(input:not([type="checkbox"]):not([type="radio"]), select, textarea),
+html[data-cug-darkgpt] :is([role="menu"], main) :is(select) {
+  background: var(--cug-glass-soft) !important; color: var(--cug-text) !important; -webkit-text-fill-color: var(--cug-text);
+  border: 1px solid var(--cug-line) !important; border-radius: var(--cug-r-sm) !important;
+}
+html[data-cug-darkgpt] [role="dialog"] :is(input, select, textarea):focus { border-color: rgb(var(--cug-accent) / .55) !important; box-shadow: 0 0 0 3px rgb(var(--cug-accent) / .12); outline: 0; }
+html[data-cug-darkgpt] [role="dialog"] option { background: rgb(var(--cug-panel)); color: rgb(var(--cug-fg)); }
+html[data-cug-darkgpt] :is(input[type="checkbox"], input[type="radio"]) { accent-color: rgb(var(--cug-accent)); }
+/* toggle switches */
+html[data-cug-darkgpt] [role="switch"] { background-color: var(--cug-active) !important; border: 1px solid var(--cug-line); }
+html[data-cug-darkgpt] [role="switch"][aria-checked="true"], html[data-cug-darkgpt] [role="switch"][data-state="checked"] {
+  background-color: rgb(var(--cug-accent) / .85) !important; border-color: rgb(var(--cug-accent) / .6);
+}
+/* buttons inside dialogs (secondary / outline) */
+html[data-cug-darkgpt] [role="dialog"] :is(button.btn-secondary, button.btn-neutral, button[class*="border"]):not([data-testid="send-button"]) {
+  background: var(--cug-glass-soft) !important; color: var(--cug-text) !important; border: 1px solid var(--cug-line) !important; border-radius: var(--cug-r-sm) !important;
+}
+html[data-cug-darkgpt] [role="dialog"] :is(button.btn-secondary, button.btn-neutral):hover { background: var(--cug-hover) !important; }
+/* dialog top area is a drag handle (content.js) — show it on hover */
+html[data-cug-darkgpt][data-cug-drag="on"] [role="dialog"]:not([data-cug-dragged]) { cursor: default; }
+html[data-cug-darkgpt] body[data-cug-dragging] { user-select: none; cursor: grabbing; }
+html[data-cug-darkgpt] body[data-cug-dragging] [role="dialog"] { transition: none !important; }
+
+/* ---------- 11. Misc text helpers (class-based colours still adapt) ---------- */
+html[data-cug-darkgpt] :is(.text-token-text-primary, h1, h2, h3, h4) { color: var(--cug-text); }
+html[data-cug-darkgpt] .text-token-text-secondary { color: var(--cug-text-2); }
+html[data-cug-darkgpt] .text-token-text-tertiary { color: var(--cug-text-3); }
+html[data-cug-darkgpt] .border-token-border-default, html[data-cug-darkgpt] .border-token-border-light { border-color: var(--cug-line-soft); }
+
+/* ---------- 12. Accessibility + fallbacks ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html[data-cug-darkgpt] #cug-ambient i { animation: none !important; }
+  html[data-cug-darkgpt] * { transition-duration: 0s !important; }
+}
+@media (prefers-contrast: more) {
+  html[data-cug-darkgpt] { --cug-line: rgb(var(--cug-fg) / .4); --cug-text-3: rgb(var(--cug-fg) / .8); }
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  html[data-cug-darkgpt] { --cug-glass: rgb(var(--cug-panel) / .96); --cug-glass-strong: rgb(var(--cug-panel) / .98); }
+}
