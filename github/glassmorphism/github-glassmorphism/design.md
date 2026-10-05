@@ -1,87 +1,53 @@
-# GitHub Glassmorphism UI
+# GitHub Glassmorphism Chrome Extension
 
 ## Design name
-
 GitHub Glassmorphism
 
 ## Platform
-
 GitHub
 
 ## Design style
-
-Glassmorphism with a GitHub-inspired developer-tool visual language.
-
-## Technologies
-
-- HTML5
-- CSS3
-- Vanilla JavaScript
-- CSS backdrop-filter for translucent surfaces
-- Responsive CSS Grid/Flexbox
+Glassmorphism applied directly to GitHub's existing web UI.
 
 ## Purpose
+A real Chrome Extension. It does not replace GitHub with a fake dashboard. It keeps GitHub's existing navigation, repository pages, pull requests, issues, forms, menus and content, then adds a translucent glass visual layer.
 
-This concept turns a GitHub-inspired developer workspace into a layered glass interface. It keeps GitHub's information-dense, developer-focused character while introducing translucent repository cards, activity panels, contribution data and soft blue/purple ambient lighting.
-
-The design is a visual UI concept and does not connect to the GitHub API.
-
-## Main visual system
-
-- Dark developer-focused background.
-- Translucent cards with blur and saturation.
-- Thin white hairline borders.
-- GitHub-inspired blue accent with violet secondary glow.
-- High-contrast headings with muted metadata.
-- Small radius values for controls and larger radii for major glass surfaces.
-- Responsive repository grid and activity layout.
-- Reduced-motion and backdrop-filter fallback support.
+## Technologies
+- Chrome Extension Manifest V3
+- HTML5 / CSS3
+- Vanilla JavaScript
+- CSS backdrop-filter
+- chrome.storage.local
+- activeTab
 
 ## Files
+- [Manifest](./manifest.json)
+- [Popup HTML](./index.html)
+- [Popup CSS](./style.css)
+- [Popup JavaScript](./script.js)
+- [GitHub Glass CSS](./glass.css)
+- [Content Script](./content.js)
 
-- [HTML](./index.html)
-- [CSS](./style.css)
-- [JavaScript](./script.js)
+## How to use
+1. Open chrome://extensions.
+2. Enable Developer mode.
+3. Choose Load unpacked.
+4. Select this folder.
+5. Open https://github.com/.
+6. Click the extension icon and choose a preset.
 
-## Usage
+## Behavior
+The content script runs on GitHub pages and styles common Primer surfaces. The popup controls blur, opacity, edge shine, corner radius, colour saturation, ambient light, hover lift and motion. Settings persist locally.
 
-Open index.html directly in a modern browser. No build step or package installation is required.
+## Presets
+- Aurora
+- Midnight
+- Crystal
 
-For Chrome extension prototyping, the same visual system can be moved into a Manifest V3 popup or content-script architecture. The current example is intentionally self-contained so it can also be used as a UI reference.
+## Important
+This extension is presentation-only. It does not use the GitHub API and does not create, delete, read or modify repository data. GitHub can change DOM/class names, so selectors in glass.css may need maintenance over time.
 
-## Interaction notes
-
-- Overview / Activity / Settings switches the visible workspace panel.
-- New repository demonstrates a toast interaction without creating a real repository.
-- Glow toggle reduces or restores ambient light intensity.
-- Settings sliders live-update blur, glass opacity and glow intensity.
-- The contribution graph is generated with vanilla JavaScript.
-
-## Compatibility
-
-Recommended: current Chrome, Edge, Firefox or Safari versions with backdrop-filter support. A solid translucent background is provided as a fallback where blur is unavailable.
-
-## Where this code can be used
-
-- GitHub-inspired dashboards.
-- Developer portfolio pages.
-- Chrome extension popups.
-- Repository management mockups.
-- SaaS developer tooling.
-- Design-system references for glassmorphism interfaces.
-
-## Preview
-
-The main composition is designed around a wide desktop viewport and collapses into a single-column layout below tablet widths.
-
-## Repository navigation
-
+## Navigation
 - [GitHub UI Designs](../README.md)
 - [Glassmorphism designs](../README.md)
 - [Repository root](../../../README.md)
-
-## CMD setup
-
-    git clone https://github.com/RuslanSharifov/chrome-ui-gallery.git
-    cd chrome-ui-gallery
-    cd github\glassmorphism\github-glassmorphism
