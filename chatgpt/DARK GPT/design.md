@@ -16,6 +16,7 @@ Keep the existing ChatGPT UI structure, interactions, dialogs, menus, composer a
 - DARK GPT mode: enable / disable
 - UI brightness: panel/surface brightness
 - Background glow: red ambient brightness
+- Mouse glow radius: controls the radius of the red pointer-following background glow
 
 ## Files
 - [Manifest](./manifest.json)
