@@ -450,3 +450,9 @@ html[data-cug-darkgpt] .border-token-border-default, html[data-cug-darkgpt] .bor
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   html[data-cug-darkgpt] { --cug-glass: rgb(var(--cug-panel) / .96); --cug-glass-strong: rgb(var(--cug-panel) / .98); }
 }
+
+
+/* Interactive welcome particles + pointer-following red glow */
+html[data-cug-darkgpt]::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(circle var(--cug-set-glow-radius,260px) at var(--cug-mx,50vw) var(--cug-my,50vh),rgb(239 38 58 / calc(.24 * var(--cug-set-veil,.34))),transparent 72%);mix-blend-mode:screen;transition:background .08s linear}
+html[data-cug-darkgpt] [data-cug-particle-source="true"]{color:transparent!important;-webkit-text-fill-color:transparent!important}
+#cug-darkgpt-particle-text{pointer-events:none}
