@@ -1,10 +1,10 @@
 {
   "manifest_version": 3,
-  "name": "GitHub Glassmorphism Control Center",
-  "version": "1.0.0",
-  "description": "A modern GitHub-inspired glassmorphism control center UI.",
-  "action": {
-    "default_title": "GitHub Glassmorphism",
-    "default_popup": "index.html"
-  }
+  "name": "GitHub Glassmorphism",
+  "version": "2.0.0",
+  "description": "Transforms GitHub's existing web UI with an adaptive glassmorphism visual layer.",
+  "minimum_chrome_version": "111",
+  "permissions": ["storage", "activeTab"],
+  "action": {"default_title":"GitHub Glassmorphism","default_popup":"index.html"},
+  "content_scripts":[{"matches":["https://github.com/*"],"css":["glass.css"],"js":["content.js"],"run_at":"document_start"}]
 }
