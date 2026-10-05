@@ -14,3 +14,4 @@ A dark-only red redesign of ChatGPT using the existing UI selector coverage.
 - Mode on/off
 - UI/panel brightness
 - Red background glow brightness
+- Mouse glow radius for the pointer-following background light
