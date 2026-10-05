@@ -1,140 +1,40 @@
-# Gemini Claymorphism UI
+# Gemini Claymorphism UI (v1.1)
 
-## Design name
-
-Gemini Claymorphism
-
-## Platform
-
-Google Gemini Web App (gemini.google.com)
-
-## Design style
-
-Claymorphism with soft sculpted depth, rounded pastel surfaces, inset highlights, offset shadows, and animated 3D clay clouds behind the Gemini interface.
-
-## Technology
-
-- Chrome Extension Manifest V3
-- HTML5
-- CSS3
-- Vanilla JavaScript
-- CSS 3D transforms and keyframe animation
-- chrome.storage.local
-- Chrome content scripts
-
-## Purpose
-
-This extension restyles the existing Gemini web interface without replacing Gemini, opening another Gemini window, sending prompts, calling a Gemini API, or changing conversation logic.
-
-The visual layer uses a clay-like material system for the sidebar, conversation surfaces, composer, query bubbles, dialogs, menus, cards, code blocks, and controls. The background is an animated cloud field built locally from layered CSS 3D shapes.
-
-## Main visual system
-
-1. Soft pastel canvas matched to the selected palette.
-2. Claymorphic Gemini surfaces with rounded sculpted geometry.
-3. Animated 3D clouds positioned behind the UI.
-4. Adjustable cloud speed, size, count, opacity, and depth.
-5. Optional cursor parallax for the cloud layer.
-6. Optional 3D hover treatment for navigation items.
-7. Light and dark mode detection.
-8. Reduced-motion support.
-
-## Cloud controls
-
-The popup exposes:
-
-- Cloud speed
-- Cloud size
-- Cloud count
-- Cloud opacity
-- 3D depth
-- Cursor parallax
-
-The renderer creates seven rounded clay puffs per cloud. No remote image, CDN, external font, or API is required.
+Chrome MV3 extension that restyles gemini.google.com with soft clay surfaces, animated 3D clay clouds, a weather system and an adjustable clay-to-glass blend. Visual styling only: no prompts are read or sent, no API calls, no remote assets.
 
 ## Files
+| File | Role |
+|---|---|
+| manifest.json | MV3 registration, icons |
+| shared.js | defaults, palettes, weather table, presets, `normalize`, `resolve(settings, geminiDark)` |
+| weather.js | 2D canvas: rain, snow, stars, shooting stars, lightning bolts (+ flash hook) |
+| clouds.js / clouds.css | scene builder: sky, sun/moon, 3D clouds, fog, canvas, flash |
+| content.js | writes CSS variables, owns the scene, watches theme + storage |
+| clay.css | Gemini selectors: sidebar, composer, cards, menus/dialogs, code |
+| index.html / style.css / script.js | popup (presets + accordion, live preview) |
 
-- manifest.json — Manifest V3 registration.
-- shared.js — defaults, palettes, presets, validation, and storage helpers.
-- clouds.js — reusable 3D cloud generator.
-- clouds.css — animated cloud geometry.
-- content.js — theme detection, CSS variables, cloud lifecycle, and settings synchronization.
-- clay.css — Gemini-specific claymorphism selectors.
-- index.html — extension popup markup.
-- style.css — popup claymorphism styling.
-- script.js — popup controls, preview, and storage actions.
-- design.md — design documentation.
-- CHANGELOG.md — release notes.
+## How clay becomes glass
+Each area (sidebar, composer, menus & dialogs, cards) has a transparency `t` (0..1) from the Glass section:
+- fill alpha = base × (1 − t) + 0.07 × t
+- offset shadows scale by (1 − 0.75 t); the light rim grows with t × "Edge shine"
+- `backdrop-filter: blur(Glass blur)` on every surface
 
-## CMD setup
+Presets: Clay (all 0), Clay + Glass (sidebar 45 / menus 55 / composer 35 / cards 30), Glass (80 / 85 / 70 / 62).
 
-~~~cmd
-git clone https://github.com/RuslanSharifov/chrome-ui-gallery.git
-cd chrome-ui-gallery
-cd gemini/claymorphism/gemini-claymorphism
-~~~
+## Weather
+`clear`, `cloudy`, `rain`, `storm`, `snow`, `fog`, `night`. Choosing one applies recommended cloud amount/opacity; every slider stays editable. Cloud colours follow the weather (tone: Auto) and UI colour mode "Auto" switches to the dark clay UI for Night and Storm.
 
-## Install as an unpacked Chrome extension
+Lightning: at most ~2 flashes per second, soft low-contrast flash; set Lightning to 0 to disable. Under `prefers-reduced-motion` there is no lightning and precipitation is a still frame.
 
-The folder containing manifest.json is the extension root.
+## Theme logic
+UI colour mode: **Auto** (palette + weather decide), **Follow Gemini** (reads Gemini's light/dark marker), **Light**, **Dark**. Light palettes get a derived dark variant automatically.
 
-1. Open Chrome.
-2. Go to the Chrome Extensions page.
-3. Enable Developer mode.
-4. Click Load unpacked.
-5. Select gemini-claymorphism.
-6. Open or refresh https://gemini.google.com/.
-7. Click the extension toolbar button.
-8. Enable the visual layer and adjust the cloud controls.
-
-## Development loop
-
-1. Edit clay.css, clouds.css, clouds.js, content.js, or popup files.
-2. Return to the Chrome Extensions page.
-3. Click Reload for Gemini Claymorphism.
-4. Refresh the Gemini tab.
-5. Adjust cloud speed, size, count, opacity, and depth from the popup.
-6. If a Gemini surface is not styled, inspect the current DOM and add a narrow selector to clay.css.
+## Install
+1. `chrome://extensions` → Developer mode → Load unpacked → select the folder with manifest.json.
+2. Open/refresh https://gemini.google.com/ and click the toolbar icon.
+After editing files: Reload on the extensions page, then refresh Gemini.
 
 ## Troubleshooting
-
-### The extension loads but Gemini is unchanged
-
-Reload the extension, refresh Gemini, and confirm the master switch is enabled.
-
-### Clouds are too strong
-
-Reduce Cloud opacity, Cloud size, or 3D depth.
-
-### Clouds move too quickly
-
-Lower Cloud speed.
-
-### Performance is poor
-
-Reduce Cloud count and 3D depth, or enable reduced motion in the operating system.
-
-### A Gemini panel is not clay-styled
-
-Gemini can change its DOM between releases. Inspect the current element and add a defensive selector instead of relying on generated class names.
-
-## Safe extension boundaries
-
-- Does not send or modify prompts.
-- Does not call Gemini or Google APIs.
-- Does not scrape conversation content.
-- Does not open a replacement chat window.
-- Does not modify Gemini responses.
-- Does not inject third-party remote scripts.
-
-## Files
-
-- HTML: ./index.html
-- Main CSS: ./clay.css
-- Cloud CSS: ./clouds.css
-- Popup CSS: ./style.css
-- JavaScript: ./script.js
-- Content script: ./content.js
-- Shared settings: ./shared.js
-- Cloud renderer: ./clouds.js
-- Manifest: ./manifest.json
+- A panel is not styled: Gemini renames internals; inspect it and add a narrow selector to the matching group in clay.css (sections 3-5).
+- Heavy page: lower Effects quality, Weather strength or Cloud amount.
+- Text hard to read on a busy sky: raise Chat area tint or switch Text halo on.

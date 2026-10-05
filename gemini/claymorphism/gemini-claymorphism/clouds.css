@@ -1,8 +1,185 @@
-#gug-clay-cloud-world{position:fixed!important;inset:-12vh -12vw!important;z-index:0!important;overflow:hidden!important;pointer-events:none!important;transform:translate3d(var(--gug-pointer-x,0px),var(--gug-pointer-y,0px),0);transition:transform 1.4s ease-out;opacity:var(--gug-cloud-opacity,.78);contain:layout paint style}
-html[data-gug-clay] #gug-clay-cloud-world{display:block!important}
-.gug-clay-cloud{position:absolute!important;left:var(--gug-x)!important;top:var(--gug-y)!important;width:clamp(210px,24vw,430px)!important;height:clamp(105px,12vw,210px)!important;transform-origin:center!important;transform-style:preserve-3d!important;will-change:transform;animation:gug-clay-cloud-drift linear infinite;filter:drop-shadow(0 24px 28px rgb(68 76 91/.18))}
-.gug-clay-cloud::before{content:"";position:absolute;inset:28% 4% 0;border-radius:48% 52% 42% 58%/54% 52% 48% 46%;background:linear-gradient(145deg,rgb(255 255 255/.62),transparent 35%),linear-gradient(155deg,var(--gug-color-a),var(--gug-color-b));box-shadow:inset 18px 14px 26px rgb(255 255 255/.42),inset -22px -20px 34px rgb(78 91 110/.16),18px 24px 38px rgb(72 82 98/.16)}
-.gug-clay-puff{position:absolute!important;display:block!important;border-radius:50%!important;background:radial-gradient(circle at 34% 26%,rgb(255 255 255/.92),transparent 24%),linear-gradient(145deg,var(--gug-color-a),var(--gug-color-b))!important;box-shadow:inset 12px 10px 18px rgb(255 255 255/.34),inset -16px -18px 24px rgb(72 82 98/.16),12px 18px 26px rgb(72 82 98/.13)!important;transform:translateZ(calc(var(--gug-cloud-depth,.8)*18px))}
-.gug-clay-puff:nth-child(1){width:32%;height:62%;left:6%;top:25%}.gug-clay-puff:nth-child(2){width:39%;height:82%;left:18%;top:2%}.gug-clay-puff:nth-child(3){width:34%;height:72%;left:39%;top:-5%}.gug-clay-puff:nth-child(4){width:37%;height:78%;left:56%;top:6%}.gug-clay-puff:nth-child(5){width:31%;height:61%;left:71%;top:28%}.gug-clay-puff:nth-child(6){width:27%;height:54%;left:27%;top:36%}.gug-clay-puff:nth-child(7){width:28%;height:52%;left:49%;top:39%}
-@keyframes gug-clay-cloud-drift{0%{transform:translate3d(-12vw,5vh,0) scale(calc(var(--gug-scale)*var(--gug-cloud-size)))}25%{transform:translate3d(6vw,-3vh,80px) scale(calc(var(--gug-scale)*var(--gug-cloud-size)))}50%{transform:translate3d(18vw,4vh,160px) scale(calc(var(--gug-scale)*var(--gug-cloud-size)))}75%{transform:translate3d(4vw,1vh,90px) scale(calc(var(--gug-scale)*var(--gug-cloud-size)))}100%{transform:translate3d(-12vw,5vh,0) scale(calc(var(--gug-scale)*var(--gug-cloud-size)))}}
-@media(prefers-reduced-motion:reduce){.gug-clay-cloud{animation-play-state:paused!important}#gug-clay-cloud-world{transition:none!important}}
+/* Gemini Claymorphism — animated scene: sky, sun/moon, 3D clay clouds, fog, weather canvas, lightning flash.
+   Everything is local CSS + one 2D canvas. The scene lives behind the Gemini UI (z-index:-1 on <html>'s child). */
+
+@property --gug-sky-a { syntax: "<color>"; inherits: false; initial-value: rgb(176 192 210); }
+@property --gug-sky-b { syntax: "<color>"; inherits: false; initial-value: rgb(226 233 241); }
+
+#gug-clay-scene {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  contain: strict;
+}
+#preview-host #gug-clay-scene { position: absolute; z-index: 0; }
+
+/* ---------- sky ---------- */
+#gug-clay-scene .gug-sky {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, var(--gug-sky-a), var(--gug-sky-b));
+  opacity: var(--gug-sky-tint, .5);
+  transition: --gug-sky-a 1.2s ease, --gug-sky-b 1.2s ease, opacity .6s ease;
+}
+#gug-clay-scene .gug-sky::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 18% 18%, rgb(255 255 255 / .30), transparent 30%);
+}
+
+/* ---------- sun & moon (clay discs) ---------- */
+#gug-clay-scene :is(.gug-sun, .gug-moon) {
+  position: absolute;
+  top: 7vh;
+  right: 8vw;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity .9s ease;
+  transform: translate3d(calc(var(--gug-pointer-x, 0px) * -.8), calc(var(--gug-pointer-y, 0px) * -.8), 0);
+}
+#gug-clay-scene .gug-sun {
+  width: clamp(110px, 13vw, 200px);
+  background: radial-gradient(circle at 36% 30%, #fffbe8 0 12%, #ffe9a6 38%, #ffcf6b 72%, #f7b24a 100%);
+  box-shadow:
+    inset 8px 8px 18px rgb(255 255 255 / .55),
+    inset -12px -14px 26px rgb(214 140 40 / .35),
+    14px 18px 36px rgb(200 140 60 / .28),
+    0 0 calc(50px + var(--gug-wx, .5) * 110px) calc(8px + var(--gug-wx, .5) * 36px) rgb(255 214 120 / calc(.22 + var(--gug-wx, .5) * .3));
+}
+#gug-clay-scene .gug-sun::before {
+  content: "";
+  position: absolute;
+  inset: -70%;
+  border-radius: 50%;
+  background: repeating-conic-gradient(from 0deg, rgb(255 232 160 / .30) 0 5deg, transparent 5deg 15deg);
+  -webkit-mask: radial-gradient(circle, transparent 24%, #000 27%, transparent 66%);
+  mask: radial-gradient(circle, transparent 24%, #000 27%, transparent 66%);
+  opacity: var(--gug-wx, .5);
+  animation: gug-spin 120s linear infinite;
+}
+#gug-clay-scene .gug-moon {
+  width: clamp(80px, 9vw, 140px);
+  background: radial-gradient(circle at 30% 28%, #fffdf2, #eae6d4 55%, #cfc9b2);
+  box-shadow:
+    inset 6px 6px 14px rgb(255 255 255 / .6),
+    inset -10px -10px 20px rgb(120 112 90 / .30),
+    0 0 70px 14px rgb(225 230 255 / .20);
+}
+#gug-clay-scene .gug-moon::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 62% 36%, rgb(150 144 120 / .34) 0 9%, transparent 10%),
+    radial-gradient(circle at 36% 62%, rgb(150 144 120 / .30) 0 12%, transparent 13%),
+    radial-gradient(circle at 72% 72%, rgb(150 144 120 / .28) 0 6%, transparent 7%);
+}
+#gug-clay-scene[data-wx="clear"] .gug-sun,
+#gug-clay-scene[data-wx="night"] .gug-moon { opacity: 1; }
+@keyframes gug-spin { to { transform: rotate(360deg); } }
+
+/* ---------- clouds ---------- */
+#gug-clay-cloud-world {
+  position: absolute;
+  inset: -12vh -12vw;
+  overflow: hidden;
+  perspective: 1000px;
+  transform: translate3d(var(--gug-pointer-x, 0px), var(--gug-pointer-y, 0px), 0);
+  transition: transform 1.4s ease-out;
+  opacity: var(--gug-cloud-opacity, .78);
+  contain: layout paint style;
+}
+#gug-clay-cloud-world.lit { filter: brightness(calc(1 + var(--gug-flash, 0) * .55)); }
+
+.gug-clay-cloud {
+  position: absolute;
+  left: var(--gug-x);
+  top: var(--gug-y);
+  width: clamp(210px, 24vw, 430px);
+  height: clamp(105px, 12vw, 210px);
+  transform-origin: center;
+  scale: 1 var(--gug-squash, 1);
+  will-change: transform;
+  animation: gug-clay-cloud-drift linear infinite;
+  filter: var(--gug-cloud-blur, blur(0)) drop-shadow(0 calc(var(--gug-cloud-depth, .8) * 26px) 28px rgb(var(--gug-cloud-shadow, 68 76 91) / var(--gug-cloud-shadow-a, .18)));
+}
+.gug-clay-cloud::before {
+  content: "";
+  position: absolute;
+  inset: 28% 4% 0;
+  border-radius: 48% 52% 42% 58% / 54% 52% 48% 46%;
+  background:
+    linear-gradient(145deg, rgb(255 255 255 / calc(var(--gug-cl-hl, .42) * 1.4)), transparent 35%),
+    linear-gradient(155deg, var(--gug-color-a), var(--gug-color-b));
+  box-shadow:
+    inset 18px 14px 26px rgb(255 255 255 / var(--gug-cl-hl, .42)),
+    inset -22px -20px 34px rgb(var(--gug-cloud-shadow, 78 91 110) / .22),
+    18px 24px 38px rgb(var(--gug-cloud-shadow, 72 82 98) / .16);
+}
+.gug-clay-puff {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 34% 26%, rgb(255 255 255 / calc(var(--gug-cl-hl, .42) * 2.1)), transparent 24%),
+    linear-gradient(145deg, var(--gug-color-a), var(--gug-color-b));
+  box-shadow:
+    inset 12px 10px 18px rgb(255 255 255 / calc(var(--gug-cl-hl, .42) * .8)),
+    inset -16px -18px 24px rgb(var(--gug-cloud-shadow, 72 82 98) / .2),
+    12px 18px 26px rgb(var(--gug-cloud-shadow, 72 82 98) / .13);
+}
+.gug-clay-puff:nth-child(1) { width: 32%; height: 62%; left: 6%;  top: 25%; }
+.gug-clay-puff:nth-child(2) { width: 39%; height: 82%; left: 18%; top: 2%; }
+.gug-clay-puff:nth-child(3) { width: 34%; height: 72%; left: 39%; top: -5%; }
+.gug-clay-puff:nth-child(4) { width: 37%; height: 78%; left: 56%; top: 6%; }
+.gug-clay-puff:nth-child(5) { width: 31%; height: 61%; left: 71%; top: 28%; }
+.gug-clay-puff:nth-child(6) { width: 27%; height: 54%; left: 27%; top: 36%; }
+.gug-clay-puff:nth-child(7) { width: 28%; height: 52%; left: 49%; top: 39%; }
+
+/* cloud types */
+#gug-clay-cloud-world[data-type="flat"]  { --gug-squash: .58; }
+#gug-clay-cloud-world[data-type="wispy"] { --gug-squash: .42; --gug-cloud-blur: blur(2.5px); }
+
+/* the cloud travels in 3D: depth scales the Z excursion (the world has `perspective`) */
+@keyframes gug-clay-cloud-drift {
+  0%   { transform: translate3d(-12vw, 5vh, 0) scale(calc(var(--gug-scale) * var(--gug-cloud-size))); }
+  25%  { transform: translate3d(6vw, -3vh, calc(var(--gug-zamp, .7) * 80px)) scale(calc(var(--gug-scale) * var(--gug-cloud-size))); }
+  50%  { transform: translate3d(18vw, 4vh, calc(var(--gug-zamp, .7) * 160px)) scale(calc(var(--gug-scale) * var(--gug-cloud-size))); }
+  75%  { transform: translate3d(4vw, 1vh, calc(var(--gug-zamp, .7) * 90px)) scale(calc(var(--gug-scale) * var(--gug-cloud-size))); }
+  100% { transform: translate3d(-12vw, 5vh, 0) scale(calc(var(--gug-scale) * var(--gug-cloud-size))); }
+}
+
+/* ---------- fog ---------- */
+#gug-clay-scene .gug-fog { position: absolute; inset: 0; opacity: 0; transition: opacity .9s ease; }
+#gug-clay-scene .gug-fog i {
+  position: absolute;
+  left: -50%;
+  width: 200%;
+  height: 42%;
+  filter: blur(36px);
+  background: linear-gradient(90deg, transparent, rgb(var(--gug-fog, 236 240 244) / .62) 20%, transparent 40%, rgb(var(--gug-fog, 236 240 244) / .55) 65%, transparent 85%);
+  animation: gug-fog-drift 70s linear infinite alternate;
+}
+#gug-clay-scene .gug-fog i:nth-child(1) { top: 50%; }
+#gug-clay-scene .gug-fog i:nth-child(2) { top: 16%; opacity: .7; animation-duration: 95s; animation-direction: alternate-reverse; }
+#gug-clay-scene[data-wx="fog"] .gug-fog  { opacity: calc(.45 + var(--gug-wx, .5) * .55); }
+#gug-clay-scene[data-wx="rain"] .gug-fog { opacity: .22; }
+@keyframes gug-fog-drift { from { transform: translate3d(-6%, 0, 0); } to { transform: translate3d(6%, 0, 0); } }
+
+/* ---------- weather canvas & lightning flash ---------- */
+#gug-clay-scene .gug-wx { position: absolute; inset: 0; width: 100%; height: 100%; }
+#gug-clay-scene .gug-flash {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgb(235 242 255 / .85), rgb(190 205 255 / .35) 55%, transparent 82%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gug-clay-cloud, #gug-clay-scene .gug-sun::before, #gug-clay-scene .gug-fog i { animation-play-state: paused !important; }
+  #gug-clay-cloud-world { transition: none !important; }
+}

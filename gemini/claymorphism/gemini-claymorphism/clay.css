@@ -1,38 +1,320 @@
-html[data-gug-clay],html[data-gug-clay] body{color-scheme:light}
-html[data-gug-clay][data-gug-mode=dark],html[data-gug-clay][data-gug-mode=dark] body{color-scheme:dark}
-html[data-gug-clay]{background:rgb(var(--gug-bg))!important}
-html[data-gug-clay] body{min-height:100vh!important;background:radial-gradient(circle at 18% 18%,rgb(255 255 255/.34),transparent 28%),radial-gradient(circle at 82% 78%,rgb(var(--gug-accent)/.09),transparent 30%),rgb(var(--gug-bg))!important;color:rgb(var(--gug-ink))!important}
-html[data-gug-clay][data-gug-mode=dark]{--gug-bg:29 34 45!important;--gug-surface:47 53 66!important;--gug-surface-2:37 43 55!important;--gug-ink:238 241 247!important;--gug-accent:157 181 211!important}
-html[data-gug-clay] :is(main,[role=main],.conversation-container,.chat-history,infinite-scroller,.content-container,.main-content){background:transparent!important}
-html[data-gug-clay] :is(nav,aside,[role=navigation],.side-nav,.sidenav,.conversation-list,mat-sidenav){background:rgb(var(--gug-surface)/.58)!important;border:0!important;box-shadow:12px 0 28px var(--gug-shadow-dark),-10px 0 24px var(--gug-shadow-light),inset -1px 0 0 rgb(255 255 255/.28)!important;border-radius:0 calc(var(--gug-radius) + 8px) calc(var(--gug-radius) + 8px) 0!important;backdrop-filter:blur(18px) saturate(105%)!important;-webkit-backdrop-filter:blur(18px) saturate(105%)!important}
-html[data-gug-clay] :is(.conversation-container,.chat-history,.input-area-container,.input-area,.text-input-field,.user-query-bubble-with-background,.response-container,.message-content,[role=dialog],.mat-mdc-menu-panel,.mat-menu-panel,.mdc-dialog__surface,.mat-mdc-card,.card){border-color:transparent!important;border-radius:var(--gug-radius)!important}
-html[data-gug-clay] :is(.input-area-container,.input-area,.text-input-field,.user-query-bubble-with-background,[role=dialog],.mdc-dialog__surface,.mat-mdc-menu-panel,.mat-menu-panel,.mat-mdc-card){background:linear-gradient(145deg,rgb(255 255 255/.38),transparent 42%),rgb(var(--gug-surface)/var(--gug-panel-alpha))!important;box-shadow:12px 16px 30px var(--gug-shadow-dark),-10px -10px 24px var(--gug-shadow-light),inset 1px 1px 0 rgb(255 255 255/.45),inset -1px -1px 0 rgb(74 84 99/.10)!important;backdrop-filter:blur(12px) saturate(105%)!important;-webkit-backdrop-filter:blur(12px) saturate(105%)!important}
-html[data-gug-clay] :is(.user-query-bubble-with-background,user-query,.user-query-content){background:linear-gradient(145deg,rgb(255 255 255/.40),transparent 40%),rgb(var(--gug-surface-2)/.88)!important;color:rgb(var(--gug-ink))!important;box-shadow:10px 12px 22px var(--gug-shadow-dark),-8px -8px 18px var(--gug-shadow-light),inset 1px 1px 0 rgb(255 255 255/.42)!important;border-radius:calc(var(--gug-radius) - 4px)!important}
-html[data-gug-clay] :is(message-content,.model-response-text,.markdown,.markdown-main-panel,.response-content){color:rgb(var(--gug-ink))!important}
-html[data-gug-clay] :is(message-content p,message-content li,.markdown p,.markdown li,.response-content p,.response-content li){color:rgb(var(--gug-ink)/.94)!important}
-html[data-gug-clay] :is(button,[role=button],a,input,textarea,select){color:rgb(var(--gug-ink))!important}
-html[data-gug-clay] :is(button,[role=button]){border-radius:16px!important}
-html[data-gug-clay] :is(button,[role=button]):not([aria-label="Gemini için bir istem girin"]){background:transparent!important}
-html[data-gug-clay] :is(button,[role=button]):hover{background:linear-gradient(145deg,rgb(255 255 255/.32),transparent 50%),rgb(var(--gug-surface-2)/.56)!important;box-shadow:6px 8px 16px var(--gug-shadow-dark),-5px -5px 12px var(--gug-shadow-light)!important}
-html[data-gug-clay] :is(input,textarea,[contenteditable=true]){background:transparent!important;color:rgb(var(--gug-ink))!important;caret-color:rgb(var(--gug-accent))!important;border-color:transparent!important;box-shadow:none!important}
-html[data-gug-clay] :is(input::placeholder,textarea::placeholder){color:rgb(var(--gug-ink)/.48)!important}
-html[data-gug-clay] [contenteditable=true]::before{color:rgb(var(--gug-ink)/.48)!important}
-html[data-gug-clay] :is(.input-area-container svg,button svg,[role=button] svg,mat-icon,.material-symbols-outlined){color:rgb(var(--gug-ink)/.70)!important;fill:currentColor!important}
-html[data-gug-clay] :is(.input-area-container,.input-area) :is(button,[role=button]){background:transparent!important;box-shadow:none!important}
-html[data-gug-clay] :is(.input-area-container,.input-area) :is(button,[role=button]):hover{background:rgb(var(--gug-surface-2)/.55)!important}
-html[data-gug-clay] :is(pre,code,.code-block,.code-container){background:linear-gradient(145deg,rgb(255 255 255/.22),transparent 40%),rgb(var(--gug-surface-2)/.78)!important;color:rgb(var(--gug-ink))!important;border-radius:calc(var(--gug-radius) - 8px)!important;box-shadow:8px 10px 18px var(--gug-shadow-dark),-6px -6px 14px var(--gug-shadow-light),inset 1px 1px 0 rgb(255 255 255/.30)!important}
-html[data-gug-clay] :is(table,th,td){border-color:rgb(var(--gug-ink)/.12)!important}
-html[data-gug-clay] :is(.mat-mdc-menu-panel,.mat-menu-panel,[role=menu],[role=listbox],[role=tooltip]){color:rgb(var(--gug-ink))!important;background:linear-gradient(145deg,rgb(255 255 255/.34),transparent 45%),rgb(var(--gug-surface)/.96)!important;box-shadow:14px 16px 30px var(--gug-shadow-dark),-10px -10px 24px var(--gug-shadow-light),inset 1px 1px 0 rgb(255 255 255/.42)!important;border-radius:calc(var(--gug-radius) - 4px)!important}
-html[data-gug-clay] :is(.mat-mdc-menu-item,[role=menuitem],[role=option]):hover{background:rgb(var(--gug-surface-2)/.70)!important}
-html[data-gug-clay] :is(.mdc-dialog__surface,[role=dialog]){max-height:min(88vh,900px)!important}
-html[data-gug-clay] :is(.mdc-dialog__surface,[role=dialog]) :is(h1,h2,h3,h4,p,span,label){color:rgb(var(--gug-ink))!important}
-html[data-gug-clay] :is(a,a:visited){color:rgb(var(--gug-accent))!important}
-html[data-gug-clay] ::selection{background:rgb(var(--gug-accent)/.25)!important;color:rgb(var(--gug-ink))!important}
-html[data-gug-clay] :focus-visible{outline:2px solid rgb(var(--gug-accent)/.65)!important;outline-offset:2px!important}
-html[data-gug-clay] ::-webkit-scrollbar{width:10px!important;height:10px!important}
-html[data-gug-clay] ::-webkit-scrollbar-track{background:transparent!important}
-html[data-gug-clay] ::-webkit-scrollbar-thumb{border:3px solid transparent!important;border-radius:999px!important;background-clip:padding-box!important;background:rgb(var(--gug-surface-2)/.92)!important;box-shadow:inset 1px 1px 0 rgb(255 255 255/.35),inset -1px -1px 0 rgb(65 75 88/.15)!important}
-html[data-gug-clay][data-gug-hover3d=on] :is(.conversation-list a,.conversation-list button,[role=navigation] a,[role=navigation] button):hover{transform:translateY(-1px) scale(1.012)!important;transition:transform 140ms ease,box-shadow 140ms ease!important}
-html[data-gug-clay] .chat-history > infinite-scroller{padding-bottom:120px!important;scroll-padding-bottom:120px!important}
-@media(prefers-reduced-motion:reduce){html[data-gug-clay] *,html[data-gug-clay] *::before,html[data-gug-clay] *::after{scroll-behavior:auto!important;animation-duration:.001ms!important;transition-duration:.001ms!important}}
-@supports not ((backdrop-filter:blur(1px))){html[data-gug-clay] :is(.input-area-container,[role=dialog],.mdc-dialog__surface,.mat-mdc-menu-panel){background:rgb(var(--gug-surface)/.98)!important}}
+/* Gemini Claymorphism — clay.css (v1.1)  — GENERATED SECTIONS ARE WRITTEN OUT IN FULL, edit freely.
+   1 Tokens & page · 2 Transparent shell · 3 Surfaces (sidebar / composer / cards / menus / code)
+   4 Composer clean-up · 5 Sidebar items · 6 Conversation text · 7 Controls, scrollbars, a11y · 8 Fallbacks
+
+   Every surface is raised clay whose "glass amount" is a per-area variable (--gug-t-*, 0..1):
+   0 = solid pastel clay, 1 = nearly clear frosted glass (alpha drops, offset shadows fade, a rim light appears).
+   Variables are written by content.js. Everything is gated by html[data-gug-clay]. */
+
+/* ============ 1. TOKENS & PAGE ============ */
+html[data-gug-clay] { color-scheme: light; background: rgb(var(--gug-bg)) !important; }
+html[data-gug-clay][data-gug-mode="dark"] { color-scheme: dark; }
+html[data-gug-clay] body {
+  min-height: 100vh !important;
+  background: transparent !important;       /* the animated scene (z-index:-1) shows through */
+  color: rgb(var(--gug-ink)) !important;
+  /* best effort: make Gemini's own text colour tokens follow the clay palette */
+  --gem-sys-color--on-surface: rgb(var(--gug-ink)) !important;
+  --gem-sys-color--on-surface-variant: rgb(var(--gug-ink) / .72) !important;
+  --gem-sys-color--primary: rgb(var(--gug-accent)) !important;
+  --mat-sys-on-surface: rgb(var(--gug-ink)) !important;
+  --mat-sys-on-surface-variant: rgb(var(--gug-ink) / .72) !important;
+}
+
+/* ============ 2. TRANSPARENT SHELL ============ */
+html[data-gug-clay] :is(main, [role="main"], chat-app, bard-sidenav-container, mat-sidenav-container,
+  .sidenav-container, .mat-drawer-container, .main-content, .content-container,
+  chat-window, .chat-window, .chat-container, .conversation-container, .chat-history, infinite-scroller,
+  .bottom-bar-container, input-container, .input-container,
+  top-bar-actions, .top-bar-actions, .response-container, .response-container-content) {
+  background: transparent !important;
+}
+/* main content area (NOT the sidebar): optional tint = "Chat area tint" */
+html[data-gug-clay] :is(bard-sidenav-content, mat-sidenav-content, .mat-drawer-content) {
+  background: rgb(var(--gug-surface) / var(--gug-veil)) !important;
+  color: rgb(var(--gug-ink)) !important;
+}
+/* inner sidebar wrappers must not add a second layer */
+html[data-gug-clay] :is(bard-sidenav, mat-sidenav, .mat-sidenav, .mat-drawer) :is(side-navigation-v2, side-navigation-content, .mat-drawer-inner-container) {
+  background: transparent !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+/* ============ 3. SURFACES ============ */
+/* sidebar */
+html[data-gug-clay] :is(bard-sidenav, mat-sidenav, .mat-sidenav, .mat-drawer),
+html[data-gug-clay] :is(side-navigation-v2, side-navigation-content):not(:is(bard-sidenav, mat-sidenav, .mat-sidenav, .mat-drawer) *) {
+  color: rgb(var(--gug-ink)) !important;
+  background:
+    linear-gradient(145deg, rgb(var(--gug-hlc) / calc(var(--gug-hl) * .55 * (1 - var(--gug-t-side) * .35))), transparent 42%),
+    rgb(var(--gug-surface) / var(--gug-a-side)) !important;
+  border: 0 !important;
+  border-radius: 0 calc(var(--gug-radius) + 8px) calc(var(--gug-radius) + 8px) 0 !important;
+  box-shadow:
+    12px 0px 28px rgb(var(--gug-shc) / calc(var(--gug-sh) * (1 - var(--gug-t-side) * .75))),
+    -10px 0px 24px rgb(var(--gug-hlc) / calc(var(--gug-hl) * (1 - var(--gug-t-side) * .7))),
+    inset 1px 1px 0 rgb(var(--gug-hlc) / calc(var(--gug-hl) * .6 + var(--gug-rim) * var(--gug-t-side) * .35)),
+    inset -1px -1px 0 rgb(var(--gug-shc) / .10),
+    0 0 0 1px rgb(var(--gug-hlc) / calc(var(--gug-rim) * var(--gug-t-side) * .30)) !important;
+  -webkit-backdrop-filter: blur(var(--gug-blur)) saturate(calc(100% + var(--gug-t-side) * 40%)) !important;
+  backdrop-filter: blur(var(--gug-blur)) saturate(calc(100% + var(--gug-t-side) * 40%)) !important;
+}
+
+/* composer: ONE layer, the outer container */
+html[data-gug-clay] .input-area-container {
+  color: rgb(var(--gug-ink)) !important;
+  background:
+    linear-gradient(145deg, rgb(var(--gug-hlc) / calc(var(--gug-hl) * .55 * (1 - var(--gug-t-comp) * .35))), transparent 42%),
+    rgb(var(--gug-surface) / var(--gug-a-comp)) !important;
+  border: 0 !important;
+  border-radius: calc(var(--gug-radius) + 6px) !important;
+  box-shadow:
+    12px 16px 30px rgb(var(--gug-shc) / calc(var(--gug-sh) * (1 - var(--gug-t-comp) * .75))),
+    -10px -10px 24px rgb(var(--gug-hlc) / calc(var(--gug-hl) * (1 - var(--gug-t-comp) * .7))),
+    inset 1px 1px 0 rgb(var(--gug-hlc) / calc(var(--gug-hl) * .6 + var(--gug-rim) * var(--gug-t-comp) * .35)),
+    inset -1px -1px 0 rgb(var(--gug-shc) / .10),
+    0 0 0 1px rgb(var(--gug-hlc) / calc(var(--gug-rim) * var(--gug-t-comp) * .30)) !important;
+  -webkit-backdrop-filter: blur(var(--gug-blur)) saturate(calc(100% + var(--gug-t-comp) * 40%)) !important;
+  backdrop-filter: blur(var(--gug-blur)) saturate(calc(100% + var(--gug-t-comp) * 40%)) !important;
+}
+
+/* query bubbles & cards */
+html[data-gug-clay] :is(.user-query-bubble-with-background, user-query .query-content, .mat-mdc-card,
+  [class*="gem-card"], [class*="tool-card"], [class*="research-card"]) {
+  color: rgb(var(--gug-ink)) !important;
+  background:
+    linear-gradient(145deg, rgb(var(--gug-hlc) / calc(var(--gug-hl) * .55 * (1 - var(--gug-t-card) * .35))), transparent 42%),
+    rgb(var(--gug-surface-2) / var(--gug-a-card)) !important;
+  border: 0 !important;
+  border-radius: calc(var(--gug-radius) - 4px) !important;
+  box-shadow:
+    10px 12px 22px rgb(var(--gug-shc) / calc(var(--gug-sh) * (1 - var(--gug-t-card) * .75))),
+    -8px -8px 18px rgb(var(--gug-hlc) / calc(var(--gug-hl) * (1 - var(--gug-t-card) * .7))),
+    inset 1px 1px 0 rgb(var(--gug-hlc) / calc(var(--gug-hl) * .6 + var(--gug-rim) * var(--gug-t-card) * .35)),
+    inset -1px -1px 0 rgb(var(--gug-shc) / .10),
+    0 0 0 1px rgb(var(--gug-hlc) / calc(var(--gug-rim) * var(--gug-t-card) * .30)) !important;
+  -webkit-backdrop-filter: blur(var(--gug-blur)) saturate(calc(100% + var(--gug-t-card) * 40%)) !important;
+  backdrop-filter: blur(var(--gug-blur)) saturate(calc(100% + var(--gug-t-card) * 40%)) !important;
+}
+
+/* dialogs, menus, tooltips: the visible Material surface only (not the cdk wrapper panes) */
+html[data-gug-clay] :is(.mdc-dialog__surface, .mat-mdc-menu-panel, .mat-mdc-select-panel, .mat-mdc-autocomplete-panel,
+  .mdc-tooltip__surface, .mdc-snackbar__surface, [role="dialog"], [role="alertdialog"], [role="menu"],
+  [role="listbox"], [role="tooltip"]):not(.cdk-overlay-pane, .mat-mdc-dialog-container, .mdc-dialog, .mdc-dialog__container, :has(.mdc-dialog__surface)) {
+  color: rgb(var(--gug-ink)) !important;
+  background:
+    linear-gradient(145deg, rgb(var(--gug-hlc) / calc(var(--gug-hl) * .55 * (1 - var(--gug-t-menu) * .35))), transparent 42%),
+    rgb(var(--gug-surface) / var(--gug-a-menu)) !important;
+  border: 0 !important;
+  border-radius: calc(var(--gug-radius) - 4px) !important;
+  box-shadow:
+    14px 16px 30px rgb(var(--gug-shc) / calc(var(--gug-sh) * (1 - var(--gug-t-menu) * .75))),
+    -10px -10px 24px rgb(var(--gug-hlc) / calc(var(--gug-hl) * (1 - var(--gug-t-menu) * .7))),
+    inset 1px 1px 0 rgb(var(--gug-hlc) / calc(var(--gug-hl) * .6 + var(--gug-rim) * var(--gug-t-menu) * .35)),
+    inset -1px -1px 0 rgb(var(--gug-shc) / .10),
+    0 0 0 1px rgb(var(--gug-hlc) / calc(var(--gug-rim) * var(--gug-t-menu) * .30)) !important;
+  -webkit-backdrop-filter: blur(var(--gug-blur)) saturate(calc(100% + var(--gug-t-menu) * 40%)) !important;
+  backdrop-filter: blur(var(--gug-blur)) saturate(calc(100% + var(--gug-t-menu) * 40%)) !important;
+}
+
+/* code blocks: outermost wrapper only, uses the card glass amount */
+html[data-gug-clay] :is(code-block, .code-block):not(:is(code-block, .code-block) *),
+html[data-gug-clay] pre:not(:is(code-block, .code-block) *) {
+  color: rgb(var(--gug-ink)) !important;
+  background:
+    linear-gradient(145deg, rgb(var(--gug-hlc) / calc(var(--gug-hl) * .55 * (1 - var(--gug-t-card) * .35))), transparent 42%),
+    rgb(var(--gug-surface-2) / var(--gug-a-card)) !important;
+  border: 0 !important;
+  border-radius: calc(var(--gug-radius) - 8px) !important;
+  box-shadow:
+    8px 10px 18px rgb(var(--gug-shc) / calc(var(--gug-sh) * (1 - var(--gug-t-card) * .75))),
+    -6px -6px 14px rgb(var(--gug-hlc) / calc(var(--gug-hl) * (1 - var(--gug-t-card) * .7))),
+    inset 1px 1px 0 rgb(var(--gug-hlc) / calc(var(--gug-hl) * .6 + var(--gug-rim) * var(--gug-t-card) * .35)),
+    inset -1px -1px 0 rgb(var(--gug-shc) / .10),
+    0 0 0 1px rgb(var(--gug-hlc) / calc(var(--gug-rim) * var(--gug-t-card) * .30)) !important;
+  -webkit-backdrop-filter: blur(var(--gug-blur)) saturate(calc(100% + var(--gug-t-card) * 40%)) !important;
+  backdrop-filter: blur(var(--gug-blur)) saturate(calc(100% + var(--gug-t-card) * 40%)) !important;
+  overflow: hidden;
+}
+
+html[data-gug-clay] :is(code-block, .code-block) :is(.code-block-decoration, .formatted-code-block-internal-container, pre) {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+}
+/* inline code: a small pressed pill, never a raised block */
+html[data-gug-clay] :is(message-content, .model-response-text) code:not(pre code, code-block code, .code-block code) {
+  color: rgb(var(--gug-ink)) !important;
+  background: rgb(var(--gug-surface-2) / .75) !important;
+  border-radius: 8px;
+  box-shadow: inset 2px 2px 5px rgb(var(--gug-shc) / calc(var(--gug-sh) * .8)), inset -2px -2px 4px rgb(var(--gug-hlc) / calc(var(--gug-hl) * .8));
+}
+html[data-gug-clay] :is(code-block, .code-block, pre) :is(code, span) { color: inherit; }
+
+html[data-gug-clay] :is(message-content table, .table-block) {
+  border-color: rgb(var(--gug-ink) / .14) !important;
+  background: rgb(var(--gug-surface) / .35) !important;
+}
+html[data-gug-clay] message-content :is(th, td) { border-color: rgb(var(--gug-ink) / .12) !important; }
+
+/* modal scrim: soft frosted dimming instead of flat black */
+html[data-gug-clay] .cdk-overlay-dark-backdrop.cdk-overlay-backdrop-showing {
+  background: rgb(var(--gug-bg) / .45) !important;
+  -webkit-backdrop-filter: blur(calc(var(--gug-blur) * .3));
+  backdrop-filter: blur(calc(var(--gug-blur) * .3));
+}
+
+/* ============ 4. COMPOSER CLEAN-UP ============ */
+/* Everything inside the composer container is flat: no second frame, shadow or blur. */
+html[data-gug-clay] .input-area-container :is(.input-area, .text-input-field, .text-input-field-main-area,
+  .text-input-field_textarea-inner, .textarea-wrapper, rich-textarea, .ql-editor, .input-box-shadow) {
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+html[data-gug-clay] .input-area-container :is(.ql-editor, textarea, input, [contenteditable="true"]) {
+  color: rgb(var(--gug-ink)) !important;
+  -webkit-text-fill-color: rgb(var(--gug-ink)) !important;
+  caret-color: rgb(var(--gug-accent)) !important;
+  text-shadow: none !important;
+}
+html[data-gug-clay] .input-area-container .ql-editor:empty::before,
+html[data-gug-clay] .input-area-container .ql-editor.ql-blank::before {
+  color: rgb(var(--gug-ink) / .5) !important;
+  -webkit-text-fill-color: rgb(var(--gug-ink) / .5) !important;
+  opacity: 1 !important;
+}
+/* Gemini paints fade strips / shadows above the composer — that was the "white band" */
+html[data-gug-clay] .input-area-container::before,
+html[data-gug-clay] .input-area-container::after,
+html[data-gug-clay] :is(input-container, .input-container, .bottom-container, .bottom-bar-container, .input-gradient)::before,
+html[data-gug-clay] :is(input-container, .input-container, .bottom-container, .bottom-bar-container, .input-gradient)::after {
+  background: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+/* ancestors of the composer: no shadow / fade / blur (the main content area keeps its tint) */
+html[data-gug-clay] :has(.input-area-container):not(html, body, bard-sidenav-content, mat-sidenav-content, .mat-drawer-content, bard-sidenav-container, mat-sidenav-container) {
+  background: transparent !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+html[data-gug-clay] :has(.input-area-container):not(html, body)::before,
+html[data-gug-clay] :has(.input-area-container):not(html, body)::after {
+  background: none !important;
+  box-shadow: none !important;
+}
+/* composer buttons: flat; the send button keeps Gemini's own look */
+html[data-gug-clay] .input-area-container :is(button, [role="button"]):not(.send-button, [class*="send"], .submit) {
+  background: transparent !important;
+  box-shadow: none !important;
+  color: rgb(var(--gug-ink) / .78) !important;
+  border-radius: 14px !important;
+}
+html[data-gug-clay] .input-area-container :is(button, [role="button"]):not(.send-button, [class*="send"], .submit):hover {
+  background: rgb(var(--gug-surface-2) / .6) !important;
+  color: rgb(var(--gug-ink)) !important;
+}
+html[data-gug-clay] .input-area-container :is(button, [role="button"]):not(.send-button, [class*="send"], .submit) svg { fill: currentColor; }
+html[data-gug-clay] .input-area-container:focus-within {
+  box-shadow:
+    12px 16px 30px rgb(var(--gug-shc) / calc(var(--gug-sh) * (1 - var(--gug-t-comp) * .75))),
+    -10px -10px 24px rgb(var(--gug-hlc) / calc(var(--gug-hl) * (1 - var(--gug-t-comp) * .7))),
+    inset 1px 1px 0 rgb(var(--gug-hlc) / .5),
+    0 0 0 2px rgb(var(--gug-accent) / .38) !important;
+}
+
+/* ============ 5. SIDEBAR ITEMS ============ */
+/* every text-bearing element inside the sidebar follows the palette ink (logo, titles, chat names, account row) */
+html[data-gug-clay] :is(bard-sidenav, mat-sidenav, .mat-sidenav, .mat-drawer, side-navigation-v2, side-navigation-content) :is(a, button, [role="button"], div, p, span, b, strong, em, li, label, h1, h2, h3, h4, h5, h6, mat-icon, .google-symbols, .material-symbols-outlined) {
+  color: rgb(var(--gug-ink) / .92) !important;
+}
+html[data-gug-clay] :is(bard-sidenav, mat-sidenav, .mat-sidenav, .mat-drawer, side-navigation-v2, side-navigation-content) svg:not([class*="logo"]) { fill: currentColor; }
+html[data-gug-clay] :is(bard-sidenav, mat-sidenav, .mat-sidenav, .mat-drawer, side-navigation-v2, side-navigation-content) :is(h1, h2, h3, h4, .side-nav-subheader, [class*="subheader"], [class*="section-title"]) {
+  color: rgb(var(--gug-ink) / .66) !important;
+}
+html[data-gug-clay] :is(bard-sidenav, mat-sidenav, .mat-sidenav, .mat-drawer, side-navigation-v2, side-navigation-content) :is(a, button, [role="button"]) {
+  border-radius: calc(var(--gug-radius) - 8px) !important;
+  transition: background .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+html[data-gug-clay] :is(bard-sidenav, mat-sidenav, .mat-sidenav, .mat-drawer, side-navigation-v2, side-navigation-content) :is(a, button, [role="button"]):hover {
+  background: linear-gradient(145deg, rgb(var(--gug-hlc) / calc(var(--gug-hl) * .45)), transparent 50%), rgb(var(--gug-surface-2) / .55) !important;
+  box-shadow: 6px 8px 16px rgb(var(--gug-shc) / var(--gug-sh)), -5px -5px 12px rgb(var(--gug-hlc) / var(--gug-hl)) !important;
+}
+/* selected chat: a pressed-in clay pill instead of Gemini's opaque highlight */
+html[data-gug-clay] :is(bard-sidenav, mat-sidenav, .mat-sidenav, .mat-drawer) :is(.selected, [aria-selected="true"], [aria-current="true"], [aria-current="page"], .mdc-list-item--activated) {
+  background: rgb(var(--gug-accent) / .20) !important;
+  border-radius: calc(var(--gug-radius) - 8px) !important;
+  box-shadow:
+    inset 4px 4px 9px rgb(var(--gug-shc) / calc(var(--gug-sh) * 1.4)),
+    inset -4px -4px 9px rgb(var(--gug-hlc) / var(--gug-hl)) !important;
+}
+html[data-gug-clay] :is(bard-sidenav, mat-sidenav, .mat-sidenav, .mat-drawer) :is(.selected, [aria-selected="true"], [aria-current="true"], [aria-current="page"], .mdc-list-item--activated) * {
+  color: rgb(var(--gug-ink)) !important;
+}
+html[data-gug-clay][data-gug-hover3d="on"] :is(bard-sidenav, mat-sidenav, .mat-sidenav, .mat-drawer, side-navigation-v2, side-navigation-content) :is(a, button):hover {
+  transform: perspective(640px) translateY(-1px) translateX(2px) rotateY(-3deg) scale(1.01);
+}
+
+/* legibility over clouds / rain: a soft halo in the surface colour (switchable) */
+html[data-gug-clay][data-gug-halo="on"] :is(bard-sidenav, mat-sidenav, .mat-sidenav, .mat-drawer, side-navigation-v2, side-navigation-content) :is(a, button, span, p, h1, h2, h3, h4),
+html[data-gug-clay][data-gug-halo="on"] :is(message-content, user-query) :is(p, li, h1, h2, h3, h4, h5, h6, strong, em, blockquote):not(code-block *, pre *) {
+  text-shadow: 0 0 8px rgb(var(--gug-bg) / .55), 0 1px 2px rgb(var(--gug-bg) / .35);
+}
+
+/* ============ 6. CONVERSATION TEXT ============ */
+html[data-gug-clay] :is(message-content, .model-response-text, .markdown, .markdown-main-panel, .response-content, user-query, .user-query-content) {
+  color: rgb(var(--gug-ink)) !important;
+}
+html[data-gug-clay] :is(message-content, user-query) :is(p, li, h1, h2, h3, h4, h5, h6, strong, em, b, blockquote, td, th):not(code-block *, pre *) {
+  color: rgb(var(--gug-ink) / .95) !important;
+}
+/* other text in the main area (greeting, titles, top bar) */
+html[data-gug-clay] :is(bard-sidenav-content, mat-sidenav-content, .mat-drawer-content) :is(h1, h2, h3, h4, h5, h6, p, li, label):not(message-content *, user-query *, .mdc-dialog__surface *, [role="dialog"] *, [role="menu"] *):not(button *) {
+  color: rgb(var(--gug-ink)) !important;
+}
+html[data-gug-clay] :is(message-content, .model-response-text) a,
+html[data-gug-clay] :is(message-content, .model-response-text) a:visited { color: rgb(var(--gug-accent)) !important; }
+
+/* ============ 7. CONTROLS, SCROLLBARS, A11Y ============ */
+html[data-gug-clay] :is(.mat-mdc-menu-panel, [role="dialog"], .mdc-dialog__surface, [role="menu"], [role="listbox"]) :is(h1, h2, h3, h4, p, span, label, li, .mat-mdc-menu-item-text, .mdc-list-item__primary-text) {
+  color: rgb(var(--gug-ink)) !important;
+}
+html[data-gug-clay] :is(.mat-mdc-menu-item, [role="menuitem"], [role="option"]):hover { background: rgb(var(--gug-surface-2) / .7) !important; }
+html[data-gug-clay] :is(.mdc-dialog__surface, [role="dialog"]) { max-height: min(88vh, 900px) !important; }
+html[data-gug-clay] :is(mat-icon, .material-symbols-outlined, .google-symbols) { color: rgb(var(--gug-ink) / .72); }
+html[data-gug-clay] ::placeholder { color: rgb(var(--gug-ink) / .5) !important; opacity: 1 !important; }
+html[data-gug-clay] ::selection { background: rgb(var(--gug-accent) / .28) !important; color: rgb(var(--gug-ink)) !important; }
+html[data-gug-clay] :focus-visible { outline: 2px solid rgb(var(--gug-accent) / .65) !important; outline-offset: 2px !important; }
+
+html[data-gug-clay] ::-webkit-scrollbar { width: 10px !important; height: 10px !important; }
+html[data-gug-clay] ::-webkit-scrollbar-track { background: transparent !important; }
+html[data-gug-clay] ::-webkit-scrollbar-thumb {
+  border: 3px solid transparent !important;
+  border-radius: 999px !important;
+  background-clip: padding-box !important;
+  background-color: rgb(var(--gug-surface-2) / .92) !important;
+  box-shadow: inset 1px 1px 0 rgb(var(--gug-hlc) / .35), inset -1px -1px 0 rgb(var(--gug-shc) / .15) !important;
+}
+html[data-gug-clay] .chat-history > infinite-scroller { padding-bottom: 120px !important; scroll-padding-bottom: 120px !important; }
+
+/* Reduced motion: only the extension's own movement (a global `* {animation-duration:0}` would freeze Gemini's spinners) */
+@media (prefers-reduced-motion: reduce) {
+  html[data-gug-clay] :is(bard-sidenav, mat-sidenav, .mat-sidenav, .mat-drawer) :is(a, button) { transition: none; }
+  html[data-gug-clay][data-gug-hover3d="on"] :is(bard-sidenav, mat-sidenav, .mat-sidenav, .mat-drawer, side-navigation-v2, side-navigation-content) :is(a, button):hover { transform: none; }
+}
+
+/* ============ 8. FALLBACKS ============ */
+@supports not (backdrop-filter: blur(1px)) {
+  html[data-gug-clay] :is(.input-area-container, [role="dialog"], .mdc-dialog__surface, .mat-mdc-menu-panel, bard-sidenav, mat-sidenav) {
+    background: rgb(var(--gug-surface) / .97) !important;
+  }
+}
