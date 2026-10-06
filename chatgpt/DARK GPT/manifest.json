@@ -1,1 +1,22 @@
-{"manifest_version":3,"name":"ChatGPT DARK GPT","version":"1.0.0","description":"Red-only dark redesign for the existing ChatGPT UI.","permissions":["storage","activeTab"],"icons":{"16":"icons/icon16.png","32":"icons/icon32.png","48":"icons/icon48.png","128":"icons/icon128.png"},"action":{"default_title":"ChatGPT DARK GPT","default_popup":"index.html","default_icon":{"16":"icons/icon16.png","32":"icons/icon32.png"}},"content_scripts":[{"matches":["https://chatgpt.com/*","https://chat.openai.com/*"],"css":["dark-gpt.css"],"js":["shared.js","fx.js","content.js"],"run_at":"document_start"}]}
+{
+  "manifest_version": 3,
+  "name": "ChatGPT DARK GPT",
+  "version": "1.1.1",
+  "description": "Red-only dark redesign for ChatGPT with a WebGL ambient glow, pointer light and an interactive particle welcome headline.",
+  "minimum_chrome_version": "105",
+  "permissions": ["storage", "activeTab"],
+  "icons": { "16": "icons/icon16.png", "32": "icons/icon32.png", "48": "icons/icon48.png", "128": "icons/icon128.png" },
+  "action": {
+    "default_title": "ChatGPT DARK GPT",
+    "default_popup": "index.html",
+    "default_icon": { "16": "icons/icon16.png", "32": "icons/icon32.png" }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://chatgpt.com/*", "https://chat.openai.com/*"],
+      "css": ["dark-gpt.css"],
+      "js": ["shared.js", "fx.js", "textfx.js", "content.js"],
+      "run_at": "document_start"
+    }
+  ]
+}

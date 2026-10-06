@@ -428,10 +428,6 @@ html[data-cug-darkgpt] [role="dialog"] :is(button.btn-secondary, button.btn-neut
   background: var(--cug-glass-soft) !important; color: var(--cug-text) !important; border: 1px solid var(--cug-line) !important; border-radius: var(--cug-r-sm) !important;
 }
 html[data-cug-darkgpt] [role="dialog"] :is(button.btn-secondary, button.btn-neutral):hover { background: var(--cug-hover) !important; }
-/* dialog top area is a drag handle (content.js) — show it on hover */
-html[data-cug-darkgpt][data-cug-drag="on"] [role="dialog"]:not([data-cug-dragged]) { cursor: default; }
-html[data-cug-darkgpt] body[data-cug-dragging] { user-select: none; cursor: grabbing; }
-html[data-cug-darkgpt] body[data-cug-dragging] [role="dialog"] { transition: none !important; }
 
 /* ---------- 11. Misc text helpers (class-based colours still adapt) ---------- */
 html[data-cug-darkgpt] :is(.text-token-text-primary, h1, h2, h3, h4) { color: var(--cug-text); }
@@ -452,7 +448,44 @@ html[data-cug-darkgpt] .border-token-border-default, html[data-cug-darkgpt] .bor
 }
 
 
-/* Interactive welcome particles + pointer-following red glow */
-html[data-cug-darkgpt]::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(circle var(--cug-set-glow-radius,260px) at var(--cug-mx,50vw) var(--cug-my,50vh),rgb(239 38 58 / calc(.24 * var(--cug-set-veil,.34))),transparent 72%);mix-blend-mode:screen;transition:background .08s linear}
-html[data-cug-darkgpt] [data-cug-particle-source="true"]{color:transparent!important;-webkit-text-fill-color:transparent!important}
-#cug-darkgpt-particle-text{pointer-events:none}
+/* ---------- 13. Pointer light (own element, moved by content.js; compositor only) ---------- */
+#cug-glow { display: none; }
+html[data-cug-darkgpt] #cug-glow {
+  display: block; position: fixed; left: 0; top: 0; z-index: -1; pointer-events: none; border-radius: 50%;
+  will-change: transform; mix-blend-mode: screen; opacity: 0; transition: opacity .35s ease;
+  background: radial-gradient(circle, rgb(239 38 58 / .30) 0, rgb(239 38 58 / .12) 38%, transparent 70%);
+}
+html[data-cug-darkgpt] #cug-glow[data-on] { opacity: 1; }
+
+/* ---------- 14. Interactive particle headline ("Ready when you are.") ----------
+   The real text stays in the DOM (screen readers, selection, layout) but is painted by the canvas instead.
+   Hidden from the first frame by the structural selector, so there is no flash of plain text. */
+html[data-cug-darkgpt][data-cug-ptext="on"] [style*="vt-splash-screen-headline"] h1,
+html[data-cug-darkgpt] h1[data-cug-ptext-host] {
+  position: relative;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  text-shadow: none !important;
+}
+html[data-cug-darkgpt][data-cug-ptext="on"] [style*="vt-splash-screen-headline"] h1 *,
+html[data-cug-darkgpt] h1[data-cug-ptext-host] * {
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+}
+html[data-cug-darkgpt] canvas.cug-ptext {
+  display: block;
+  /* feathered edges: the canvas overhangs the text, and anything reaching its border fades out instead of being cut */
+  -webkit-mask-image:
+    linear-gradient(90deg, transparent 0, rgb(0 0 0 / .1) calc(var(--cug-fx, 90px) * .2), rgb(0 0 0 / .45) calc(var(--cug-fx, 90px) * .5), rgb(0 0 0 / .85) calc(var(--cug-fx, 90px) * .8), #000 var(--cug-fx, 90px), #000 calc(100% - var(--cug-fx, 90px)), rgb(0 0 0 / .85) calc(100% - var(--cug-fx, 90px) * .8), rgb(0 0 0 / .45) calc(100% - var(--cug-fx, 90px) * .5), rgb(0 0 0 / .1) calc(100% - var(--cug-fx, 90px) * .2), transparent 100%),
+    linear-gradient(180deg, transparent 0, rgb(0 0 0 / .1) calc(var(--cug-fy, 70px) * .2), rgb(0 0 0 / .45) calc(var(--cug-fy, 70px) * .5), rgb(0 0 0 / .85) calc(var(--cug-fy, 70px) * .8), #000 var(--cug-fy, 70px), #000 calc(100% - var(--cug-fy, 70px)), rgb(0 0 0 / .85) calc(100% - var(--cug-fy, 70px) * .8), rgb(0 0 0 / .45) calc(100% - var(--cug-fy, 70px) * .5), rgb(0 0 0 / .1) calc(100% - var(--cug-fy, 70px) * .2), transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(90deg, transparent 0, rgb(0 0 0 / .1) calc(var(--cug-fx, 90px) * .2), rgb(0 0 0 / .45) calc(var(--cug-fx, 90px) * .5), rgb(0 0 0 / .85) calc(var(--cug-fx, 90px) * .8), #000 var(--cug-fx, 90px), #000 calc(100% - var(--cug-fx, 90px)), rgb(0 0 0 / .85) calc(100% - var(--cug-fx, 90px) * .8), rgb(0 0 0 / .45) calc(100% - var(--cug-fx, 90px) * .5), rgb(0 0 0 / .1) calc(100% - var(--cug-fx, 90px) * .2), transparent 100%),
+    linear-gradient(180deg, transparent 0, rgb(0 0 0 / .1) calc(var(--cug-fy, 70px) * .2), rgb(0 0 0 / .45) calc(var(--cug-fy, 70px) * .5), rgb(0 0 0 / .85) calc(var(--cug-fy, 70px) * .8), #000 var(--cug-fy, 70px), #000 calc(100% - var(--cug-fy, 70px)), rgb(0 0 0 / .85) calc(100% - var(--cug-fy, 70px) * .8), rgb(0 0 0 / .45) calc(100% - var(--cug-fy, 70px) * .5), rgb(0 0 0 / .1) calc(100% - var(--cug-fy, 70px) * .2), transparent 100%);
+  mask-composite: intersect;
+}
+@media (forced-colors: active) {
+  html[data-cug-darkgpt][data-cug-ptext="on"] [style*="vt-splash-screen-headline"] h1,
+  html[data-cug-darkgpt] h1[data-cug-ptext-host] { color: CanvasText !important; -webkit-text-fill-color: CanvasText !important; }
+  html[data-cug-darkgpt] canvas.cug-ptext { display: none; }
+}

@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "GitHub Liquid Glass",
+  "version": "1.0.0",
+  "description": "Glassmorphism and liquid-glass UI for every GitHub page, with Matrix / contribution-grid / git-graph backgrounds and per-section settings.",
+  "minimum_chrome_version": "111",
+  "icons": { "16": "icons/icon16.png", "32": "icons/icon32.png", "48": "icons/icon48.png", "128": "icons/icon128.png" },
+  "permissions": ["storage", "activeTab"],
+  "action": { "default_title": "GitHub Liquid Glass", "default_popup": "index.html", "default_icon": { "16": "icons/icon16.png", "32": "icons/icon32.png" } },
+  "options_ui": { "page": "options.html", "open_in_tab": true },
+  "content_scripts": [
+    {
+      "matches": ["https://github.com/*", "https://gist.github.com/*"],
+      "css": ["glass.css"],
+      "js": ["shared.js", "liquid.js", "bg.js", "content.js"],
+      "run_at": "document_start"
+    }
+  ]
+}

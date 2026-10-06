@@ -1,4 +1,4 @@
-/* WebGL background: DARK GPT red ambient glow
+/* WebGL background: underwater caustics + god rays + neon blobs/ribbons + cursor glow.
  * Rendered at reduced resolution (the light is soft anyway), paused when the tab is hidden.
  * Used by both the ChatGPT content script and the popup live preview.
  */
@@ -142,7 +142,7 @@ void main(){
         .forEach((n) => { loc[n] = gl.getUniformLocation(prog, n); });
       ok = true;
     }
-    try { init(); } catch (err) { console.warn("[DARK GPT] WebGL shader failed", err); return null; }
+    try { init(); } catch (err) { console.warn("[glassmorphism] WebGL shader failed", err); return null; }
 
     const state = {
       params: { intensity: .6, scale: 1, speed: 1, caustics: .7, rays: .5, neon: .6, mouseGlow: true, light: false, colors: [[.1, .7, 1], [0, .9, .8], [.3, .4, 1]], base: [7 / 255, 9 / 255, 18 / 255], quality: "medium" },
@@ -201,9 +201,8 @@ void main(){
     const onRestored = () => { try { loc = {}; init(); state.dirty = true; } catch (_) { /* stays off */ } };
     canvas.addEventListener("webglcontextlost", onLost);
     canvas.addEventListener("webglcontextrestored", onRestored);
-    const onResize = () => { state.dirty = true; };
     window.addEventListener("pointermove", onMove, { passive: true });
-    window.addEventListener("resize", onResize);
+    window.addEventListener("resize", () => { state.dirty = true; });
 
     return {
       /** params: {intensity,scale,speed,caustics,rays,neon (0..1+), mouseGlow, light, colors, base, quality} */
@@ -213,7 +212,6 @@ void main(){
       destroy() {
         this.stop();
         window.removeEventListener("pointermove", onMove);
-        window.removeEventListener("resize", onResize);
         canvas.removeEventListener("webglcontextlost", onLost);
         canvas.removeEventListener("webglcontextrestored", onRestored);
         gl.getExtension("WEBGL_lose_context")?.loseContext();
@@ -221,22 +219,20 @@ void main(){
     };
   }
 
-  /** Convert stored settings to shader params. The pointer light is a separate DOM element (smooth at 60 fps),
-   *  so the shader's own cursor glow is off to avoid two lights stacking. */
+  /** Convert stored settings to shader params. */
   function paramsFrom(settings, light) {
-    const reduced = typeof matchMedia === "function" && matchMedia("(prefers-reduced-motion: reduce)").matches;
     return {
-      intensity: settings.backgroundBrightness / 100,
-      scale: 1.1,
-      speed: reduced ? 0 : 0.28,
-      caustics: 0.45,
-      rays: 0.28,
-      neon: 0.72,
-      mouseGlow: false,
-      quality: settings.bgQuality || "medium",
+      intensity: settings.intensity / 100,
+      scale: settings.scale / 100,
+      speed: settings.speed / 100,
+      caustics: settings.caustics / 100,
+      rays: settings.rays / 100,
+      neon: settings.neon / 100,
+      mouseGlow: settings.mouseGlow,
+      quality: settings.quality,
       light: Boolean(light),
-      colors: [[0.95, 0.04, 0.10], [1.0, 0.16, 0.22], [0.62, 0.01, 0.05]],
-      base: [18 / 255, 3 / 255, 7 / 255]
+      colors: CUG.paletteColors(settings),
+      base: light ? [236 / 255, 240 / 255, 249 / 255] : [7 / 255, 9 / 255, 18 / 255]
     };
   }
 

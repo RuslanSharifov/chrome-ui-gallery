@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "ChatGPT Claymorphism",
+  "version": "1.0.0",
+  "description": "Applies an adaptive claymorphism theme to the existing ChatGPT UI with realistic 3D embedded clay-like surfaces, layered shadows, and warm earthy tones (sidebar, composer, menus, profile and settings dialogs).",
+  "permissions": ["storage", "activeTab"],
+  "icons": { "16": "icons/icon16.png", "32": "icons/icon32.png", "48": "icons/icon48.png", "128": "icons/icon128.png" },
+  "action": {
+    "default_title": "ChatGPT Claymorphism",
+    "default_popup": "index.html",
+    "default_icon": { "16": "icons/icon16.png", "32": "icons/icon32.png" }
+  },
+  "minimum_chrome_version": "120",
+  "content_scripts": [{
+    "matches": ["https://chatgpt.com/*", "https://chat.openai.com/*"],
+    "css": ["glass.css"],
+    "js": ["shared.js", "fx.js", "content.js"],
+    "run_at": "document_start"
+  }]
+}

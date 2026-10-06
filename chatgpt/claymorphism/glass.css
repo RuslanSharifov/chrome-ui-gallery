@@ -1,0 +1,424 @@
+/* ==========================================================================
+   ChatGPT Claymorphism v2 — Realistic 3D embedded clay-like design
+   
+   Strategy
+   1. Use earthy, warm color palette for clay appearance
+   2. Create depth with multiple layered shadows (not blur)
+   3. Inset shadows for embedded/pressed-in effect
+   4. Soft, organic appearance with rounded corners
+   5. No backdrop-filter - solid colors with sophisticated shadows
+   ========================================================================== */
+
+/* ---------- 1. Palette (dark is default, light overrides) ---------- */
+html[data-cug-glass] {
+  color-scheme: dark;
+  
+  /* Clay base colors - earthy warm tones */
+  --cug-base: 35 30 25;           /* Deep clay brown */
+  --cug-panel: 68 58 48;          /* Medium clay tone */
+  --cug-fg: 245 240 235;          /* Warm white */
+  --cug-accent: var(--cug-set-accent-dark, 217 144 88);  /* Warm clay accent */
+  --cug-on-accent: rgb(35 30 25);
+  
+  --cug-text:   rgb(var(--cug-fg) / .95);
+  --cug-text-2: rgb(var(--cug-fg) / .75);
+  --cug-text-3: rgb(var(--cug-fg) / .55);
+  --cug-text-4: rgb(var(--cug-fg) / .38);
+  --cug-line:      rgb(var(--cug-fg) / .12);
+  --cug-line-soft: rgb(var(--cug-fg) / .07);
+  --cug-hover:  rgb(var(--cug-fg) / .08);
+  --cug-active: rgb(var(--cug-fg) / .14);
+
+  /* Clay effect parameters */
+  --cug-alpha: var(--cug-set-alpha, .85);
+  --cug-shine: var(--cug-set-shine, 1);
+  --cug-r: var(--cug-set-radius, 20px);
+  --cug-r-lg: calc(var(--cug-r) + 8px);
+  --cug-r-sm: max(8px, calc(var(--cug-r) - 6px));
+  
+  /* Clay base colors */
+  --cug-glass:        rgb(68 58 48 / var(--cug-alpha));
+  --cug-glass-strong: rgb(78 68 55 / calc(var(--cug-alpha) + .1));
+  --cug-glass-main:   rgb(58 50 42 / var(--cug-set-veil, .75));
+  --cug-glass-soft:   rgb(85 75 65 / .45);
+  
+  /* 3D Depth shadows - multiple layers for realistic embedded effect */
+  --cug-shadow-sm:    0 2px 4px rgb(0 0 0 / .25),
+                      0 4px 8px rgb(0 0 0 / .15);
+  --cug-shadow:       0 4px 12px rgb(0 0 0 / .3),
+                      0 8px 24px rgb(0 0 0 / .2),
+                      0 12px 40px rgb(0 0 0 / .15);
+  --cug-shadow-lg:    0 8px 16px rgb(0 0 0 / .35),
+                      0 16px 40px rgb(0 0 0 / .25),
+                      0 24px 70px rgb(0 0 0 / .2);
+  
+  /* Inset shadows for embedded/pressed-in appearance */
+  --cug-inset:        inset 0 2px 4px rgb(255 255 255 / calc(.08 * var(--cug-shine))),
+                      inset 0 -2px 4px rgb(0 0 0 / .25);
+  --cug-inset-subtle: inset 0 1px 2px rgb(255 255 255 / calc(.05 * var(--cug-shine))),
+                      inset 0 -1px 2px rgb(0 0 0 / .15);
+  
+  /* Subtle gradient overlay for clay texture */
+  --cug-texture:      linear-gradient(135deg, 
+                      rgb(78 68 55 / .3), 
+                      rgb(58 50 42 / .3) 50%,
+                      rgb(48 40 32 / .3));
+}
+
+html[data-cug-glass][data-cug-mode="light"] {
+  color-scheme: light;
+  --cug-base: 240 235 225;        /* Light warm beige */
+  --cug-panel: 215 205 190;       /* Light clay tone */
+  --cug-fg: 40 35 30;             /* Dark brown text */
+  --cug-accent: var(--cug-set-accent-light, 180 100 40);
+  --cug-on-accent: #fef8f0;
+  --cug-text-2: rgb(var(--cug-fg) / .76);
+  --cug-text-3: rgb(var(--cug-fg) / .56);
+  --cug-line:      rgb(var(--cug-fg) / .12);
+  --cug-line-soft: rgb(var(--cug-fg) / .07);
+  --cug-hover:  rgb(var(--cug-fg) / .06);
+  --cug-active: rgb(var(--cug-fg) / .12);
+  --cug-glass-soft: rgb(210 195 175 / .55);
+  
+  --cug-shadow:       0 4px 12px rgb(0 0 0 / .12),
+                      0 8px 24px rgb(0 0 0 / .08);
+  --cug-shadow-lg:    0 8px 16px rgb(0 0 0 / .15),
+                      0 16px 40px rgb(0 0 0 / .1),
+                      0 24px 70px rgb(0 0 0 / .08);
+  --cug-inset:        inset 0 2px 4px rgb(255 255 255 / calc(.6 * var(--cug-shine))),
+                      inset 0 -2px 4px rgb(0 0 0 / .12);
+  --cug-texture:      linear-gradient(135deg, 
+                      rgb(225 215 200 / .2), 
+                      rgb(205 195 180 / .2) 50%,
+                      rgb(195 180 165 / .2));
+}
+
+/* ---------- 2. Re-map ChatGPT's design tokens ---------- */
+html[data-cug-glass] {
+  --text-primary: var(--cug-text);
+  --text-secondary: var(--cug-text-2);
+  --text-tertiary: var(--cug-text-3);
+  --text-quaternary: var(--cug-text-4);
+  --text-placeholder: var(--cug-text-3);
+  --link: rgb(var(--cug-accent));
+  --link-hover: rgb(var(--cug-accent));
+
+  --border-default: var(--cug-line);
+  --border-light: var(--cug-line-soft);
+  --border-xlight: var(--cug-line-soft);
+  --border-medium: var(--cug-line);
+  --border-heavy: rgb(var(--cug-fg) / .20);
+  --border-sharp: rgb(var(--cug-fg) / .20);
+
+  --main-surface-background: transparent;
+  --main-surface-primary: var(--cug-glass-main);
+  --main-surface-secondary: var(--cug-glass-soft);
+  --main-surface-tertiary: var(--cug-hover);
+  --sidebar-surface-primary: transparent;
+  --sidebar-surface-secondary: var(--cug-hover);
+  --sidebar-surface-tertiary: var(--cug-active);
+  --surface-primary: var(--cug-glass-main);
+  --surface-secondary: var(--cug-glass-soft);
+  --surface-tertiary: var(--cug-hover);
+  --surface-hover: var(--cug-hover);
+  --bg-primary: var(--cug-glass-main);
+  --bg-secondary: var(--cug-glass-soft);
+  --bg-tertiary: var(--cug-hover);
+  --bg-elevated-primary: var(--cug-glass-strong);
+  --bg-elevated-secondary: var(--cug-glass-soft);
+  --message-surface: rgb(var(--cug-accent) / .12);
+  --composer-surface: var(--cug-glass-strong);
+  --composer-surface-primary: var(--cug-glass-strong);
+
+  --interactive-bg-secondary-default: var(--cug-glass-soft);
+  --interactive-bg-secondary-hover: var(--cug-hover);
+  --interactive-bg-secondary-press: var(--cug-active);
+  --interactive-bg-secondary-selected: var(--cug-active);
+  --interactive-bg-tertiary-default: transparent;
+  --interactive-bg-tertiary-hover: var(--cug-hover);
+  --interactive-bg-tertiary-press: var(--cug-active);
+  --interactive-label-secondary-default: var(--cug-text);
+  --interactive-label-secondary-hover: var(--cug-text);
+  --interactive-label-tertiary-default: var(--cug-text-2);
+  --interactive-label-tertiary-hover: var(--cug-text);
+
+  /* Tailwind typography */
+  --tw-prose-body: var(--cug-text);
+  --tw-prose-headings: var(--cug-text);
+  --tw-prose-lead: var(--cug-text-2);
+  --tw-prose-links: rgb(var(--cug-accent));
+  --tw-prose-bold: var(--cug-text);
+  --tw-prose-counters: var(--cug-text-3);
+  --tw-prose-bullets: var(--cug-text-3);
+  --tw-prose-hr: var(--cug-line);
+  --tw-prose-quotes: var(--cug-text-2);
+  --tw-prose-quote-borders: rgb(var(--cug-accent) / .55);
+  --tw-prose-captions: var(--cug-text-3);
+  --tw-prose-code: var(--cug-text);
+}
+
+/* ---------- 3. Base — body, main area, sidebar ---------- */
+html[data-cug-glass] {
+  background: radial-gradient(circle at 20% 30%, rgb(88 75 60 / .4), transparent 50%),
+              radial-gradient(circle at 80% 70%, rgb(68 58 48 / .3), transparent 50%),
+              rgb(35 30 25);
+}
+html[data-cug-glass] body { color: var(--cug-text); }
+html[data-cug-glass] main {
+  background: transparent;
+  --surface-primary: transparent;
+}
+
+/* Sidebar styling */
+html[data-cug-glass] :is(nav, aside, [role="navigation"], [class*="sidebar"]) {
+  background: var(--cug-texture), var(--cug-glass-main) !important;
+  box-shadow: inset -2px 0 4px rgb(0 0 0 / .25);
+}
+
+/* ---------- 4. Surfaces — cards, panels, elevated surfaces ---------- */
+html[data-cug-glass] :is([class*="surface"], [class*="bg-token"], [class*="bg-white"], [class*="dark:bg-gray"]) {
+  background-color: var(--cug-glass-main) !important;
+}
+
+html[data-cug-glass] :is(
+  [class*="border-token-border"],
+  [class*="border-token-border-default"],
+  [class*="border-token-border-light"],
+  [class*="bg-token-surface"],
+  [class*="bg-token-main-surface"],
+  [class*="bg-token-bg"]
+) {
+  border-color: var(--cug-line) !important;
+  background-color: var(--cug-glass-main) !important;
+}
+
+/* ---------- 5. Interactive elements — buttons, inputs, checkboxes ---------- */
+html[data-cug-glass] :is(button, [role="button"], input, select, textarea) {
+  -webkit-appearance: none; appearance: none;
+  font-family: inherit;
+}
+
+/* Secondary buttons */
+html[data-cug-glass] :is(
+  button:not([class*="primary"]):not([class*="danger"]):not([data-testid="send-button"]),
+  [role="button"]:not([class*="primary"])
+) {
+  background: var(--cug-texture), var(--cug-glass-soft) !important;
+  color: var(--cug-text-2) !important;
+  border: 1px solid var(--cug-line) !important;
+  border-radius: var(--cug-r-sm) !important;
+  box-shadow: var(--cug-shadow-sm), var(--cug-inset-subtle) !important;
+  transition: all .2s ease;
+}
+html[data-cug-glass] :is(button, [role="button"]):hover:not(:disabled):not([class*="primary"]) {
+  background: var(--cug-texture), var(--cug-glass) !important;
+  color: var(--cug-text) !important;
+  transform: translateY(-1px);
+  box-shadow: var(--cug-shadow), var(--cug-inset-subtle) !important;
+}
+
+/* Inputs, selects, textareas */
+html[data-cug-glass] :is(input:not([type="checkbox"]):not([type="radio"]), select, textarea) {
+  background: var(--cug-texture), rgb(var(--cug-panel) / .4) !important;
+  color: var(--cug-text) !important;
+  -webkit-text-fill-color: var(--cug-text) !important;
+  border: 1px solid var(--cug-line) !important;
+  border-radius: var(--cug-r-sm) !important;
+  box-shadow: inset 0 2px 4px rgb(0 0 0 / .2), var(--cug-inset-subtle) !important;
+  padding: 8px 12px;
+  transition: all .2s ease;
+}
+html[data-cug-glass] :is(input, select, textarea):focus {
+  border-color: rgb(var(--cug-accent) / .6) !important;
+  box-shadow: inset 0 2px 4px rgb(0 0 0 / .2),
+              inset 0 0 0 2px rgb(var(--cug-accent) / .2),
+              var(--cug-inset-subtle) !important;
+  outline: 0;
+}
+
+/* Checkboxes, radios */
+html[data-cug-glass] :is(input[type="checkbox"], input[type="radio"]) {
+  accent-color: rgb(var(--cug-accent));
+}
+
+/* ---------- 6. Composer area styling ---------- */
+html[data-cug-glass] :is([data-composer-surface="true"], form[data-type="unified-composer"]) {
+  background: var(--cug-texture), var(--cug-glass-strong) !important;
+  border: 1px solid var(--cug-line) !important;
+  border-radius: var(--cug-r) !important;
+  box-shadow: var(--cug-shadow-lg), var(--cug-inset) !important;
+}
+
+html[data-cug-glass] :is([data-composer-surface="true"], form[data-type="unified-composer"]) .ProseMirror {
+  color: var(--cug-text) !important;
+  background: transparent !important;
+}
+
+html[data-cug-glass] .ProseMirror:not([contenteditable="false"]),
+html[data-cug-glass] .ProseMirror[contenteditable="true"] {
+  color: var(--cug-text) !important;
+  -webkit-text-fill-color: var(--cug-text) !important;
+  caret-color: rgb(var(--cug-accent)) !important;
+  background: transparent !important;
+  border: 0 !important;
+  outline: 0 !important;
+}
+
+html[data-cug-glass] .ProseMirror p.placeholder::before,
+html[data-cug-glass] .ProseMirror[contenteditable="true"]::before {
+  color: var(--cug-text-3) !important;
+}
+
+/* Secondary buttons in composer */
+html[data-cug-glass] :is([data-composer-surface="true"], form[data-type="unified-composer"]) button:not([data-testid="send-button"]):not(#composer-submit-button):not([data-testid="stop-button"]) {
+  color: var(--cug-text-2);
+}
+html[data-cug-glass] :is([data-composer-surface="true"], form[data-type="unified-composer"]) button:not([data-testid="send-button"]):not(#composer-submit-button):hover {
+  background: var(--cug-hover);
+  color: var(--cug-text);
+}
+
+/* Send/Stop button - Primary accent */
+html[data-cug-glass] :is([data-testid="send-button"], #composer-submit-button, [data-testid="stop-button"], .btn-primary) {
+  background: linear-gradient(135deg, 
+              rgb(var(--cug-accent)), 
+              rgb(var(--cug-accent) / .85)) !important;
+  color: var(--cug-on-accent) !important;
+  border: 0 !important;
+  box-shadow: var(--cug-shadow), inset 0 1px 0 rgb(255 255 255 / .3) !important;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+html[data-cug-glass] :is([data-testid="send-button"], #composer-submit-button, .btn-primary):hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--cug-shadow-lg), inset 0 1px 0 rgb(255 255 255 / .3) !important;
+}
+html[data-cug-glass] :is([data-testid="send-button"], #composer-submit-button):disabled {
+  background: var(--cug-glass-soft) !important;
+  color: var(--cug-text-4) !important;
+  box-shadow: var(--cug-shadow-sm) !important;
+  opacity: .6;
+}
+
+/* ---------- 7. Messages and content ---------- */
+html[data-cug-glass] [class*="message"] {
+  background: var(--cug-texture), var(--cug-glass-main) !important;
+}
+
+html[data-cug-glass] [class*="prose"] { color: var(--cug-text); }
+html[data-cug-glass] code, html[data-cug-glass] pre {
+  background: rgb(var(--cug-panel) / .4) !important;
+  color: rgb(var(--cug-accent)) !important;
+  border: 1px solid var(--cug-line) !important;
+}
+
+/* ---------- 8. Menus, popovers, tooltips ---------- */
+html[data-cug-glass] :is(
+  [role="menu"], [role="listbox"], [cmdk-root], [data-radix-menu-content],
+  [data-radix-popper-content-wrapper] > :not([data-cug-ambient]),
+  [data-sonner-toast], [role="tooltip"], .popover
+) {
+  background: var(--cug-texture), var(--cug-glass-strong) !important;
+  color: var(--cug-text) !important;
+  border: 1px solid var(--cug-line) !important;
+  border-radius: var(--cug-r) !important;
+  box-shadow: var(--cug-shadow-lg), var(--cug-inset) !important;
+}
+
+html[data-cug-glass] :is([role="menu"], [role="listbox"], [cmdk-root]) :is([role^="menuitem"], [role="option"], [cmdk-item], a, button) {
+  color: var(--cug-text-2) !important;
+  background: transparent;
+  border-radius: var(--cug-r-sm) !important;
+  transition: all .15s ease;
+}
+html[data-cug-glass] :is([role="menu"], [role="listbox"], [cmdk-root]) :is([role^="menuitem"], [role="option"], [cmdk-item], a, button):is(:hover, [data-highlighted], [data-selected="true"], [aria-selected="true"]) {
+  color: var(--cug-text) !important;
+  background: rgb(var(--cug-accent) / .15) !important;
+  transform: translateX(2px);
+}
+
+html[data-cug-glass] :is([role="menu"], [role="listbox"]) :is([role="separator"], hr) {
+  background: var(--cug-line-soft) !important;
+  border-color: var(--cug-line-soft) !important;
+}
+
+/* ---------- 9. Dialogs and modals ---------- */
+html[data-cug-glass] :is(div[data-state="open"][class*="fixed"][class*="inset-0"], div[class*="fixed"][class*="inset-0"][class*="bg-black"], [data-radix-dialog-overlay]) {
+  background: rgb(var(--cug-base) / .65) !important;
+}
+
+html[data-cug-glass] [role="dialog"] {
+  background: var(--cug-texture), var(--cug-glass-strong) !important;
+  color: var(--cug-text) !important;
+  border: 1px solid var(--cug-line) !important;
+  border-radius: calc(var(--cug-r) + 6px) !important;
+  box-shadow: var(--cug-shadow-lg), var(--cug-inset) !important;
+}
+
+html[data-cug-glass] [role="dialog"] :is([class*="bg-token-main-surface-primary"], [class*="bg-token-bg-primary"], [class*="bg-white"]) {
+  background-color: transparent !important;
+}
+
+html[data-cug-glass] [role="dialog"] :is([class*="bg-token-bg-secondary"], [class*="bg-token-bg-tertiary"]) {
+  background-color: var(--cug-glass-soft) !important;
+  border-color: var(--cug-line-soft);
+}
+
+html[data-cug-glass] [role="dialog"] :is([role="tablist"], nav) :is([role="tab"], a, button) {
+  color: var(--cug-text-2);
+  border-radius: var(--cug-r-sm);
+  transition: all .15s ease;
+}
+html[data-cug-glass] [role="dialog"] :is([role="tablist"], nav) :is([role="tab"], a, button):hover {
+  background: var(--cug-hover);
+  color: var(--cug-text);
+}
+html[data-cug-glass] [role="dialog"] :is([role="tab"][aria-selected="true"], [role="tab"][data-state="active"]) {
+  color: var(--cug-text) !important;
+  background: linear-gradient(90deg, rgb(var(--cug-accent) / .18), var(--cug-hover)) !important;
+  box-shadow: inset 0 0 0 1px rgb(var(--cug-accent) / .22);
+}
+
+/* ---------- 10. Text colors and utilities ---------- */
+html[data-cug-glass] :is(.text-token-text-primary, h1, h2, h3, h4) {
+  color: var(--cug-text);
+}
+html[data-cug-glass] .text-token-text-secondary { color: var(--cug-text-2); }
+html[data-cug-glass] .text-token-text-tertiary { color: var(--cug-text-3); }
+html[data-cug-glass] :is(.text-red, .text-token-text-error) { color: #e07856 !important; }
+html[data-cug-glass][data-cug-mode="light"] :is(.text-red, .text-token-text-error) { color: #c84c2a !important; }
+
+/* ---------- 11. Scrollbar styling ---------- */
+html[data-cug-glass] ::-webkit-scrollbar {
+  width: 8px; height: 8px;
+}
+html[data-cug-glass] ::-webkit-scrollbar-track {
+  background: transparent;
+}
+html[data-cug-glass] ::-webkit-scrollbar-thumb {
+  background: rgb(255 255 255 / .15);
+  border-radius: 4px;
+}
+html[data-cug-glass] ::-webkit-scrollbar-thumb:hover {
+  background: rgb(255 255 255 / .25);
+}
+
+/* ---------- 12. Accessibility + fallbacks ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html[data-cug-glass] #cug-ambient i { animation: none !important; }
+  html[data-cug-glass] * { transition-duration: 0s !important; }
+}
+
+@media (prefers-contrast: more) {
+  html[data-cug-glass] {
+    --cug-line: rgb(var(--cug-fg) / .35);
+    --cug-text-3: rgb(var(--cug-fg) / .75);
+  }
+}
+
+/* Fallback for unsupported backdrop-filter (uses slightly more opaque solid color) */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  html[data-cug-glass] {
+    --cug-glass: rgb(68 58 48 / .92);
+    --cug-glass-strong: rgb(78 68 55 / .94);
+  }
+}

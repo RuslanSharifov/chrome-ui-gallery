@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" class="gug-scope" data-gug-mode="dark">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GitHub Liquid Glass</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="popup">
+<header class="header">
+  <div><p class="eyebrow">GITHUB</p><h1>Liquid Glass <span class="plus">UI</span></h1></div>
+  <div class="head-actions"><span id="version" class="chip"></span><button id="openFull" class="chip btn-chip" type="button" title="Open the settings in a full tab">Full page ↗</button></div>
+</header>
+<section class="card hero">
+  <div><strong>Glass layer</strong><p id="stateText">Active on GitHub</p></div>
+  <button id="enabled" class="switch" role="switch" aria-label="Enable GitHub Liquid Glass"><span></span></button>
+</section>
+<p id="tabNotice" class="notice" hidden>Open github.com to apply the theme.</p>
+<div id="controls">
+  <div class="layout">
+    <div class="col-a">
+      <section class="live" id="live" aria-label="Live preview — click a part to edit it">
+        <div class="pv-bg" id="pvBg"></div>
+        <div class="pv-page">
+          <div class="pv z-header" data-zone="header"><b class="logo"></b><span class="search">Search or jump to…</span><i></i><i></i></div>
+          <div class="pv z-nav" data-zone="nav"><span class="on">Code</span><span>Issues</span><span>Pull requests</span><span>Actions</span></div>
+          <div class="pv-body">
+            <div class="pv-main">
+              <div class="pv z-cards" data-zone="cards"><div class="row"><b></b><span>src</span><em>2d ago</em></div><div class="row"><b></b><span>README.md</span><em>5d ago</em></div></div>
+              <div class="pv z-code" data-zone="code"><code>git commit -m "feat: liquid glass"</code></div>
+              <div class="pv z-convo" data-zone="convo"><b></b><span>Looks great, merging 🚀</span></div>
+              <div class="pv z-readme" data-zone="readme"><h6>README.md</h6><i></i><i class="s"></i></div>
+            </div>
+            <div class="pv z-sidebar" data-zone="sidebar"><h6>About</h6><i></i><i class="s"></i><u class="pv-btn z-controls" data-zone="controls">★ Star</u></div>
+          </div>
+          <div class="pv z-menus" data-zone="menus"><span>Clone</span><span>Download ZIP</span></div>
+          <div class="pv z-dialogs" data-zone="dialogs"><h6>Command palette</h6><i></i></div>
+          <div class="pv z-footer" data-zone="footer">© GitHub, Inc.</div>
+        </div>
+      </section>
+      <section class="card presets"><h2>Presets</h2><div id="presets" class="chips"></div></section>
+    </div>
+    <div class="col-b" id="sections"></div>
+  </div>
+</div>
+<div class="actions"><button id="reset" class="btn" type="button">Reset all</button><span id="saveState" class="save-state" data-on="false" aria-live="polite">All changes saved ✓</span></div>
+<footer>GitHub Liquid Glass · visual styling only · nothing leaves your browser</footer>
+</main>
+<script src="shared.js"></script><script src="liquid.js"></script><script src="bg.js"></script><script src="script.js"></script>
+</body>
+</html>

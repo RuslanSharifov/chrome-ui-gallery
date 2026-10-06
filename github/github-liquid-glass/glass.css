@@ -1,0 +1,184 @@
+/* GitHub Liquid Glass — glass.css (generated zone rules + hand-written sections)
+   Zones are independent: each one reads its own --gh-z-<id>-bg / -bf / -r variables (set from the settings
+   panel), so every part of GitHub can be reshaped separately. All rules are gated by html[data-gug-gh], so the
+   file is inert while the extension is off. Only the OUTERMOST wrapper of a surface is painted; nested wrappers are
+   cleared to avoid double borders and stacked backdrop-filters (which cannot blur each other).
+   GitHub's DOM is not a public API: extend the selector lists below when a surface is missed. */
+
+/* ============ 1. PAGE ============ */
+html[data-gug-gh] {
+  background:
+    radial-gradient(60% 50% at 12% 0%, rgb(var(--gh-accent) / .16), transparent 70%),
+    radial-gradient(50% 45% at 100% 100%, rgb(var(--gh-accent) / .10), transparent 70%),
+    linear-gradient(180deg, rgb(var(--gh-base-a)), rgb(var(--gh-base-b))) !important;
+  background-attachment: fixed !important;
+}
+html[data-gug-gh][data-gug-mode="dark"] { color-scheme: dark; }
+html[data-gug-gh][data-gug-mode="light"] { color-scheme: light; }
+html[data-gug-gh] body { background: transparent !important; }
+.gug-bg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; opacity: var(--gh-bg-opacity, .55); filter: blur(var(--gh-bg-soft, 0px)); }
+
+/* ============ 2. ZONES ============ */
+/* page veil: plain tint, no blur */
+html[data-gug-gh] .application-main,
+html[data-gug-gh] main:not(.application-main *, .Box *) { background: var(--gh-z-page-bg) !important; }
+
+/* header */
+html[data-gug-gh] .AppHeader,
+html[data-gug-gh] .Header {
+  background: var(--gh-hi), var(--gh-z-header-bg) !important;
+  -webkit-backdrop-filter: var(--gh-z-header-bf) !important; backdrop-filter: var(--gh-z-header-bf) !important;
+  border-radius: var(--gh-z-header-r) !important;
+  border-color: var(--gh-line) !important;
+}
+
+/* nav */
+html[data-gug-gh] :is(.UnderlineNav, .tabnav, .subnav):not(.AppHeader *, .Header *) {
+  background: var(--gh-hi), var(--gh-z-nav-bg) !important;
+  -webkit-backdrop-filter: var(--gh-z-nav-bf) !important; backdrop-filter: var(--gh-z-nav-bf) !important;
+  border-radius: var(--gh-z-nav-r) !important;
+  border-color: var(--gh-line) !important;
+}
+
+/* sidebar */
+html[data-gug-gh] :is(.Layout-sidebar, .BorderGrid, nav.menu, .dashboard-sidebar, .discussion-sidebar):not(.Layout-sidebar *) {
+  background: var(--gh-hi), var(--gh-z-sidebar-bg) !important;
+  -webkit-backdrop-filter: var(--gh-z-sidebar-bf) !important; backdrop-filter: var(--gh-z-sidebar-bf) !important;
+  border-radius: var(--gh-z-sidebar-r) !important;
+  border-color: var(--gh-line) !important;
+  box-shadow: var(--gh-rim), var(--gh-shadow) !important;
+}
+
+/* cards */
+html[data-gug-gh] .Box:not(.Box--overlay, #readme, .Box *, .Overlay *, dialog *) {
+  background: var(--gh-hi), var(--gh-z-cards-bg) !important;
+  -webkit-backdrop-filter: var(--gh-z-cards-bf) !important; backdrop-filter: var(--gh-z-cards-bf) !important;
+  border-radius: var(--gh-z-cards-r) !important;
+  border-color: var(--gh-line) !important;
+  box-shadow: var(--gh-rim), var(--gh-shadow) !important;
+}
+
+/* code */
+html[data-gug-gh] .file,
+html[data-gug-gh] .blob-wrapper:not(.Box *),
+html[data-gug-gh] .highlight:not(.file *, .Box *),
+html[data-gug-gh] .snippet-clipboard-content,
+html[data-gug-gh] .markdown-body pre:not(.highlight *) {
+  background: var(--gh-hi), var(--gh-z-code-bg) !important;
+  -webkit-backdrop-filter: var(--gh-z-code-bf) !important; backdrop-filter: var(--gh-z-code-bf) !important;
+  border-radius: var(--gh-z-code-r) !important;
+  border-color: var(--gh-line) !important;
+  box-shadow: var(--gh-rim), var(--gh-shadow) !important;
+}
+
+/* readme */
+html[data-gug-gh] #readme,
+html[data-gug-gh] .wiki-wrapper,
+html[data-gug-gh] .markdown-body.entry-content:not(#readme *, .timeline-comment *, .comment-body *, .Box *) {
+  background: var(--gh-hi), var(--gh-z-readme-bg) !important;
+  -webkit-backdrop-filter: var(--gh-z-readme-bf) !important; backdrop-filter: var(--gh-z-readme-bf) !important;
+  border-radius: var(--gh-z-readme-r) !important;
+  border-color: var(--gh-line) !important;
+  box-shadow: var(--gh-rim), var(--gh-shadow) !important;
+}
+
+/* convo */
+html[data-gug-gh] .timeline-comment,
+html[data-gug-gh] .review-comment {
+  background: var(--gh-hi), var(--gh-z-convo-bg) !important;
+  -webkit-backdrop-filter: var(--gh-z-convo-bf) !important; backdrop-filter: var(--gh-z-convo-bf) !important;
+  border-radius: var(--gh-z-convo-r) !important;
+  border-color: var(--gh-line) !important;
+  box-shadow: var(--gh-rim), var(--gh-shadow) !important;
+}
+
+/* controls */
+html[data-gug-gh] .btn:not(.btn-primary, .btn-danger, .btn-invisible, .btn-link, .btn-octicon),
+html[data-gug-gh] .Button:not(.Button--primary, .Button--danger, .Button--invisible, .Button--link),
+html[data-gug-gh] [class*="prc-Button-ButtonBase"]:not([data-variant="primary"], [data-variant="danger"], [data-variant="invisible"]),
+html[data-gug-gh] .form-control,
+html[data-gug-gh] .FormControl-input,
+html[data-gug-gh] .FormControl-select,
+html[data-gug-gh] .FormControl-textarea,
+html[data-gug-gh] input:is([type="text"], [type="search"], [type="email"], [type="password"], [type="url"], [type="number"]):not(.form-control, .FormControl-input),
+html[data-gug-gh] textarea:not(.form-control, .FormControl-textarea),
+html[data-gug-gh] select:not(.form-control, .FormControl-select),
+html[data-gug-gh] .Counter,
+html[data-gug-gh] .State {
+  background: var(--gh-hi), var(--gh-z-controls-bg) !important;
+  -webkit-backdrop-filter: var(--gh-z-controls-bf) !important; backdrop-filter: var(--gh-z-controls-bf) !important;
+  border-radius: var(--gh-z-controls-r) !important;
+  border-color: var(--gh-line) !important;
+  box-shadow: var(--gh-rim), var(--gh-shadow) !important;
+}
+
+/* footer */
+html[data-gug-gh] footer.footer,
+html[data-gug-gh] footer[role="contentinfo"],
+html[data-gug-gh] .site-footer {
+  background: var(--gh-hi), var(--gh-z-footer-bg) !important;
+  -webkit-backdrop-filter: var(--gh-z-footer-bf) !important; backdrop-filter: var(--gh-z-footer-bf) !important;
+  border-radius: var(--gh-z-footer-r) !important;
+  border-color: var(--gh-line) !important;
+}
+
+/* menus & tooltips */
+html[data-gug-gh] :is(.dropdown-menu, .SelectMenu-modal, .Popover-message, tool-tip, [role="menu"], [role="listbox"]:not(select), [role="tooltip"], .autocomplete-results, .suggester, .Overlay--size-auto:not(dialog)):not(:is(.dropdown-menu, .SelectMenu-modal, .Popover-message, .Overlay) *) {
+  background: var(--gh-hi), var(--gh-z-menus-bg) !important;
+  -webkit-backdrop-filter: var(--gh-z-menus-bf) !important; backdrop-filter: var(--gh-z-menus-bf) !important;
+  border-radius: var(--gh-z-menus-r) !important;
+  border-color: var(--gh-line) !important;
+  box-shadow: var(--gh-rim), 0 18px 48px rgb(0 0 0 / .28) !important;
+}
+
+/* dialogs & command palette */
+html[data-gug-gh] :is(dialog, [role="dialog"], [role="alertdialog"], .Overlay--size-medium, .Overlay--size-large, .Overlay--size-small, .Overlay--size-xlarge, .Box--overlay):not(:is(dialog, [role="dialog"], .Overlay) *) {
+  background: var(--gh-hi), var(--gh-z-dialogs-bg) !important;
+  -webkit-backdrop-filter: var(--gh-z-dialogs-bf) !important; backdrop-filter: var(--gh-z-dialogs-bf) !important;
+  border-radius: var(--gh-z-dialogs-r) !important;
+  border-color: var(--gh-line) !important;
+  box-shadow: var(--gh-rim), 0 28px 90px rgb(0 0 0 / .40) !important;
+}
+
+/* ============ 3. NESTED WRAPPERS (cleared so only the outer surface is glass) ============ */
+html[data-gug-gh] :is(.AppHeader-globalBar, .AppHeader-context, .AppHeader-localBar, .Box-header, .Box-body, .Box-row, .Box-footer, .BorderGrid-cell,
+  .timeline-comment-header, .Overlay-header, .Overlay-body, .Overlay-footer) { background: transparent !important; }
+html[data-gug-gh] :is(.Box-header, .Box-row, .Box-footer, .timeline-comment-header, .Overlay-header, .Overlay-footer) { border-color: var(--gh-line-soft) !important; }
+html[data-gug-gh] :is(.file, .highlight) :is(.file-header, .blob-wrapper, .highlight, pre) { background: transparent !important; }
+html[data-gug-gh] :is(.Layout-sidebar) .BorderGrid { background: transparent !important; box-shadow: none !important; -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+
+/* ============ 4. CONTROLS ============ */
+html[data-gug-gh] :is(.btn-primary, .Button--primary, [class*="prc-Button-ButtonBase"][data-variant="primary"]) {
+  background: var(--gh-hi), rgb(46 160 67 / .62) !important; color: #fff !important; border-color: rgb(255 255 255 / .28) !important;
+  box-shadow: var(--gh-rim), 0 6px 20px rgb(46 160 67 / .35) !important;
+  -webkit-backdrop-filter: var(--gh-z-controls-bf) !important; backdrop-filter: var(--gh-z-controls-bf) !important;
+  border-radius: var(--gh-z-controls-r) !important;
+}
+html[data-gug-gh] :is(.btn-danger, .Button--danger) { -webkit-backdrop-filter: var(--gh-z-controls-bf) !important; backdrop-filter: var(--gh-z-controls-bf) !important; border-radius: var(--gh-z-controls-r) !important; }
+html[data-gug-gh] :is(.btn, .Button, [class*="prc-Button-ButtonBase"]) { transition: transform .35s var(--gh-ease), background-color .2s ease, box-shadow .2s ease; }
+html[data-gug-gh][data-gug-bounce="on"] :is(.btn, .Button, [class*="prc-Button-ButtonBase"]):hover { transform: translateY(-1px) scale(1.03); }
+html[data-gug-gh][data-gug-bounce="on"] :is(.btn, .Button, [class*="prc-Button-ButtonBase"]):active { transform: scale(.97); }
+html[data-gug-gh] :is(.form-control, .FormControl-input, .FormControl-textarea, textarea, input):focus { border-color: rgb(var(--gh-accent)) !important; box-shadow: 0 0 0 3px rgb(var(--gh-accent) / .28), var(--gh-rim) !important; }
+html[data-gug-gh] .UnderlineNav-item[aria-current]:not([aria-current="false"]), html[data-gug-gh] .UnderlineNav-item.selected { border-bottom-color: rgb(var(--gh-accent)) !important; }
+
+/* ============ 5. OVERLAY BACKDROPS ============ */
+html[data-gug-gh] :is(.Overlay-backdrop--center, .Overlay-backdrop--anchor, .Overlay-backdrop--side, .Overlay-backdrop--full) {
+  background: rgb(var(--gh-panel) / .30) !important; -webkit-backdrop-filter: blur(8px) saturate(120%); backdrop-filter: blur(8px) saturate(120%);
+}
+html[data-gug-gh] dialog::backdrop { background: rgb(var(--gh-panel) / .30); -webkit-backdrop-filter: blur(8px) saturate(120%); backdrop-filter: blur(8px) saturate(120%); }
+
+/* ============ 6. SCROLLBARS, SELECTION, A11Y ============ */
+html[data-gug-gh] ::selection { background: rgb(var(--gh-accent) / .32); }
+html[data-gug-gh] :focus-visible { outline: 2px solid rgb(var(--gh-accent) / .75) !important; outline-offset: 2px; }
+html[data-gug-gh], html[data-gug-gh] * { scrollbar-width: thin; scrollbar-color: rgb(var(--gh-fg) / .28) transparent; }
+@supports not (scrollbar-width: thin) {
+  html[data-gug-gh] *::-webkit-scrollbar { width: 10px; height: 10px; }
+  html[data-gug-gh] *::-webkit-scrollbar-thumb { background: rgb(var(--gh-fg) / .28); border-radius: 999px; border: 2px solid transparent; background-clip: padding-box; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-gug-gh][data-gug-bounce="on"] :is(.btn, .Button, [class*="prc-Button-ButtonBase"]):is(:hover, :active) { transform: none; }
+  html[data-gug-gh] :is(.btn, .Button, [class*="prc-Button-ButtonBase"]) { transition: none; }
+}
+@supports not (backdrop-filter: blur(1px)) {
+  html[data-gug-gh] :is(.AppHeader, .Box, dialog, [role="menu"], .dropdown-menu, .Overlay) { background: rgb(var(--gh-panel) / .96) !important; }
+}
