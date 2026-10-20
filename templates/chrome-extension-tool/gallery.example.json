@@ -1,0 +1,20 @@
+{
+  "name": "My Useful Tool",
+  "description": "Describe what your extension does.",
+  "platform": "browser",
+  "style": "Productivity Tool",
+  "tags": [
+    "Utility",
+    "Workflow"
+  ],
+  "icon": "MT",
+  "palette": [
+    "#1a2f43",
+    "#31567d",
+    "#9bcfff"
+  ],
+  "author": {
+    "name": "Your GitHub handle",
+    "url": "https://github.com/your-username"
+  }
+}

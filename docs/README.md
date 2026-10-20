@@ -1,31 +1,63 @@
-# Chrome UI Gallery — Visual Showcase
+# Automatic Gallery Catalog
 
-[← Main README](../README.md) · [Open the showcase locally](./index.html) · [Browse UI designs](../ui/README.md) · [Browse tools](../Tools/README.md)
+[← Main README](../README.md) · [Showcase HTML](./index.html) · [Contributor instructions](../CONTRIBUTING.md) · [Metadata specification](./CATALOG.md)
 
-A fast, responsive, accessible **static catalog** for the gallery. It includes category and platform filters, search, project cards, keyboard search shortcut (/) and GitHub source/documentation links.
+**No manual HTML or JavaScript project arrays.** Every approved extension appears automatically.
 
-## Preview locally
+## How updates work
 
-Open [index.html](./index.html) in a modern browser. No build step, npm installation, backend or external dependency is required.
+1. Add **Tools/new-tool/manifest.json** with **README.md**, or a UI design under a platform/style folder with **design.md**.
+2. Pull Request runs **Validate gallery** and automatic-discovery integration tests.
+3. A maintainer reviews the contribution and merges it to **main**.
+4. **Publish automatic gallery** rebuilds **catalog.json** from all approved folders and deploys via GitHub Actions.
+5. GitHub Pages shows the new card, search results, platform filters and updated project counts.
 
-## Publish with GitHub Pages (maintainer action)
+Only **merged** projects appear. A Pull Request alone does not publish new code.
 
-1. Open repository **Settings → Pages**.
-2. Under **Build and deployment**, choose **Deploy from a branch**.
-3. Select **main** and **/docs**, then save.
-4. GitHub will show the final public Pages URL when the initial deployment completes.
+## One-time Pages setup — required
 
-> Repository settings cannot be activated just by committing these files. Do not announce a live URL until GitHub Pages is enabled and the site is visited.
+Open [Settings → Pages](https://github.com/RuslanSharifov/chrome-ui-gallery/settings/pages).
+Change **Build and deployment → Source** from **Deploy from a branch** to **GitHub Actions**.
+Then use [Actions → Publish automatic gallery](https://github.com/RuslanSharifov/chrome-ui-gallery/actions/workflows/publish-gallery.yml) → **Run workflow** → **main**, once.
 
-## Files
+After that, every merge to main automatically generates and deploys the current catalog. If Pages remains configured for **main /docs**, the site can use only the committed catalog.json snapshot, not the new catalog generated during Actions.
 
-- [index.html](./index.html) — semantic page structure and accessible controls
-- [styles.css](./styles.css) — responsive premium dark theme with reduced-motion support
-- [app.js](./app.js) — deterministic project index and search/filter interactions
-- [favicon.svg](./favicon.svg) — project mark
+## How to test locally
 
-## Adding a new catalog item
+Requires Node.js 22 or newer. In repository root:
 
-When approving a new extension, update the **projects** array near the top of **app.js**, choosing a category **ui** or **tool**, correct platform, relative repository documentation and folder paths. Update the category totals in index.html if counts change.
+~~~bash
+node scripts/build-catalog.mjs
+node scripts/test-catalog.mjs
+node scripts/validate.mjs
+node scripts/serve-gallery.mjs
+~~~
 
-All project links intentionally target GitHub directly so they work from local files and from Pages when deployed from /docs.
+Open **http://127.0.0.1:4173** and press Ctrl+C to stop the server.
+
+Opening index.html via a file:// URL is not supported because the page loads catalog.json using the browser's fetch API.
+
+## Source files
+
+- [build-catalog.mjs](../scripts/build-catalog.mjs) — discovers project manifests
+- [catalog.json](./catalog.json) — initial compatibility snapshot for branch-based Pages
+- [app.js](./app.js) — renders data-driven cards, counters and filters
+- [index.html](./index.html) · [styles.css](./styles.css) — website
+- [test-catalog.mjs](../scripts/test-catalog.mjs) — adds temporary test projects to verify discovery
+- [Validate workflow](../.github/workflows/validate.yml) — CI on Pull Requests
+- [Publish workflow](../.github/workflows/publish-gallery.yml) — rebuild and deploy on main
+- [Metadata options](./CATALOG.md) — extra appearance and author information
+
+## Submit an extension
+
+~~~text
+Tools/
+└── your-new-tool/
+    ├── manifest.json
+    ├── README.md
+    ├── popup.html
+    ├── popup.js
+    └── gallery.json  # optional
+~~~
+
+No app.js edit and no hardcoded HTML counts. Security, copyright and privacy reviews remain necessary even when structural validation passes.
