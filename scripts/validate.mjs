@@ -58,15 +58,31 @@ for(const p of files.filter(f=>path.basename(f)==="manifest.json")){
 for(const dir of fs.readdirSync(path.join(root,"Tools"),{withFileTypes:true})){
   if(dir.isDirectory()&&!fs.existsSync(path.join(root,"Tools",dir.name,"manifest.json")))errors.push("Tools/"+dir.name+": missing manifest.json");
 }
-const site=path.join(root,"docs/app.js");
-if(fs.existsSync(site)){
-  const js=fs.readFileSync(site,"utf8"),items=[...js.matchAll(/\bdoc:"([^"]+)"/g)];
-  stats.catalog=items.length;
-  for(const m of [...items,...js.matchAll(/\bfolder:"([^"]+)"/g)]){
-    const target=path.resolve(root,decodeURIComponent(m[1]));
-    if(!inside(target)||!fs.existsSync(target))errors.push("docs/app.js: broken gallery path "+m[1]);
-  }
-  if(items.length!==11)warnings.push("Showcase has "+items.length+" items; update totals in docs/index.html");
+const site=path.join(root,"docs","catalog.json");
+if(!fs.existsSync(site))errors.push("docs/catalog.json missing: run node scripts/build-catalog.mjs");
+else{
+  try{
+    const catalog=JSON.parse(fs.readFileSync(site,"utf8"));
+    if(catalog.schemaVersion!==1||!Array.isArray(catalog.projects))throw new Error("invalid catalog format");
+    const expected=files.filter(p=>path.basename(p)==="manifest.json"&&!rel(p).startsWith("templates/")).length;
+    stats.catalog=catalog.projects.length;
+    if(catalog.projects.length!==expected)errors.push("Catalog contains "+catalog.projects.length+" projects, but found "+expected+" source manifests. Run node scripts/build-catalog.mjs");
+    const ids=new Set();
+    for(const item of catalog.projects){
+      if(typeof item.id!=="string"||ids.has(item.id))errors.push("Duplicate or missing catalog ID");
+      ids.add(item.id);
+      if(!["tool","ui"].includes(item.category))errors.push("Unexpected category for "+item.id);
+      for(const key of ["doc","folder"]){
+        if(typeof item[key]!=="string"){errors.push("Invalid catalog "+key);continue}
+        const dest=path.resolve(root,item[key]);
+        if(!inside(dest)||!fs.existsSync(dest))errors.push("Broken catalog "+key+": "+item[key]);
+      }
+      if(item.preview!==undefined){
+        const image=path.resolve(root,item.preview);
+        if(!inside(image)||!fs.existsSync(image))errors.push("Missing preview: "+item.preview);
+      }
+    }
+  }catch(e){errors.push("Invalid generated catalog: "+e.message)}
 }
 try{
   const index=execFileSync("git",["ls-files","--stage"],{cwd:root,encoding:"utf8",stdio:["ignore","pipe","ignore"]});
