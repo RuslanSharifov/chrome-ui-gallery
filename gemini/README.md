@@ -1,13 +1,14 @@
 # Gemini UI Designs
 
-Chrome extension designs for Gemini.
+[← UI Gallery](../ui/README.md) · [← Home](../README.md) · [Installation guide](../GETTING_STARTED.md)
 
-## Glassmorphism
-- [Gemini Glassmorphism](./glassmorphism/gemini-glassmorphism/design.md)
-- [Glassmorphism overview](./glassmorphism/README.md)
+Visual Chrome extension experiments for Gemini.
 
-## Claymorphism
-- [Gemini Claymorphism](./claymorphism/gemini-claymorphism/design.md)
-- [Claymorphism overview](./claymorphism/README.md)
+| Style | Design | Description |
+| :--- | :--- | :--- |
+| Glassmorphism | [Gemini Glassmorphism](./glassmorphism/gemini-glassmorphism/design.md) | Frosted surfaces, flexible light and blur |
+| Claymorphism | [Gemini Claymorphism](./claymorphism/gemini-claymorphism/design.md) | Tactile surfaces and animated clay clouds |
 
-[← Repository](../README.md)
+[Glassmorphism overview](./glassmorphism/README.md) · [Claymorphism overview](./claymorphism/README.md)
+
+Choose a design, read **design.md**, then load the folder containing **manifest.json**.
