@@ -1,32 +1,94 @@
-# Chrome UI Gallery
+<div align="center">
 
-A collection of Chrome extensions and web UI experiments, organized by platform and visual style.
+# ✦ Chrome UI Gallery
 
-**Browse:** Repository → Platform → Style → Design documentation → Implementation files.
+### Beautiful browser interfaces. Useful extensions. Built together.
 
-## Platforms
+**An open-source home for Chrome UI experiments and practical browser tools.**
 
-- [ChatGPT](./chatgpt/README.md)
-- [Gemini](./gemini/README.md)
-- [GitHub](./github/README.md)
-- [Lovable](./lovable/README.md)
+[Explore UI Designs](./ui/README.md) · [Explore Tools](./Tools/README.md) · [Get Started](./GETTING_STARTED.md) · [Contribute](./CONTRIBUTING.md)
 
-## Tools
+![License: MIT](https://img.shields.io/badge/license-MIT-56d6a0?style=flat-square)
+![Contributions welcome](https://img.shields.io/badge/contributions-welcome-8d7bff?style=flat-square)
+![Chrome Extensions](https://img.shields.io/badge/Chrome-Manifest%20V3-60b6ff?style=flat-square)
 
-- [Chrome Extension Tools](./Tools/README.md) — utilities independent of visual redesigns.
+[Azərbaycan dili](./GETTING_STARTED.az.md) · [English](./GETTING_STARTED.md)
 
-## Setup and documentation
+</div>
 
-- [Setup guides (6 languages)](./setup/README.md)
-- To install any extension, load the **specific folder containing `manifest.json`** via `chrome://extensions` → Developer mode → Load unpacked.
+---
 
-## Repository conventions
+## ✨ What would you like to do?
 
-1. Keep platforms in separate top-level folders, and group visual designs by style.
-2. Preserve existing folders and filenames; place each new design in its own directory.
-3. Every visual design should have a `design.md` describing its purpose, style, technologies, files, setup, and possible reuse.
-4. Use relative Markdown links, and update the platform/style README navigation whenever adding a design.
-5. Keep implementation assets alongside the extension's `manifest.json`.
-6. Standalone utilities belong in [Tools](./Tools/README.md).
+| 🎨 Explore visual designs | 🧰 Find useful tools |
+| :--- | :--- |
+| Custom themes and interactive UI experiments for ChatGPT, Gemini, GitHub and Lovable. | Standalone Chrome extensions to solve everyday browser problems. |
+| **[Browse all UI designs →](./ui/README.md)** | **[Browse all tools →](./Tools/README.md)** |
 
-> **Note:** [ChatGPT Lag Fixer](./Tools/README.md#chatgpt-lag-fixer) is currently recorded as a Git submodule/gitlink in this repository, not as a normal folder of committed source files. See the Tools README for the required fix.
+| 🚀 Install your first extension | 🤝 Publish your extension |
+| :--- | :--- |
+| No coding experience required. Follow a step-by-step installation guide. | Add a tool or design with your name credited and a reviewable pull request. |
+| **[Beginner-friendly guide →](./GETTING_STARTED.md)** | **[Contribution guide →](./CONTRIBUTING.md)** |
+
+## 🎨 Featured UI collections
+
+| ChatGPT | Gemini |
+| :---: | :---: |
+| [![ChatGPT glass preview](./chatgpt/glassmorphism/preview.svg)](./chatgpt/README.md) | [![Gemini glass preview](./gemini/glassmorphism/preview.svg)](./gemini/README.md) |
+| [Open ChatGPT designs](./chatgpt/README.md) | [Open Gemini designs](./gemini/README.md) |
+
+| GitHub | Lovable |
+| :---: | :---: |
+| [**GitHub themes →**](./github/README.md) | [![Lovable glass preview](./lovable/glassmorphism/preview.svg)](./lovable/README.md) |
+| Glassmorphism · Liquid Glass · 3D | [Open Lovable designs](./lovable/README.md) |
+
+## 🧰 Featured tools
+
+| Tool | What it does | Install |
+| :--- | :--- | :--- |
+| [ChatGPT Lag Fixer](./Tools/chatgpt-lag-fixer/README.md) | Improves responsiveness in long conversations | [Instructions](./Tools/chatgpt-lag-fixer/INSTALL.md) |
+| [Cookie Manager Pro](./Tools/cookie-manager-pro/README.md) | Inspect and manage browser cookies | [Instructions](./Tools/cookie-manager-pro/README.md#installation) |
+
+## 🪄 Try an extension in four steps
+
+1. Choose a [UI design](./ui/README.md) or [tool](./Tools/README.md).
+2. Download the source using **Code → Download ZIP**, then extract the ZIP.
+3. Open **chrome://extensions** and enable **Developer mode**.
+4. Click **Load unpacked** and select the exact project folder containing **manifest.json**.
+
+> Chrome shows the permissions an extension requests. Review them before installing. These are community-maintained experiments, not official products of the platforms they customize.
+
+**[Detailed guide with Windows instructions →](./GETTING_STARTED.md)** · [Azərbaycan dilində →](./GETTING_STARTED.az.md)
+
+## 🤝 Build this gallery with us
+
+Developers of every experience level are welcome. You can submit a new browser tool, design a UI theme, fix a bug, improve translations, or update documentation.
+
+**[How to contribute →](./CONTRIBUTING.md)** · [Submit a tool →](./CONTRIBUTING.md#add-a-new-tool) · [Start from the extension template →](./templates/chrome-extension-tool/README.md) · [Report a bug →](https://github.com/RuslanSharifov/chrome-ui-gallery/issues/new/choose)
+
+## 📁 Where things live
+
+| Area | Location | Purpose |
+| :--- | :--- | :--- |
+| UI directory | [ui/](./ui/README.md) | Single catalog for visual styles and platform designs |
+| Platform source | [chatgpt/](./chatgpt/README.md) · [gemini/](./gemini/README.md) · [github/](./github/README.md) · [lovable/](./lovable/README.md) | Existing, stable extension source paths |
+| Tool source | [Tools/](./Tools/README.md) | Independent extension folders |
+| Templates | [templates/](./templates/README.md) | Starter files for contributors |
+| Guides | [setup/](./setup/README.md) | Multilingual installation and development guides |
+| Showcase website | [docs/](./docs/README.md) | Responsive searchable catalog; GitHub Pages-ready |
+
+Keeping the existing platform folders in place preserves older GitHub links. The [architecture guide](./ARCHITECTURE.md) explains how the **UI** and **Tools** collections stay logically separate without breaking old URLs.
+
+## 📜 License and safety
+
+The gallery's original contributions are distributed under the [MIT License](./LICENSE), subject to the [license inventory and third-party exceptions](./LICENSES.md). Each external component may have its own license. Review [Security](./SECURITY.md) and [Community Standards](./CODE_OF_CONDUCT.md) before publishing.
+
+---
+
+<div align="center">
+
+**Made for people who enjoy building a better browser.**
+
+[UI Gallery](./ui/README.md) · [Tools](./Tools/README.md) · [Contributing](./CONTRIBUTING.md) · [GitHub Issues](https://github.com/RuslanSharifov/chrome-ui-gallery/issues)
+
+</div>

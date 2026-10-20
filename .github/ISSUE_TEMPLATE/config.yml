@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Beginner installation guide
+    url: https://github.com/RuslanSharifov/chrome-ui-gallery/blob/main/GETTING_STARTED.md
+    about: Try these steps before submitting an installation issue.
+  - name: Security reports
+    url: https://github.com/RuslanSharifov/chrome-ui-gallery/security
+    about: Do not disclose vulnerabilities or secrets in public issues.

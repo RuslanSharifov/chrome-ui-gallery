@@ -1,0 +1,23 @@
+name: Feature or UI design idea
+description: Suggest an improvement or new platform/design style
+title: "[Idea]: "
+labels: ["enhancement"]
+body:
+  - type: input
+    id: target
+    attributes:
+      label: Platform or area
+      placeholder: "Gemini / Glassmorphism"
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: User need or problem
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Screenshots and references are welcome when you own or may share them.

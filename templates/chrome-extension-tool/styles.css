@@ -1,0 +1,5 @@
+:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color-scheme:dark}
+body{margin:0;min-width:260px;background:#121724;color:#f4f7ff}
+main{padding:20px}h1{font-size:20px}p{line-height:1.55;color:#cad3e3}
+button{border:0;border-radius:10px;padding:10px 14px;background:#85e5cc;color:#102522;font-weight:700;cursor:pointer}
+button:focus-visible{outline:3px solid white;outline-offset:3px}

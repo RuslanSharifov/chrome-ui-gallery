@@ -1,0 +1,27 @@
+name: Suggest a new tool
+description: Propose a useful Chrome extension before building it
+title: "[Tool idea]: "
+labels: ["enhancement"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Proposed tool name
+      placeholder: "Tab Organizer"
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does it solve?
+    validations:
+      required: true
+  - type: textarea
+    id: permissions
+    attributes:
+      label: Expected browser permissions and data handling
+      description: Explain why the tool needs each permission.
+  - type: textarea
+    id: approach
+    attributes:
+      label: Suggested implementation or references

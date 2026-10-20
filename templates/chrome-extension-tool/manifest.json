@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "Your Tool Name — Starter",
+  "version": "0.1.0",
+  "description": "A minimal starter extension. Rename and document its real purpose.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Your Tool Name"
+  }
+}
