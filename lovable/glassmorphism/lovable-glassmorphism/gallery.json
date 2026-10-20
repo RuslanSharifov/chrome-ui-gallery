@@ -1,0 +1,16 @@
+{
+  "name": "Lovable Glassmorphism",
+  "description": "A luminous gradient-infused glass makeover for the Lovable workspace.",
+  "style": "Glassmorphism",
+  "tags": [
+    "Glass",
+    "Gradient",
+    "Studio"
+  ],
+  "icon": "L",
+  "palette": [
+    "#3f1f3f",
+    "#71425e",
+    "#f6a7d9"
+  ]
+}

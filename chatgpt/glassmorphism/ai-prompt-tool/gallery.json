@@ -1,0 +1,16 @@
+{
+  "name": "ChatGPT Glassmorphism",
+  "description": "Translucent surfaces, ambient glow and customizable glass controls for ChatGPT.",
+  "style": "Glassmorphism",
+  "tags": [
+    "Glass",
+    "AI",
+    "Theme"
+  ],
+  "icon": "C",
+  "palette": [
+    "#22223f",
+    "#40375c",
+    "#ac99fd"
+  ]
+}

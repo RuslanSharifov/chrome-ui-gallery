@@ -1,0 +1,16 @@
+{
+  "name": "3D GitHub",
+  "description": "Mouse-aware 3D depth, glass panels and reactive proximity animations.",
+  "style": "3D / Glassmorphism",
+  "tags": [
+    "3D",
+    "Depth",
+    "Motion"
+  ],
+  "icon": "3D",
+  "palette": [
+    "#2a243f",
+    "#46375c",
+    "#a690fe"
+  ]
+}

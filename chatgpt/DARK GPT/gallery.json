@@ -1,0 +1,16 @@
+{
+  "name": "DARK GPT",
+  "description": "A bold dark-red theme with interactive particle welcome text and pointer glow.",
+  "style": "Dark / Particle FX",
+  "tags": [
+    "Dark",
+    "Particles",
+    "3D"
+  ],
+  "icon": "D",
+  "palette": [
+    "#28131e",
+    "#601d35",
+    "#ff526f"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "GitHub Liquid Glass",
+  "description": "Fluid refractive surfaces, ambient backgrounds and detailed visual controls.",
+  "style": "Liquid Glass",
+  "tags": [
+    "Liquid",
+    "Glass",
+    "Effects"
+  ],
+  "icon": "GH",
+  "palette": [
+    "#172d3f",
+    "#37576a",
+    "#6db9f2"
+  ]
+}

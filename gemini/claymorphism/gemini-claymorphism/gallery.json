@@ -1,0 +1,16 @@
+{
+  "name": "Gemini Claymorphism",
+  "description": "Soft 3D clay shapes, warm color and gentle interactive clouds.",
+  "style": "Claymorphism",
+  "tags": [
+    "Clay",
+    "Clouds",
+    "Motion"
+  ],
+  "icon": "G",
+  "palette": [
+    "#4b364e",
+    "#75577b",
+    "#dbbaf2"
+  ]
+}

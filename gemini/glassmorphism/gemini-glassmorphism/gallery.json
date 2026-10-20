@@ -1,0 +1,16 @@
+{
+  "name": "Gemini Glassmorphism",
+  "description": "Adaptive frosted panels, flowing atmosphere and fine-tuned Gemini lighting.",
+  "style": "Glassmorphism",
+  "tags": [
+    "Glass",
+    "Lighting",
+    "AI"
+  ],
+  "icon": "G",
+  "palette": [
+    "#132d40",
+    "#35516a",
+    "#9fcbff"
+  ]
+}

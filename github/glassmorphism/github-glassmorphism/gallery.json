@@ -1,0 +1,16 @@
+{
+  "name": "GitHub Glassmorphism",
+  "description": "A sleek translucent developer experience layered over GitHub.",
+  "style": "Glassmorphism",
+  "tags": [
+    "Glass",
+    "Dev",
+    "Theme"
+  ],
+  "icon": "GH",
+  "palette": [
+    "#132836",
+    "#1d4c54",
+    "#78d4c1"
+  ]
+}

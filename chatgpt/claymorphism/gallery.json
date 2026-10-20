@@ -1,0 +1,16 @@
+{
+  "name": "ChatGPT Claymorphism",
+  "description": "Soft rounded surfaces, sculpted panels and a playful, tactile ChatGPT look.",
+  "style": "Claymorphism",
+  "tags": [
+    "Clay",
+    "Depth",
+    "AI"
+  ],
+  "icon": "C",
+  "palette": [
+    "#52414f",
+    "#77565e",
+    "#f0baae"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "ChatGPT Lag Fixer",
+  "description": "Helps long ChatGPT conversations run more smoothly by optimizing older messages.",
+  "style": "Performance Tool",
+  "platform": "chatgpt",
+  "tags": [
+    "Speed",
+    "Productivity",
+    "Utility"
+  ],
+  "icon": "↯",
+  "palette": [
+    "#133c36",
+    "#216456",
+    "#6cdbc5"
+  ]
+}
