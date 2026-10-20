@@ -11,7 +11,7 @@ Hər kəs öz Chrome extension-unu, UI dizaynını, tərcüməsini və ya bug d�
 3. Yeni branch yarat: **git switch -c add/my-tool**.
 4. Yeni tool-u **Tools/my-tool/** folderinə əlavə et.
 5. **manifest.json** və **README.md** daxil olmaqla bütün lazımi faylları əlavə et.
-6. **Tools/README.md** sənədində yeni tool-a keçid yerləşdir.
+6. İstəsən **gallery.json** ilə tool-un müəllifini, rəngini və təsvirini əlavə et. **docs/app.js** və HTML siyahısını dəyişmək lazım deyil.
 7. **node scripts/validate.mjs** ilə faylları yoxla və **chrome://extensions** vasitəsilə test et.
 8. Dəyişikliklərini GitHub-a push et və **Pull Request** aç.
 
@@ -25,3 +25,7 @@ UI dizaynı əlavə edirsənsə, uyğun platforma və stil qovluğundan istifad�
 - Mənbə kodunda gizli izləmə və uzaqdan yüklənən icra olunan kod olmamalıdır.
 
 **[Tool şablonunu aç](./templates/chrome-extension-tool/README.md)** · **[Pull Request siyahısı](./.github/PULL_REQUEST_TEMPLATE.md)** · **[Tam qaydalar](./CONTRIBUTING.md)**
+
+## Sayta avtomatik əlavə olunma
+
+Pull Request yoxlanılıb **main** branch-inə birləşdiriləndən sonra GitHub Actions extension-un manifest.json faylını tapır, kataloqu yeniləyir və saytda yeni kart yaradır. [Ətraflı avtomatlaşdırma təlimatı](./docs/README.md) · [gallery.json qaydaları](./docs/CATALOG.md).

@@ -30,6 +30,13 @@
 | No coding experience required. Follow a step-by-step installation guide. | Add a tool or design with your name credited and a reviewable pull request. |
 | **[Beginner-friendly guide →](./GETTING_STARTED.md)** | **[Contribution guide →](./CONTRIBUTING.md)** |
 
+## 🔄 The gallery updates itself
+
+**Contributors add their extension folder; the website adds the card automatically after approval.**
+A GitHub Action scans each **manifest.json**, reads optional **gallery.json** for attribution and visual style, then rebuilds the searchable site on every merge to main. Nobody needs to edit the website's HTML, JavaScript project list or totals.
+
+[Read the automatic publishing guide](./docs/README.md) · [Customize your tool card](./docs/CATALOG.md)
+
 ## 🎨 Featured UI collections
 
 | ChatGPT | Gemini |

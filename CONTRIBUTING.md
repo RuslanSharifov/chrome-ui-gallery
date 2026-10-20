@@ -9,7 +9,7 @@ Thank you for helping build a browser gallery that is useful and easy to navigat
 1. **Fork** this repository on GitHub.
 2. **Clone your fork** locally and create a new branch.
 3. Add one focused tool, design, bug fix or documentation improvement.
-4. Test locally and run **node scripts/validate.mjs**.
+4. Test locally and run **node scripts/build-catalog.mjs**, **node scripts/test-catalog.mjs** and **node scripts/validate.mjs**.
 5. Commit your changes and push the branch to your fork.
 6. Open a **Pull Request** to **main**, complete the template, and respond to review comments.
 
@@ -36,8 +36,8 @@ A tool is a standalone browser utility, not just a visual theme.
 4. In your README include: purpose, author/GitHub handle, features, screenshots if available, exact permissions and why needed, installation, usage, limitations, tests and license.
 5. Do not include a nested **.git/** folder, downloaded third-party binaries, obfuscated scripts, remote executable code, undisclosed analytics or tracking.
 6. Document all network requests, external services, data storage and permissions clearly.
-7. Update the table in [Tools/README.md](./Tools/README.md) to list your new tool.
-8. Run the repository validator and test **Load unpacked** in a clean Chrome profile.
+7. Optional: add [gallery.json](./docs/CATALOG.md) to show your author, tags, color palette and screenshot. **Do not edit docs/app.js or the HTML project counters.** The website lists your tool automatically after the PR is merged.
+8. Run the catalog build, discovery integration test, repository validator, and **Load unpacked** in a clean Chrome profile.
 
 **Required layout:**
 
@@ -49,7 +49,8 @@ Tools/
     ├── popup.html
     ├── popup.js
     ├── styles.css
-    └── icons/       (if referenced by the manifest)
+    ├── gallery.json  (optional card metadata)
+    └── icons/        (if referenced by the manifest)
 ~~~
 
 Files beyond those shown depend on your feature set. No build framework is required.
@@ -63,7 +64,7 @@ A visual theme belongs in a platform's style collection. **Keep existing platfor
 3. Give every new design its own unique directory. Do not overwrite a prior design.
 4. Add **design.md**, **manifest.json**, source files, and optional previews.
 5. Fill out [the design document template](./templates/ui-design/design-template.md) and list real paths for the files.
-6. Update that platform's README, style README where used, and [UI directory](./ui/README.md).
+6. Update the platform/style README when useful for GitHub navigation; new platforms should also be linked in [UI directory](./ui/README.md). **The website itself discovers the new design automatically**, including the new platform filter, without code edits.
 
 **Example:** **chatgpt/glassmorphism/your-unique-design/design.md**.
 
@@ -91,3 +92,7 @@ This project uses [MIT](./LICENSE) for project-owned original content. **Only su
 - [Open an issue](https://github.com/RuslanSharifov/chrome-ui-gallery/issues/new/choose) for bugs, feature ideas and tool proposals.
 - [Browse pull requests](https://github.com/RuslanSharifov/chrome-ui-gallery/pulls) to see ongoing work.
 - [Read community governance](./GOVERNANCE.md).
+
+## Automatic website publishing
+
+After your Pull Request passes review and is merged, **Publish automatic gallery** rebuilds the catalog and deploys GitHub Pages. Do not manually edit docs/app.js, docs/catalog.json or the website's project counts to publish your tool. See [automatic publishing instructions](./docs/README.md). Only approved code is published.

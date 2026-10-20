@@ -14,11 +14,12 @@
 - [ ] I used a unique folder and did not overwrite an unrelated design/tool.
 - [ ] My extension has a valid Manifest V3 manifest and every referenced file exists.
 - [ ] I added README.md (tools) or design.md (UI) with purpose, author, usage and license.
-- [ ] I updated the relevant platform, style, UI or Tools catalog links.
+- [ ] I updated relevant platform/style GitHub navigation where appropriate. The website catalog updates automatically; I did not hardcode cards or counts in HTML/JS.
+- [ ] I verified optional gallery.json metadata (if supplied) includes accurate author/attribution.
 - [ ] I listed permissions and explained why each is needed.
 - [ ] I own the submitted content or documented compatible third-party licenses and attribution.
 - [ ] No secrets, cookies, personal data, remote executable code or hidden tracking are included.
-- [ ] I ran **node scripts/validate.mjs** and checked **Load unpacked** (or explained why not).
+- [ ] I ran **node scripts/build-catalog.mjs**, **node scripts/test-catalog.mjs** and **node scripts/validate.mjs** and checked **Load unpacked** (or explained why not).
 
 ## Testing
 

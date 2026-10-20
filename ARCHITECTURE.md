@@ -47,3 +47,7 @@ The capitalized **Tools/** path is also preserved for compatibility. Folder name
 ## Code ownership and licensing
 
 Refer to [LICENSES.md](./LICENSES.md). Keep separately licensed components and attribution with the code. No project structure can replace an actual provenance review.
+
+## Automatic publishing pipeline
+
+Projects are discovered from existing extension manifest.json files by [scripts/build-catalog.mjs](./scripts/build-catalog.mjs), with optional per-project gallery.json metadata. [Validate gallery](./.github/workflows/validate.yml) checks contribution folders and automatic discovery; [Publish automatic gallery](./.github/workflows/publish-gallery.yml) builds the latest catalog and deploys only merged main. GitHub Pages must use **Source: GitHub Actions** (see [docs/README.md](./docs/README.md)). No auto-commits to a protected main branch are needed.

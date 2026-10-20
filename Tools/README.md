@@ -4,7 +4,11 @@
 
 Tools are **standalone extensions**, separate from visual UI redesigns. Each tool includes its own installation instructions, source files and license information.
 
-## Discover tools
+## Browse every approved tool
+
+**[Open the searchable live gallery](https://ruslansharifov.github.io/chrome-ui-gallery/)** — this catalog is generated automatically from every approved Tool directory. The table below highlights the original utilities; it is not a complete list once community contributions grow.
+
+## Featured tools
 
 | Tool | Category | Description | Source |
 | :--- | :--- | :--- | :--- |
@@ -24,7 +28,7 @@ Tools are **standalone extensions**, separate from visual UI redesigns. Each too
 
 1. **[Read the rules](../CONTRIBUTING.md#add-a-new-tool)**.
 2. Copy **[the extension starter template](../templates/chrome-extension-tool/README.md)** into a new folder at **Tools/your-tool-name/**.
-3. Add your source files, **README.md**, working **manifest.json**, license information and screenshots (if useful).
+3. Add your source files, **README.md**, working **manifest.json**, license information and screenshots (if useful). Optionally add [gallery.json](../docs/CATALOG.md) to customize the card and author credit.
 4. Test with **Load unpacked**; open a pull request using **[the checklist](../.github/PULL_REQUEST_TEMPLATE.md)**.
 
 Please do not place nested .git folders inside submissions or commit API tokens, passwords, session data or user cookies.
@@ -34,3 +38,5 @@ Please do not place nested .git folders inside submissions or commit API tokens,
 Always review extension permissions. A listing here is not an independent safety certification. [Security policy](../SECURITY.md) · [License inventory](../LICENSES.md).
 
 > **ChatGPT Lag Fixer packaging fixed:** Its files are now part of the gallery as ordinary tracked files, so ZIP downloads include the extension. Its original [standalone repository](https://github.com/RuslanSharifov/chatgpt-lag-fixer) remains available.
+
+The website discovers new tool folders automatically when a reviewed Pull Request is merged. [How automatic publishing works](../docs/README.md).

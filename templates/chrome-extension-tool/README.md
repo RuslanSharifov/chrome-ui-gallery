@@ -9,7 +9,8 @@ A minimal, no-dependency Chrome Manifest V3 popup extension.
 3. Replace the sample UI, logic and README with your actual tool; describe the permissions you need.
 4. Add icons only if you reference those paths in the manifest.
 5. Test with **chrome://extensions → Developer mode → Load unpacked**.
-6. Update [the tool catalog](../../Tools/README.md), then open a pull request.
+6. Optionally copy [gallery.example.json](./gallery.example.json) to **gallery.json** (in your new tool folder), then update the example author and content.
+7. Open a pull request. **The website discovers your tool automatically** after review and merge. No website JavaScript or HTML changes are required.
 
 ## Sample files
 
@@ -21,3 +22,5 @@ A minimal, no-dependency Chrome Manifest V3 popup extension.
 **License:** [MIT](../../LICENSE) for new contributions submitted under the repository's standard terms.
 
 This directory is a **template**, not a published tool listing.
+
+[Automatic gallery guide](../../docs/README.md) · [Optional metadata specification](../../docs/CATALOG.md).

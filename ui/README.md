@@ -2,7 +2,7 @@
 
 [← Home](../README.md) · [Tools instead →](../Tools/README.md) · [Setup →](../GETTING_STARTED.md)
 
-Choose a **platform**, then a **style**, then open **design.md** for the implementation details and source files.
+Choose a **platform**, then a **style**, then open **design.md** for implementation details. The table below features the original designs; **[the searchable website](https://ruslansharifov.github.io/chrome-ui-gallery/)** automatically lists every approved UI design, including future platforms.
 
 | Platform | Styles and designs |
 | :--- | :--- |
@@ -23,3 +23,5 @@ Choose a **platform**, then a **style**, then open **design.md** for the impleme
 Use the [design documentation template](../templates/ui-design/design-template.md) and follow the [contribution instructions](../CONTRIBUTING.md#add-a-new-ui-design).
 
 > Existing source folders intentionally stay at the repository root to preserve public URLs. This page is the dedicated UI section; Tools live separately in [Tools/](../Tools/README.md).
+
+New UI designs enter the website automatically after merging to main. Optional [gallery.json metadata](../docs/CATALOG.md) customizes display, author and preview.
