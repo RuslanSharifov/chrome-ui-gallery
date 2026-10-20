@@ -1,0 +1,20 @@
+/* 1) Browser skips layout/paint for messages outside the viewport.
+      This is the biggest win for very long chats. */
+html.cgf-cv .cgf-turn {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 480px;
+}
+
+/* 2) Old messages don't need animations, transitions or blur effects. */
+html.cgf-light .cgf-old,
+html.cgf-light .cgf-old * {
+  transition: none !important;
+  animation: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* 3) Isolate old messages so changes inside them don't trigger page-wide relayout. */
+html.cgf-light .cgf-old {
+  contain: layout style;
+}
