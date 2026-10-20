@@ -23,4 +23,4 @@ A minimal, no-dependency Chrome Manifest V3 popup extension.
 
 This directory is a **template**, not a published tool listing.
 
-[Automatic gallery guide](../../docs/README.md) · [Optional metadata specification](../../docs/CATALOG.md).
+[Automatic gallery guide](../../docs/README.md) · [Optional metadata specification](../../docs/CATALOG.md) · [DevLens as a submitted tool example](../../Tools/devlens/README.md) · [All tools](../../Tools/README.md).

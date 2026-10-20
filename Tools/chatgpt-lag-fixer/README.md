@@ -1,5 +1,7 @@
 # ChatGPT Lag Fixer
 
+[← All tools](../README.md) · [Gallery home](../../README.md) · [DevLens](../devlens/README.md)
+
 A Chrome extension that reduces freezing and lag in long ChatGPT conversations.
 
 ## Features

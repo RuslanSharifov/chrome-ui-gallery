@@ -6,7 +6,7 @@
 
 **An open-source home for Chrome UI experiments and practical browser tools.**
 
-[Explore UI Designs](./ui/README.md) · [Explore Tools](./Tools/README.md) · [Get Started](./GETTING_STARTED.md) · [Contribute](./CONTRIBUTING.md)
+[Explore UI Designs](./ui/README.md) · [Explore Tools](./Tools/README.md) · [DevLens](./Tools/devlens/README.md) · [Get Started](./GETTING_STARTED.md) · [Contribute](./CONTRIBUTING.md)
 
 ![License: MIT](https://img.shields.io/badge/license-MIT-56d6a0?style=flat-square)
 ![Contributions welcome](https://img.shields.io/badge/contributions-welcome-8d7bff?style=flat-square)
@@ -55,6 +55,7 @@ A GitHub Action scans each **manifest.json**, reads optional **gallery.json** fo
 | :--- | :--- | :--- |
 | [ChatGPT Lag Fixer](./Tools/chatgpt-lag-fixer/README.md) | Improves responsiveness in long conversations | [Instructions](./Tools/chatgpt-lag-fixer/INSTALL.md) |
 | [Cookie Manager Pro](./Tools/cookie-manager-pro/README.md) | Inspect and manage browser cookies | [Instructions](./Tools/cookie-manager-pro/README.md#installation) |
+| **[DevLens](./Tools/devlens/README.md)** | Floating developer HUD for console errors, logs and page fetch/XHR diagnostics | [Install & use](./Tools/devlens/README.md#-installation) |
 
 ## 🪄 Try an extension in four steps
 
@@ -96,6 +97,6 @@ The gallery's original contributions are distributed under the [MIT License](./L
 
 **Made for people who enjoy building a better browser.**
 
-[UI Gallery](./ui/README.md) · [Tools](./Tools/README.md) · [Contributing](./CONTRIBUTING.md) · [GitHub Issues](https://github.com/RuslanSharifov/chrome-ui-gallery/issues)
+[UI Gallery](./ui/README.md) · [Tools](./Tools/README.md) · [DevLens](./Tools/devlens/README.md) · [Contributing](./CONTRIBUTING.md) · [GitHub Issues](https://github.com/RuslanSharifov/chrome-ui-gallery/issues)
 
 </div>

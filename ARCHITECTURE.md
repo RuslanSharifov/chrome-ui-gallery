@@ -21,13 +21,16 @@ chrome-ui-gallery/
 ├── Tools/                       # Independent browser utilities
 │   ├── README.md
 │   ├── chatgpt-lag-fixer/
-│   └── cookie-manager-pro/
+│   ├── cookie-manager-pro/
+│   └── devlens/
 ├── templates/                   # Extension and documentation starters
 ├── docs/                        # Standalone, searchable showcase website
 ├── scripts/                     # Zero-dependency repository verification
 ├── .github/                     # Contributor UX and CI
 └── setup/                       # Multilingual setup guides
 ~~~
+
+Browse [all tools](./Tools/README.md), inspect the community-submitted [DevLens tool](./Tools/devlens/README.md), or return to the [main navigation](./README.md).
 
 ## Why no mass rename to ui/platform?
 

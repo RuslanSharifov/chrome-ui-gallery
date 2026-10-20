@@ -13,6 +13,7 @@ The root [MIT License](./LICENSE) covers original material owned by this project
 | Gallery documentation, templates, original components | [Root LICENSE](./LICENSE) | MIT for work lawfully owned/licensed by project contributors |
 | ChatGPT Lag Fixer | [Its own LICENSE](./Tools/chatgpt-lag-fixer/LICENSE) | MIT (retained verbatim from the [standalone source](https://github.com/RuslanSharifov/chatgpt-lag-fixer)) |
 | Cookie Manager Pro | [Source directory](./Tools/cookie-manager-pro/README.md) | No separate license file was present in the source directory at audit; root MIT applies only where the project owner has the rights |
+| **DevLens** | [Documentation](./Tools/devlens/README.md) · [Submitted LICENSE](./Tools/devlens/LICENSE) | MIT notice supplied with the community contribution; author identity, copyright year and third-party asset provenance have **not** been independently verified |
 | ChatGPT UI examples | [Collection](./chatgpt/README.md) | No independent license files found in the sampled design directories; check asset provenance |
 | Gemini UI examples | [Collection](./gemini/README.md) | No independent license files found; check asset provenance |
 | GitHub UI examples | [Collection](./github/README.md) | No independent license files found; check asset provenance |

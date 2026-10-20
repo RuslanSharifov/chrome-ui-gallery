@@ -1,19 +1,20 @@
 # 🧰 Chrome Extension Tools
 
-[← Home](../README.md) · [UI Gallery →](../ui/README.md) · [Contribute a tool →](../CONTRIBUTING.md#add-a-new-tool)
+[← Home](../README.md) · [UI Gallery →](../ui/README.md) · [DevLens →](./devlens/README.md) · [Contribute a tool →](../CONTRIBUTING.md#add-a-new-tool)
 
 Tools are **standalone extensions**, separate from visual UI redesigns. Each tool includes its own installation instructions, source files and license information.
 
 ## Browse every approved tool
 
-**[Open the searchable live gallery](https://ruslansharifov.github.io/chrome-ui-gallery/)** — this catalog is generated automatically from every approved Tool directory. The table below highlights the original utilities; it is not a complete list once community contributions grow.
+**[Open the searchable live gallery](https://ruslansharifov.github.io/chrome-ui-gallery/)** — this catalog is generated automatically from every approved Tool directory. The table below links to the currently documented extensions. The live website's full catalog is built automatically when new tools are merged.
 
-## Featured tools
+## Tool directory
 
 | Tool | Category | Description | Source |
 | :--- | :--- | :--- | :--- |
 | **[ChatGPT Lag Fixer](./chatgpt-lag-fixer/README.md)** | Performance | Reduce lag in long ChatGPT chats | [Open folder](./chatgpt-lag-fixer/) |
 | **[Cookie Manager Pro](./cookie-manager-pro/README.md)** | Browser utility | View, edit, clear and organize cookies | [Open folder](./cookie-manager-pro/) |
+| **[DevLens](./devlens/README.md)** | Developer diagnostics | Floating console/error HUD, page fetch/XHR monitoring and searchable diagnostics panel; broad site access | [Source files](./devlens/) · [Manifest](./devlens/manifest.json) |
 
 ## Install a tool
 
@@ -22,7 +23,7 @@ Tools are **standalone extensions**, separate from visual UI redesigns. Each too
 3. Turn on **Developer mode**, click **Load unpacked**, and select the tool's folder with its **manifest.json**.
 4. Open the extension's toolbar button if it provides one.
 
-**[Step-by-step beginner guide →](../GETTING_STARTED.md)**
+**[Step-by-step beginner guide →](../GETTING_STARTED.md)** · **[DevLens installation →](./devlens/README.md#-installation)**
 
 ## Submit your own tool
 

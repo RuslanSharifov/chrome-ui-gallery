@@ -1,6 +1,6 @@
 # 🎨 UI Design Gallery
 
-[← Home](../README.md) · [Tools instead →](../Tools/README.md) · [Setup →](../GETTING_STARTED.md)
+[← Home](../README.md) · [Tools instead →](../Tools/README.md) · [DevLens developer tool →](../Tools/devlens/README.md) · [Setup →](../GETTING_STARTED.md)
 
 Choose a **platform**, then a **style**, then open **design.md** for implementation details. The table below features the original designs; **[the searchable website](https://ruslansharifov.github.io/chrome-ui-gallery/)** automatically lists every approved UI design, including future platforms.
 

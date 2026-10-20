@@ -1,6 +1,6 @@
 # Automatic Gallery Catalog
 
-[← Main README](../README.md) · [Showcase HTML](./index.html) · [Contributor instructions](../CONTRIBUTING.md) · [Metadata specification](./CATALOG.md)
+[← Main README](../README.md) · [Browse tools](../Tools/README.md) · [DevLens](../Tools/devlens/README.md) · [Showcase HTML](./index.html) · [Contributor instructions](../CONTRIBUTING.md) · [Metadata specification](./CATALOG.md)
 
 **No manual HTML or JavaScript project arrays.** Every approved extension appears automatically.
 
@@ -13,6 +13,10 @@
 5. GitHub Pages shows the new card, search results, platform filters and updated project counts.
 
 Only **merged** projects appear. A Pull Request alone does not publish new code.
+
+## Example: accepted developer tool
+
+**[DevLens](../Tools/devlens/README.md)** is a merged example in [Tools/](../Tools/README.md). Its [manifest.json](../Tools/devlens/manifest.json) and [gallery.json](../Tools/devlens/gallery.json) demonstrate how the automatic catalog creates a tool card and source/documentation links without editing the website JavaScript.
 
 ## One-time Pages setup — required
 

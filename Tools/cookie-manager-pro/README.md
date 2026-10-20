@@ -1,6 +1,6 @@
 # 🍪 Cookie Manager Pro
 
-[← All tools](../README.md) · [← Gallery home](../../README.md) · [Beginner installation guide](../../GETTING_STARTED.md)
+[← All tools](../README.md) · [← Gallery home](../../README.md) · [DevLens](../devlens/README.md) · [Beginner installation guide](../../GETTING_STARTED.md)
 
 A Chrome Manifest V3 extension for viewing and managing browser cookies.
 

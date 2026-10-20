@@ -1,5 +1,7 @@
 # ⬡ DevLens
 
+[← All tools](../README.md) · [Gallery home](../../README.md) · [Install guide](../../GETTING_STARTED.md) · [Contribution guide](../../CONTRIBUTING.md)
+
 > **Floating developer overlay for Chrome** — live console logs, JS errors and network requests on top of any page. No DevTools panel required.
 
 ![DevLens](icons/icon128.png)
@@ -55,7 +57,7 @@
 
 ### Load unpacked (development)
 
-1. Download or clone this repository.
+1. Download or clone the [Chrome UI Gallery repository](https://github.com/RuslanSharifov/chrome-ui-gallery) (see the [beginner installation guide](../../GETTING_STARTED.md)).
 2. Copy the `devlens/` folder into `chrome-ui-gallery/Tools/` (or wherever you want it).
 3. Open Chrome and navigate to `chrome://extensions/`.
 4. Enable **Developer mode** (toggle in the top-right corner).
@@ -90,6 +92,10 @@ Not yet published — contributions welcome!
 | Click a row | Open detail drawer |
 
 ---
+
+## 🔗 Quick links
+
+[Manifest](./manifest.json) · [Gallery metadata](./gallery.json) · [Source folder](./) · [Chrome popup](./popup/popup.html) · [HUD script](./content/hud.js) · [Diagnostics panel](./panel/panel.html) · [Background service worker](./background/service-worker.js) · [MIT license](./LICENSE)
 
 ## 🗂️ File Structure
 
@@ -210,3 +216,7 @@ Repository: [chrome-ui-gallery](https://github.com/RuslanSharifov/chrome-ui-gall
 - Capturing occurs for console, fetch and XHR after injection; it does not provide complete browser-level DevTools network logging.
 - The extension requests broad site access through declarative content script matches. Review this before installing or publishing.
 - The author and copyright lines originated in the submitted ZIP and must be verified against the actual rights holder before a public Pull Request.
+
+---
+
+[← Browse all tools](../README.md) · [← Chrome UI Gallery home](../../README.md) · [Report an issue](https://github.com/RuslanSharifov/chrome-ui-gallery/issues/new/choose) · [See other extension examples](../../templates/README.md)
