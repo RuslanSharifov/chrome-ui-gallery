@@ -1,5 +1,7 @@
 # Chrome UI Gallery — Tam Qurulum Bələdçisi
 
+[← Bütün dillər](./README.md) · [Ana səhifə](../README.md) · [Alətlər](../Tools/README.md) · [DevLens quraşdırması](../Tools/devlens/README.md)
+
 Bu sənəd repository-ni CMD ilə clone etməkdən başlayaraq design strukturunu anlamağı, Manifest V3 Chrome extension-u lokal yükləməyi, dəyişiklikləri test etməyi, selector problemlərini araşdırmağı və yeni design əlavə etməyi izah edir.
 
 ## 1. Lazım olanlar

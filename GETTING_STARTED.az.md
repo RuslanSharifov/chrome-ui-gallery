@@ -1,11 +1,11 @@
 # 🚀 Başlanğıc bələdçisi — proqramlaşdırma biliyi tələb olunmur
 
-[← Ana səhifə](./README.md) · [English](./GETTING_STARTED.md) · [Digər dillər](./setup/README.md)
+[← Ana səhifə](./README.md) · [Bütün alətlər](./Tools/README.md) · [DevLens](./Tools/devlens/README.md) · [English](./GETTING_STARTED.md) · [Digər dillər](./setup/README.md)
 
 ## 1. İstədiyin əlavəni seç
 
 - **Saytın görünüşünü dəyişmək üçün:** [UI dizaynları](./ui/README.md).
-- **Faydalı brauzer alətləri üçün:** [Tools bölməsi](./Tools/README.md).
+- **Faydalı brauzer alətləri üçün:** [Tools bölməsi](./Tools/README.md). Məsələn, [DevLens](./Tools/devlens/README.md) brauzer konsolu və səhifə sorğularını izləmək üçündür.
 
 Seçdiyin əlavənin **README.md** faylını oxu.
 
@@ -14,7 +14,7 @@ Seçdiyin əlavənin **README.md** faylını oxu.
 1. [GitHub səhifəsini](https://github.com/RuslanSharifov/chrome-ui-gallery) aç.
 2. **Code → Download ZIP** seç və ZIP faylını arxivdən çıxar.
 3. **chrome-ui-gallery-main** folderini aç.
-4. İstədiyin əlavənin **manifest.json** olan xüsusi folderini tap.
+4. İstədiyin əlavənin **manifest.json** olan xüsusi folderini tap. DevLens üçün [Tools/devlens/](./Tools/devlens/) seç və [manifest.json](./Tools/devlens/manifest.json) faylını yoxla.
 
 ## 3. Chrome-a əlavə et
 

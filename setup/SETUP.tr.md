@@ -1,5 +1,7 @@
 # Chrome UI Gallery — Tam Kurulum Rehberi
 
+[← Tüm diller](./README.md) · [Ana sayfa](../README.md) · [Araçlar](../Tools/README.md) · [DevLens kurulumu](../Tools/devlens/README.md)
+
 Bu rehber repository'yi klonlamayı, yapıyı anlamayı, Manifest V3 Chrome uzantısını yerel olarak yüklemeyi, değişiklikleri test etmeyi, selector sorunlarını çözmeyi ve yeni tasarım eklemeyi açıklar.
 
 ## 1. Gereksinimler

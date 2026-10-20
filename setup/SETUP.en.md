@@ -1,5 +1,7 @@
 # Chrome UI Gallery — Complete Setup Guide
 
+[← All languages](./README.md) · [Gallery home](../README.md) · [Tools](../Tools/README.md) · [Install DevLens](../Tools/devlens/README.md)
+
 This guide explains how to clone the repository, understand its navigation, open a design, install a Manifest V3 Chrome extension, test UI changes, debug selector problems, create a new design, and optionally publish changes with Git.
 
 ## 1. Requirements

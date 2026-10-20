@@ -1,5 +1,7 @@
 # Chrome UI Gallery — Guide d'installation complet
 
+[← Toutes les langues](./README.md) · [Accueil](../README.md) · [Outils](../Tools/README.md) · [Installer DevLens](../Tools/devlens/README.md)
+
 Ce guide explique comment cloner le dépôt, comprendre sa structure, charger une extension Chrome Manifest V3, tester les changements, diagnostiquer les sélecteurs et créer un nouveau design.
 
 ## 1. Prérequis

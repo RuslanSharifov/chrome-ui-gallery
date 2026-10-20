@@ -1,6 +1,6 @@
 # 🤝 Chrome UI Gallery layihəsinə töhfə ver
 
-[← Ana səhifə](./README.md) · [English / tam qaydalar](./CONTRIBUTING.md)
+[← Ana səhifə](./README.md) · [Bütün alətlər](./Tools/README.md) · [DevLens nümunəsi](./Tools/devlens/README.md) · [English / tam qaydalar](./CONTRIBUTING.md)
 
 Hər kəs öz Chrome extension-unu, UI dizaynını, tərcüməsini və ya bug düzəlişini bu layihəyə əlavə edə bilər.
 
@@ -9,7 +9,7 @@ Hər kəs öz Chrome extension-unu, UI dizaynını, tərcüməsini və ya bug d�
 1. GitHub-da repository-ni **Fork** et.
 2. Öz fork-unu kompüterinə **Clone** et.
 3. Yeni branch yarat: **git switch -c add/my-tool**.
-4. Yeni tool-u **Tools/my-tool/** folderinə əlavə et.
+4. Yeni tool-u **Tools/my-tool/** folderinə əlavə et. Struktur nümunəsi üçün [DevLens-in mənbə folderinə](./Tools/devlens/) bax.
 5. **manifest.json** və **README.md** daxil olmaqla bütün lazımi faylları əlavə et.
 6. İstəsən **gallery.json** ilə tool-un müəllifini, rəngini və təsvirini əlavə et. **docs/app.js** və HTML siyahısını dəyişmək lazım deyil.
 7. **node scripts/validate.mjs** ilə faylları yoxla və **chrome://extensions** vasitəsilə test et.

@@ -1,5 +1,7 @@
 # Chrome UI Gallery — Vollständige Einrichtungsanleitung
 
+[← Alle Sprachen](./README.md) · [Startseite](../README.md) · [Tools](../Tools/README.md) · [DevLens installieren](../Tools/devlens/README.md)
+
 Diese Anleitung beschreibt das Klonen des Repositories, die Navigation, das lokale Laden von Manifest-V3-Chrome-Erweiterungen, Tests, Debugging und das Hinzufügen neuer Designs.
 
 ## 1. Voraussetzungen

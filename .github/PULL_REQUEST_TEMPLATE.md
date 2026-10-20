@@ -1,5 +1,7 @@
 ## What does this change do?
 
+Browse [the tool directory](../Tools/README.md), [DevLens as an existing contribution](../Tools/devlens/README.md), and the [contribution rules](../CONTRIBUTING.md) before submitting new source files.
+
 <!-- Short, plain-language explanation; mention the target platform/tool. -->
 
 ## Type

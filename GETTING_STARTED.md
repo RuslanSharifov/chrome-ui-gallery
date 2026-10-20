@@ -1,13 +1,13 @@
 # 🚀 Getting started — no coding required
 
-[← Home](./README.md) · [Azərbaycan dili](./GETTING_STARTED.az.md) · [All setup languages](./setup/README.md)
+[← Home](./README.md) · [All tools](./Tools/README.md) · [DevLens](./Tools/devlens/README.md) · [Azərbaycan dili](./GETTING_STARTED.az.md) · [All setup languages](./setup/README.md)
 
 You can install the gallery's extensions without writing code.
 
 ## Step 1 — Find what you want
 
 - **Appearance and themes?** Open the [UI gallery](./ui/README.md).
-- **Useful utilities?** Open the [Tools directory](./Tools/README.md).
+- **Useful utilities?** Open the [Tools directory](./Tools/README.md). For example, [DevLens](./Tools/devlens/README.md) is a developer diagnostics extension.
 
 Choose a design/tool and open its documentation before installing.
 
@@ -16,7 +16,7 @@ Choose a design/tool and open its documentation before installing.
 1. On the [GitHub repository page](https://github.com/RuslanSharifov/chrome-ui-gallery), click the green **Code** button.
 2. Click **Download ZIP**, then extract the ZIP somewhere easy to find, for example your Desktop.
 3. Open the extracted **chrome-ui-gallery-main** folder.
-4. Follow the links in the UI or Tools directory to find the extension you want.
+4. Follow the links in the UI or Tools directory to find the extension you want. For DevLens, choose [Tools/devlens/](./Tools/devlens/) (the folder with its [manifest.json](./Tools/devlens/manifest.json)).
 
 > Do not select the entire gallery as the extension folder. Choose only the individual project directory that contains **manifest.json**.
 

@@ -2,7 +2,7 @@
 
 Thank you for helping build a browser gallery that is useful and easy to navigate. **Beginners and experienced developers are equally welcome.**
 
-[← Home](./README.md) · [Azərbaycan dili](./CONTRIBUTING.az.md) · [Community conduct](./CODE_OF_CONDUCT.md)
+[← Home](./README.md) · [Tool directory](./Tools/README.md) · [DevLens example](./Tools/devlens/README.md) · [Azərbaycan dili](./CONTRIBUTING.az.md) · [Community conduct](./CODE_OF_CONDUCT.md)
 
 ## The easy contribution workflow
 
@@ -31,7 +31,7 @@ git push -u origin add/my-extension
 A tool is a standalone browser utility, not just a visual theme.
 
 1. Create **Tools/your-tool-name/** (lowercase kebab-case; unique, descriptive).
-2. Copy files from [the tool starter](./templates/chrome-extension-tool/README.md) and replace sample functionality with your own.
+2. Copy files from [the tool starter](./templates/chrome-extension-tool/README.md) and replace sample functionality with your own. The merged [DevLens project](./Tools/devlens/README.md) demonstrates a standalone tool submission with [manifest.json](./Tools/devlens/manifest.json), [gallery.json](./Tools/devlens/gallery.json) and documentation; review its broad-site permissions before using it as a reference.
 3. Include a **working Manifest V3 manifest.json**, all referenced assets and a **README.md**.
 4. In your README include: purpose, author/GitHub handle, features, screenshots if available, exact permissions and why needed, installation, usage, limitations, tests and license.
 5. Do not include a nested **.git/** folder, downloaded third-party binaries, obfuscated scripts, remote executable code, undisclosed analytics or tracking.
