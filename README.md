@@ -1,12 +1,8 @@
 # Chrome UI Gallery
 
-Chrome/Web UI design examples organized by platform and design style.
+A collection of Chrome extensions and web UI experiments, organized by platform and visual style.
 
-The repository is structured so navigation is always:
-
-Root README → Platform README → Design style → Design folder → design.md → code files.
-
-Each design keeps its implementation files together with an English design.md. The documentation records the visual system, architecture, setup, usage, compatibility notes, and relevant research.
+**Browse:** Repository → Platform → Style → Design documentation → Implementation files.
 
 ## Platforms
 
@@ -15,15 +11,22 @@ Each design keeps its implementation files together with an English design.md. T
 - [GitHub](./github/README.md)
 - [Lovable](./lovable/README.md)
 
-## Setup
+## Tools
 
-Use the [Setup Guides](./setup/README.md) for Windows CMD installation, local development, unpacked Chrome-extension loading, debugging, and Git workflow.
+- [Chrome Extension Tools](./Tools/README.md) — utilities independent of visual redesigns.
 
-## Repository rules
+## Setup and documentation
 
-- Do not overwrite an existing design folder.
-- Add new designs under the correct platform and style.
-- Keep each design self-contained.
-- Keep design.md files in English.
-- Use relative Markdown navigation links.
-- When a platform gets its first design, add its platform README and add the platform to this root README.
+- [Setup guides (6 languages)](./setup/README.md)
+- To install any extension, load the **specific folder containing `manifest.json`** via `chrome://extensions` → Developer mode → Load unpacked.
+
+## Repository conventions
+
+1. Keep platforms in separate top-level folders, and group visual designs by style.
+2. Preserve existing folders and filenames; place each new design in its own directory.
+3. Every visual design should have a `design.md` describing its purpose, style, technologies, files, setup, and possible reuse.
+4. Use relative Markdown links, and update the platform/style README navigation whenever adding a design.
+5. Keep implementation assets alongside the extension's `manifest.json`.
+6. Standalone utilities belong in [Tools](./Tools/README.md).
+
+> **Note:** [ChatGPT Lag Fixer](./Tools/README.md#chatgpt-lag-fixer) is currently recorded as a Git submodule/gitlink in this repository, not as a normal folder of committed source files. See the Tools README for the required fix.

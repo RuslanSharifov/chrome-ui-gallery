@@ -1,12 +1,13 @@
 # Gemini UI Designs
 
-Gemini web UI and Chrome extension design examples for `gemini.google.com`.
+Chrome extension designs for Gemini.
 
-## Design styles
+## Glassmorphism
+- [Gemini Glassmorphism](./glassmorphism/gemini-glassmorphism/design.md)
+- [Glassmorphism overview](./glassmorphism/README.md)
 
-- [Glassmorphism](./glassmorphism/README.md) — frosted glass, atmospheric lighting, adaptive themes, and configurable depth.
-- [Claymorphism](./claymorphism/README.md) — soft 3D clay surfaces, pastel depth, and animated clay clouds.
+## Claymorphism
+- [Gemini Claymorphism](./claymorphism/gemini-claymorphism/design.md)
+- [Claymorphism overview](./claymorphism/README.md)
 
-## Navigation
-
-Choose a style above, then open its design documentation and implementation files.
+[← Repository](../README.md)

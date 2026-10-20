@@ -1,12 +1,16 @@
 # GitHub UI Designs
 
-GitHub-inspired Chrome/Web UI design examples organized by visual style.
+Chrome extension experiments that redesign GitHub's appearance.
 
 ## Glassmorphism
-
 - [GitHub Glassmorphism](./glassmorphism/github-glassmorphism/design.md)
+- [Glassmorphism style overview](./glassmorphism/README.md)
 
-## Navigation
+## Liquid Glass
+- [GitHub Liquid Glass](./github-liquid-glass/design.md)
 
-- [Glassmorphism](./glassmorphism/README.md)
-- [Back to repository](../README.md)
+## 3D / Glassmorphism
+- [3D GitHub — design documentation](./3D%20github/design.md)
+- [3D GitHub — complete guide](./3D%20github/README.md)
+
+[← Repository](../README.md)

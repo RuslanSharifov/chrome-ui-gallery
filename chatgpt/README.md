@@ -1,12 +1,17 @@
 # ChatGPT UI Designs
 
-ChatGPT UI and Chrome extension design examples.
+Chrome extension designs for the ChatGPT interface.
 
-## Design styles
+## Glassmorphism
+- [AI Prompt Tool](./glassmorphism/ai-prompt-tool/design.md)
+- [Glassmorphism style overview](./glassmorphism/README.md)
 
-- [Glassmorphism](./glassmorphism/README.md) — existing translucent glass design.
-- [DARK GPT](./DARK%20GPT/README.md) — dark-only red ChatGPT redesign.
+## Claymorphism
+- [ChatGPT Claymorphism](./claymorphism/design.md)
+- [Claymorphism style overview](./claymorphism/README.md)
 
-## Navigation
+## Dark
+- [DARK GPT](./DARK%20GPT/design.md) — dark/red theme with interactive particle headline
+- [DARK GPT extension guide](./DARK%20GPT/README.md)
 
-Choose a style above, then open its design documentation and implementation files.
+[← Repository](../README.md)
