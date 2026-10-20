@@ -1,0 +1,51 @@
+name: Publish automatic gallery
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout approved projects
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Generate catalog from committed extension folders
+        run: node scripts/build-catalog.mjs
+      - name: Validate generated catalog and extension structure
+        run: node scripts/validate.mjs
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Upload generated website
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy generated website
+        id: deployment
+        uses: actions/deploy-pages@v4

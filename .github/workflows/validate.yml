@@ -22,10 +22,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
-      - name: Syntax-check gallery scripts
+      - name: Check JavaScript syntax
         run: |
+          node --check scripts/build-catalog.mjs
+          node --check scripts/test-catalog.mjs
           node --check scripts/validate.mjs
           node --check docs/app.js
           node --check templates/chrome-extension-tool/popup.js
-      - name: Validate links, extension manifests, docs and gallery
+      - name: Build catalog from extension manifests
+        run: node scripts/build-catalog.mjs
+      - name: Confirm new projects are auto-discovered
+        run: node scripts/test-catalog.mjs
+      - name: Validate source links, manifests and generated catalog
         run: node scripts/validate.mjs
