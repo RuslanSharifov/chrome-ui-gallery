@@ -41,9 +41,9 @@
             <a class="button button-secondary" href="https://github.com/RuslanSharifov/chrome-ui-gallery/blob/main/GETTING_STARTED.md" target="_blank" rel="noopener noreferrer">How to install <span aria-hidden="true">→</span></a>
           </div>
           <div class="hero-statline" aria-label="Gallery summary">
-            <span><strong>09</strong> UI designs</span><span class="stat-divider"></span>
-            <span><strong>02</strong> tools</span><span class="stat-divider"></span>
-            <span><strong>04</strong> platforms</span>
+            <span><strong data-stat="ui">09</strong> UI designs</span><span class="stat-divider"></span>
+            <span><strong data-stat="tool">02</strong> tools</span><span class="stat-divider"></span>
+            <span><strong data-stat="platforms">04</strong> platforms</span>
           </div>
         </div>
         <div class="hero-art" aria-hidden="true">
@@ -86,15 +86,8 @@
         </div>
         <div class="platform-bar">
           <span>PLATFORM</span>
-          <div class="platform-options" role="group" aria-label="Platform filter">
-            <button type="button" class="platform-button active" aria-pressed="true" data-platform="all">All</button>
-            <button type="button" class="platform-button" aria-pressed="false" data-platform="chatgpt">ChatGPT</button>
-            <button type="button" class="platform-button" aria-pressed="false" data-platform="gemini">Gemini</button>
-            <button type="button" class="platform-button" aria-pressed="false" data-platform="github">GitHub</button>
-            <button type="button" class="platform-button" aria-pressed="false" data-platform="lovable">Lovable</button>
-            <button type="button" class="platform-button" aria-pressed="false" data-platform="browser">Browser</button>
-          </div>
-          <span class="results-count" id="results-count" role="status" aria-live="polite">11 projects</span>
+          <div class="platform-options" role="group" aria-label="Platform filter"></div>
+          <span class="results-count" id="results-count" role="status" aria-live="polite">Loading projects…</span>
         </div>
         <div class="project-grid" id="project-grid" aria-live="off"></div>
         <div class="empty-state" id="empty-state" hidden><span>⌁</span><h3>No matches yet.</h3><p>Try another name or select a different category.</p><button id="clear-filters" class="button button-secondary" type="button">Clear filters</button></div>

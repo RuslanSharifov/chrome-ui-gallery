@@ -23,3 +23,10 @@
 @media(min-width:580px) and (max-width:750px){.project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.project-info p{min-height:90px}}
 @media(max-width:430px){.hero-statline{gap:11px}.hero-statline strong{font-size:16px}.hero-art{transform:scale(.64);height:285px;margin-bottom:-65px}.floating-chip.chip-one{right:-120px}.floating-chip.chip-two{bottom:30px}.filter-tab{font-size:11px;padding:10px}.contribute-panel h2{letter-spacing:-2px}.hero-actions .button{width:100%}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}.project-card:hover,.button:hover{transform:none}}
+
+/* Optional author credits and local preview artwork from gallery.json. */
+.author-byline{color:#999eb5;font-size:11px;margin-top:10px;line-height:1.5}
+.author-byline a{color:#bfb0ff;text-decoration:underline;text-underline-offset:3px}
+.author-byline a:hover{color:#e1d9ff}
+.project-preview-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:3;display:block}
+.project-preview-image[hidden]{display:none}
