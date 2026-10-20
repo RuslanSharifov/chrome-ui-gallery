@@ -1,0 +1,247 @@
+{
+  "schemaVersion": 1,
+  "projects": [
+    {
+      "id": "tools-cookie-manager-pro",
+      "category": "tool",
+      "platform": "browser",
+      "name": "Cookie Manager Pro",
+      "style": "Browser Utility",
+      "description": "Inspect, add, edit, delete and organize cookies with a dedicated extension.",
+      "tags": [
+        "Cookies",
+        "Utility",
+        "Privacy"
+      ],
+      "icon": "◎",
+      "palette": [
+        "#3e2e1d",
+        "#735233",
+        "#eec28c"
+      ],
+      "doc": "Tools/cookie-manager-pro/README.md",
+      "folder": "Tools/cookie-manager-pro",
+      "version": "2.1.0"
+    },
+    {
+      "id": "tools-chatgpt-lag-fixer",
+      "category": "tool",
+      "platform": "chatgpt",
+      "name": "ChatGPT Lag Fixer",
+      "style": "Performance Tool",
+      "description": "Helps long ChatGPT conversations run more smoothly by optimizing older messages.",
+      "tags": [
+        "Speed",
+        "Productivity",
+        "Utility"
+      ],
+      "icon": "↯",
+      "palette": [
+        "#133c36",
+        "#216456",
+        "#6cdbc5"
+      ],
+      "doc": "Tools/chatgpt-lag-fixer/README.md",
+      "folder": "Tools/chatgpt-lag-fixer",
+      "version": "1.0.0"
+    },
+    {
+      "id": "chatgpt-claymorphism",
+      "category": "ui",
+      "platform": "chatgpt",
+      "name": "ChatGPT Claymorphism",
+      "style": "Claymorphism",
+      "description": "Soft rounded surfaces, sculpted panels and a playful, tactile ChatGPT look.",
+      "tags": [
+        "Clay",
+        "Depth",
+        "AI"
+      ],
+      "icon": "C",
+      "palette": [
+        "#52414f",
+        "#77565e",
+        "#f0baae"
+      ],
+      "doc": "chatgpt/claymorphism/design.md",
+      "folder": "chatgpt/claymorphism",
+      "version": "1.0.0"
+    },
+    {
+      "id": "chatgpt-glassmorphism-ai-prompt-tool",
+      "category": "ui",
+      "platform": "chatgpt",
+      "name": "ChatGPT Glassmorphism",
+      "style": "Glassmorphism",
+      "description": "Translucent surfaces, ambient glow and customizable glass controls for ChatGPT.",
+      "tags": [
+        "Glass",
+        "AI",
+        "Theme"
+      ],
+      "icon": "C",
+      "palette": [
+        "#22223f",
+        "#40375c",
+        "#ac99fd"
+      ],
+      "doc": "chatgpt/glassmorphism/ai-prompt-tool/design.md",
+      "folder": "chatgpt/glassmorphism/ai-prompt-tool",
+      "version": "2.1.0"
+    },
+    {
+      "id": "chatgpt-dark-gpt",
+      "category": "ui",
+      "platform": "chatgpt",
+      "name": "DARK GPT",
+      "style": "Dark / Particle FX",
+      "description": "A bold dark-red theme with interactive particle welcome text and pointer glow.",
+      "tags": [
+        "Dark",
+        "Particles",
+        "3D"
+      ],
+      "icon": "D",
+      "palette": [
+        "#28131e",
+        "#601d35",
+        "#ff526f"
+      ],
+      "doc": "chatgpt/DARK GPT/design.md",
+      "folder": "chatgpt/DARK GPT",
+      "version": "1.1.1"
+    },
+    {
+      "id": "gemini-claymorphism-gemini-claymorphism",
+      "category": "ui",
+      "platform": "gemini",
+      "name": "Gemini Claymorphism",
+      "style": "Claymorphism",
+      "description": "Soft 3D clay shapes, warm color and gentle interactive clouds.",
+      "tags": [
+        "Clay",
+        "Clouds",
+        "Motion"
+      ],
+      "icon": "G",
+      "palette": [
+        "#4b364e",
+        "#75577b",
+        "#dbbaf2"
+      ],
+      "doc": "gemini/claymorphism/gemini-claymorphism/design.md",
+      "folder": "gemini/claymorphism/gemini-claymorphism",
+      "version": "1.1.0"
+    },
+    {
+      "id": "gemini-glassmorphism-gemini-glassmorphism",
+      "category": "ui",
+      "platform": "gemini",
+      "name": "Gemini Glassmorphism",
+      "style": "Glassmorphism",
+      "description": "Adaptive frosted panels, flowing atmosphere and fine-tuned Gemini lighting.",
+      "tags": [
+        "Glass",
+        "Lighting",
+        "AI"
+      ],
+      "icon": "G",
+      "palette": [
+        "#132d40",
+        "#35516a",
+        "#9fcbff"
+      ],
+      "doc": "gemini/glassmorphism/gemini-glassmorphism/design.md",
+      "folder": "gemini/glassmorphism/gemini-glassmorphism",
+      "version": "1.2.0"
+    },
+    {
+      "id": "github-3d-github",
+      "category": "ui",
+      "platform": "github",
+      "name": "3D GitHub",
+      "style": "3D / Glassmorphism",
+      "description": "Mouse-aware 3D depth, glass panels and reactive proximity animations.",
+      "tags": [
+        "3D",
+        "Depth",
+        "Motion"
+      ],
+      "icon": "3D",
+      "palette": [
+        "#2a243f",
+        "#46375c",
+        "#a690fe"
+      ],
+      "doc": "github/3D github/design.md",
+      "folder": "github/3D github",
+      "version": "4.0.0"
+    },
+    {
+      "id": "github-glassmorphism-github-glassmorphism",
+      "category": "ui",
+      "platform": "github",
+      "name": "GitHub Glassmorphism",
+      "style": "Glassmorphism",
+      "description": "A sleek translucent developer experience layered over GitHub.",
+      "tags": [
+        "Glass",
+        "Dev",
+        "Theme"
+      ],
+      "icon": "GH",
+      "palette": [
+        "#132836",
+        "#1d4c54",
+        "#78d4c1"
+      ],
+      "doc": "github/glassmorphism/github-glassmorphism/design.md",
+      "folder": "github/glassmorphism/github-glassmorphism",
+      "version": "4.1.0"
+    },
+    {
+      "id": "github-github-liquid-glass",
+      "category": "ui",
+      "platform": "github",
+      "name": "GitHub Liquid Glass",
+      "style": "Liquid Glass",
+      "description": "Fluid refractive surfaces, ambient backgrounds and detailed visual controls.",
+      "tags": [
+        "Liquid",
+        "Glass",
+        "Effects"
+      ],
+      "icon": "GH",
+      "palette": [
+        "#172d3f",
+        "#37576a",
+        "#6db9f2"
+      ],
+      "doc": "github/github-liquid-glass/design.md",
+      "folder": "github/github-liquid-glass",
+      "version": "1.0.0"
+    },
+    {
+      "id": "lovable-glassmorphism-lovable-glassmorphism",
+      "category": "ui",
+      "platform": "lovable",
+      "name": "Lovable Glassmorphism",
+      "style": "Glassmorphism",
+      "description": "A luminous gradient-infused glass makeover for the Lovable workspace.",
+      "tags": [
+        "Glass",
+        "Gradient",
+        "Studio"
+      ],
+      "icon": "L",
+      "palette": [
+        "#3f1f3f",
+        "#71425e",
+        "#f6a7d9"
+      ],
+      "doc": "lovable/glassmorphism/lovable-glassmorphism/design.md",
+      "folder": "lovable/glassmorphism/lovable-glassmorphism",
+      "version": "1.0.0"
+    }
+  ]
+}
