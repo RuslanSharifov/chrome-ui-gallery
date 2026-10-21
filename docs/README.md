@@ -4,6 +4,10 @@
 
 **No manual HTML or JavaScript project arrays.** Every approved extension appears automatically.
 
+## Search indexing
+
+[Search Console and sitemap setup](./SEO.md) · [Published sitemap](https://ruslansharifov.github.io/chrome-ui-gallery/sitemap.xml).
+
 ## How updates work
 
 1. Add **Tools/new-tool/manifest.json** with **README.md**, or a UI design under a platform/style folder with **design.md**.

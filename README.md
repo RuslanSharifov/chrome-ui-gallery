@@ -37,6 +37,10 @@ A GitHub Action scans each **manifest.json**, reads optional **gallery.json** fo
 
 [Read the automatic publishing guide](./docs/README.md) · [Customize your tool card](./docs/CATALOG.md)
 
+## 🔎 Find the gallery through search
+
+The [live website](https://ruslansharifov.github.io/chrome-ui-gallery/) includes a [Google Search sitemap](https://ruslansharifov.github.io/chrome-ui-gallery/sitemap.xml). See the [Search Console setup guide](./docs/SEO.md) for submission and indexing steps. Search engines decide whether and when to index pages.
+
 ## 🎨 Featured UI collections
 
 | ChatGPT | Gemini |
