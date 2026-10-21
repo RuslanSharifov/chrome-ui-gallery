@@ -16,7 +16,7 @@
 - Appears on every page as a small, draggable overlay panel
 - Works **without opening F12 / DevTools**
 - Drag to any screen position; four preset anchor corners
-- Minimize to a compact pill badge; restore with one click
+- Minimize to a compact pill badge; restore with one click (the HUD hide action overrides the extension's `!important` layout display rule)
 - Configurable opacity (40–100%) and dark/light theme
 
 ### 🔴 Live Error & Counter Badges
