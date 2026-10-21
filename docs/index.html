@@ -29,6 +29,7 @@
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
   <script src="motion.js" defer></script>
+  <script src="header.js" defer></script>
 </head>
 <body>
   <div id="page-loader" class="page-loader" aria-hidden="true"><div class="loader-ring"></div><span>chrome / gallery</span></div>
@@ -36,19 +37,23 @@
   <div id="cursor-glow" aria-hidden="true"></div>
   <a class="skip-link" href="#explore">Skip to gallery</a>
   <div class="site-shell">
-    <header class="site-header">
-      <div class="container header-row">
-        <a class="brand" href="#top" aria-label="Chrome UI Gallery home">
+    <header class="site-header" id="site-header">
+      <div class="header-row">
+        <a class="brand header-island" href="#top" aria-label="Chrome UI Gallery home">
           <span class="brand-logo kinetic-logo" aria-hidden="true"><span></span><span></span><span></span></span>
           <span>chrome<span class="brand-muted">/</span>gallery</span>
         </a>
-        <nav class="main-nav" aria-label="Primary navigation">
-          <a href="#explore">Explore</a>
-          <a href="#how-it-works">Get started</a>
-          <a href="#contribute">Contribute</a>
-          <a href="#contributors">Contributors</a>
-          <a class="nav-github" href="https://github.com/RuslanSharifov/chrome-ui-gallery" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">↗</span> GitHub</a>
-        </nav>
+        <div class="header-actions header-island" id="header-actions">
+          <nav class="island-links" id="island-links" aria-label="Primary navigation" inert>
+            <a href="#explore">Explore</a>
+            <a href="#how-it-works">Get started</a>
+            <a href="#contribute">Contribute</a>
+            <a href="#contributors">Contributors</a>
+          </nav>
+          <button class="island-close" id="island-close" type="button" aria-label="Close navigation" tabindex="-1">×</button>
+          <button class="island-toggle" id="island-toggle" type="button" aria-label="Open navigation" aria-controls="island-links" aria-expanded="false"><span></span><span></span><span></span></button>
+          <a class="island-github" href="https://github.com/RuslanSharifov/chrome-ui-gallery" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">↗</span> <span>GitHub</span></a>
+        </div>
       </div>
     </header>
     <main id="top">
