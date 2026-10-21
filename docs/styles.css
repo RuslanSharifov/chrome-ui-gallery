@@ -30,3 +30,50 @@
 .author-byline a:hover{color:#e1d9ff}
 .project-preview-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:3;display:block}
 .project-preview-image[hidden]{display:none}
+
+/* Gallery features: download, filtering, comparison, contributors */
+.advanced-filters{display:flex;align-items:end;flex-wrap:wrap;gap:12px;margin:16px 0 24px}
+.advanced-filters label{display:grid;gap:7px;color:#aeb4c9;font-size:12px;font-weight:700}
+.advanced-filters select{min-width:150px;max-width:100%;padding:11px 14px;border:1px solid #41445b;border-radius:11px;background:#181b2a;color:#f1edff;font:inherit}
+.filter-reset{padding:11px 16px;border:1px solid #41445b;border-radius:11px;background:transparent;color:#d6cbf5;cursor:pointer}
+.filter-reset:hover,.advanced-filters select:focus-visible{border-color:#ae93ed}
+.project-actions{flex-wrap:wrap}
+.project-actions .download-action{display:inline-flex;align-items:center;justify-content:center;padding:9px 12px;border:1px solid #615384;border-radius:10px;color:#e1ceff;font-size:12px;font-weight:700}
+.project-actions .download-action:hover{background:#41345d}
+.comparison-section,.contributors-section{padding-top:80px;padding-bottom:35px}
+.comparison-section h2,.contributors-section h2{font-size:clamp(35px,5vw,55px);letter-spacing:-2px;margin:15px 0}
+.feature-intro{max-width:720px;color:#a9b0c6;line-height:1.75;margin-bottom:26px}
+.compare-shell{position:relative;overflow:hidden;aspect-ratio:16/8;min-height:220px;border:1px solid #44415c;border-radius:22px;background:#e9ecf2}
+.compare-scene{position:absolute;inset:0;display:grid;place-items:center;padding:30px}
+.compare-before{background:linear-gradient(135deg,#e5e9f1,#bfc7d4)}
+.compare-after{background:radial-gradient(circle at 80% 0%,#9466e8,#242140 65%,#14182a);clip-path:inset(0 50% 0 0)}
+.mock-browser{width:min(86%,700px);height:85%;min-height:155px;border-radius:13px;overflow:hidden;background:#fff;box-shadow:0 22px 60px #0003}
+.mock-top{height:35px;padding:10px 15px;font-size:11px;color:#666;background:#f1f2f5;border-bottom:1px solid #ddd}
+.mock-layout{display:flex;height:calc(100% - 35px)}
+.mock-aside{width:24%;background:#e8eaf0;border-right:1px solid #d7d9e2}
+.mock-content{flex:1;padding:8%}
+.mock-title{font-size:clamp(13px,2.4vw,26px);font-weight:750;color:#222}
+.mock-line{height:9px;margin-top:12px;background:#d6d9e3;border-radius:8px;width:82%}
+.mock-line.short{width:56%}
+.mock-tiles{display:flex;gap:12px;margin-top:22px}
+.mock-tiles i{display:block;width:42%;height:65px;background:#eceef3;border-radius:12px}
+.compare-after .mock-browser{background:#282844c9;backdrop-filter:blur(20px);border:1px solid #c1a5ff65;box-shadow:0 20px 65px #110a3266}
+.compare-after .mock-top{background:#ffffff12;color:#e8dfff;border-color:#ffffff25}
+.compare-after .mock-aside{background:#ffffff12;border-color:#ffffff24}
+.compare-after .mock-title{color:#f1e9ff}
+.compare-after .mock-line{background:#b59aef80}
+.compare-after .mock-tiles i{background:linear-gradient(140deg,#8e69c67a,#58b8b077);border:1px solid #ffffff32}
+.compare-label{position:absolute;top:14px;z-index:2;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:800}
+.before-label{left:16px;background:#f8f8ff;color:#31323c}
+.after-label{right:16px;background:#2d244e;color:#f2e9ff}
+.compare-control{display:flex;align-items:center;gap:16px;color:#c5c4d7;font-size:13px;margin-top:17px}
+.compare-control input{flex:1;accent-color:#a989ed;cursor:ew-resize}
+.compare-control output{min-width:42px;text-align:right;font-variant-numeric:tabular-nums}
+.contributors-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px;margin:24px 0}
+.contributor-card{display:flex;gap:13px;align-items:center;padding:17px;background:#171a2a;border:1px solid #34354a;border-radius:14px;transition:border-color .2s}
+.contributor-card:hover{border-color:#a08add}
+.contributor-avatar{width:48px;height:48px;border-radius:50%;object-fit:cover}
+.contributor-card div{display:grid;gap:4px;min-width:0}
+.contributor-card strong{font-size:14px;overflow-wrap:anywhere}
+.contributor-card span{font-size:12px;color:#9da4bc}
+@media(max-width:600px){.compare-shell{aspect-ratio:4/3}.compare-scene{padding:12px}.mock-browser{width:95%}.mock-tiles i{height:40px}.advanced-filters label{flex:1;min-width:125px}.advanced-filters select{width:100%}}

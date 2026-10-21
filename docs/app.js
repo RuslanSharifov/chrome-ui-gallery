@@ -13,7 +13,9 @@ const empty = document.getElementById("empty-state");
 const search = document.getElementById("search");
 const categoryButtons = Array.from(document.querySelectorAll("[data-category]"));
 const platformOptions = document.querySelector(".platform-options");
-const state = {category:"all",platform:"all",query:""};
+const state = {category:"all",platform:"all",style:"all",sort:"name",query:""};
+const styleFilter=document.getElementById("style-filter");
+const sortFilter=document.getElementById("sort-filter");
 let projects = [];
 let platformButtons = [];
 
@@ -86,6 +88,11 @@ function buildCard(project) {
   source.target="_blank";source.rel="noopener noreferrer";
   source.setAttribute("aria-label","View source files for "+project.name+" on GitHub");
   actions.append(primary,source);
+  const download=node("a","download-action","↓ Download ZIP");
+  download.href="./downloads/"+encodeURIComponent(project.id)+".zip";
+  download.download=project.id+".zip";
+  download.setAttribute("aria-label","Download "+project.name+" extension ZIP");
+  actions.append(download);
   info.append(actions);
   card.append(visual,info);
   return card;
@@ -121,6 +128,19 @@ function makePlatformButtons() {
   }
   platformOptions.replaceChildren(...platformButtons);
 }
+function makeStyleOptions(){
+  const styles=[...new Set(projects.map(p=>p.style))].sort((a,b)=>a.localeCompare(b));
+  styleFilter.replaceChildren(new Option("All styles","all"),...styles.map(s=>new Option(s,s)));
+}
+function sortProjects(items){
+  const sorted=[...items];
+  const compare=(a,b)=>a.localeCompare(b,undefined,{sensitivity:"base"});
+  sorted.sort((a,b)=>state.sort==="name-desc"?compare(b.name,a.name):
+    state.sort==="platform"?compare(a.platform,b.platform)||compare(a.name,b.name):
+    state.sort==="category"?compare(a.category,b.category)||compare(a.name,b.name):
+    compare(a.name,b.name));
+  return sorted;
+}
 function updateTotals() {
   const ui=projects.filter(p=>p.category==="ui").length;
   const tools=projects.length-ui;
@@ -140,10 +160,11 @@ function render() {
   const matched=projects.filter(item=>{
     if(state.category!=="all"&&item.category!==state.category)return false;
     if(state.platform!=="all"&&item.platform!==state.platform)return false;
+    if(state.style!=="all"&&item.style!==state.style)return false;
     const searchable=[item.name,item.platform,item.style,item.description,item.author?.name??"",...item.tags].join(" ").toLowerCase();
     return !query||searchable.includes(query);
   });
-  grid.replaceChildren(...matched.map(buildCard));
+  grid.replaceChildren(...sortProjects(matched).map(buildCard));
   count.textContent=String(matched.length)+" "+(matched.length===1?"project":"projects");
   empty.hidden=matched.length>0;
 }
@@ -155,11 +176,17 @@ for(const button of categoryButtons) {
   });
 }
 search.addEventListener("input",()=>{state.query=search.value;render()});
-document.getElementById("clear-filters").addEventListener("click",()=>{
-  state.category="all";state.platform="all";state.query="";search.value="";
-  setActive(categoryButtons,"category","all");
-  setActive(platformButtons,"platform","all");
+styleFilter.addEventListener("change",()=>{state.style=styleFilter.value;render()});
+sortFilter.addEventListener("change",()=>{state.sort=sortFilter.value;render()});
+document.getElementById("reset-advanced").addEventListener("click",resetFilters);
+function resetFilters(){
+  state.category="all";state.platform="all";state.style="all";state.sort="name";state.query="";
+  search.value="";styleFilter.value="all";sortFilter.value="name";
+  setActive(categoryButtons,"category","all");setActive(platformButtons,"platform","all");
   render();
+}
+document.getElementById("clear-filters").addEventListener("click",()=>{
+  resetFilters();
   search.focus();
 });
 document.addEventListener("keydown",event=>{
@@ -194,6 +221,7 @@ async function loadCatalog() {
     const data=await response.json();
     projects=validateCatalog(data);
     makePlatformButtons();
+    makeStyleOptions();
     updateTotals();
     render();
   } catch(error) {
@@ -210,3 +238,44 @@ async function loadCatalog() {
   }
 }
 loadCatalog();
+
+/* Comparison demo: intentionally illustrative, no implied real before screenshot. */
+const compareRange=document.getElementById("compare-range");
+const compareAfter=document.getElementById("compare-after");
+const compareOutput=document.getElementById("compare-output");
+function updateComparison(){
+  const value=Number(compareRange.value);
+  compareAfter.style.clipPath="inset(0 "+(100-value)+"% 0 0)";
+  compareOutput.value=value+"%";
+  compareOutput.textContent=value+"%";
+}
+compareRange.addEventListener("input",updateComparison);
+updateComparison();
+
+/* GitHub public contributor endpoint; never fabricate identities or counts. */
+async function loadContributors(){
+  const container=document.getElementById("contributors-grid");
+  try{
+    const response=await fetch("https://api.github.com/repos/RuslanSharifov/chrome-ui-gallery/contributors?per_page=100",{headers:{Accept:"application/vnd.github+json"}});
+    if(!response.ok)throw new Error("GitHub API "+response.status);
+    const people=await response.json();
+    if(!Array.isArray(people))throw new Error("Invalid contributors response");
+    if(!people.length){container.textContent="No contributor data available yet.";return}
+    const cards=people.filter(p=>p.type==="User"&&p.login&&p.html_url).map(p=>{
+      const card=node("a","contributor-card");
+      card.href=p.html_url;card.target="_blank";card.rel="noopener noreferrer";
+      const avatar=node("img","contributor-avatar");
+      avatar.src=p.avatar_url;avatar.alt="";avatar.loading="lazy";
+      const info=node("div","");
+      info.append(node("strong","",p.login),node("span","",p.contributions+" "+(p.contributions===1?"contribution":"contributions")));
+      card.append(avatar,info);return card;
+    });
+    container.replaceChildren(...cards);
+  }catch(error){
+    const link=node("a","text-link","View contributors on GitHub ↗");
+    link.href="https://github.com/RuslanSharifov/chrome-ui-gallery/graphs/contributors";
+    link.target="_blank";link.rel="noopener noreferrer";
+    container.replaceChildren(node("p","","GitHub contributor data is temporarily unavailable."),link);
+  }
+}
+loadContributors();

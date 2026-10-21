@@ -29,6 +29,8 @@ jobs:
           node-version: "22"
       - name: Generate catalog from committed extension folders
         run: node scripts/build-catalog.mjs
+      - name: Package each approved extension as an individual ZIP
+        run: python3 scripts/package-downloads.py
       - name: Validate generated catalog and extension structure
         run: node scripts/validate.mjs
       - name: Configure GitHub Pages

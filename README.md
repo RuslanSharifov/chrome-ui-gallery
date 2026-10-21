@@ -6,7 +6,7 @@
 
 **An open-source home for Chrome UI experiments and practical browser tools.**
 
-[Explore UI Designs](./ui/README.md) · [Explore Tools](./Tools/README.md) · [DevLens](./Tools/devlens/README.md) · [Get Started](./GETTING_STARTED.md) · [Contribute](./CONTRIBUTING.md)
+[Explore UI Designs](./ui/README.md) · [Explore Tools](./Tools/README.md) · [Live gallery features](https://ruslansharifov.github.io/chrome-ui-gallery/#compare) · [DevLens](./Tools/devlens/README.md) · [Get Started](./GETTING_STARTED.md) · [Contribute](./CONTRIBUTING.md)
 
 ![License: MIT](https://img.shields.io/badge/license-MIT-56d6a0?style=flat-square)
 ![Contributions welcome](https://img.shields.io/badge/contributions-welcome-8d7bff?style=flat-square)
