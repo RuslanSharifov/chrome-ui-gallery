@@ -57,7 +57,7 @@
     hudEl.setAttribute('data-theme', settings.theme);
     hudEl.setAttribute('data-pos', settings.hudPosition);
     hudEl.style.opacity = settings.hudOpacity;
-    hudEl.style.display = settings.hudVisible ? '' : 'none';
+    hudEl.style.setProperty('display', settings.hudVisible ? 'flex' : 'none', 'important');
 
     hudEl.innerHTML = `
       <div class="dl-hud-header">
@@ -127,22 +127,22 @@
     pill.setAttribute('data-devlens', 'true');
     pill.setAttribute('data-theme', settings.theme);
     pill.innerHTML = `⬡ <span class="dl-pill-count">0</span>`;
-    pill.style.display = 'none';
+    pill.style.setProperty('display', 'none', 'important');
     pill.addEventListener('click', restoreHUD);
     document.documentElement.appendChild(pill);
     window.__devlens_pill__ = pill;
   }
 
   function minimizeHUD() {
-    if (hudEl) hudEl.style.display = 'none';
+    if (hudEl) hudEl.style.setProperty('display', 'none', 'important');
     const pill = window.__devlens_pill__;
-    if (pill) pill.style.display = 'flex';
+    if (pill) pill.style.setProperty('display', 'flex', 'important');
   }
 
   function restoreHUD() {
-    if (hudEl) hudEl.style.display = '';
+    if (hudEl) hudEl.style.setProperty('display', 'flex', 'important');
     const pill = window.__devlens_pill__;
-    if (pill) pill.style.display = 'none';
+    if (pill) pill.style.setProperty('display', 'none', 'important');
   }
 
   function clearLogs() {
@@ -155,7 +155,7 @@
 
   // ── Drag logic ────────────────────────────────────────────────────────────
   function onDragStart(e) {
-    if (e.target.classList.contains('dl-btn')) return;
+    if (e.target.closest('.dl-btn')) return;
     dragState = {
       startX: e.clientX,
       startY: e.clientY,
@@ -282,13 +282,13 @@
     if (msg.action === 'toggleHUD') {
       settings.hudVisible = msg.value;
       saveSettings();
-      if (hudEl) hudEl.style.display = msg.value ? '' : 'none';
+      if (hudEl) hudEl.style.setProperty('display', msg.value ? 'flex' : 'none', 'important');
     }
     if (msg.action === 'updateSettings') {
       Object.assign(settings, msg.settings);
       saveSettings();
       if (hudEl) {
-        hudEl.style.display = settings.hudVisible ? '' : 'none';
+        hudEl.style.setProperty('display', settings.hudVisible ? 'flex' : 'none', 'important');
         hudEl.setAttribute('data-theme', settings.theme);
         hudEl.style.opacity = settings.hudOpacity;
         hudEl.setAttribute('data-pos', settings.hudPosition);
