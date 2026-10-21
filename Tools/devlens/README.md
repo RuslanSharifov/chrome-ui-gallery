@@ -4,7 +4,9 @@
 
 > **Floating developer overlay for Chrome** — live console logs, JS errors and network requests on top of any page. No DevTools panel required.
 
-![DevLens](icons/icon128.png)
+[![DevLens — floating HUD and diagnostics panel preview](./preview.png)](./preview.png)
+
+[View full-size preview](./preview.png) · [Download source](./) · [Chrome installation instructions](#-installation)
 
 ---
 
@@ -95,7 +97,7 @@ Not yet published — contributions welcome!
 
 ## 🔗 Quick links
 
-[Manifest](./manifest.json) · [Gallery metadata](./gallery.json) · [Source folder](./) · [Chrome popup](./popup/popup.html) · [HUD script](./content/hud.js) · [Diagnostics panel](./panel/panel.html) · [Background service worker](./background/service-worker.js) · [MIT license](./LICENSE)
+[Preview image](./preview.png) · [Manifest](./manifest.json) · [Gallery metadata](./gallery.json) · [Source folder](./) · [Chrome popup](./popup/popup.html) · [HUD script](./content/hud.js) · [Diagnostics panel](./panel/panel.html) · [Background service worker](./background/service-worker.js) · [MIT license](./LICENSE)
 
 ## 🗂️ File Structure
 
@@ -103,6 +105,7 @@ Not yet published — contributions welcome!
 Tools/devlens/
 ├── manifest.json              # Chrome Manifest V3
 ├── gallery.json               # chrome-ui-gallery catalog metadata
+├── preview.png                # GitHub README and live gallery preview image
 ├── README.md                  # This file
 ├── LICENSE                    # MIT License
 │

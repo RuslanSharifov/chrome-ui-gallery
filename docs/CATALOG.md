@@ -2,7 +2,7 @@
 
 [← Automatic catalog](./README.md) · [Contribute](../CONTRIBUTING.md)
 
-A valid extension is published from its **manifest.json** and required README/design documentation even without gallery.json. See the real [DevLens gallery.json](../Tools/devlens/gallery.json) and [tool documentation](../Tools/devlens/README.md) as an example. Add **gallery.json** next to the manifest only to customize its card.
+A valid extension is published from its **manifest.json** and required README/design documentation even without gallery.json. See the real [DevLens gallery.json](../Tools/devlens/gallery.json) and [tool documentation](../Tools/devlens/README.md) and [preview image](../Tools/devlens/preview.png) as an example. Add **gallery.json** next to the manifest only to customize its card.
 
 ~~~json
 {

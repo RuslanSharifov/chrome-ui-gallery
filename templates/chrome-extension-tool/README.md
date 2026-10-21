@@ -10,7 +10,8 @@ A minimal, no-dependency Chrome Manifest V3 popup extension.
 4. Add icons only if you reference those paths in the manifest.
 5. Test with **chrome://extensions → Developer mode → Load unpacked**.
 6. Optionally copy [gallery.example.json](./gallery.example.json) to **gallery.json** (in your new tool folder), then update the example author and content.
-7. Open a pull request. **The website discovers your tool automatically** after review and merge. No website JavaScript or HTML changes are required.
+7. To show a picture on the live gallery card, add a local PNG/JPG/WebP/SVG file (for example `preview.png`) and set `"preview": "preview.png"` in the new tool's `gallery.json`. See the [DevLens example](../../Tools/devlens/preview.png).
+8. Open a pull request. **The website discovers your tool automatically** after review and merge. No website JavaScript or HTML changes are required.
 
 ## Sample files
 

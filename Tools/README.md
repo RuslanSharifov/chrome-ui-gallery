@@ -14,7 +14,7 @@ Tools are **standalone extensions**, separate from visual UI redesigns. Each too
 | :--- | :--- | :--- | :--- |
 | **[ChatGPT Lag Fixer](./chatgpt-lag-fixer/README.md)** | Performance | Reduce lag in long ChatGPT chats | [Open folder](./chatgpt-lag-fixer/) |
 | **[Cookie Manager Pro](./cookie-manager-pro/README.md)** | Browser utility | View, edit, clear and organize cookies | [Open folder](./cookie-manager-pro/) |
-| **[DevLens](./devlens/README.md)** | Developer diagnostics | Floating console/error HUD, page fetch/XHR monitoring and searchable diagnostics panel; broad site access | [Source files](./devlens/) · [Manifest](./devlens/manifest.json) |
+| **[DevLens](./devlens/README.md)** | Developer diagnostics | Floating console/error HUD, page fetch/XHR monitoring and searchable diagnostics panel; broad site access | [Preview](./devlens/preview.png) · [Source files](./devlens/) · [Manifest](./devlens/manifest.json) |
 
 ## Install a tool
 

@@ -59,7 +59,7 @@ The [live website](https://ruslansharifov.github.io/chrome-ui-gallery/) includes
 | :--- | :--- | :--- |
 | [ChatGPT Lag Fixer](./Tools/chatgpt-lag-fixer/README.md) | Improves responsiveness in long conversations | [Instructions](./Tools/chatgpt-lag-fixer/INSTALL.md) |
 | [Cookie Manager Pro](./Tools/cookie-manager-pro/README.md) | Inspect and manage browser cookies | [Instructions](./Tools/cookie-manager-pro/README.md#installation) |
-| **[DevLens](./Tools/devlens/README.md)** | Floating developer HUD for console errors, logs and page fetch/XHR diagnostics | [Install & use](./Tools/devlens/README.md#-installation) |
+| **[DevLens](./Tools/devlens/README.md)** | Floating developer HUD for console errors, logs and page fetch/XHR diagnostics | [Install & use](./Tools/devlens/README.md#-installation) · [Preview](./Tools/devlens/preview.png) |
 
 ## 🪄 Try an extension in four steps
 
