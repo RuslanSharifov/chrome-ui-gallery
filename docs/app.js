@@ -239,19 +239,6 @@ async function loadCatalog() {
 }
 loadCatalog();
 
-/* Comparison demo: intentionally illustrative, no implied real before screenshot. */
-const compareRange=document.getElementById("compare-range");
-const compareAfter=document.getElementById("compare-after");
-const compareOutput=document.getElementById("compare-output");
-function updateComparison(){
-  const value=Number(compareRange.value);
-  compareAfter.style.clipPath="inset(0 "+(100-value)+"% 0 0)";
-  compareOutput.value=value+"%";
-  compareOutput.textContent=value+"%";
-}
-compareRange.addEventListener("input",updateComparison);
-updateComparison();
-
 /* GitHub public contributor endpoint; never fabricate identities or counts. */
 async function loadContributors(){
   const container=document.getElementById("contributors-grid");
