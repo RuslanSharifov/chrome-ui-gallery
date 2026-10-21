@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#080a12">
+  <meta name="description" content="Browse every approved Chrome extension, browser tool and UI theme. Filter by category, platform and style, search and download.">
+  <meta name="google-site-verification" content="0-DUqOgSs2dNVZ6csOxEr07EfWUSLmra-k0Mogx-ZUg">
+  <link rel="canonical" href="https://ruslansharifov.github.io/chrome-ui-gallery/gallery.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Chrome UI Gallery">
+  <meta property="og:url" content="https://ruslansharifov.github.io/chrome-ui-gallery/gallery.html">
+  <meta property="og:title" content="All repositories — Chrome UI Gallery">
+  <meta property="og:description" content="Browse every approved Chrome extension, browser tool and UI theme. Filter by category, platform and style, search and download.">
+  <meta name="twitter:card" content="summary">
+  <title>All repositories — Chrome UI Gallery</title>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebSite","name":"Chrome UI Gallery","url":"https://ruslansharifov.github.io/chrome-ui-gallery/","description":"Open-source Chrome extensions, UI themes and browser developer tools.","inLanguage":"en"}
+  </script>
+  <script>try{if(sessionStorage.getItem("cg-seen"))document.documentElement.classList.add("skip-loader");else sessionStorage.setItem("cg-seen","1")}catch(e){}</script>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+  <script src="motion.js" defer></script>
+  <script src="header.js" defer></script>
+  <script src="bg.js" defer></script>
+  
+</head>
+<body data-page="gallery">
+  <div id="page-loader" class="page-loader" aria-hidden="true"><div class="ld"><span class="ld-ring"></span><svg class="ld-mark" viewBox="0 0 64 64"><g stroke="#080a12" stroke-width="1.6" stroke-linejoin="round"><path class="ld-f ld-t" d="M32 9 51 20 32 31 13 20Z" fill="#cfc2ff"/><path class="ld-f ld-l" d="M13 20 32 31v24L13 44Z" fill="#8f7bff"/><path class="ld-f ld-r" d="M51 20 32 31v24l19-11Z" fill="#6fe5c0"/></g><circle class="ld-dot" cx="32" cy="20" r="2.4" fill="#080a12"/></svg><span class="ld-word">chrome<b>/</b>gallery</span><span class="ld-bar"><i></i></span></div></div>
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+  <div id="cursor-glow" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header class="site-header" id="site-header">
+      <div class="header-row">
+        <a class="brand header-island" href="index.html" aria-label="Chrome UI Gallery home"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="lth" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#efe8ff"/><stop offset="1" stop-color="#b9a6ff"/></linearGradient><linearGradient id="llh" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#8f7bff"/><stop offset="1" stop-color="#5a46d6"/></linearGradient><linearGradient id="lrh" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#9af0d4"/><stop offset="1" stop-color="#3dbf98"/></linearGradient></defs><g stroke="#080a12" stroke-width="1.6" stroke-linejoin="round"><path d="M32 9 51 20 32 31 13 20Z" fill="url(#lth)"/><path d="M13 20 32 31v24L13 44Z" fill="url(#llh)"/><path d="M51 20 32 31v24l19-11Z" fill="url(#lrh)"/></g><circle cx="32" cy="20" r="2.4" fill="#080a12"/></svg><span class="brand-text">chrome<span class="brand-muted">/</span>gallery</span></a>
+        <div class="header-actions header-island" id="header-actions">
+          <nav class="island-links" id="island-links" aria-label="Primary navigation" inert>
+            <a href="index.html">Home</a>
+            <a href="gallery.html" aria-current="page">All repos</a>
+            <a href="guide.html">Guide</a>
+            <a href="index.html#contribute">Contribute</a>
+            <a href="index.html#contributors">Contributors</a>
+          </nav>
+          <button class="island-close" id="island-close" type="button" aria-label="Close navigation" tabindex="-1">×</button>
+          <button class="island-toggle" id="island-toggle" type="button" aria-label="Open navigation" aria-controls="island-links" aria-expanded="false"><span></span><span></span><span></span></button>
+          <a class="island-github" href="https://github.com/RuslanSharifov/chrome-ui-gallery" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">↗</span> <span>GitHub</span></a>
+        </div>
+      </div>
+    </header>
+    <main id="main">
+      <section class="page-hero container" aria-labelledby="gallery-title">
+        <span class="eyebrow">THE COLLECTION</span>
+        <h1 id="gallery-title">All <span class="gradient-text">repositories.</span></h1>
+        <p class="hero-description">Every approved extension, tool and UI theme — search, filter and download.</p>
+      </section>
+      <section class="container gallery-section" aria-label="Gallery">
+        <div class="toolbar">
+          <div class="filter-tabs" role="group" aria-label="Category filter">
+            <button class="filter-tab active" data-category="all" aria-pressed="true" type="button">All <span>–</span></button>
+            <button class="filter-tab" data-category="ui" aria-pressed="false" type="button">UI designs <span>–</span></button>
+            <button class="filter-tab" data-category="tool" aria-pressed="false" type="button">Tools <span>–</span></button>
+          </div>
+          <label class="search-wrap" for="search"><span class="search-icon" aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Search projects…" autocomplete="off"><span class="shortcut" aria-hidden="true">/</span></label>
+        </div>
+        <div class="platform-bar">
+          <span class="bar-label">PLATFORM</span>
+          <div class="platform-options" role="group" aria-label="Platform filter"></div>
+        </div>
+        <div class="advanced-filters" aria-label="Advanced gallery filters">
+          <label>Style <select id="style-filter"><option value="all">All styles</option></select></label>
+          <label>Sort <select id="sort-filter"><option value="name">Name A–Z</option><option value="name-desc">Name Z–A</option><option value="platform">Platform</option><option value="category">Category</option></select></label>
+          <button id="reset-advanced" type="button" class="filter-reset">Reset</button>
+          <span class="results-count" id="results-count" role="status" aria-live="polite">Loading projects…</span>
+        </div>
+        <div class="project-grid" id="project-grid" aria-live="off"><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div></div>
+        <div class="empty-state" id="empty-state" hidden><span>⌁</span><h3>No matches yet.</h3><p>Try another name or select a different category.</p><button id="clear-filters" class="button button-secondary" type="button">Clear filters</button></div>
+        <noscript><p>JavaScript is required for filtering; browse the <a href="https://github.com/RuslanSharifov/chrome-ui-gallery/blob/main/ui/README.md">UI catalog</a> and <a href="https://github.com/RuslanSharifov/chrome-ui-gallery/blob/main/Tools/README.md">Tools catalog</a> on GitHub.</p></noscript>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="container footer-content">
+        <div><a class="brand" href="index.html"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="ltf" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#efe8ff"/><stop offset="1" stop-color="#b9a6ff"/></linearGradient><linearGradient id="llf" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#8f7bff"/><stop offset="1" stop-color="#5a46d6"/></linearGradient><linearGradient id="lrf" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#9af0d4"/><stop offset="1" stop-color="#3dbf98"/></linearGradient></defs><g stroke="#080a12" stroke-width="1.6" stroke-linejoin="round"><path d="M32 9 51 20 32 31 13 20Z" fill="url(#ltf)"/><path d="M13 20 32 31v24L13 44Z" fill="url(#llf)"/><path d="M51 20 32 31v24l19-11Z" fill="url(#lrf)"/></g><circle cx="32" cy="20" r="2.4" fill="#080a12"/></svg><span class="brand-text">chrome<span class="brand-muted">/</span>gallery</span></a><p>Open source experiments for a more beautiful, useful web.</p></div>
+        <div class="footer-links"><a href="gallery.html">All repos</a><a href="guide.html">Guide</a><a href="https://github.com/RuslanSharifov/chrome-ui-gallery/blob/main/GETTING_STARTED.az.md">Azərbaycanca</a><a href="https://github.com/RuslanSharifov/chrome-ui-gallery/blob/main/SECURITY.md">Security</a><a href="https://github.com/RuslanSharifov/chrome-ui-gallery/blob/main/LICENSE">MIT License</a><a href="https://github.com/RuslanSharifov/chrome-ui-gallery">GitHub ↗</a></div>
+      </div>
+      <div class="container foot-bottom"><span>© 2026 Chrome UI Gallery contributors.</span><span>Always review extension permissions.</span></div>
+    </footer>
+  </div>
+</body>
+</html>
