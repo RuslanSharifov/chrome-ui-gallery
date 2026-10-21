@@ -20,7 +20,17 @@
     if (events.length > MAX) events.shift();
     window.dispatchEvent(new CustomEvent('devlens:entry', {detail:entry}));
     // The background script buffers recent entries and forwards them to the panel.
-    chrome.runtime.sendMessage({action:'logEntry',entry}).catch(() => {});
+    // A content script can outlive an extension reload/uninstall. In that case,
+    // accessing chrome.runtime.id or sendMessage may throw synchronously.
+    // Missing receivers and expired contexts must not break the host page.
+    try {
+      if (typeof chrome !== 'undefined' && chrome.runtime?.id) {
+        const pending = chrome.runtime.sendMessage({action:'logEntry',entry});
+        if (pending && typeof pending.catch === 'function') pending.catch(() => {});
+      }
+    } catch (_) {
+      // Extension context invalidated while this page was open.
+    }
   }
   window.addEventListener('__devlens_console__', function (e) {
     const data = e.detail || {};

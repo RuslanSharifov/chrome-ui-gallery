@@ -218,6 +218,7 @@ Repository: [chrome-ui-gallery](https://github.com/RuslanSharifov/chrome-ui-gall
 - Runs on regular website pages; Chrome restricted pages (including `chrome://` and the Web Store) do not permit content script injection.
 - Capturing occurs for console, fetch and XHR after injection; it does not provide complete browser-level DevTools network logging.
 - The extension requests broad site access through declarative content script matches. Review this before installing or publishing.
+- If the extension is reloaded while a page remains open, Chrome may invalidate the old content-script context. The interceptor now safely ignores runtime messaging failures; reload the website tab after updating the extension to start a fresh content script.
 - The author and copyright lines originated in the submitted ZIP and must be verified against the actual rights holder before a public Pull Request.
 
 ---
