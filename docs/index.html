@@ -28,14 +28,18 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
+  <script src="motion.js" defer></script>
 </head>
 <body>
+  <div id="page-loader" class="page-loader" aria-hidden="true"><div class="loader-ring"></div><span>chrome / gallery</span></div>
+  <canvas id="ambient-particles" aria-hidden="true"></canvas>
+  <div id="cursor-glow" aria-hidden="true"></div>
   <a class="skip-link" href="#explore">Skip to gallery</a>
   <div class="site-shell">
     <header class="site-header">
       <div class="container header-row">
         <a class="brand" href="#top" aria-label="Chrome UI Gallery home">
-          <span class="brand-logo" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span class="brand-logo kinetic-logo" aria-hidden="true"><span></span><span></span><span></span></span>
           <span>chrome<span class="brand-muted">/</span>gallery</span>
         </a>
         <nav class="main-nav" aria-label="Primary navigation">
@@ -63,10 +67,10 @@
             <span><strong data-stat="platforms">04</strong> platforms</span>
           </div>
         </div>
-        <div class="hero-art" aria-hidden="true">
+        <div class="hero-art depth-scene" aria-hidden="true">
           <div class="art-light art-light-one"></div><div class="art-light art-light-two"></div>
           <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
-          <div class="art-window">
+          <div class="art-window depth-card">
             <div class="art-top"><i></i><i></i><i></i><span>ui / preview</span><b>✦</b></div>
             <div class="art-content">
               <div class="art-sidebar"><span class="art-logo"></span><i></i><i></i><i></i><i></i></div>
@@ -126,17 +130,6 @@
           </div>
           <a class="text-link" href="https://github.com/RuslanSharifov/chrome-ui-gallery/blob/main/GETTING_STARTED.md" target="_blank" rel="noopener noreferrer">Read the beginner-friendly guide <span aria-hidden="true">↗</span></a>
         </div>
-      </section>
-      <section class="comparison-section container" id="compare" aria-labelledby="compare-title">
-        <div class="section-topline"><span class="eyebrow">VISUAL LAB / 003</span></div>
-        <h2 id="compare-title">Before <span class="gradient-text">/ After.</span></h2>
-        <p class="feature-intro">Explore a conceptual browser makeover. This is an illustrative demo, not a screenshot of any contributed extension.</p>
-        <div class="compare-shell" id="compare-shell">
-          <div class="compare-scene compare-before" aria-hidden="true"><div class="mock-browser"><div class="mock-top">◯ ◯ ◯ &nbsp; Original interface</div><div class="mock-layout"><div class="mock-aside"></div><div class="mock-content"><div class="mock-title">Welcome back</div><div class="mock-line"></div><div class="mock-line short"></div><div class="mock-tiles"><i></i><i></i></div></div></div></div></div>
-          <div class="compare-scene compare-after" id="compare-after" aria-hidden="true"><div class="mock-browser"><div class="mock-top">◯ ◯ ◯ &nbsp; Glass concept</div><div class="mock-layout"><div class="mock-aside"></div><div class="mock-content"><div class="mock-title">Welcome back ✦</div><div class="mock-line"></div><div class="mock-line short"></div><div class="mock-tiles"><i></i><i></i></div></div></div></div></div>
-          <span class="compare-label before-label">Before</span><span class="compare-label after-label">After</span>
-        </div>
-        <label class="compare-control" for="compare-range">Drag to compare <input type="range" id="compare-range" min="0" max="100" value="50" aria-label="Before and after comparison"><output id="compare-output" for="compare-range">50%</output></label>
       </section>
       <section class="contributors-section container" id="contributors" aria-labelledby="contributors-title">
         <div class="section-topline"><span class="eyebrow">COMMUNITY / 004</span></div>
