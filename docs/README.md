@@ -70,9 +70,12 @@ Tools/
 
 No app.js edit and no hardcoded HTML counts. Security, copyright and privacy reviews remain necessary even when structural validation passes.
 
-## Download ZIP, visual comparison, contributors and filters
+## Download ZIP, contributors and filters
 
 - Every deployment builds `docs/downloads/<catalog-id>.zip` from the matching approved extension folder using [package-downloads.py](../scripts/package-downloads.py). ZIP files contain only that extension directory and are not committed to Git. The Download ZIP button requires a successful GitHub Pages deployment.
-- The Before / After comparison is an explicitly labeled **illustrative concept**. It is not a genuine screenshot or evidence of any extension's results. Edit the comparison markup in [index.html](./index.html) and styles in [styles.css](./styles.css) to replace the concept.
 - Contributors are fetched from GitHub's public repository contributor endpoint at runtime. API rate limits or network failures show a link to GitHub instead; counts are not fabricated.
 - Style filters and sorting use catalog metadata, and reset clears all filters. No contributor approval or extension permissions are changed.
+
+## Interactive visual effects
+
+The site includes a lightweight loading animation, scroll reveals, mouse-responsive 3D hero, particle background, dynamic logo and cursor glow. Effects live in [motion.js](./motion.js) and [styles.css](./styles.css). The illustrative Before / After section has been removed. Reduced-motion preferences disable these effects; touch devices skip pointer interactions.
