@@ -14,6 +14,9 @@ const search = document.getElementById("search");
 const categoryButtons = Array.from(document.querySelectorAll("[data-category]"));
 const platformOptions = document.querySelector(".platform-options");
 const state = {category:"all",platform:"all",style:"all",sort:"name",query:""};
+const page = document.body.dataset.page || "gallery";
+const LIMIT = Number(grid && grid.dataset.limit) || 6;
+const allLink = document.getElementById("view-all");
 const styleFilter=document.getElementById("style-filter");
 const sortFilter=document.getElementById("sort-filter");
 let projects = [];
@@ -105,6 +108,7 @@ function setActive(buttons,key,value) {
   }
 }
 function makePlatformButtons() {
+  if(!platformOptions)return;
   const preferred=["chatgpt","gemini","github","lovable","browser"];
   const present=[...new Set(projects.map(p=>p.platform))];
   present.sort((a,b)=>{
@@ -129,6 +133,7 @@ function makePlatformButtons() {
   platformOptions.replaceChildren(...platformButtons);
 }
 function makeStyleOptions(){
+  if(!styleFilter)return;
   const styles=[...new Set(projects.map(p=>p.style))].sort((a,b)=>a.localeCompare(b));
   styleFilter.replaceChildren(new Option("All styles","all"),...styles.map(s=>new Option(s,s)));
 }
@@ -155,7 +160,21 @@ function updateTotals() {
     if(span)span.textContent=String(values[button.dataset.category]).padStart(2,"0");
   }
 }
+function latestProjects() {
+  /* Optional "added" (ISO date) in catalog entries; otherwise the newest entries are the last ones in catalog order. */
+  const indexed=projects.map((p,i)=>({p,i}));
+  const hasDates=projects.some(p=>typeof p.added==="string");
+  indexed.sort((a,b)=>hasDates?String(b.p.added||"").localeCompare(String(a.p.added||""))||b.i-a.i:b.i-a.i);
+  return indexed.slice(0,LIMIT).map(x=>x.p);
+}
 function render() {
+  if(page==="home"){
+    const latest=latestProjects();
+    grid.replaceChildren(...latest.map(buildCard));
+    if(count)count.textContent="Latest "+latest.length+" of "+projects.length;
+    if(allLink)allLink.firstChild.textContent="View all "+projects.length+" repositories ";
+    return;
+  }
   const query=state.query.trim().toLowerCase();
   const matched=projects.filter(item=>{
     if(state.category!=="all"&&item.category!==state.category)return false;
@@ -167,6 +186,7 @@ function render() {
   grid.replaceChildren(...sortProjects(matched).map(buildCard));
   count.textContent=String(matched.length)+" "+(matched.length===1?"project":"projects");
   empty.hidden=matched.length>0;
+  history.replaceState(null,"",location.pathname+(state.category!=="all"?"?category="+state.category:""));
 }
 for(const button of categoryButtons) {
   button.addEventListener("click",()=>{
@@ -175,28 +195,35 @@ for(const button of categoryButtons) {
     render();
   });
 }
-search.addEventListener("input",()=>{state.query=search.value;render()});
-styleFilter.addEventListener("change",()=>{state.style=styleFilter.value;render()});
-sortFilter.addEventListener("change",()=>{state.sort=sortFilter.value;render()});
-document.getElementById("reset-advanced").addEventListener("click",resetFilters);
+search?.addEventListener("input",()=>{state.query=search.value;render()});
+styleFilter?.addEventListener("change",()=>{state.style=styleFilter.value;render()});
+sortFilter?.addEventListener("change",()=>{state.sort=sortFilter.value;render()});
+document.getElementById("reset-advanced")?.addEventListener("click",resetFilters);
 function resetFilters(){
   state.category="all";state.platform="all";state.style="all";state.sort="name";state.query="";
   search.value="";styleFilter.value="all";sortFilter.value="name";
   setActive(categoryButtons,"category","all");setActive(platformButtons,"platform","all");
   render();
 }
-document.getElementById("clear-filters").addEventListener("click",()=>{
+document.getElementById("clear-filters")?.addEventListener("click",()=>{
   resetFilters();
-  search.focus();
+  search?.focus();
 });
 document.addEventListener("keydown",event=>{
   const active=document.activeElement;
   const editing=active&&["INPUT","TEXTAREA"].includes(active.tagName);
-  if(event.key==="/"&&!editing&&!event.ctrlKey&&!event.metaKey&&!event.altKey){
+  if(search&&event.key==="/"&&!editing&&!event.ctrlKey&&!event.metaKey&&!event.altKey){
     event.preventDefault();search.focus();
   }
-  if(event.key==="Escape"&&active===search)search.blur();
+  if(search&&event.key==="Escape"&&active===search)search.blur();
 });
+function applyUrlState(){
+  const q=new URLSearchParams(location.search);
+  const cat=q.get("category"),plat=q.get("platform"),text=q.get("q");
+  if(["ui","tool"].includes(cat)){state.category=cat;setActive(categoryButtons,"category",cat)}
+  if(plat&&projects.some(p=>p.platform===plat)){state.platform=plat;setActive(platformButtons,"platform",plat)}
+  if(text&&search){state.query=text;search.value=text}
+}
 function validateCatalog(data) {
   if(!data||data.schemaVersion!==1||!Array.isArray(data.projects))throw new Error("Unexpected catalog format");
   const ids=new Set();
@@ -214,7 +241,7 @@ function validateCatalog(data) {
   });
 }
 async function loadCatalog() {
-  count.textContent="Loading projects…";
+  if(count)count.textContent="Loading projects…";
   try {
     const response=await fetch("./catalog.json",{cache:"no-store"});
     if(!response.ok)throw new Error("Catalog request failed: "+response.status);
@@ -223,10 +250,12 @@ async function loadCatalog() {
     makePlatformButtons();
     makeStyleOptions();
     updateTotals();
+    if(page!=="home")applyUrlState();
     render();
   } catch(error) {
-    count.textContent="Catalog unavailable";
+    if(count)count.textContent="Catalog unavailable";
     grid.replaceChildren();
+    if(!empty)return;
     empty.hidden=false;
     empty.querySelector("h3").textContent="The gallery is temporarily unavailable.";
     empty.querySelector("p").textContent="Please refresh the page or browse the projects directly on GitHub.";
@@ -237,11 +266,12 @@ async function loadCatalog() {
     console.error("Chrome UI Gallery:",error);
   }
 }
-loadCatalog();
+if(grid)loadCatalog();
 
 /* GitHub public contributor endpoint; never fabricate identities or counts. */
 async function loadContributors(){
   const container=document.getElementById("contributors-grid");
+  if(!container)return;
   try{
     const response=await fetch("https://api.github.com/repos/RuslanSharifov/chrome-ui-gallery/contributors?per_page=100",{headers:{Accept:"application/vnd.github+json"}});
     if(!response.ok)throw new Error("GitHub API "+response.status);

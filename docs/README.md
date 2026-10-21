@@ -83,3 +83,13 @@ The site includes a lightweight loading animation, scroll reveals, mouse-respons
 ## Floating glass navigation
 
 The header uses two independently floating glassmorphism islands: a left brand island and a right GitHub/menu island. Scrolling condenses both islands into rounded pills. The three-dot control expands the right island to the left with staggered navigation links; its X control and Escape key close the menu. Outside clicks and navigation also close it. Keyboard focus and reduced-motion preferences are supported. See [header.js](./header.js), [index.html](./index.html), and [styles.css](./styles.css).
+
+## Pages (multi-page layout)
+
+- [index.html](./index.html) — particle-3D intro, the latest 6 repositories (`data-limit` on `#project-grid`), a **View all repositories** button, getting started, contributors and contribute call-to-action.
+- [gallery.html](./gallery.html) — every repository with category, platform and style filters, search and sorting. Supports `?category=ui|tool`, `?platform=chatgpt` and `?q=text`.
+- [hero.js](./hero.js) — canvas particle cube model for the intro (touch/pointer reactive, honors reduced-motion). [logo.svg](./logo.svg) / [favicon.svg](./favicon.svg) — the cube mark.
+- "Latest" order: an optional ISO `added` date on catalog entries; when absent, the last catalog entries count as newest.
+
+- [guide.html](./guide.html) — install / how it works / submit / metadata / local testing / maintainer setup / FAQ, with copy buttons and a sticky table of contents.
+- [bg.js](./bg.js) — shared dynamic background on every page: a drifting "git graph" (branch lanes, commit nodes, merge pulses, pointer glow) plus a soft animated aurora; disabled under reduced motion.

@@ -1,6 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-<defs><linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#c0aaff"/><stop offset="1" stop-color="#90ebcd"/></linearGradient></defs>
-<rect width="64" height="64" rx="17" fill="#131426"/>
-<path d="M32 10c-6 10-6 21 0 28 6-7 6-18 0-28ZM11 41c12 0 21-6 21-14-10-3-20 2-21 14ZM53 41c-1-12-11-17-21-14 0 8 9 14 21 14Z" fill="url(#a)"/>
-<circle cx="32" cy="31" r="5" fill="#f0d6ff"/>
+<defs>
+<linearGradient id="t" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#efe8ff"/><stop offset="1" stop-color="#b9a6ff"/></linearGradient>
+<linearGradient id="l" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#8f7bff"/><stop offset="1" stop-color="#5a46d6"/></linearGradient>
+<linearGradient id="r" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#9af0d4"/><stop offset="1" stop-color="#3dbf98"/></linearGradient>
+</defs>
+<rect width="64" height="64" rx="16" fill="#0b0c17"/>
+<g stroke="#0b0c17" stroke-width="1.6" stroke-linejoin="round">
+<path d="M32 9 51 20 32 31 13 20Z" fill="url(#t)"/>
+<path d="M13 20 32 31v24L13 44Z" fill="url(#l)"/>
+<path d="M51 20 32 31v24l19-11Z" fill="url(#r)"/>
+</g>
+<circle cx="32" cy="20" r="2.4" fill="#0b0c17"/>
 </svg>
