@@ -79,3 +79,7 @@ No app.js edit and no hardcoded HTML counts. Security, copyright and privacy rev
 ## Interactive visual effects
 
 The site includes a lightweight loading animation, scroll reveals, mouse-responsive 3D hero, particle background, dynamic logo and cursor glow. Effects live in [motion.js](./motion.js) and [styles.css](./styles.css). The illustrative Before / After section has been removed. Reduced-motion preferences disable these effects; touch devices skip pointer interactions.
+
+## Floating glass navigation
+
+The header uses two independently floating glassmorphism islands: a left brand island and a right GitHub/menu island. Scrolling condenses both islands into rounded pills. The three-dot control expands the right island to the left with staggered navigation links; its X control and Escape key close the menu. Outside clicks and navigation also close it. Keyboard focus and reduced-motion preferences are supported. See [header.js](./header.js), [index.html](./index.html), and [styles.css](./styles.css).
