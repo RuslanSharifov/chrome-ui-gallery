@@ -77,3 +77,20 @@
 .contributor-card strong{font-size:14px;overflow-wrap:anywhere}
 .contributor-card span{font-size:12px;color:#9da4bc}
 @media(max-width:600px){.compare-shell{aspect-ratio:4/3}.compare-scene{padding:12px}.mock-browser{width:95%}.mock-tiles i{height:40px}.advanced-filters label{flex:1;min-width:125px}.advanced-filters select{width:100%}}
+
+#ambient-particles{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.8}
+.site-shell{position:relative;z-index:2}
+#cursor-glow{position:fixed;top:0;left:0;z-index:1;width:440px;height:440px;pointer-events:none;border-radius:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,#a38cff20,#72ded00a 40%,transparent 70%);opacity:0}
+.page-loader{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;background:#090b13;color:#e8e1ff;font-size:18px;font-weight:800;transition:opacity .6s,visibility .6s}
+.page-loader.done{opacity:0;visibility:hidden;pointer-events:none}
+.loader-ring{width:66px;height:66px;border:3px solid #b6a5ff22;border-top-color:#ad9aff;border-right-color:#76dccc;border-radius:50%;animation:spin 1.1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.kinetic-logo{transform-style:preserve-3d;transition:transform .2s ease;filter:drop-shadow(0 0 9px #9f8aff55)}
+.kinetic-logo:after{content:"";position:absolute;inset:-7px;border:1px solid #9d85ef65;border-radius:11px;animation:logo-breathe 3s ease-in-out infinite;pointer-events:none}
+@keyframes logo-breathe{50%{transform:scale(1.18);opacity:.2}}
+.depth-scene{perspective:1100px;transform-style:preserve-3d}
+.depth-card{transform-style:preserve-3d;transition:transform .18s ease-out}
+.motion-ready [data-motion="1"]{opacity:0;transform:translateY(30px);transition:opacity .75s ease,transform .75s ease}
+.motion-ready [data-motion="1"].revealed{opacity:1;transform:translateY(0)}
+@media(hover:none),(pointer:coarse){#cursor-glow{display:none}}
+@media(prefers-reduced-motion:reduce){.page-loader,#ambient-particles,#cursor-glow{display:none!important}.kinetic-logo:after{animation:none}.depth-card{transform:none!important}.motion-ready [data-motion]{opacity:1!important;transform:none!important;transition:none!important}}
