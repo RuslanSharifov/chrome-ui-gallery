@@ -1,5 +1,11 @@
 # Gemini Glassmorphism UI
 
+## Animated preview
+
+![Gemini Glassmorphism animated UI preview](./gemini-glassmorphism-preview.gif)
+
+[Open full-size GIF](./gemini-glassmorphism-preview.gif) · [Quick-start README](./README.md)
+
 ## Design name
 Gemini Glassmorphism
 

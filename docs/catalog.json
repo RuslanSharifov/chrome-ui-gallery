@@ -213,7 +213,8 @@
       ],
       "doc": "gemini/glassmorphism/gemini-glassmorphism/design.md",
       "folder": "gemini/glassmorphism/gemini-glassmorphism",
-      "version": "1.2.0"
+      "version": "1.2.0",
+      "preview": "gemini/glassmorphism/gemini-glassmorphism/gemini-glassmorphism-preview.gif"
     },
     {
       "id": "github-3d-github",
