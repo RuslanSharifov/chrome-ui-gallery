@@ -3,9 +3,10 @@
   const $ = (id) => document.getElementById(id);
   let tab = null;
 
+  let currentLanguage = "en";
   const setStatus = (text, isError) => {
     const s = $("status");
-    s.textContent = text;
+    s.textContent = UD_I18N.translate(text, currentLanguage);
     s.style.color = isError ? "var(--err)" : "";
   };
 
@@ -27,6 +28,8 @@
     document.documentElement.dataset.theme = settings.theme === "system"
       ? (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark")
       : settings.theme;
+    currentLanguage = settings.language || "en";
+    UD_I18N.apply(document, currentLanguage);
     if (!tab) { $("site").textContent = "No active tab."; return; }
     if (tab.url) {
       $("site").textContent = UD.isHttp(tab.url) ? new URL(tab.url).host : "Restricted page: UI Doctor works on regular web pages.";
