@@ -1,11 +1,23 @@
 {
   "name": "TabPocket",
-  "tagline": "Save your tabs. Organize your browser.",
-  "category": "Productivity",
-  "path": "Tools/tabpocket",
-  "version": "1.0.0",
-  "author": "Ruslan Sharifov",
-  "github": "https://github.com/RuslanSharifov",
-  "icon": "icons/icon128.png",
-  "tags": ["tabs", "collections", "productivity"]
+  "description": "Save open tabs into organized collections, search and restore them, and import or export backups locally.",
+  "platform": "browser",
+  "style": "Productivity Tool",
+  "tags": [
+    "Tabs",
+    "Collections",
+    "Productivity",
+    "Bookmarks",
+    "Sessions"
+  ],
+  "icon": "TP",
+  "palette": [
+    "#121827",
+    "#4869e8",
+    "#77dfd3"
+  ],
+  "author": {
+    "name": "Ruslan Sharifov",
+    "url": "https://github.com/RuslanSharifov"
+  }
 }
