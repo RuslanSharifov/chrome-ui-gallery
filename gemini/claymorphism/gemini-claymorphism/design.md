@@ -1,5 +1,11 @@
 # Gemini Claymorphism UI (v1.1)
 
+## Animated preview
+
+![Gemini Claymorphism animated UI preview](./gemini-claymorphism-preview.gif)
+
+[Open full-size GIF](./gemini-claymorphism-preview.gif) · [Quick-start README](./README.md)
+
 Chrome MV3 extension that restyles gemini.google.com with soft clay surfaces, animated 3D clay clouds, a weather system and an adjustable clay-to-glass blend. Visual styling only: no prompts are read or sent, no API calls, no remote assets.
 
 ## Files
