@@ -191,7 +191,8 @@
       ],
       "doc": "gemini/claymorphism/gemini-claymorphism/design.md",
       "folder": "gemini/claymorphism/gemini-claymorphism",
-      "version": "1.1.0"
+      "version": "1.1.0",
+      "preview": "gemini/claymorphism/gemini-claymorphism/gemini-claymorphism-preview.gif"
     },
     {
       "id": "gemini-glassmorphism-gemini-glassmorphism",
