@@ -1,5 +1,11 @@
 # 🍪 Cookie Manager Pro
 
+## Preview
+
+![ Cookie Manager Pro extension preview](./width_1600.webp)
+
+The image shows the extension's interface and key actions. [View the image](./width_1600.webp) · [Browse the live gallery](https://ruslansharifov.github.io/chrome-ui-gallery/gallery.html?category=tool&q=Cookie%20Manager%20Pro).
+
 [← All tools](../README.md) · [← Gallery home](../../README.md) · [DevLens](../devlens/README.md) · [Beginner installation guide](../../GETTING_STARTED.md)
 
 A Chrome Manifest V3 extension for viewing and managing browser cookies.
