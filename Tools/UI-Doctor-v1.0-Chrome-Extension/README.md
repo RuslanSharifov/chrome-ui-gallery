@@ -25,10 +25,10 @@ Everything runs locally. There is no telemetry, no analytics and no remote AI se
 
 ## Installation
 
-1. Download `UI-Doctor-v1.0-Chrome-Extension.zip` and extract it, or use the `Tools/ui-doctor/` folder of this repository.
+1. Download `UI-Doctor-v1.0-Chrome-Extension.zip` and extract it, or use the `Tools/UI-Doctor-v1.0-Chrome-Extension/` folder of this repository.
 2. Open `chrome://extensions`.
 3. Turn on **Developer mode**.
-4. Click **Load unpacked** and select the extracted `ui-doctor` folder (the one that contains `manifest.json`).
+4. Click **Load unpacked** and select the extracted `UI-Doctor-v1.0-Chrome-Extension` folder (the one that contains `manifest.json`).
 5. Pin the UI Doctor icon from the Extensions menu.
 
 Requires Chrome 116 or later.
@@ -79,7 +79,7 @@ Default keyboard shortcuts (change them at `chrome://extensions/shortcuts`):
 ## File structure
 
 ```
-ui-doctor/
+UI-Doctor-v1.0-Chrome-Extension/
 ├── manifest.json                 Manifest V3 definition, permissions, commands
 ├── README.md                     This file
 ├── design.md                     Design system, architecture and file responsibilities
