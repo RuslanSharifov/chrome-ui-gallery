@@ -82,3 +82,7 @@ The specification suggested separate `modules/`, `inspector.js`, `overlays.js`, 
 - Page-derived values are escaped before any HTML is generated. The HTML report sets a Content-Security-Policy that blocks scripts.
 - Playground values are checked against an allow-list of properties and a character whitelist, and are set through the CSSOM rather than HTML.
 - Restricted pages are detected and reported as unsupported.
+
+## Localization
+
+The interface supports English (`en`, default), German (`de`), Turkish (`tr`) and French (`fr`). `shared/i18n.js` provides a local translation dictionary; `shared/utils.js` persists `settings.language`. The side panel re-renders when language changes and the popup reads the same preference. Dynamic CSS values and untrusted page data are intentionally not translated. Not every long diagnostic explanation has a translation yet; missing entries fall back to English. No translation network service is used.
