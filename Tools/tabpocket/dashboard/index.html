@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TabPocket · Collection</title>
+  <link rel="stylesheet" href="../shared/base.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="wrap">
+    <header class="head">
+      <img src="../icons/icon48.png" width="36" height="36" alt="">
+      <div class="grow">
+        <h1 id="title">Collection</h1>
+        <p id="meta" class="meta"></p>
+      </div>
+      <a class="ghost-link" href="../settings/settings.html">Settings</a>
+    </header>
+    <div class="toolbar">
+      <input id="filter" type="search" placeholder="Search saved tabs by title or URL" aria-label="Search saved tabs">
+      <button id="selAll" type="button" class="ghost">Select all</button>
+      <button id="selNone" type="button" class="ghost">Deselect all</button>
+    </div>
+    <div class="toolbar">
+      <input id="addUrl" type="url" placeholder="https://example.com" aria-label="URL to add">
+      <button id="addBtn" type="button" class="ghost">Add URL</button>
+    </div>
+    <ul id="rows" class="rows"></ul>
+    <p id="empty" class="empty" hidden>No matching tabs.</p>
+    <div class="bar">
+      <button id="openSel" class="primary" type="button">Open selected (0)</button>
+      <button id="openAll" class="primary" type="button">Open all</button>
+      <button id="removeSel" class="danger" type="button">Remove selected (0)</button>
+    </div>
+    <div class="bar">
+      <label class="inline">Move selected to <select id="moveTo"></select></label>
+      <button id="moveBtn" class="ghost" type="button">Move</button>
+      <button id="rename" class="ghost" type="button">Rename</button>
+      <button id="delete" class="danger" type="button">Delete collection</button>
+    </div>
+    <p id="status" class="status" role="status"></p>
+  </main>
+  <script type="module" src="script.js"></script>
+</body>
+</html>

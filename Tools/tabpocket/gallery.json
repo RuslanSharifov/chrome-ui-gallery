@@ -1,0 +1,12 @@
+{
+  "id": "tabpocket",
+  "name": "TabPocket",
+  "tagline": "Save your tabs. Organize your browser.",
+  "category": "Productivity",
+  "path": "Tools/tabpocket",
+  "version": "1.0.0",
+  "author": "Ruslan Sharifov",
+  "github": "https://github.com/RuslanSharifov",
+  "icon": "icons/icon128.png",
+  "tags": ["tabs", "collections", "productivity"]
+}

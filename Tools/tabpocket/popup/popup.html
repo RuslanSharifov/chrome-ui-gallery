@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TabPocket</title>
+  <link rel="stylesheet" href="../shared/base.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="top">
+    <img src="../icons/icon32.png" width="24" height="24" alt="">
+    <h1 class="grow">TabPocket</h1>
+    <button id="settingsBtn" class="ghost" type="button">Settings</button>
+  </header>
+  <button id="openSaveBtn" class="primary wide" type="button">Save current tabs…</button>
+  <div class="filters">
+    <input id="search" type="search" placeholder="Search collections" aria-label="Search collections">
+    <select id="sort" aria-label="Sort collections">
+      <option value="name">A–Z</option>
+      <option value="date">Newest</option>
+      <option value="fav">Favorites first</option>
+    </select>
+  </div>
+  <ul id="list" class="list" aria-live="polite"></ul>
+  <p id="empty" class="empty" hidden>No collections yet. Save this window's tabs to get started.</p>
+  <p id="status" class="status" role="status"></p>
+  <footer>
+    <a href="https://github.com/RuslanSharifov" target="_blank" rel="noopener noreferrer">GitHub · RuslanSharifov</a>
+  </footer>
+
+  <dialog id="saveDialog" aria-labelledby="saveTitle">
+    <h2 id="saveTitle">Save tabs</h2>
+    <label class="field">Collection name
+      <input id="newName" type="text" maxlength="60" list="names" placeholder="My Work">
+    </label>
+    <datalist id="names"></datalist>
+    <div class="row-between">
+      <span id="selCount" class="meta"></span>
+      <span>
+        <button id="selAllTabs" class="ghost" type="button">All</button>
+        <button id="selNoneTabs" class="ghost" type="button">None</button>
+      </span>
+    </div>
+    <ul id="tabPick" class="pick"></ul>
+    <label class="check"><input type="checkbox" id="closeAfter"> Close selected tabs after saving</label>
+    <div class="bar-end">
+      <button id="cancelSave" class="ghost" type="button">Cancel</button>
+      <button id="confirmSave" class="primary" type="button">Save</button>
+    </div>
+  </dialog>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

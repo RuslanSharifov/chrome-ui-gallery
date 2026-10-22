@@ -1,0 +1,37 @@
+:root {
+  --bg: #0f1117; --panel: #171a23; --line: #262b38;
+  --text: #e8eaf2; --muted: #8b93a7;
+  --accent: #6d7cff; --accent2: #8b5cf6; --danger: #f0616d; --r: 12px;
+}
+[hidden] { display: none !important; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+h1 { font-size: 16px; margin: 0; }
+input { background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; font: inherit; min-width: 0; }
+input[type="checkbox"] { accent-color: var(--accent); width: 16px; height: 16px; flex: none; }
+button { font: inherit; border-radius: 8px; padding: 7px 12px; border: 1px solid var(--line); background: var(--panel); color: var(--text); cursor: pointer; transition: border-color .15s, background .15s; }
+button:hover { border-color: var(--accent); }
+button.primary { background: linear-gradient(135deg, var(--accent), var(--accent2)); border: 0; color: #fff; font-weight: 600; }
+button.danger { color: var(--danger); }
+button.ghost { background: transparent; }
+button:disabled { opacity: .5; cursor: default; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+a { color: var(--accent); }
+.meta { color: var(--muted); font-size: 12px; margin: 2px 0 0; }
+.empty { color: var(--muted); text-align: center; padding: 24px 0; }
+.status { color: var(--muted); min-height: 1.2em; margin: 8px 0 0; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+:root[data-theme="light"] {
+  --bg: #f5f6fa; --panel: #ffffff; --line: #dfe3ec;
+  --text: #171a23; --muted: #616a7d; --danger: #d63c4b;
+}
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+select { background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 8px; padding: 7px 10px; font: inherit; }
+dialog { background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: var(--r); padding: 16px; max-width: 92vw; }
+dialog::backdrop { background: rgba(0, 0, 0, .5); }
+.field { display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: var(--muted); }
+.field input { color: var(--text); font-size: 14px; }
+.check { display: flex; align-items: center; gap: 8px; font-size: 13px; cursor: pointer; }
+.ghost-link { color: var(--accent); text-decoration: none; padding: 7px 10px; border-radius: 8px; }
+.ghost-link:hover { background: var(--panel); }
+.grow { flex: 1; min-width: 0; }
