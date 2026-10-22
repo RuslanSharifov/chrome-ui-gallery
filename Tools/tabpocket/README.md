@@ -13,9 +13,10 @@ Save your tabs. Organize your browser.
 - Local storage only (`chrome.storage.local`). No accounts, servers, analytics, or history collection.
 
 ## Install
-1. Extract `TabPocket-Chrome-Extension.zip`.
-2. Open `chrome://extensions`, enable **Developer mode**.
-3. Click **Load unpacked** and select the `tabpocket` folder.
+1. Download the extension from the [live gallery](https://ruslansharifov.github.io/chrome-ui-gallery/gallery.html?category=tool&q=TabPocket) using **Download ZIP**, or download the [repository ZIP](https://github.com/RuslanSharifov/chrome-ui-gallery/archive/refs/heads/main.zip).
+2. Extract the ZIP. If you downloaded the entire repository, navigate to `Tools/tabpocket/`.
+3. Open `chrome://extensions`, enable **Developer mode**.
+4. Click **Load unpacked** and select the folder containing this extension's `manifest.json` (the `tabpocket` folder).
 
 ## Usage
 - **Save:** click the icon → **Save current tabs…** → name the collection → **Save**.
@@ -26,6 +27,9 @@ Save your tabs. Organize your browser.
 - `tabs`: read URLs/titles of open tabs; open and focus tabs.
 - `storage`: save collections and settings locally.
 - `favicon`: show site icons from Chrome's favicon cache.
+
+## Gallery
+[Find TabPocket in the live gallery](https://ruslansharifov.github.io/chrome-ui-gallery/gallery.html?category=tool&q=TabPocket) · [All tools](../README.md) · [Repository home](../../README.md)
 
 ## Structure
 [manifest.json](manifest.json) · [popup/](popup/) · [dashboard/](dashboard/) · [settings/](settings/) · [shared/](shared/) · [icons/](icons/)
