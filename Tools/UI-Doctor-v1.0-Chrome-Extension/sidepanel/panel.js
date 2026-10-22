@@ -452,6 +452,7 @@ ${groups || "<p>No findings.</p>"}
     const sel = (name, options, value) => `<select data-setting="${name}">${options.map(([v, t]) => `<option value="${esc(v)}" ${v === value ? "selected" : ""}>${esc(t)}</option>`).join("")}</select>`;
     const presetOpts = PRESETS.map((p) => [p.id, p.label]);
     return card("Appearance", `
+      <label class="field">Language ${sel("language", [["en", "English"], ["de", "Deutsch"], ["tr", "Türkçe"], ["fr", "Français"]], s.language || "en")}</label>
       <label class="field">Theme ${sel("theme", [["system", "System"], ["light", "Light"], ["dark", "Dark"]], s.theme)}</label>
       <label class="field">Animations ${sel("motion", [["system", "Follow system"], ["reduce", "Reduce"], ["full", "Full"]], s.motion)}</label>
       <label class="field">Measurement units ${sel("units", [["px", "Pixels (px)"], ["rem", "rem (16px base)"]], s.units)}</label>`)
@@ -490,6 +491,7 @@ ${groups || "<p>No findings.</p>"}
       else b.removeAttribute("aria-current");
     });
     setLive(S.snap && S.snap.inspecting ? "Inspecting" : "");
+    UD_I18N.apply(document, S.settings.language || "en");
   }
 
   async function show(screen) {
@@ -710,6 +712,7 @@ ${groups || "<p>No findings.</p>"}
     if (name.startsWith("severity.")) S.filters = { ...S.settings.severity };
     await chrome.storage.local.set({ settings: S.settings });
     applyTheme();
+    if (name === "language") { render(); return; }
     if (name.startsWith("severity.") && S.screen === "diagnostics") render();
   }
 
@@ -767,6 +770,7 @@ ${groups || "<p>No findings.</p>"}
     S.filters = { ...S.settings.severity };
     S.pg.prop = PLAY_PROPS[0];
     applyTheme();
+    UD_I18N.apply(document, S.settings.language || "en");
     await loadRecent();
     const pending = (await chrome.storage.session.get("pendingScreen")).pendingScreen;
     if (pending) { S.screen = pending; chrome.storage.session.remove("pendingScreen"); }

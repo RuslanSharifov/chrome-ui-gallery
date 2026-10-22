@@ -19,9 +19,13 @@ Developed by **Ruslan Sharifov** · [GitHub](https://github.com/RuslanSharifov) 
 - **Colours & contrast**: text and background HEX and RGB, WCAG 2.x contrast ratio, AA and AAA results, and alpha blending. Where the background can't be determined reliably (gradients, background images), it reports *Unable to determine accurately*.
 - **CSS Playground**: edit supported properties on the selected element, undo individual changes, reset all, copy the resulting CSS. Changes are temporary and never edit site files.
 - **Reports**: export JSON or a standalone HTML report, or copy a summary. All page text is escaped.
-- **Settings**: light, dark or system theme; reduced motion; default preset; overlay colours; px or rem units; severity filters.
+- **Settings**: English (default), German, Turkish and French language selection; light, dark or system theme; reduced motion; default preset; overlay colours; px or rem units; severity filters.
 
 Everything runs locally. There is no telemetry, no analytics and no remote AI service.
+
+## Interface languages
+
+Open **Settings → Language** and select **English**, **Deutsch**, **Türkçe** or **Français**. English is the default. Your preference is stored locally in Chrome storage and shared by the popup and side panel. Main navigation, settings, common actions and many diagnostic labels are translated; technical CSS properties, website-provided data and some detailed diagnostic explanations remain in their original language.
 
 ## Installation
 
@@ -96,6 +100,7 @@ UI-Doctor-v1.0-Chrome-Extension/
 ├── background/
 │   └── service-worker.js         Injection, commands, Responsive Lab test window, message relay
 ├── shared/
+│   ├── i18n.js                  Interface translations (en/de/tr/fr)
 │   ├── presets.js                Viewport presets
 │   └── utils.js                  Settings defaults, escaping, storage helpers
 ├── icons/
