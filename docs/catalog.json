@@ -24,6 +24,64 @@
       "version": "2.1.0"
     },
     {
+      "id": "tools-devlens",
+      "category": "tool",
+      "platform": "browser",
+      "name": "DevLens",
+      "style": "Developer Tool",
+      "description": "Floating developer HUD for page console logs, JavaScript errors and fetch/XHR network requests, plus a searchable exportable diagnostics panel.",
+      "tags": [
+        "Developer",
+        "Console",
+        "Errors",
+        "Network",
+        "HUD",
+        "Debugging"
+      ],
+      "icon": "DL",
+      "palette": [
+        "#0d0e15",
+        "#6366f1",
+        "#34d399"
+      ],
+      "doc": "Tools/devlens/README.md",
+      "folder": "Tools/devlens",
+      "version": "1.0.1",
+      "author": {
+        "name": "Ruaaln",
+        "url": "https://github.com/RuslanSharifov"
+      },
+      "preview": "Tools/devlens/preview.png"
+    },
+    {
+      "id": "tools-tabpocket",
+      "category": "tool",
+      "platform": "browser",
+      "name": "TabPocket",
+      "style": "Productivity Tool",
+      "description": "Save open tabs into organized collections, search and restore them, and import or export backups locally.",
+      "tags": [
+        "Tabs",
+        "Collections",
+        "Productivity",
+        "Bookmarks",
+        "Sessions"
+      ],
+      "icon": "TP",
+      "palette": [
+        "#121827",
+        "#4869e8",
+        "#77dfd3"
+      ],
+      "doc": "Tools/tabpocket/README.md",
+      "folder": "Tools/tabpocket",
+      "version": "1.0.0",
+      "author": {
+        "name": "Ruslan Sharifov",
+        "url": "https://github.com/RuslanSharifov"
+      }
+    },
+    {
       "id": "tools-chatgpt-lag-fixer",
       "category": "tool",
       "platform": "chatgpt",

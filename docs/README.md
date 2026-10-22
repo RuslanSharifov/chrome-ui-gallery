@@ -30,6 +30,8 @@ Then use [Actions → Publish automatic gallery](https://github.com/RuslanSharif
 
 After that, every merge to main automatically generates and deploys the current catalog. If Pages remains configured for **main /docs**, the site can use only the committed catalog.json snapshot, not the new catalog generated during Actions.
 
+**Troubleshooting a missing project:** First check that its `manifest.json` and `README.md` are merged into `main`. The checked-in [`docs/catalog.json`](./catalog.json) must also contain the project, because **Deploy from a branch → main /docs** publishes this committed snapshot. A successful **Publish automatic gallery** workflow does not guarantee that the branch-based Pages site serves its generated artifact. This repository now checks that the committed catalog matches the generated catalog in CI. For a single consistent deployment method, choose **GitHub Actions** as the Pages source; do not keep branch-based publishing enabled alongside the workflow.
+
 ## How to test locally
 
 Requires Node.js 22 or newer. In repository root:
