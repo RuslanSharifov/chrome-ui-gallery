@@ -98,8 +98,58 @@ function buildCard(project) {
   actions.append(download);
   info.append(actions);
   card.append(visual,info);
+  card.tabIndex=0;card.setAttribute('role','button');card.setAttribute('aria-label','Open '+project.name);
+  card.addEventListener('click',e=>{if(!e.target.closest('a,button'))openDetail(project)});
+  card.addEventListener('keydown',e=>{if(['Enter',' '].includes(e.key)&&!e.target.closest('a,button')){e.preventDefault();openDetail(project)}});
   return card;
 }
+
+function openDetail(p){
+ const focused=document.activeElement,photos=[...new Set([...(p.previews||[]),p.preview].filter(Boolean))];let current=0;
+ const overlay=node('div','gallery-overlay'),modal=node('section','gallery-modal');
+ modal.setAttribute('role','dialog');modal.setAttribute('aria-modal','true');modal.setAttribute('aria-label',p.name);
+ const header=node('div','gallery-modal-head'),close=node('button','','×');
+ close.setAttribute('aria-label','Close');header.append(node('h2','',p.name),close);
+ const viewer=node('div','gallery-viewer'),img=node('img',''),count=node('span','gallery-counter');
+ const prev=node('button','gallery-prev','‹'),next=node('button','gallery-next','›');
+ prev.setAttribute('aria-label','Previous screenshot');next.setAttribute('aria-label','Next screenshot');
+ function change(n){if(!photos.length)return;current=(current+n+photos.length)%photos.length;img.src=RAW+githubPath(photos[current]);img.alt=p.name+' screenshot '+(current+1);count.textContent=(current+1)+' / '+photos.length}
+ if(photos.length){viewer.append(img);if(photos.length>1){viewer.append(prev,next,count);prev.onclick=()=>change(-1);next.onclick=()=>change(1)}change(0)}
+ else viewer.append(node('p','','No screenshots available'));
+ let touch=0;viewer.addEventListener('touchstart',e=>touch=e.changedTouches[0].clientX,{passive:true});
+ viewer.addEventListener('touchend',e=>{let d=e.changedTouches[0].clientX-touch;if(Math.abs(d)>45)change(d<0?1:-1)},{passive:true});
+ const details=node('div','gallery-details');
+ details.append(node('p','gallery-meta',p.platform+' · '+p.style),node('p','',p.description));
+ if(p.version)details.append(node('p','gallery-meta','Version '+p.version));
+ if(p.author?.name)details.append(node('p','gallery-meta','By '+p.author.name));
+ const tags=node('div','tags');p.tags.forEach(t=>tags.append(node('span','',t)));details.append(tags);
+ const links=node('div','gallery-detail-links');
+ for(const [label,url] of [['Documentation',sourceLink(p.doc,false)],['Source',sourceLink(p.folder,true)],['Download ZIP','./downloads/'+encodeURIComponent(p.id)+'.zip']]){
+ const a=node('a','button button-secondary',label);a.href=url;if(label==='Download ZIP')a.download=p.id+'.zip';else{a.target='_blank';a.rel='noopener noreferrer'}links.append(a)}
+ details.append(links);modal.append(header,viewer,details);overlay.append(modal);document.body.append(overlay);
+ document.body.style.overflow='hidden';
+ function dismiss(){overlay.remove();document.body.style.overflow='';document.removeEventListener('keydown',keys);focused?.focus?.()}
+ function keys(e){if(e.key==='Escape')dismiss();if(e.key==='ArrowRight')change(1);if(e.key==='ArrowLeft')change(-1);
+ if(e.key==='Tab'){const a=[...modal.querySelectorAll('button,a[href]')];if(e.shiftKey&&document.activeElement===a[0]){e.preventDefault();a.at(-1).focus()}else if(!e.shiftKey&&document.activeElement===a.at(-1)){e.preventDefault();a[0].focus()}}}
+ close.onclick=dismiss;overlay.onclick=e=>{if(e.target===overlay)dismiss()};document.addEventListener('keydown',keys);close.focus();
+}
+const galleryStyles=document.createElement('style');
+galleryStyles.textContent=String.raw\`
+.project-card{cursor:pointer}.project-card:focus-visible{outline:2px solid var(--lav)}
+.gallery-overlay{position:fixed;inset:0;z-index:150;background:#03050de0;backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;padding:20px}
+.gallery-modal{width:min(850px,100%);max-height:92dvh;overflow:auto;overscroll-behavior:contain;background:#121522;border:1px solid #ffffff30;border-radius:24px}
+.gallery-modal-head{position:sticky;top:0;z-index:3;background:#121522;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid #ffffff22}
+.gallery-modal-head h2{font-size:clamp(1.1rem,3vw,1.6rem)}.gallery-modal-head button{background:#ffffff18;border:1px solid #ffffff30;border-radius:50%;width:38px;height:38px;font-size:26px;cursor:pointer;flex:none}
+.gallery-viewer{position:relative;aspect-ratio:16/9;background:#080a12;display:grid;place-items:center;overflow:hidden;touch-action:pan-y}
+.gallery-viewer img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.gallery-prev,.gallery-next{position:absolute;top:50%;transform:translateY(-50%);border-radius:50%;border:1px solid #ffffff40;background:#080a12cc;width:42px;height:42px;font-size:28px;cursor:pointer}
+.gallery-prev{left:12px}.gallery-next{right:12px}.gallery-counter{position:absolute;bottom:12px;background:#080a12dd;border-radius:30px;padding:3px 12px}
+.gallery-details{padding:22px;display:grid;gap:14px;overflow-wrap:anywhere}.gallery-meta{color:var(--lav);font-size:.85rem}.gallery-detail-links{display:flex;flex-wrap:wrap;gap:10px}.gallery-detail-links .button{padding:10px 15px;font-size:.85rem}
+@media(max-width:600px){.gallery-overlay{padding:0;align-items:flex-end}.gallery-modal{width:100%;max-height:94dvh;border-radius:24px 24px 0 0;padding-bottom:env(safe-area-inset-bottom);animation:galleryRise .25s ease-out}.gallery-viewer{aspect-ratio:4/3;min-height:180px}.gallery-details{padding:18px}.gallery-detail-links .button{flex:1 1 auto}}
+@keyframes galleryRise{from{transform:translateY(100%)}to{transform:translateY(0)}}@media(prefers-reduced-motion:reduce){.gallery-modal{animation:none}}
+\`;
+document.head.append(galleryStyles);
+
 function setActive(buttons,key,value) {
   for(const button of buttons) {
     const selected=button.dataset[key]===value;
@@ -234,7 +284,7 @@ function validateCatalog(data) {
        !Array.isArray(item.tags)||!item.tags.every(t=>typeof t==="string")||
        !Array.isArray(item.palette)||item.palette.length!==3||
        !item.palette.every(s=>typeof s==="string"&&/^#[0-9a-fA-F]{6}$/.test(s))||
-       item.preview!==undefined&&typeof item.preview!=="string")
+       item.preview!==undefined&&typeof item.preview!=="string"||item.previews!==undefined&&(!Array.isArray(item.previews)||!item.previews.every(x=>typeof x==="string")))
       throw new Error("Invalid project catalog entry");
     ids.add(item.id);
     return item;
