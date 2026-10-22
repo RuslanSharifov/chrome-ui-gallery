@@ -94,6 +94,7 @@ function readMeta(dir) {
     }
   }
   return v;
+}
 
 function findManifests(dir,depth=0){
   if(depth>4) return [];
