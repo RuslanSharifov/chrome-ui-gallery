@@ -80,7 +80,7 @@ function readMeta(dir) {
   if(v.preview!==undefined){
     safeText(v.preview,rel(file)+".preview",200);
     const target=path.resolve(dir,v.preview);
-    if(!isInside(dir,target)||!exists(target)||!/\.(png|jpg|jpeg|webp|svg)$/i.test(target))
+    if(!isInside(dir,target)||!exists(target)||!/\.(png|jpg|jpeg|webp|svg|gif)$/i.test(target))
       throw new Error(rel(file)+": preview must be an existing local image within its design directory");
   }
   return v;
