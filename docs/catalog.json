@@ -84,6 +84,27 @@
       "preview": "Tools/tabpocket/download (1).png"
     },
     {
+      "id": "tools-ui-doctor-v1-0-chrome-extension",
+      "category": "tool",
+      "platform": "browser",
+      "name": "UI Doctor — Visual Debugger & Responsive Tester",
+      "style": "Browser Tool",
+      "description": "Inspect. Diagnose. Perfect your UI. Local-only layout, spacing, typography, contrast and responsive diagnostics.",
+      "tags": [
+        "Tool",
+        "Browser Tool"
+      ],
+      "icon": "◈",
+      "palette": [
+        "#4b364e",
+        "#75577b",
+        "#dbbaf2"
+      ],
+      "doc": "Tools/UI-Doctor-v1.0-Chrome-Extension/README.md",
+      "folder": "Tools/UI-Doctor-v1.0-Chrome-Extension",
+      "version": "1.0.0"
+    },
+    {
       "id": "tools-chatgpt-lag-fixer",
       "category": "tool",
       "platform": "chatgpt",
