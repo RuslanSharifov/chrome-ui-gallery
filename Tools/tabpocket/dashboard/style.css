@@ -1,0 +1,18 @@
+body { padding: 32px 16px; }
+.wrap { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+.head { display: flex; gap: 12px; align-items: center; }
+.head h1 { font-size: 22px; }
+.toolbar { display: flex; gap: 8px; flex-wrap: wrap; }
+.toolbar input { flex: 1; min-width: 200px; }
+.rows { list-style: none; margin: 0; padding: 0; background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; }
+.row { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-top: 1px solid var(--line); }
+.row:first-child { border-top: 0; }
+.row:hover { background: #1b1f2b; }
+.txt { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.t { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.u { color: var(--muted); font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bar { display: flex; gap: 8px; flex-wrap: wrap; }
+.head h1 { font-size: 22px; }
+.toolbar { display: flex; gap: 8px; flex-wrap: wrap; }
+.toolbar input { flex: 1; min-width: 200px; }
+.inline { display: flex; gap: 8px; align-items: center; color: var(--muted); font-size: 13px; }

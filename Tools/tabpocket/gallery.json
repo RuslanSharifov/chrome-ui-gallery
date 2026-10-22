@@ -1,0 +1,23 @@
+{
+  "name": "TabPocket",
+  "description": "Save open tabs into organized collections, search and restore them, and import or export backups locally.",
+  "platform": "browser",
+  "style": "Productivity Tool",
+  "tags": [
+    "Tabs",
+    "Collections",
+    "Productivity",
+    "Bookmarks",
+    "Sessions"
+  ],
+  "icon": "TP",
+  "palette": [
+    "#121827",
+    "#4869e8",
+    "#77dfd3"
+  ],
+  "author": {
+    "name": "Ruslan Sharifov",
+    "url": "https://github.com/RuslanSharifov"
+  }
+}
