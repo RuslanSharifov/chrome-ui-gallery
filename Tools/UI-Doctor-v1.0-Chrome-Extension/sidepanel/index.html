@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UI Doctor</title>
+  <link rel="stylesheet" href="panel.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="../icons/icon32.png" width="22" height="22" alt="">
+      <div>
+        <strong>UI Doctor</strong>
+        <span class="tagline">Inspect. Diagnose. Perfect your UI.</span>
+      </div>
+    </div>
+    <span id="live" class="live" aria-live="polite"></span>
+  </header>
+  <nav class="tabs" id="nav" aria-label="UI Doctor sections">
+    <button data-screen="overview" class="tab" aria-current="page">Overview</button>
+    <button data-screen="inspector" class="tab">Inspector</button>
+    <button data-screen="spacing" class="tab">Spacing</button>
+    <button data-screen="responsive" class="tab">Responsive</button>
+    <button data-screen="diagnostics" class="tab">Diagnostics</button>
+    <button data-screen="typography" class="tab">Typography</button>
+    <button data-screen="colors" class="tab">Colors</button>
+    <button data-screen="playground" class="tab">CSS Playground</button>
+    <button data-screen="reports" class="tab">Reports</button>
+    <button data-screen="settings" class="tab">Settings</button>
+    <button data-screen="about" class="tab">About</button>
+  </nav>
+  <main id="content" class="content" tabindex="-1"></main>
+  <footer class="shortcuts">
+    Defaults: Alt+Shift+I inspect · Alt+Shift+U open · Alt+Shift+C clear. Change them at chrome://extensions/shortcuts.
+  </footer>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <script src="../shared/presets.js"></script>
+  <script src="../shared/utils.js"></script>
+  <script src="panel.js"></script>
+</body>
+</html>

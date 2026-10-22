@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "UI Doctor — Visual Debugger & Responsive Tester",
+  "short_name": "UI Doctor",
+  "version": "1.0.0",
+  "description": "Inspect. Diagnose. Perfect your UI. Local-only layout, spacing, typography, contrast and responsive diagnostics.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "UI Doctor",
+    "default_popup": "popup/index.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png"
+    }
+  },
+  "side_panel": {
+    "default_path": "sidepanel/index.html"
+  },
+  "background": {
+    "service_worker": "background/service-worker.js"
+  },
+  "permissions": ["activeTab", "scripting", "sidePanel", "storage"],
+  "optional_host_permissions": ["https://*/*", "http://*/*"],
+  "commands": {
+    "open-side-panel": {
+      "suggested_key": { "default": "Alt+Shift+U" },
+      "description": "Open the UI Doctor side panel"
+    },
+    "toggle-inspect": {
+      "suggested_key": { "default": "Alt+Shift+I" },
+      "description": "Start or stop element inspection"
+    },
+    "clear-overlays": {
+      "suggested_key": { "default": "Alt+Shift+C" },
+      "description": "Clear UI Doctor overlays"
+    }
+  },
+  "minimum_chrome_version": "116"
+}

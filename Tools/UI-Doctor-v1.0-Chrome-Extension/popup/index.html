@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UI Doctor</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="head">
+    <img src="../icons/icon32.png" width="28" height="28" alt="">
+    <div>
+      <h1>UI Doctor</h1>
+      <p class="tag">Inspect. Diagnose. Perfect your UI.</p>
+    </div>
+  </header>
+  <p id="site" class="site">Checking current tab…</p>
+  <div class="actions">
+    <button id="btnInspect" class="btn primary" type="button">Start inspecting</button>
+    <button id="btnDiag" class="btn" type="button">Run diagnostics</button>
+    <button id="btnOpen" class="btn" type="button">Open UI Doctor</button>
+    <button id="btnResp" class="btn" type="button">Open Responsive Lab</button>
+  </div>
+  <p id="status" class="status" role="status" aria-live="polite"></p>
+  <footer class="foot">
+    <button id="btnSettings" class="link" type="button">Settings</button>
+    <button id="btnGithub" class="link" type="button">GitHub</button>
+    <button id="btnAbout" class="link" type="button">About</button>
+  </footer>
+  <script src="../shared/presets.js"></script>
+  <script src="../shared/utils.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
