@@ -21,7 +21,8 @@
       ],
       "doc": "Tools/cookie-manager-pro/README.md",
       "folder": "Tools/cookie-manager-pro",
-      "version": "2.1.0"
+      "version": "2.1.0",
+      "preview": "Tools/cookie-manager-pro/width_1600.webp"
     },
     {
       "id": "tools-devlens",
@@ -79,7 +80,8 @@
       "author": {
         "name": "Ruslan Sharifov",
         "url": "https://github.com/RuslanSharifov"
-      }
+      },
+      "preview": "Tools/tabpocket/download (1).png"
     },
     {
       "id": "tools-chatgpt-lag-fixer",
