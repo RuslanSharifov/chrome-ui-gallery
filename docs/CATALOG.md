@@ -17,7 +17,8 @@ A valid extension is published from its **manifest.json** and required README/de
     "name": "Your GitHub username",
     "url": "https://github.com/your-username"
   },
-  "preview": "screenshots/preview.png"
+  "preview": "screenshots/preview.png",
+  "previews": ["screenshots/preview.png", "screenshots/details.png", "screenshots/demo.gif"]
 }
 ~~~
 
@@ -34,8 +35,9 @@ A valid extension is published from its **manifest.json** and required README/de
 | palette | No | Three deterministic hex gradient colors |
 | author | No | No author claim unless explicitly provided |
 | preview | No | Generated gradient illustration |
+| previews | No | Additional gallery images/GIFs (maximum 20) |
 
-Rules: maximum six tags, three 6-digit hex palette colors, GitHub profile URL for author.url, and local PNG/JPG/WebP/SVG preview files inside the extension folder only. All optional fields are verified by the generator. Never submit secrets or misleading author attribution.
+Rules: maximum six tags, three 6-digit hex palette colors, GitHub profile URL for author.url, and local PNG/JPG/WebP/SVG/GIF preview files inside the extension folder only. All optional fields are verified by the generator. Never submit secrets or misleading author attribution.
 
 The generated catalog automatically links to the project's README.md or design.md and GitHub source folder. The starter template under [templates](../templates/README.md) is excluded.
 
@@ -50,3 +52,20 @@ node scripts/validate.mjs
 ~~~
 
 After merge, GitHub Actions regenerates the JSON and republishes the website.
+
+## Gallery card media and detail view
+
+Clicking a gallery card opens a responsive detail view. Desktop uses an animated centered dialog; mobile uses a bottom sheet. Cards can cycle through multiple images using a slow opacity crossfade, while the detail view provides previous/next buttons, thumbnails, and touch swipes. Media loading and reduced-motion preferences are respected.
+
+To add several images or GIFs to a card, add `previews` to its local `gallery.json` (up to 20 paths). Keep `preview` as the preferred first image. Paths are relative to the design or extension folder; files must exist in that folder. The catalog generator validates media paths and publishes them into `docs/catalog.json`. GIF animation runs natively in the browser.
+
+Example:
+
+```json
+{
+  "preview": "screenshots/overview.png",
+  "previews": ["screenshots/overview.png", "screenshots/details.png", "screenshots/animation.gif"]
+}
+```
+
+Do not manually edit generated `docs/catalog.json`. Run `node scripts/build-catalog.mjs` and commit its generated output when changing metadata.
