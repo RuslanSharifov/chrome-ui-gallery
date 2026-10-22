@@ -65,7 +65,7 @@ function readMeta(dir) {
   if(!exists(file)) return {};
   const v=readJSON(file);
   if(!v || typeof v !== "object" || Array.isArray(v))throw new Error(rel(file)+": metadata must be an object");
-  const allowed=new Set(["name","description","platform","style","tags","palette","icon","author","preview"]);
+  const allowed=new Set(["name","description","platform","style","tags","palette","icon","author","preview","previews"]);
   for(const key of Object.keys(v))if(!allowed.has(key))throw new Error(rel(file)+": unknown field "+key);
   for(const key of ["name","description","platform","style","icon"])if(v[key]!==undefined)safeText(v[key],rel(file)+"."+key,key==="description"?500:100);
   if(v.platform!==undefined&&!/^[a-z0-9][a-z0-9-]*$/.test(v.platform))throw new Error(rel(file)+": platform must be a lowercase slug");
@@ -83,8 +83,19 @@ function readMeta(dir) {
     if(!isInside(dir,target)||!exists(target)||!/\.(png|jpg|jpeg|webp|svg|gif)$/i.test(target))
       throw new Error(rel(file)+": preview must be an existing local image within its design directory");
   }
+  if(v.previews!==undefined){
+    if(!Array.isArray(v.previews)||v.previews.length>20||v.previews.some(p=>typeof p!=="string"))
+      throw new Error(rel(file)+": previews must be an array of up to 20 image paths");
+    for(const preview of v.previews){
+      safeText(preview,rel(file)+".previews",200);
+      const target=path.resolve(dir,preview);
+      if(!isInside(dir,target)||!exists(target)||!/\.(png|jpg|jpeg|webp|svg|gif)$/i.test(target))
+        throw new Error(rel(file)+": previews must contain existing local images");
+    }
+  }
   return v;
 }
+
 function findManifests(dir,depth=0){
   if(depth>4) return [];
   return visibleDirs(dir).flatMap(child=>{
@@ -123,7 +134,8 @@ function addProject(manifestFile,category) {
     doc:folderPath+"/"+documentation,folder:folderPath,
     version:manifest.version,
     ...(meta.author?{author:meta.author}:{}),
-    ...(meta.preview?{preview:folderPath+"/"+meta.preview}:{})
+    ...(meta.preview?{preview:folderPath+"/"+meta.preview}:{}),
+    ...(meta.previews?.length?{previews:meta.previews.map(p=>folderPath+"/"+p)}:{})
   };
 }
 const projects=[];
