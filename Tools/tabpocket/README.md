@@ -2,9 +2,9 @@
 
 ## Preview
 
-![ TabPocket extension preview](./download%20(1).png)
+![ TabPocket extension preview](<./download (1).png>)
 
-The image shows the extension's interface and key actions. [View the image](./download%20(1).png) · [Browse the live gallery](https://ruslansharifov.github.io/chrome-ui-gallery/gallery.html?category=tool&q=TabPocket).
+The image shows the extension's interface and key actions. [View the image](<./download (1).png>) · [Browse the live gallery](https://ruslansharifov.github.io/chrome-ui-gallery/gallery.html?category=tool&q=TabPocket).
 
 Save your tabs. Organize your browser.
 
