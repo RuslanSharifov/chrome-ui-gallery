@@ -31,6 +31,8 @@ jobs:
           node --check templates/chrome-extension-tool/popup.js
       - name: Build catalog from extension manifests
         run: node scripts/build-catalog.mjs
+      - name: Ensure committed catalog matches extension manifests
+        run: git diff --exit-code -- docs/catalog.json
       - name: Confirm new projects are auto-discovered
         run: node scripts/test-catalog.mjs
       - name: Validate source links, manifests and generated catalog
