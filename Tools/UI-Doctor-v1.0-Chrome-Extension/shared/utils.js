@@ -2,7 +2,8 @@
 self.UD = self.UD || {};
 
 UD.DEFAULTS = {
-  theme: "system",                 // system | light | dark
+  theme: "system",
+  language: "en",                 // en | de | tr | fr                 // system | light | dark
   defaultPreset: "m390",
   units: "px",                     // px | rem
   overlay: { margin: "#F59E0B", padding: "#22C55E", content: "#22D3EE" },
