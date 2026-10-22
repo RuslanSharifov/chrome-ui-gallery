@@ -1,6 +1,6 @@
 # Gemini Claymorphism
 
-![Gemini Claymorphism preview](./preview.svg)
+![Gemini Claymorphism animated preview](./gemini-claymorphism/gemini-claymorphism-preview.gif)
 
 A soft 3D clay interface for Gemini built from rounded surfaces, sculpted shadows, pastel depth, and animated clay clouds.
 
@@ -16,7 +16,7 @@ A soft 3D clay interface for Gemini built from rounded surfaces, sculpted shadow
 - **Tone:** playful, soft, tactile
 - **Best for:** creative AI tools, friendly dashboards, playful productivity UIs, and experimental web interfaces
 
-> The image above is a repository preview illustration of the design direction. The live implementation is available in the linked design folder.
+> The animation above is the uploaded GIF preview of the extension. [Open the GIF](./gemini-claymorphism/gemini-claymorphism-preview.gif) · [Quick-start README](./gemini-claymorphism/README.md).
 
 ## Navigation
 
