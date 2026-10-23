@@ -20,7 +20,7 @@ function setupUpdater(){autoUpdater.autoDownload=false;autoUpdater.autoInstallOn
  autoUpdater.on("download-progress",p=>update({status:"downloading",progress:Math.round(p.percent),message:"Downloading update…"}));
  autoUpdater.on("update-downloaded",info=>update({status:"ready",version:info.version,progress:100,message:"Update ready. Restart to install."}));
  autoUpdater.on("error",error=>update({status:"error",message:error.message}));
- if(app.isPackaged)setTimeout(()=>autoUpdater.checkForUpdates().catch(e=>update({status:"error",message:e.message})),7000);
+ if(app.isPackaged){const check=()=>autoUpdater.checkForUpdates().catch(e=>update({status:"error",message:e.message}));setTimeout(check,7000);setInterval(check,6*60*60*1000).unref();}
  else update({status:"development",message:"Automatic updates are available in installed release builds."});
 }
 app.whenReady().then(async()=>{
