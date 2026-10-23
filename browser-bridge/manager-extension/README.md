@@ -91,3 +91,11 @@ To update a locally unpacked Companion, run `git pull origin main` in your repos
 The desktop bridge now holds a local poll open for up to 18 seconds so that **Enable / Disable** and **Refresh Chrome extensions** commands can be delivered promptly. The 30-second Chrome alarm remains a fallback. A completed refresh displays a success message and last-sync time in the desktop app. A spinner is displayed while synchronizing.
 
 **After updating this code:** stop Desktop Manager, run `git pull origin main`, restart with `npm run dev`, then open `chrome://extensions` and click **Reload** on **Chrome UI Gallery Companion**. Both sides must use the revised protocol. If Chrome itself blocks an extension state change, its error should be displayed instead of reporting a successful toggle.
+
+## Live synchronization reliability
+
+Chrome's Manifest V3 service worker can be suspended when idle; its lifetime is managed by Chrome. The Companion now maintains polling while active **without the previous 12-request cutoff**, and Chrome extension management events send a fresh inventory directly to the desktop bridge. The desktop bridge rejects older snapshots that arrive out of order. The Chrome alarm remains a recovery fallback.
+
+If your controls ever show a stale state, check Chrome directly, click **Refresh Chrome extensions**, and review the diagnostics for `command_dispatched`, `command_timeout`, and `inventory_received` (look for `source: push`). If no fresh inventory arrives, reload the Companion in `chrome://extensions`.
+
+To apply this protocol change, **both** the desktop application and Companion must be updated: `git pull origin main`, restart `npm run dev`, then click the Companion's **Reload** button in Chrome. GitHub CI checks syntax/builds; actual Chrome timing still requires local testing.
