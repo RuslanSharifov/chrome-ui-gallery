@@ -6,10 +6,10 @@ Choose a **platform**, then a **style**, then open **design.md** for implementat
 
 | Platform | Styles and designs |
 | :--- | :--- |
-| **[ChatGPT](../chatgpt/README.md)** | [Glassmorphism](../chatgpt/glassmorphism/ai-prompt-tool/design.md) · [Claymorphism](../chatgpt/claymorphism/design.md) · [DARK GPT](../chatgpt/DARK%20GPT/design.md) |
-| **[Gemini](../gemini/README.md)** | [Glassmorphism](../gemini/glassmorphism/gemini-glassmorphism/design.md) · [Claymorphism](../gemini/claymorphism/gemini-claymorphism/design.md) |
-| **[GitHub](../github/README.md)** | [Glassmorphism](../github/glassmorphism/github-glassmorphism/design.md) · [Liquid Glass](../github/github-liquid-glass/design.md) · [3D GitHub](../github/3D%20github/design.md) |
-| **[Lovable](../lovable/README.md)** | [Glassmorphism](../lovable/glassmorphism/lovable-glassmorphism/design.md) |
+| **[ChatGPT](../ui-designs/chatgpt/README.md)** | [Glassmorphism](../ui-designs/chatgpt/glassmorphism/ai-prompt-tool/design.md) · [Claymorphism](../ui-designs/chatgpt/claymorphism/design.md) · [DARK GPT](../ui-designs/chatgpt/DARK%20GPT/design.md) |
+| **[Gemini](../ui-designs/gemini/README.md)** | [Glassmorphism](../ui-designs/gemini/glassmorphism/gemini-glassmorphism/design.md) · [Claymorphism](../ui-designs/gemini/claymorphism/gemini-claymorphism/design.md) |
+| **[GitHub](../ui-designs/github/README.md)** | [Glassmorphism](../ui-designs/github/glassmorphism/github-glassmorphism/design.md) · [Liquid Glass](../ui-designs/github/github-liquid-glass/design.md) · [3D GitHub](../ui-designs/github/3D%20github/design.md) |
+| **[Lovable](../ui-designs/lovable/README.md)** | [Glassmorphism](../ui-designs/lovable/glassmorphism/lovable-glassmorphism/design.md) |
 
 ## How to use a design
 
