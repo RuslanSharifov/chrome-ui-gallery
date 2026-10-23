@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Chrome UI Gallery Companion",
+  "version": "0.1.0",
+  "description": "Pair your local Chrome UI Gallery desktop manager and control installed extensions.",
+  "permissions": [
+    "management",
+    "storage",
+    "alarms"
+  ],
+  "host_permissions": [
+    "http://127.0.0.1:41739/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Chrome UI Gallery Companion",
+    "default_popup": "popup.html"
+  }
+}
