@@ -41,6 +41,22 @@ On macOS use `npm run dist:mac`. For signing and automatic release updates, see 
 - [Safe extension ZIP preparation](./electron/install.cjs)
 - [Chrome companion](../../browser-bridge/manager-extension/README.md)
 
+## Troubleshooting: Cannot find module 'adm-zip'
+
+If Vite starts but Electron reports `Cannot find module 'adm-zip'`, your local dependencies are out of date. Version 0.1.1 added `adm-zip` to `package.json`; pulling Git changes alone does not update `node_modules`.
+
+On Windows PowerShell, from any directory:
+
+```powershell
+cd C:\Users\User\Project\chrome-ui-gallery
+git pull origin main
+cd apps\desktop
+npm install
+npm ls adm-zip
+npm run dev
+```
+
+If `npm ls adm-zip` still shows it missing, run `npm install adm-zip` inside `apps/desktop`. If the dependency installation is corrupt, close running Electron and Vite processes, remove only `apps/desktop/node_modules`, and reinstall with `npm install`. Do not delete your project source files.
 ## Companion synchronization and automatic updates
 
 After pairing, installed extensions synchronize through Chrome Companion approximately every 30 seconds. Enable/disable controls remain busy until Chrome returns and the resulting state is checked. A successful **Extension disabled** notice describes a completed action, not a failure. Some browser-managed extensions cannot be toggled; Chrome may also require a confirmation.
