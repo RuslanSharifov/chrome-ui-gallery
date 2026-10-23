@@ -12,4 +12,4 @@ Soft, raised clay-inspired surfaces for the ChatGPT interface.
 
 **Install:** Load this directory (the one containing `manifest.json`) via `chrome://extensions` → Developer mode → Load unpacked.
 
-[← ChatGPT designs](../README.md) · [← Repository](../../README.md)
+[← ChatGPT designs](../README.md) · [← Repository](../../../README.md)
