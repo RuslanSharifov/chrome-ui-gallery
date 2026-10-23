@@ -36,4 +36,4 @@ A glassmorphism UI redesign for the Google Gemini web app, delivered as a Chrome
 
 ## Navigation
 
-[← Gemini designs](../../README.md) · [← Chrome UI Gallery](../../../README.md) · [Browse all designs](https://ruslansharifov.github.io/chrome-ui-gallery/gallery.html)
+[← Gemini designs](../../README.md) · [← Chrome UI Gallery](../../../../README.md) · [Browse all designs](https://ruslansharifov.github.io/chrome-ui-gallery/gallery.html)
