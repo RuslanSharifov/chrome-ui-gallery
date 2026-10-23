@@ -48,7 +48,7 @@ function createBridge(_app,notify){
   start:()=>new Promise((resolve,reject)=>{server=http.createServer(handle);server.on("error",reject);server.listen(PORT,"127.0.0.1",resolve)}),
   stop:()=>{if(waiting){clearTimeout(waiting.timer);json(waiting.res,503,{error:"Closing"});waiting=null}for(const p of pending.values()){clearTimeout(p.timeout);p.reject(new Error("Application closing"))}pending.clear();server?.close()},
   refresh:async()=>{await queue({type:"refresh"});return state()},
-  setEnabled:async({id,enabled})=>{if(typeof id!=="string"||!/^[a-p]{32}$/.test(id)||typeof enabled!=="boolean")throw new Error("Invalid extension request");const result=await queue({type:"set-enabled",extensionId:id,enabled});if(result&&typeof result==="object"&&result.enabled!==enabled)throw new Error("Chrome rejected the requested state");return state()},
+  setEnabled:async({id,enabled})=>{if(typeof id!=="string"||!/^[a-p]{32}$/.test(id)||typeof enabled!=="boolean")throw new Error("Invalid extension request");const result=await queue({type:"set-enabled",extensionId:id,enabled});if(result&&typeof result==="object"&&result.enabled!==enabled)throw new Error("Chrome rejected the requested state");const item=extensions.find(e=>e.id===id);if(item&&item.enabled!==enabled){item.enabled=enabled;signal()}return state()},
   disconnect:()=>{token=null;pairCode=rand(4).toUpperCase();lastSeen=0;extensions=[];if(waiting){clearTimeout(waiting.timer);json(waiting.res,401,{error:"Disconnected"});waiting=null}for(const p of pending.values()){clearTimeout(p.timeout);p.reject(new Error("Disconnected"))}pending.clear();signal();return state()}
  }
 }
