@@ -5,7 +5,7 @@ const rand=n=>crypto.randomBytes(n).toString("hex");
 const json=(res,status,data)=>{res.writeHead(status,{"content-type":"application/json; charset=utf-8","cache-control":"no-store","x-content-type-options":"nosniff"});res.end(JSON.stringify(data))};
 function createBridge(_app,notify){
  let token=null,pairCode=rand(4).toUpperCase(),connected=false,lastSeen=0,extensions=[],pending=new Map(),server=null;
- const state=()=>({connected:connected&&Date.now()-lastSeen<18000,pairCode,port:PORT,extensions,updatedAt:lastSeen});
+ const state=()=>({connected:connected&&Date.now()-lastSeen<90000,pairCode,port:PORT,extensions,updatedAt:lastSeen});
  const signal=()=>notify();
  function queue(action){if(!state().connected)return Promise.reject(new Error("Chrome companion is not connected."));return new Promise((resolve,reject)=>{const id=rand(12);const timeout=setTimeout(()=>{pending.delete(id);reject(new Error("Chrome did not respond."))},12000);pending.set(id,{id,action,resolve,reject,timeout,dispatched:false})})}
  function handle(req,res){

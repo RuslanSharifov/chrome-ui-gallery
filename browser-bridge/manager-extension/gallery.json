@@ -1,0 +1,12 @@
+{
+  "name": "Chrome UI Gallery Companion",
+  "description": "Local desktop pairing companion to manage installed Chrome extensions.",
+  "platform": "browser",
+  "style": "Management",
+  "tags": [
+    "Companion",
+    "Desktop",
+    "Chrome"
+  ],
+  "icon": "✦"
+}
