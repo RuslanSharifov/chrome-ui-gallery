@@ -4,6 +4,7 @@ contextBridge.exposeInMainWorld("galleryDesktop",Object.freeze({
   bridgeState:()=>ipcRenderer.invoke("bridge:get-state"),
   openDiagnostics:()=>ipcRenderer.invoke("diagnostics:open-folder"),
   diagnosticsPath:()=>ipcRenderer.invoke("diagnostics:get-path"),
+  copyPairCode:()=>ipcRenderer.invoke("clipboard:copy-pair-code"),
   diagnosticEvent:(event,durationMs,success)=>ipcRenderer.invoke("diagnostics:ui-event",{event,durationMs,success}),
   refreshExtensions:()=>ipcRenderer.invoke("bridge:refresh"),
   setExtensionEnabled:(id,enabled)=>ipcRenderer.invoke("bridge:set-enabled",{id,enabled}),

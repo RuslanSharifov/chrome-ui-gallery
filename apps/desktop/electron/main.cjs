@@ -1,4 +1,4 @@
-const {app,BrowserWindow,ipcMain,shell,session}=require("electron");
+const {app,BrowserWindow,ipcMain,shell,session,clipboard}=require("electron");
 const path=require("node:path");
 const {createBridge}=require("./bridge.cjs");
 const {createDiagnostics}=require("./diagnostics.cjs");
@@ -32,6 +32,7 @@ app.whenReady().then(async()=>{
  ipcMain.handle("bridge:get-state",()=>bridge.state());
  ipcMain.handle("diagnostics:open-folder",()=>shell.openPath(require("node:path").dirname(diagnostics.file)));
  ipcMain.handle("diagnostics:get-path",()=>diagnostics.file);
+ ipcMain.handle("clipboard:copy-pair-code",()=>{clipboard.writeText(bridge.state().pairCode);diagnostics.log("pair_code_copied");return true});
  ipcMain.handle("diagnostics:ui-event",(_event,data)=>{if(data&&typeof data.event==="string")diagnostics.log("ui_"+data.event,{durationMs:Number(data.durationMs)||0,success:!!data.success});return true});
  ipcMain.handle("bridge:refresh",()=>bridge.refresh());
  ipcMain.handle("bridge:set-enabled",(_event,p)=>bridge.setEnabled(p));
