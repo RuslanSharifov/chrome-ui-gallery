@@ -31,7 +31,7 @@ The popup background is a live preview rendered by the same `fx.js` engine. Chan
 1. `chrome://extensions` → Developer mode → **Load unpacked** → select this folder.
 2. After every change click **Reload** on the extension and hard-refresh Lovable (Ctrl+Shift+R).
 
-See the [Setup Guides](../../../setup/README.md) for full step-by-step instructions.
+See the [Setup Guides](../../../../setup/README.md) for full step-by-step instructions.
 
 ## Compatibility
 - Chrome / Edge / Brave / Arc / Opera (Chromium, Manifest V3).
