@@ -40,7 +40,7 @@ function createBridge(_app,notify){
   start:()=>new Promise((resolve,reject)=>{server=http.createServer(handle);server.on("error",reject);server.listen(PORT,"127.0.0.1",resolve)}),
   stop:()=>{for(const p of pending.values()){clearTimeout(p.timeout);p.reject(new Error("Application closing"))}pending.clear();server?.close()},
   refresh:async()=>{await queue({type:"refresh"});return state()},
-  setEnabled:async({id,enabled})=>{if(typeof id!=="string"||!/^[a-p]{32}$/.test(id)||typeof enabled!=="boolean")throw new Error("Invalid extension request");const result=await queue({type:"set-enabled",extensionId:id,enabled});if(!result||result.enabled!==enabled)throw new Error("Chrome did not confirm the change");return state()},
+  setEnabled:async({id,enabled})=>{if(typeof id!=="string"||!/^[a-p]{32}$/.test(id)||typeof enabled!=="boolean")throw new Error("Invalid extension request");const result=await queue({type:"set-enabled",extensionId:id,enabled});const actual=extensions.find(e=>e.id===id);if(result&&typeof result==="object"&&typeof result.enabled==="boolean"&&result.enabled!==enabled)throw new Error("Chrome reported a different extension state");if(actual&&actual.enabled!==enabled)throw new Error("Chrome reported a different extension state; reload Companion and retry");return state()},
   disconnect:()=>{token=null;pairCode=rand(4).toUpperCase();connected=false;lastSeen=0;extensions=[];for(const p of pending.values()){clearTimeout(p.timeout);p.reject(new Error("Disconnected"))}pending.clear();signal();return state()}
  }
 }
