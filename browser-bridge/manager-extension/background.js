@@ -37,7 +37,7 @@ async function syncOnce(token){
  }
 }
 async function loop(){
- if(running){restartRequested=true;return}
+ if(running)return
  running=true;stopped=false;
  try{
   while(!stopped){
@@ -53,7 +53,7 @@ async function loop(){
   }
  }finally{
   running=false;
-  if(restartRequested){restartRequested=false;queueMicrotask(()=>loop())}
+  if(restartRequested){restartRequested=false;setTimeout(()=>loop(),0)}
  }
 }
 async function start(){await chrome.alarms.create("sync",{periodInMinutes:0.5});loop()}
@@ -69,7 +69,7 @@ chrome.runtime.onMessage.addListener((msg,_sender,reply)=>{
   if(msg.type==="pair"){
    const d=await request("/pair",{code:String(msg.code).trim().toUpperCase()},null,10000);
    await chrome.storage.local.set({token:d.token});
-   restartRequested=true;stopped=true;
+   stopped=true;restartRequested=true;
    if(!running){restartRequested=false;loop()}
    await pushInventory();return{paired:true};
   }

@@ -99,3 +99,9 @@ Chrome's Manifest V3 service worker can be suspended when idle; its lifetime is 
 If your controls ever show a stale state, check Chrome directly, click **Refresh Chrome extensions**, and review the diagnostics for `command_dispatched`, `command_timeout`, and `inventory_received` (look for `source: push`). If no fresh inventory arrives, reload the Companion in `chrome://extensions`.
 
 To apply this protocol change, **both** the desktop application and Companion must be updated: `git pull origin main`, restart `npm run dev`, then click the Companion's **Reload** button in Chrome. GitHub CI checks syntax/builds; actual Chrome timing still requires local testing.
+
+## Troubleshooting intermittent command timeouts (October 2026)
+
+If the diagnostic log shows `command_queued` followed by `command_timeout` without `command_dispatched`, the Chrome Companion has not retrieved the queued command. Chrome may pause Manifest V3 background service workers, and Chrome alarms are a backup. The desktop bridge now gives a command **45 seconds** to reach that fallback instead of the previous 15 seconds. This avoids false timeouts but can still feel slow if Chrome has paused the Companion. If problems persist, open the Companion popup (this wakes its worker) and choose Refresh in Desktop. **Do not click the Companion's own toggle**: it must remain enabled to manage the other extensions.
+
+A success confirmation means Chrome completed the operation; a delayed confirmation indicates a connection-scheduling issue. Please share new `bridge-diagnostics.jsonl` logs to compare queue and dispatch times. Always restart the Desktop app and reload the Companion after updating the repository.
