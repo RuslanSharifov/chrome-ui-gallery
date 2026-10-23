@@ -64,7 +64,7 @@ else{
   try{
     const catalog=JSON.parse(fs.readFileSync(site,"utf8"));
     if(catalog.schemaVersion!==1||!Array.isArray(catalog.projects))throw new Error("invalid catalog format");
-    const expected=files.filter(p=>path.basename(p)==="manifest.json"&&!rel(p).startsWith("templates/")).length;
+    const expected=files.filter(p=>path.basename(p)==="manifest.json"&&!rel(p).startsWith("templates/")&&!rel(p).startsWith("browser-bridge/")).length;
     stats.catalog=catalog.projects.length;
     if(catalog.projects.length!==expected)errors.push("Catalog contains "+catalog.projects.length+" projects, but found "+expected+" source manifests. Run node scripts/build-catalog.mjs");
     const ids=new Set();
