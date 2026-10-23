@@ -26,3 +26,5 @@
 @keyframes chrome-sync-spin{to{transform:rotate(360deg)}}.is-spinning{animation:chrome-sync-spin .75s linear infinite}.installed-actions{align-items:center;gap:12px}.pending-label{font-size:11px;color:#8fe8cb}
 
 .platform-heading{display:flex;align-items:center;justify-content:space-between;width:100%;border:0;background:none;color:#9c93bf;font-size:10px;letter-spacing:.19em;font-weight:760;padding:0 13px;margin-bottom:13px;height:30px}.platform-heading svg{transition:transform .2s}.pair-box{flex-wrap:wrap}.pair-box .btn{white-space:nowrap}
+
+.support-nav{color:#d4b9ff;border:1px solid #b9a6ff1a;background:#b9a6ff0a}.support-nav span{font-size:20px;color:#dfb1f6}.support-nav svg:last-child{margin-left:auto}
