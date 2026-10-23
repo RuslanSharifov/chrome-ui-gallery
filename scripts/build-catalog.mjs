@@ -110,7 +110,7 @@ function addProject(manifestFile,category) {
   const parts=folderPath.split("/");
   if(category==="tool"&&parts.length!==2)
     throw new Error(folderPath+": tools must use Tools/<slug>/manifest.json");
-  if(category==="ui"&&parts.length<4)
+  if(category==="ui"&&parts.length<3)
     throw new Error(folderPath+": UI designs need a platform/style folder");
   const manifest=readJSON(manifestFile);
   if(manifest.manifest_version!==3)throw new Error(folderPath+": Chrome Manifest V3 is required");
