@@ -65,8 +65,8 @@ Open **Installed in Chrome** to find extensions and their status. Use the toggle
 | --- | --- |
 | Desktop says **Offline** | Ensure both apps are open; check `chrome://extensions` and the Companion's enabled status; use a new pairing code |
 | **Pairing code invalid** | Copy the current code from Desktop Settings, not an old screenshot |
-| Extensions do not appear | Wait for synchronization, then try **Refresh Chrome extensions** |
-| Enable/disable appears stuck | Wait for Chrome's periodic synchronization (up to around 30 seconds), then check the status; update/reload the Companion |
+| Extensions do not appear | Click **Refresh Chrome extensions** and check the spinning indicator and last-sync time; reload Companion if the request fails |
+| Enable/disable appears stuck | Update and reload the Companion, then retry; the local connection now uses long polling to deliver commands without waiting for the next alarm |
 | Chrome blocks the action | Check whether Chrome manages the extension or requires user confirmation |
 | **Cannot connect** | Verify the desktop app is running and that local port `127.0.0.1:41739` is not blocked or occupied |
 | App says **Extension disabled** | This indicates the extension was disabled successfully, not an error. Check the switch/status for confirmation |
@@ -85,3 +85,9 @@ To update a locally unpacked Companion, run `git pull origin main` in your repos
 ## Source files
 
 [Manifest](./manifest.json) · [Service worker](./background.js) · [Popup](./popup.html) · [Popup script](./popup.js) · [Desktop bridge](../../apps/desktop/electron/bridge.cjs)
+
+## Live connection and refresh (new)
+
+The desktop bridge now holds a local poll open for up to 18 seconds so that **Enable / Disable** and **Refresh Chrome extensions** commands can be delivered promptly. The 30-second Chrome alarm remains a fallback. A completed refresh displays a success message and last-sync time in the desktop app. A spinner is displayed while synchronizing.
+
+**After updating this code:** stop Desktop Manager, run `git pull origin main`, restart with `npm run dev`, then open `chrome://extensions` and click **Reload** on **Chrome UI Gallery Companion**. Both sides must use the revised protocol. If Chrome itself blocks an extension state change, its error should be displayed instead of reporting a successful toggle.
