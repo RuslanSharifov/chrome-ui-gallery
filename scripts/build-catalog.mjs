@@ -16,7 +16,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const uiExcluded = new Set(["Tools", "ui", "docs", "setup", "templates", "scripts", ".github", "node_modules", ".git", "ui-designs", "apps"]);
+const uiExcluded = new Set(["Tools", "ui", "docs", "setup", "templates", "scripts", ".github", "node_modules", ".git", "ui-designs", "apps", "browser-bridge"]);
 const palettes = [
   ["#22223f", "#40375c", "#ac99fd"],
   ["#133c36", "#216456", "#6cdbc5"],

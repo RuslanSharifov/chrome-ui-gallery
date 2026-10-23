@@ -1,0 +1,36 @@
+name: Desktop App build
+
+on:
+  pull_request:
+    paths:
+      - "apps/desktop/**"
+      - "browser-bridge/**"
+      - "docs/catalog.json"
+      - ".github/workflows/desktop-check.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  desktop:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Check JavaScript syntax
+        run: |
+          node --check apps/desktop/electron/main.cjs
+          node --check apps/desktop/electron/preload.cjs
+          node --check apps/desktop/electron/bridge.cjs
+          node --check browser-bridge/manager-extension/background.js
+          node --check browser-bridge/manager-extension/popup.js
+      - name: Install desktop dependencies
+        working-directory: apps/desktop
+        run: npm install --no-audit --no-fund
+      - name: Build renderer
+        working-directory: apps/desktop
+        run: npm run build
