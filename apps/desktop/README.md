@@ -40,3 +40,20 @@ On macOS use `npm run dist:mac`. For signing and automatic release updates, see 
 - [Electron main process](./electron/main.cjs)
 - [Safe extension ZIP preparation](./electron/install.cjs)
 - [Chrome companion](../../browser-bridge/manager-extension/README.md)
+
+## Troubleshooting: Cannot find module 'adm-zip'
+
+If Vite starts but Electron reports `Cannot find module 'adm-zip'`, your local dependencies are out of date. Version 0.1.1 added `adm-zip` to `package.json`; pulling Git changes alone does not update `node_modules`.
+
+On Windows PowerShell, from any directory:
+
+```powershell
+cd C:\Users\User\Project\chrome-ui-gallery
+git pull origin main
+cd apps\desktop
+npm install
+npm ls adm-zip
+npm run dev
+```
+
+If `npm ls adm-zip` still shows it missing, run `npm install adm-zip` inside `apps/desktop`. If the dependency installation is corrupt, close running Electron and Vite processes, remove only `apps/desktop/node_modules`, and reinstall with `npm install`. Do not delete your project source files.
