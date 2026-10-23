@@ -20,4 +20,4 @@ Go to `chrome://extensions`, enable Developer mode, select **Load unpacked**, an
 
 **Suitable for:** browser theming prototypes, liquid-glass surface experiments, and GitHub UI customization.
 
-[← GitHub designs](../README.md) · [← Repository](../../README.md)
+[← GitHub designs](../README.md) · [← Repository](../../../README.md)

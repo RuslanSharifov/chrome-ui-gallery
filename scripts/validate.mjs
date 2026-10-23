@@ -53,7 +53,7 @@ for(const p of files.filter(f=>path.basename(f)==="manifest.json")){
   if(m.host_permissions?.includes("<all_urls>"))warnings.push(rel(p)+": broad permission <all_urls> needs human review");
   const folder=rel(path.dirname(p)).split("/");
   if(folder[0]==="Tools"&&folder.length===2&&!fs.existsSync(path.join(path.dirname(p),"README.md")))errors.push(rel(p)+": missing tool README.md");
-  if(["chatgpt","gemini","github","lovable"].includes(folder[0])&&!["design.md","DESIGN.md"].some(f=>fs.existsSync(path.join(path.dirname(p),f))))errors.push(rel(p)+": missing design.md");
+  if(folder[0]==="ui-designs"&&!["design.md","DESIGN.md"].some(f=>fs.existsSync(path.join(path.dirname(p),f))))errors.push(rel(p)+": missing design.md");
 }
 for(const dir of fs.readdirSync(path.join(root,"Tools"),{withFileTypes:true})){
   if(dir.isDirectory()&&!fs.existsSync(path.join(root,"Tools",dir.name,"manifest.json")))errors.push("Tools/"+dir.name+": missing manifest.json");

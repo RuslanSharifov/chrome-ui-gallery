@@ -6,7 +6,7 @@ import {execFileSync} from "node:child_process";
 import {fileURLToPath} from "node:url";
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),"..");
 const tool=path.join(root,"Tools","catalog-auto-test-tool");
-const ui=path.join(root,"catalog-auto-test-platform","minimal","sample");
+const ui=path.join(root,"ui-designs","catalog-auto-test-platform","minimal","sample");
 const catalog=()=>JSON.parse(fs.readFileSync(path.join(root,"docs","catalog.json"),"utf8")).projects;
 const build=()=>execFileSync(process.execPath,["scripts/build-catalog.mjs"],{cwd:root,encoding:"utf8"});
 let failure;
@@ -24,12 +24,12 @@ try {
   const after=catalog();
   if(after.length!==before+2)throw new Error("New projects were not discovered");
   if(!after.some(p=>p.folder==="Tools/catalog-auto-test-tool"&&p.author?.name==="Example"))throw new Error("Tool or author metadata missing");
-  if(!after.some(p=>p.folder==="catalog-auto-test-platform/minimal/sample"&&p.category==="ui"))throw new Error("UI platform missing");
+  if(!after.some(p=>p.folder==="ui-designs/catalog-auto-test-platform/minimal/sample"&&p.category==="ui"))throw new Error("UI platform missing");
   console.log("PASS: new tools and UI platforms automatically appear in the generated catalog.");
 }catch(e){failure=e}
 finally{
   fs.rmSync(tool,{recursive:true,force:true});
-  fs.rmSync(path.join(root,"catalog-auto-test-platform"),{recursive:true,force:true});
+  fs.rmSync(path.join(root,"ui-designs","catalog-auto-test-platform"),{recursive:true,force:true});
   build();
 }
 if(failure)throw failure;

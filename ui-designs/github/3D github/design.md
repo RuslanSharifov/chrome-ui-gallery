@@ -22,4 +22,4 @@ Open `chrome://extensions`, enable Developer mode, choose **Load unpacked** and 
 
 **Suitable for:** 3D hover and proximity interaction studies, browser UI themes, and experimental developer dashboards.
 
-[← GitHub designs](../README.md) · [← Repository](../../README.md)
+[← GitHub designs](../README.md) · [← Repository](../../../README.md)

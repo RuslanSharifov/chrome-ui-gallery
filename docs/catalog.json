@@ -133,7 +133,7 @@
       "version": "1.0.0"
     },
     {
-      "id": "chatgpt-claymorphism",
+      "id": "ui-designs-chatgpt-claymorphism",
       "category": "ui",
       "platform": "chatgpt",
       "name": "ChatGPT Claymorphism",
@@ -150,12 +150,12 @@
         "#77565e",
         "#f0baae"
       ],
-      "doc": "chatgpt/claymorphism/design.md",
-      "folder": "chatgpt/claymorphism",
+      "doc": "ui-designs/chatgpt/claymorphism/design.md",
+      "folder": "ui-designs/chatgpt/claymorphism",
       "version": "1.0.0"
     },
     {
-      "id": "chatgpt-glassmorphism-ai-prompt-tool",
+      "id": "ui-designs-chatgpt-glassmorphism-ai-prompt-tool",
       "category": "ui",
       "platform": "chatgpt",
       "name": "ChatGPT Glassmorphism",
@@ -172,12 +172,12 @@
         "#40375c",
         "#ac99fd"
       ],
-      "doc": "chatgpt/glassmorphism/ai-prompt-tool/design.md",
-      "folder": "chatgpt/glassmorphism/ai-prompt-tool",
+      "doc": "ui-designs/chatgpt/glassmorphism/ai-prompt-tool/design.md",
+      "folder": "ui-designs/chatgpt/glassmorphism/ai-prompt-tool",
       "version": "2.1.0"
     },
     {
-      "id": "chatgpt-dark-gpt",
+      "id": "ui-designs-chatgpt-dark-gpt",
       "category": "ui",
       "platform": "chatgpt",
       "name": "DARK GPT",
@@ -194,12 +194,12 @@
         "#601d35",
         "#ff526f"
       ],
-      "doc": "chatgpt/DARK GPT/design.md",
-      "folder": "chatgpt/DARK GPT",
+      "doc": "ui-designs/chatgpt/DARK GPT/design.md",
+      "folder": "ui-designs/chatgpt/DARK GPT",
       "version": "1.1.1"
     },
     {
-      "id": "gemini-claymorphism-gemini-claymorphism",
+      "id": "ui-designs-gemini-claymorphism-gemini-claymorphism",
       "category": "ui",
       "platform": "gemini",
       "name": "Gemini Claymorphism",
@@ -216,13 +216,13 @@
         "#75577b",
         "#dbbaf2"
       ],
-      "doc": "gemini/claymorphism/gemini-claymorphism/design.md",
-      "folder": "gemini/claymorphism/gemini-claymorphism",
+      "doc": "ui-designs/gemini/claymorphism/gemini-claymorphism/design.md",
+      "folder": "ui-designs/gemini/claymorphism/gemini-claymorphism",
       "version": "1.1.0",
-      "preview": "gemini/claymorphism/gemini-claymorphism/gemini-claymorphism-preview.gif"
+      "preview": "ui-designs/gemini/claymorphism/gemini-claymorphism/gemini-claymorphism-preview.gif"
     },
     {
-      "id": "gemini-glassmorphism-gemini-glassmorphism",
+      "id": "ui-designs-gemini-glassmorphism-gemini-glassmorphism",
       "category": "ui",
       "platform": "gemini",
       "name": "Gemini Glassmorphism",
@@ -239,13 +239,13 @@
         "#35516a",
         "#9fcbff"
       ],
-      "doc": "gemini/glassmorphism/gemini-glassmorphism/design.md",
-      "folder": "gemini/glassmorphism/gemini-glassmorphism",
+      "doc": "ui-designs/gemini/glassmorphism/gemini-glassmorphism/design.md",
+      "folder": "ui-designs/gemini/glassmorphism/gemini-glassmorphism",
       "version": "1.2.0",
-      "preview": "gemini/glassmorphism/gemini-glassmorphism/gemini-glassmorphism-preview.gif"
+      "preview": "ui-designs/gemini/glassmorphism/gemini-glassmorphism/gemini-glassmorphism-preview.gif"
     },
     {
-      "id": "github-3d-github",
+      "id": "ui-designs-github-3d-github",
       "category": "ui",
       "platform": "github",
       "name": "3D GitHub",
@@ -262,12 +262,12 @@
         "#46375c",
         "#a690fe"
       ],
-      "doc": "github/3D github/design.md",
-      "folder": "github/3D github",
+      "doc": "ui-designs/github/3D github/design.md",
+      "folder": "ui-designs/github/3D github",
       "version": "4.0.0"
     },
     {
-      "id": "github-glassmorphism-github-glassmorphism",
+      "id": "ui-designs-github-glassmorphism-github-glassmorphism",
       "category": "ui",
       "platform": "github",
       "name": "GitHub Glassmorphism",
@@ -284,12 +284,12 @@
         "#1d4c54",
         "#78d4c1"
       ],
-      "doc": "github/glassmorphism/github-glassmorphism/design.md",
-      "folder": "github/glassmorphism/github-glassmorphism",
+      "doc": "ui-designs/github/glassmorphism/github-glassmorphism/design.md",
+      "folder": "ui-designs/github/glassmorphism/github-glassmorphism",
       "version": "4.1.0"
     },
     {
-      "id": "github-github-liquid-glass",
+      "id": "ui-designs-github-github-liquid-glass",
       "category": "ui",
       "platform": "github",
       "name": "GitHub Liquid Glass",
@@ -306,12 +306,12 @@
         "#37576a",
         "#6db9f2"
       ],
-      "doc": "github/github-liquid-glass/design.md",
-      "folder": "github/github-liquid-glass",
+      "doc": "ui-designs/github/github-liquid-glass/design.md",
+      "folder": "ui-designs/github/github-liquid-glass",
       "version": "1.0.0"
     },
     {
-      "id": "lovable-glassmorphism-lovable-glassmorphism",
+      "id": "ui-designs-lovable-glassmorphism-lovable-glassmorphism",
       "category": "ui",
       "platform": "lovable",
       "name": "Lovable Glassmorphism",
@@ -328,8 +328,8 @@
         "#71425e",
         "#f6a7d9"
       ],
-      "doc": "lovable/glassmorphism/lovable-glassmorphism/design.md",
-      "folder": "lovable/glassmorphism/lovable-glassmorphism",
+      "doc": "ui-designs/lovable/glassmorphism/lovable-glassmorphism/design.md",
+      "folder": "ui-designs/lovable/glassmorphism/lovable-glassmorphism",
       "version": "1.0.0"
     }
   ]

@@ -16,7 +16,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const uiExcluded = new Set(["Tools", "ui", "docs", "setup", "templates", "scripts", ".github", "node_modules", ".git"]);
+const uiExcluded = new Set(["Tools", "ui", "docs", "setup", "templates", "scripts", ".github", "node_modules", ".git", "ui-designs", "apps"]);
 const palettes = [
   ["#22223f", "#40375c", "#ac99fd"],
   ["#133c36", "#216456", "#6cdbc5"],
@@ -110,7 +110,7 @@ function addProject(manifestFile,category) {
   const parts=folderPath.split("/");
   if(category==="tool"&&parts.length!==2)
     throw new Error(folderPath+": tools must use Tools/<slug>/manifest.json");
-  if(category==="ui"&&parts.length<2)
+  if(category==="ui"&&parts.length<3)
     throw new Error(folderPath+": UI designs need a platform/style folder");
   const manifest=readJSON(manifestFile);
   if(manifest.manifest_version!==3)throw new Error(folderPath+": Chrome Manifest V3 is required");
@@ -118,10 +118,10 @@ function addProject(manifestFile,category) {
   const documentation=docs.find(name=>exists(path.join(folder,name)));
   if(!documentation) throw new Error(folderPath+": missing "+docs.join(" or "));
   const meta=readMeta(folder);
-  const platform=category==="ui" ? parts[0] : meta.platform??inferPlatform(manifest);
+  const platform=category==="ui" ? parts[1] : meta.platform??inferPlatform(manifest);
   if(category==="ui"&&meta.platform!==undefined&&meta.platform!==parts[0])
     throw new Error(folderPath+": metadata platform must match the parent platform folder");
-  const style=meta.style??(category==="tool"?"Browser Tool":titleCase(parts[1]));
+  const style=meta.style??(category==="tool"?"Browser Tool":titleCase(parts[2]));
   const name=meta.name??safeText(manifest.name,folderPath+" manifest.name",100);
   const description=meta.description??(typeof manifest.description==="string"&&manifest.description.trim()
     ?manifest.description.trim():"Open-source Chrome extension.");
@@ -140,8 +140,7 @@ function addProject(manifestFile,category) {
 }
 const projects=[];
 for(const manifest of findManifests(path.join(root,"Tools")))projects.push(addProject(manifest,"tool"));
-for(const folder of visibleDirs(root)) {
-  if(uiExcluded.has(path.basename(folder))) continue;
+for(const folder of visibleDirs(path.join(root,"ui-designs"))) {
   for(const manifest of findManifests(folder)) projects.push(addProject(manifest,"ui"));
 }
 const ids=new Set();

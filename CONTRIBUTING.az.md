@@ -24,7 +24,7 @@ UI dizaynı əlavə edirsənsə, uyğun platforma və stil qovluğundan istifad�
 - Başqasının kodunu yalnız uyğun lisenziya/icazə ilə paylaş.
 - Mənbə kodunda gizli izləmə və uzaqdan yüklənən icra olunan kod olmamalıdır.
 
-**[Tool şablonunu aç](./templates/chrome-extension-tool/README.md)** · **[Pull Request siyahısı](./.github/PULL_REQUEST_TEMPLATE.md)** · **[Tam qaydalar](./CONTRIBUTING.md)**
+**[Tool şablonunu aç](./templates/chrome-extension-tool/README.md)** · **[Pull Request siyahısı](.github/PULL_REQUEST_TEMPLATE.md)** · **[Tam qaydalar](./CONTRIBUTING.md)**
 
 ## Sayta avtomatik əlavə olunma
 

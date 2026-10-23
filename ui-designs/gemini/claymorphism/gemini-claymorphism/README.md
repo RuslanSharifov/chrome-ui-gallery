@@ -39,4 +39,4 @@ A Chrome Manifest V3 extension that gives [Google Gemini](https://gemini.google.
 
 ## Navigation
 
-[← Claymorphism overview](../README.md) · [← Gemini designs](../../README.md) · [← Gallery home](../../../README.md)
+[← Claymorphism overview](../README.md) · [← Gemini designs](../../README.md) · [← Gallery home](../../../../README.md)
