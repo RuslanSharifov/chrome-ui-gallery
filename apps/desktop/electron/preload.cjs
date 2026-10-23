@@ -2,6 +2,9 @@ const {contextBridge,ipcRenderer}=require("electron");
 const channels=["bridge:state","updater:state"];
 contextBridge.exposeInMainWorld("galleryDesktop",Object.freeze({
   bridgeState:()=>ipcRenderer.invoke("bridge:get-state"),
+  openDiagnostics:()=>ipcRenderer.invoke("diagnostics:open-folder"),
+  diagnosticsPath:()=>ipcRenderer.invoke("diagnostics:get-path"),
+  diagnosticEvent:(event,durationMs,success)=>ipcRenderer.invoke("diagnostics:ui-event",{event,durationMs,success}),
   refreshExtensions:()=>ipcRenderer.invoke("bridge:refresh"),
   setExtensionEnabled:(id,enabled)=>ipcRenderer.invoke("bridge:set-enabled",{id,enabled}),
   disconnect:()=>ipcRenderer.invoke("bridge:disconnect"),

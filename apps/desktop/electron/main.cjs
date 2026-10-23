@@ -1,9 +1,10 @@
 const {app,BrowserWindow,ipcMain,shell,session}=require("electron");
 const path=require("node:path");
 const {createBridge}=require("./bridge.cjs");
+const {createDiagnostics}=require("./diagnostics.cjs");
 const {autoUpdater}=require("electron-updater");
 const {prepareInstaller,openChromeExtensions}=require("./install.cjs");
-let win,bridge;
+let win,bridge,diagnostics;
 let updaterState={status:"idle",message:"Updates are checked automatically in installed builds.",progress:0};
 function update(patch){updaterState={...updaterState,...patch};if(win&&!win.isDestroyed())win.webContents.send("updater:state",updaterState)}
 const isDev=!app.isPackaged;
@@ -25,9 +26,13 @@ function setupUpdater(){autoUpdater.autoDownload=false;autoUpdater.autoInstallOn
 }
 app.whenReady().then(async()=>{
  session.defaultSession.setPermissionRequestHandler((_wc,_permission,callback)=>callback(false));
- bridge=createBridge(app,()=>{if(win&&!win.isDestroyed())win.webContents.send("bridge:state",bridge.state())});
+ diagnostics=createDiagnostics(app);diagnostics.log("app_started",{packaged:app.isPackaged});
+ bridge=createBridge(app,()=>{if(win&&!win.isDestroyed())win.webContents.send("bridge:state",bridge.state())},diagnostics.log);
  try{await bridge.start()}catch(e){console.error("Bridge unavailable",e)}
  ipcMain.handle("bridge:get-state",()=>bridge.state());
+ ipcMain.handle("diagnostics:open-folder",()=>shell.openPath(require("node:path").dirname(diagnostics.file)));
+ ipcMain.handle("diagnostics:get-path",()=>diagnostics.file);
+ ipcMain.handle("diagnostics:ui-event",(_event,data)=>{if(data&&typeof data.event==="string")diagnostics.log("ui_"+data.event,{durationMs:Number(data.durationMs)||0,success:!!data.success});return true});
  ipcMain.handle("bridge:refresh",()=>bridge.refresh());
  ipcMain.handle("bridge:set-enabled",(_event,p)=>bridge.setEnabled(p));
  ipcMain.handle("bridge:disconnect",()=>bridge.disconnect());
