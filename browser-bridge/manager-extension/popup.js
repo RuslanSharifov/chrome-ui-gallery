@@ -1,5 +1,6 @@
-const code=document.getElementById("code"),pair=document.getElementById("pair"),disconnect=document.getElementById("disconnect"),status=document.getElementById("status");
-function render(connected){code.hidden=pair.hidden=connected;disconnect.hidden=!connected;status.textContent=connected?"Paired with Chrome UI Gallery Desktop":"Not paired"}
+const code=document.getElementById("code"),pair=document.getElementById("pair"),disconnect=document.getElementById("disconnect"),status=document.getElementById("status"),paste=document.getElementById("paste");
+function render(connected){code.hidden=pair.hidden=paste.hidden=connected;disconnect.hidden=!connected;status.textContent=connected?"Paired with Chrome UI Gallery Desktop":"Not paired"}
 chrome.runtime.sendMessage({type:"status"},x=>{if(chrome.runtime.lastError)return status.textContent="Open the desktop app first";render(!!x?.paired)});
+paste.addEventListener("click",async()=>{try{const text=await navigator.clipboard.readText();const value=text.trim().toUpperCase();if(!/^[0-9A-F]{8}$/.test(value))throw new Error("Clipboard does not contain an 8-character pairing code");code.value=value;status.textContent="Code pasted — press Connect"}catch(e){status.textContent="Cannot read clipboard: use Ctrl+V in the input. "+e.message}});
 pair.addEventListener("click",()=>{status.textContent="Pairing…";chrome.runtime.sendMessage({type:"pair",code:code.value},x=>{if(chrome.runtime.lastError||x?.error){status.textContent=x?.error||chrome.runtime.lastError.message;return}render(true)})});
 disconnect.addEventListener("click",()=>chrome.runtime.sendMessage({type:"disconnect"},()=>render(false)));
