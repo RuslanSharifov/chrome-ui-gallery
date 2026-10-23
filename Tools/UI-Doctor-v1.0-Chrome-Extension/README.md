@@ -2,6 +2,10 @@
 
 > Inspect. Diagnose. Perfect your UI.
 
+![UI Doctor — Chrome Extension Showcase: visual debugging, responsive testing, typography, spacing and contrast tools](./UI%20Doctor%20Chrome%20Extension%20Showcase.png)
+
+*UI Doctor feature showcase — an illustrative overview of the extension's tools and workflows.*
+
 UI Doctor is a Chrome extension (Manifest V3) for frontend developers, UI developers, web designers and QA engineers. It inspects a page visually, measures spacing, runs layout diagnostics at common breakpoints, shows typography and colour contrast, and lets you try CSS changes temporarily, all without writing JavaScript in DevTools.
 
 Developed by **Ruslan Sharifov** · [GitHub](https://github.com/RuslanSharifov) · [Repository](https://github.com/RuslanSharifov/chrome-ui-gallery) · [Chrome UI Gallery](https://ruslansharifov.github.io/chrome-ui-gallery/)

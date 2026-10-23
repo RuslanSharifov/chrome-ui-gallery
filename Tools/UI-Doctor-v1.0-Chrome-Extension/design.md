@@ -1,5 +1,9 @@
 # UI Doctor — Design
 
+![UI Doctor — Visual Debugger & Responsive Tester feature showcase](./UI%20Doctor%20Chrome%20Extension%20Showcase.png)
+
+*Conceptual feature poster illustrating inspection, responsive testing, contrast, spacing and typography workflows.*
+
 ## Product
 UI Doctor is a developer tool. The interface favours density, precision and calm: compact technical panels, clear severity colours and no decorative motion.
 
