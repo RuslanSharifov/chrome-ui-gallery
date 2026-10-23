@@ -102,7 +102,13 @@
       ],
       "doc": "Tools/UI-Doctor-v1.0-Chrome-Extension/README.md",
       "folder": "Tools/UI-Doctor-v1.0-Chrome-Extension",
-      "version": "1.0.0"
+      "version": "1.0.0",
+      "preview": "Tools/UI-Doctor-v1.0-Chrome-Extension/UI Doctor Chrome Extension Showcase.png",
+      "previews": [
+        "Tools/UI-Doctor-v1.0-Chrome-Extension/UI Doctor Chrome Extension Showcase.png",
+        "Tools/UI-Doctor-v1.0-Chrome-Extension/docs/screenshots/overview.png",
+        "Tools/UI-Doctor-v1.0-Chrome-Extension/docs/screenshots/diagnostics.png"
+      ]
     },
     {
       "id": "tools-chatgpt-lag-fixer",

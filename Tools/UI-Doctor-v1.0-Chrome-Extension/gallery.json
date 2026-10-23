@@ -1,0 +1,22 @@
+{
+  "name": "UI Doctor — Visual Debugger & Responsive Tester",
+  "description": "Inspect. Diagnose. Perfect your UI. Local-only layout, spacing, typography, contrast and responsive diagnostics.",
+  "platform": "browser",
+  "style": "Browser Tool",
+  "tags": [
+    "Tool",
+    "Browser Tool"
+  ],
+  "icon": "◈",
+  "palette": [
+    "#4b364e",
+    "#75577b",
+    "#dbbaf2"
+  ],
+  "preview": "UI Doctor Chrome Extension Showcase.png",
+  "previews": [
+    "UI Doctor Chrome Extension Showcase.png",
+    "docs/screenshots/overview.png",
+    "docs/screenshots/diagnostics.png"
+  ]
+}
