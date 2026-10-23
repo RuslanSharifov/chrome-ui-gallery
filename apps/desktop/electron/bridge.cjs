@@ -4,30 +4,30 @@ const PORT=41739;
 const rand=n=>crypto.randomBytes(n).toString("hex");
 const json=(res,status,data)=>{if(res.destroyed||res.writableEnded)return;res.writeHead(status,{"content-type":"application/json; charset=utf-8","cache-control":"no-store","x-content-type-options":"nosniff"});res.end(JSON.stringify(data))};
 function createBridge(_app,notify,log=()=>{}){
- let token=null,pairCode=rand(4).toUpperCase(),lastSeen=0,extensions=[],pending=new Map(),server=null,waiting=null;
+ let token=null,pairCode=rand(4).toUpperCase(),lastSeen=0,extensions=[],pending=new Map(),server=null,waiting=null,inventoryAt=0;
  const state=()=>({connected:!!token&&Date.now()-lastSeen<90000,pairCode,port:PORT,extensions,updatedAt:lastSeen});
  const signal=()=>notify();
  const commands=()=>[...pending.values()].filter(e=>!e.dispatched).map(e=>{e.dispatched=true;e.dispatchedAt=Date.now();log("command_dispatched",{command:e.action.type,queueMs:e.dispatchedAt-e.createdAt});return{id:e.id,...e.action}});
  function sendCommands(){if(!waiting)return;const w=waiting;waiting=null;clearTimeout(w.timer);json(w.res,200,{commands:commands()})}
  function queue(action){if(!state().connected)return Promise.reject(new Error("Chrome companion is not connected."));return new Promise((resolve,reject)=>{const id=rand(12);const timeout=setTimeout(()=>{pending.delete(id);log("command_timeout",{command:action.type,durationMs:15000});reject(new Error("Chrome did not respond. Check that Companion is enabled."))},15000);pending.set(id,{id,action,resolve,reject,timeout,dispatched:false,createdAt:Date.now()});log("command_queued",{command:action.type});sendCommands()})}
- function updateList(input){if(Array.isArray(input)){const before=extensions.length;extensions=input.filter(e=>e&&typeof e.id==="string"&&typeof e.name==="string").slice(0,500).map(e=>({id:e.id,name:e.name,enabled:!!e.enabled,mayDisable:!!e.mayDisable,type:e.type}));log("inventory_received",{count:extensions.length,previousCount:before});}signal()}
+ function updateList(input,at,source="poll"){if(Array.isArray(input)){if(Number.isFinite(at)&&at<inventoryAt){log("inventory_stale_ignored",{source});return}if(Number.isFinite(at))inventoryAt=at;const before=extensions.length;extensions=input.filter(e=>e&&typeof e.id==="string"&&typeof e.name==="string").slice(0,500).map(e=>({id:e.id,name:e.name,enabled:!!e.enabled,mayDisable:!!e.mayDisable,type:e.type}));log("inventory_received",{count:extensions.length,previousCount:before,source});}signal()}
  function handle(req,res){
   const origin=req.headers.origin;
   if(origin&&!/^chrome-extension:\/\/[a-p]{32}$/.test(origin))return json(res,403,{error:"Invalid origin"});
   if(!["GET","POST"].includes(req.method))return json(res,405,{error:"Method not allowed"});
-  if(!["/health","/pair","/poll","/response"].includes(req.url))return json(res,404,{error:"Not found"});
+  if(!["/health","/pair","/poll","/response","/inventory"].includes(req.url))return json(res,404,{error:"Not found"});
   let chunks=[],size=0;req.on("data",chunk=>{size+=chunk.length;if(size>65536){req.destroy();return}chunks.push(chunk)});
   req.on("end",()=>{let body={};try{body=chunks.length?JSON.parse(Buffer.concat(chunks).toString("utf8")):{}}catch{return json(res,400,{error:"Invalid JSON"})}
    if(req.url==="/health"&&req.method==="GET")return json(res,200,{app:"chrome-ui-gallery",bridgeVersion:2});
    if(req.url==="/pair"&&req.method==="POST"){
     if(typeof body.code!=="string"||body.code.toUpperCase()!==pairCode)return json(res,403,{error:"Pairing code is invalid"});
     if(waiting){clearTimeout(waiting.timer);json(waiting.res,401,{error:"Pairing changed"});waiting=null}
-    token=rand(32);pairCode=rand(4).toUpperCase();lastSeen=Date.now();extensions=[];log("paired");signal();return json(res,200,{token});
+    token=rand(32);pairCode=rand(4).toUpperCase();lastSeen=Date.now();extensions=[];inventoryAt=0;log("paired");signal();return json(res,200,{token});
    }
    if(!token||req.headers.authorization!=="Bearer "+token)return json(res,401,{error:"Not paired"});
    lastSeen=Date.now();
    if(req.url==="/poll"&&req.method==="POST"){
-    updateList(body.extensions);
+    updateList(body.extensions,body.inventoryAt,"poll");
     if(waiting){clearTimeout(waiting.timer);json(waiting.res,200,{commands:[]});waiting=null}
     if(pending.size&&[...pending.values()].some(x=>!x.dispatched))return json(res,200,{commands:commands()});
     const w={res,timer:null};waiting=w;
@@ -35,8 +35,11 @@ function createBridge(_app,notify,log=()=>{}){
     res.on("close",()=>{if(waiting===w){clearTimeout(w.timer);waiting=null}});
     return;
    }
+   if(req.url==="/inventory"&&req.method==="POST"){
+    updateList(body.extensions,body.inventoryAt,"push");return json(res,200,{ok:true});
+   }
    if(req.url==="/response"&&req.method==="POST"){
-    updateList(body.extensions);const item=pending.get(body.id);
+    updateList(body.extensions,body.inventoryAt,"response");const item=pending.get(body.id);
     if(item){clearTimeout(item.timeout);pending.delete(body.id);log("command_result",{command:item.action.type,success:!!body.ok,totalMs:Date.now()-item.createdAt,executionMs:item.dispatchedAt?Date.now()-item.dispatchedAt:0});body.ok?item.resolve(body.result??true):item.reject(new Error(String(body.error||"Chrome operation failed")))}
     return json(res,200,{ok:true});
    }
