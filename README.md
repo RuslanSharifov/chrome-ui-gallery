@@ -213,6 +213,7 @@ Chrome, ChatGPT, Gemini, GitHub, Lovable and other platform names or marks belon
 
 | Resource | Link |
 | --- | --- |
+| Support the project | [Support on Ko-fi](https://ko-fi.com/ruslansharifov) |
 | Public website | [Chrome UI Gallery](https://ruslansharifov.github.io/chrome-ui-gallery/) |
 | Source repository | [GitHub](https://github.com/RuslanSharifov/chrome-ui-gallery) |
 | Report issues and request features | [Issues](https://github.com/RuslanSharifov/chrome-ui-gallery/issues) |

@@ -3,3 +3,28 @@
 .installed-list{display:flex;flex-direction:column;gap:9px;margin:10px 0 26px}.installed-row{display:flex;align-items:center;gap:13px;background:#121622;border:1px solid #ffffff16;border-radius:12px;padding:13px 17px}.installed-icon{height:38px;width:38px;display:grid;place-items:center;border-radius:11px;color:#c6b5ff;background:#b9a6ff19}.installed-description{min-width:0;flex:1}.installed-description strong{font-size:13px;display:block}.installed-description small{font-size:10px;color:#919bb7;display:block;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;margin-top:5px}.installed-actions{display:flex;justify-content:flex-end;margin-top:8px}
 
 .install-step{display:flex;align-items:flex-start;gap:10px;margin:16px 0;padding:13px 15px;border:1px solid #b9a6ff30;border-radius:12px;background:#b9a6ff0d;color:#bbc4df;font-size:12px;line-height:1.6}.install-step svg{flex-shrink:0;color:#b9a6ff}.install-step strong{display:block;color:#f4f0ff;margin-bottom:4px}.install-guide{margin:10px 0 15px;color:#a6b0ce;font-size:12px;line-height:1.7}.install-guide code{color:#e5dcff}.manage-row .btn{font-size:11px}.connection-hint{font-size:11px;color:#919bb7;margin:8px 0 0}.pending-label{color:#9ce4d5;font-size:10px}.detail-links .btn{flex:1}
+
+.install-accordion{margin:19px 0 15px;border:1px solid #ffffff24;border-radius:13px;background:#171b2a;overflow:hidden}
+.install-accordion-trigger{padding:16px;width:100%;background:transparent;color:#e7e9ff;border:0;text-align:left;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.install-accordion-trigger>span{display:flex;align-items:center;gap:12px}
+.install-accordion-trigger strong{display:block;font-size:12px}
+.install-accordion-trigger small{display:block;font-size:10px;color:#939fbc;margin-top:5px}
+.install-accordion-trigger svg{color:#b9a6ff}
+.install-accordion-trigger .rotated{transform:rotate(90deg)}
+.install-accordion-body{padding:0 14px 16px;border-top:1px solid #ffffff12;animation:fade .2s ease}
+.install-accordion-body .install-step{margin-top:14px}
+.toast.success{border-color:#8fe8cb77}.toast.success>svg{color:#8fe8cb}
+.toast.error{border-color:#ff939377}.toast.error>svg{color:#ff9393}
+
+.platform-children{margin:2px 0 8px 15px;padding-left:9px;border-left:1px solid #b9a6ff28;animation:fade .16s ease}
+.platform-children .nav-button{font-size:12px;height:37px;min-height:37px;padding-left:10px}
+.platform-children.tree-level-3{margin-left:9px;padding-left:9px}
+.platform-children.tree-level-3 .nav-button{font-size:11px;color:#a2aac5;height:32px;min-height:32px}
+.nav-chevron{transition:transform .2s ease}.nav-chevron.tree-rotated{transform:rotate(90deg)}
+.sidebar{overflow-y:auto;scrollbar-width:thin;scrollbar-color:#38344d transparent}
+
+@keyframes chrome-sync-spin{to{transform:rotate(360deg)}}.is-spinning{animation:chrome-sync-spin .75s linear infinite}.installed-actions{align-items:center;gap:12px}.pending-label{font-size:11px;color:#8fe8cb}
+
+.platform-heading{display:flex;align-items:center;justify-content:space-between;width:100%;border:0;background:none;color:#9c93bf;font-size:10px;letter-spacing:.19em;font-weight:760;padding:0 13px;margin-bottom:13px;height:30px}.platform-heading svg{transition:transform .2s}.pair-box{flex-wrap:wrap}.pair-box .btn{white-space:nowrap}
+
+.support-nav{color:#d4b9ff;border:1px solid #b9a6ff1a;background:#b9a6ff0a}.support-nav span{font-size:20px;color:#dfb1f6}.support-nav svg:last-child{margin-left:auto}
