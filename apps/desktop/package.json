@@ -1,6 +1,6 @@
 {
   "name": "chrome-ui-gallery-desktop",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "Open-source Chrome UI Gallery desktop extension manager",
   "main": "electron/main.cjs",
@@ -18,7 +18,8 @@
     "electron-updater": "^6.6.2",
     "lucide-react": "^0.468.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "adm-zip": "^0.5.16"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.7.0",

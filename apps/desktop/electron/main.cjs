@@ -2,6 +2,7 @@ const {app,BrowserWindow,ipcMain,shell,session}=require("electron");
 const path=require("node:path");
 const {createBridge}=require("./bridge.cjs");
 const {autoUpdater}=require("electron-updater");
+const {prepareInstaller,openChromeExtensions}=require("./install.cjs");
 let win,bridge;
 let updaterState={status:"idle",message:"Updates are checked automatically in installed builds.",progress:0};
 function update(patch){updaterState={...updaterState,...patch};if(win&&!win.isDestroyed())win.webContents.send("updater:state",updaterState)}
@@ -30,6 +31,8 @@ app.whenReady().then(async()=>{
  ipcMain.handle("bridge:refresh",()=>bridge.refresh());
  ipcMain.handle("bridge:set-enabled",(_event,p)=>bridge.setEnabled(p));
  ipcMain.handle("bridge:disconnect",()=>bridge.disconnect());
+ ipcMain.handle("extensions:prepare",(_event,id)=>prepareInstaller(app,shell)(id));
+ ipcMain.handle("extensions:open-chrome",()=>openChromeExtensions());
  ipcMain.handle("shell:open-external",(_event,url)=>{const allowed=/^https:\/\/(github\.com\/RuslanSharifov\/chrome-ui-gallery(?:\/|$)|ruslansharifov\.github\.io\/chrome-ui-gallery(?:\/|$))/.test(url);if(!allowed)throw new Error("Blocked external URL");return shell.openExternal(url)});
  ipcMain.handle("updater:get-state",()=>updaterState);
  ipcMain.handle("updater:check",()=>app.isPackaged?autoUpdater.checkForUpdates().then(()=>updaterState):updaterState);

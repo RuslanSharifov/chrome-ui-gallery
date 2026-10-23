@@ -1,34 +1,42 @@
-# Chrome UI Gallery — Desktop
+# Chrome UI Gallery Desktop
 
-Electron + React desktop manager for the public Chrome UI Gallery catalog. Dark glass-inspired interface matching the website. Source code is open; no proprietary backend is needed.
+Electron + React desktop gallery and optional Chrome extension manager. Its glass-style interface matches the website and all source files are public.
 
-## Features
+## Clone and launch
 
-- Search, filter, inspect and open sources of Chrome UI themes and developer tools.
-- Animated detail panels with images and direct links to project documentation.
-- Companion Chrome extension pairing for installed-extension status and enable/disable actions while Chrome is running.
-- GitHub Releases update checking and installer updates in packaged builds.
-
-## Run locally
-
-Requires Node.js 22+.
+Requires [Git](https://git-scm.com/downloads), [Node.js 22+](https://nodejs.org/) and npm. **Run the full sequence in PowerShell, Terminal or Command Prompt:**
 
 ```bash
+git clone https://github.com/RuslanSharifov/chrome-ui-gallery.git
+cd chrome-ui-gallery
 cd apps/desktop
 npm install
 npm run dev
 ```
 
-Build: `npm run build`. Package: `npm run dist:win` on Windows or `npm run dist:mac` on macOS. Install the [companion extension](../../browser-bridge/manager-extension/README.md) separately to control Chrome extensions. Without the companion, this app is a read-only gallery.
+If you already downloaded or cloned the repository, start the commands from the actual `chrome-ui-gallery` directory and use `cd apps/desktop` before `npm install`.
 
-## Safety and releases
+## One-action preparation for Chrome extensions
 
-Chrome must be running for live extension management. A pairing code and local access token protect the bridge on `127.0.0.1:41739`. The companion requests Chrome's `management` permission. Review permissions before installing. The companion cannot toggle itself. Desktop updates are available only after signed/published installer releases; development mode does not auto-update. macOS distribution requires code signing and notarization for a smooth installation. No installers are currently published by this source-only commit.
+Open a project card and choose **Prepare for Chrome**. The desktop app downloads its published ZIP archive from the project's GitHub Pages gallery, checks the archive structure and Manifest V3, extracts it to a dedicated directory and opens that directory alongside Chrome's extension manager.
+
+**Chrome still requires an explicit user installation step:** enable Developer mode in `chrome://extensions`, click **Load unpacked**, and select the extracted folder. Chrome does not provide a supported API for a third-party desktop app to silently install unpacked extensions into your existing Chrome profile. The app will never silently modify a Chrome profile.
+
+For toggling an installed extension on or off from the desktop app, first load the optional [Chrome Companion](../../browser-bridge/manager-extension/README.md) in Chrome and pair it using the one-time code in Desktop Settings. The desktop application then displays actual installed extensions and provides toggles for extensions Chrome allows the companion to manage. Some actions can require Chrome confirmation and may be rejected.
+
+## Desktop builds
+
+```bash
+npm run build
+npm run dist:win
+```
+
+On macOS use `npm run dist:mac`. For signing and automatic release updates, see [RELEASING.md](./RELEASING.md). Source builds do not auto-update; update support requires published compatible signed installers.
 
 ## Files
 
+- [React UI](./src/App.jsx)
+- [App styles](./src/styles.css)
 - [Electron main process](./electron/main.cjs)
-- [Local bridge](./electron/bridge.cjs)
-- [Secure preload API](./electron/preload.cjs)
-- [React interface](./src/App.jsx)
-- [Visual styles](./src/styles.css)
+- [Safe extension ZIP preparation](./electron/install.cjs)
+- [Chrome companion](../../browser-bridge/manager-extension/README.md)

@@ -5,6 +5,8 @@ contextBridge.exposeInMainWorld("galleryDesktop",Object.freeze({
   refreshExtensions:()=>ipcRenderer.invoke("bridge:refresh"),
   setExtensionEnabled:(id,enabled)=>ipcRenderer.invoke("bridge:set-enabled",{id,enabled}),
   disconnect:()=>ipcRenderer.invoke("bridge:disconnect"),
+  prepareExtension:(id)=>ipcRenderer.invoke("extensions:prepare",id),
+  openChromeExtensions:()=>ipcRenderer.invoke("extensions:open-chrome"),
   openExternal:(url)=>ipcRenderer.invoke("shell:open-external",url),
   updaterState:()=>ipcRenderer.invoke("updater:get-state"),
   checkUpdates:()=>ipcRenderer.invoke("updater:check"),
