@@ -24,6 +24,7 @@
 - [Desktop application](#desktop-application)
 - [Repository structure](#repository-structure)
 - [Development and testing](#development-and-testing)
+- [Support the project](#-support-the-project)
 - [Open source and contributing](#open-source-and-contributing)
 - [Security and privacy](#security-and-privacy)
 - [License and trademarks](#license-and-trademarks)
@@ -208,6 +209,27 @@ The repository's **original project-owned code and documentation** are offered u
 **Not everything visible in the repository is automatically MIT-licensed.** Third-party libraries, imported files, fonts, illustrations, screenshots, brand assets and separately licensed contributions can have other legal conditions. Review [LICENSES.md](./LICENSES.md) and project-level notices for attribution and provenance before reuse or redistribution.
 
 Chrome, ChatGPT, Gemini, GitHub, Lovable and other platform names or marks belong to their respective owners. Gallery themes and tools are independent experiments and do not imply partnership, sponsorship or endorsement.
+
+## 💜 Support the project
+
+<div align="center">
+
+### Small support. Big impact.
+
+Chrome UI Gallery is built in the open — free UI experiments, useful browser tools, and resources for everyone.
+
+If the project has helped you, consider buying the creator a coffee. It's completely optional, and every bit of support helps make future releases possible.
+
+<a href="https://ko-fi.com/ruslansharifov"><img src="https://img.shields.io/badge/Ko--fi-Support%20the%20project-FF5E5B?style=for-the-badge&logo=ko-fi&logoColor=white" alt="Support Chrome UI Gallery on Ko-fi"></a>
+
+<a href="https://ko-fi.com/ruslansharifov"><img src="https://img.shields.io/badge/%E2%99%A5%20-Buy%20me%20a%20coffee-b9a6ff?style=flat-square" alt="Buy me a coffee"></a>
+<a href="https://github.com/RuslanSharifov/chrome-ui-gallery/stargazers"><img src="https://img.shields.io/badge/%E2%98%85-Star%20this%20repository-8fe8cb?style=flat-square" alt="Star this repository"></a>
+
+*No paywalls, no obligation — just a way to say thanks.*
+
+</div>
+
+---
 
 ## Community and support
 
