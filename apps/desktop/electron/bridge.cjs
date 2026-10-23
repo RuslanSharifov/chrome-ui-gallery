@@ -7,7 +7,7 @@ function createBridge(_app,notify){
  let token=null,pairCode=rand(4).toUpperCase(),connected=false,lastSeen=0,extensions=[],pending=new Map(),server=null;
  const state=()=>({connected:connected&&Date.now()-lastSeen<90000,pairCode,port:PORT,extensions,updatedAt:lastSeen});
  const signal=()=>notify();
- function queue(action){if(!state().connected)return Promise.reject(new Error("Chrome companion is not connected."));return new Promise((resolve,reject)=>{const id=rand(12);const timeout=setTimeout(()=>{pending.delete(id);reject(new Error("Chrome did not respond."))},12000);pending.set(id,{id,action,resolve,reject,timeout,dispatched:false})})}
+ function queue(action){if(!state().connected)return Promise.reject(new Error("Chrome companion is not connected."));return new Promise((resolve,reject)=>{const id=rand(12);const timeout=setTimeout(()=>{pending.delete(id);reject(new Error("Chrome did not respond."))},70000);pending.set(id,{id,action,resolve,reject,timeout,dispatched:false})})}
  function handle(req,res){
   const origin=req.headers.origin;
   // Extensions make requests from chrome-extension://...; unpaired web pages must not issue commands.
@@ -28,6 +28,7 @@ function createBridge(_app,notify){
     const commands=[...pending.values()].filter(e=>!e.dispatched).map(e=>{e.dispatched=true;return{id:e.id,...e.action}});signal();return json(res,200,{commands});
    }
    if(req.url==="/response"&&req.method==="POST"){
+    if(Array.isArray(body.extensions))extensions=body.extensions.filter(e=>e&&typeof e.id==="string"&&typeof e.name==="string").slice(0,500).map(e=>({id:e.id,name:e.name,enabled:!!e.enabled,mayDisable:!!e.mayDisable,type:e.type}));
     const item=pending.get(body.id);if(item){clearTimeout(item.timeout);pending.delete(body.id);body.ok?item.resolve(body.result??true):item.reject(new Error(String(body.error||"Chrome operation failed")));}
     signal();return json(res,200,{ok:true});
    }
@@ -39,7 +40,7 @@ function createBridge(_app,notify){
   start:()=>new Promise((resolve,reject)=>{server=http.createServer(handle);server.on("error",reject);server.listen(PORT,"127.0.0.1",resolve)}),
   stop:()=>{for(const p of pending.values()){clearTimeout(p.timeout);p.reject(new Error("Application closing"))}pending.clear();server?.close()},
   refresh:async()=>{await queue({type:"refresh"});return state()},
-  setEnabled:async({id,enabled})=>{if(typeof id!=="string"||!/^[a-p]{32}$/.test(id)||typeof enabled!=="boolean")throw new Error("Invalid extension request");await queue({type:"set-enabled",extensionId:id,enabled});return state()},
+  setEnabled:async({id,enabled})=>{if(typeof id!=="string"||!/^[a-p]{32}$/.test(id)||typeof enabled!=="boolean")throw new Error("Invalid extension request");const result=await queue({type:"set-enabled",extensionId:id,enabled});if(!result||result.enabled!==enabled)throw new Error("Chrome did not confirm the change");return state()},
   disconnect:()=>{token=null;pairCode=rand(4).toUpperCase();connected=false;lastSeen=0;extensions=[];for(const p of pending.values()){clearTimeout(p.timeout);p.reject(new Error("Disconnected"))}pending.clear();signal();return state()}
  }
 }

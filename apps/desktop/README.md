@@ -40,3 +40,9 @@ On macOS use `npm run dist:mac`. For signing and automatic release updates, see 
 - [Electron main process](./electron/main.cjs)
 - [Safe extension ZIP preparation](./electron/install.cjs)
 - [Chrome companion](../../browser-bridge/manager-extension/README.md)
+
+## Companion synchronization and automatic updates
+
+After pairing, installed extensions synchronize through Chrome Companion approximately every 30 seconds. Enable/disable controls remain busy until Chrome returns and the resulting state is checked. A successful **Extension disabled** notice describes a completed action, not a failure. Some browser-managed extensions cannot be toggled; Chrome may also require a confirmation.
+
+The desktop app checks GitHub Releases on startup and every six hours **in installed production builds**, automatically downloads an available update and offers a restart to install it. When launched with `npm run dev`, the Settings page correctly reports **Development**: the updater is intentionally inactive and new source changes must be fetched with `git pull` and restarted locally. A version can only be delivered once a compatible installer and update metadata have been published in Releases. See [release documentation](./RELEASING.md).
