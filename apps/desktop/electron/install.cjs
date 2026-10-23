@@ -62,7 +62,7 @@ function openChromeExtensions(){
  ["/usr/bin/google-chrome","/usr/bin/google-chrome-stable","/usr/bin/chromium","/usr/bin/chromium-browser"];
  const exe=candidates.find(p=>p&&fs.existsSync(p));
  if(!exe)return {opened:false,message:"Open Chrome and visit chrome://extensions manually."};
- const child=spawn(exe,["chrome://extensions/"],{detached:true,stdio:"ignore"});child.on("error",()=>{});child.unref();
- return {opened:true,message:"Chrome extension manager requested."};
+ const child=spawn(exe,["--new-tab","chrome://extensions"],{detached:true,stdio:"ignore"});child.on("error",()=>{});child.unref();
+ return {opened:true,message:"Requested chrome://extensions. If Chrome opens its home page, paste chrome://extensions into the address bar."};
 }
 module.exports={prepareInstaller,openChromeExtensions};

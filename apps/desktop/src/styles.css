@@ -15,3 +15,10 @@
 .install-accordion-body .install-step{margin-top:14px}
 .toast.success{border-color:#8fe8cb77}.toast.success>svg{color:#8fe8cb}
 .toast.error{border-color:#ff939377}.toast.error>svg{color:#ff9393}
+
+.platform-children{margin:2px 0 8px 15px;padding-left:9px;border-left:1px solid #b9a6ff28;animation:fade .16s ease}
+.platform-children .nav-button{font-size:12px;height:37px;min-height:37px;padding-left:10px}
+.platform-children.tree-level-3{margin-left:9px;padding-left:9px}
+.platform-children.tree-level-3 .nav-button{font-size:11px;color:#a2aac5;height:32px;min-height:32px}
+.nav-chevron{transition:transform .2s ease}.nav-chevron.tree-rotated{transform:rotate(90deg)}
+.sidebar{overflow-y:auto;scrollbar-width:thin;scrollbar-color:#38344d transparent}
