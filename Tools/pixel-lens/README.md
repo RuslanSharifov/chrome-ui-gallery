@@ -1,4 +1,11 @@
-# ◈ Pixel Lens
+# Pixel Lens
+
+![Pixel Lens logo](./preview.png)
+
+**Pixel Lens** uses its own magnifier-and-pixels logo from the supplied Pixel Lens assets, not the Chrome UI Gallery cube.
+
+[Full-size logo SVG](./pixel-lens-logo.svg) · [128px PNG](./icons/icon128.png) · [48px PNG](./icons/icon48.png) · [32px PNG](./icons/icon32.png) · [16px PNG](./icons/icon16.png)
+
 
 A lightweight **visual CSS inspector** for Chrome. Hover a page element to read its computed styles beside the pointer, click to pin the element, and edit its CSS **locally** without changing the underlying source files.
 
@@ -37,3 +44,11 @@ The inspector runs locally in the currently selected web tab using Chrome's `act
 - [inspector.js](./inspector.js) — isolated Shadow DOM inspector and CSS editing logic
 - [support.js](./support.js) — centrally configured optional Ko-fi panel
 - [gallery.json](./gallery.json) — catalog metadata
+
+## Brand assets
+
+The extension toolbar and popup use the Pixel Lens mark. All image references are relative, so previews render correctly on GitHub.
+
+![Pixel Lens small icon](./icons/icon48.png)
+
+The preview displayed in the live Gallery is [preview.png](./preview.png); it matches the browser extension brand. The main Gallery site retains its own separate brand logo.
