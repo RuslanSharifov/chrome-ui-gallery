@@ -21,5 +21,8 @@
     "name": "RuslanSharifov",
     "url": "https://github.com/RuslanSharifov"
   },
-  "preview": "preview.png"
+  "preview": "pixel-lens-poster.png",
+  "previews": [
+    "preview.png"
+  ]
 }
