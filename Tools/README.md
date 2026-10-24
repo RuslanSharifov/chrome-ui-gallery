@@ -16,6 +16,7 @@ Tools are **standalone extensions**, separate from visual UI redesigns. Each too
 | **[Cookie Manager Pro](./cookie-manager-pro/README.md)** | Browser utility | View, edit, clear and organize cookies | [Open folder](./cookie-manager-pro/) |
 | **[Pixel Lens](./pixel-lens/README.md)** | Visual CSS inspector | Hover inspection, click-to-pin, CSS editing and persistent shortcut | [Cover poster](./pixel-lens/pixel-lens-poster.png) · [Logo](./pixel-lens/preview.png) · [Source files](./pixel-lens/) · [Manifest](./pixel-lens/manifest.json) |
 | **[DevLens](./devlens/README.md)** | Developer diagnostics | Floating console/error HUD, page fetch/XHR monitoring and searchable diagnostics panel; broad site access | [Preview](./devlens/preview.png) · [Source files](./devlens/) · [Manifest](./devlens/manifest.json) |
+| **[Viewport Studio](./viewport-studio/README.md)** | Responsive testing | Multiple movable phone/tablet/desktop previews, custom dimensions and four panel positions | [Source files](./viewport-studio/) · [Manifest](./viewport-studio/manifest.json) |
 | **[UI Doctor](./UI-Doctor-v1.0-Chrome-Extension/README.md)** | Developer diagnostics | Visual inspection, spacing, responsive testing, layout diagnostics and temporary CSS playground | [Source files](./UI-Doctor-v1.0-Chrome-Extension/) · [Manifest](./UI-Doctor-v1.0-Chrome-Extension/manifest.json) |
 | **[TabPocket](./tabpocket/README.md)** | Productivity | Save, search, organize and restore tab collections; local storage | [Source files](./tabpocket/) · [Manifest](./tabpocket/manifest.json) |
 
