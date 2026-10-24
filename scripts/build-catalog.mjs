@@ -128,9 +128,12 @@ function addProject(manifestFile,category) {
   const tags=meta.tags??[category==="tool"?"Tool":"UI Design",style].filter((item,i,arr)=>arr.indexOf(item)===i);
   const icon=meta.icon??(platform==="github"?"GH":platform==="browser"?"◈":platform.charAt(0).toUpperCase());
   const palette=meta.palette??palettes[hash(folderPath)%palettes.length];
+  const iconAsset=["icon128.png","icon48.png","icon32.png","icon16.png"].find(name=>exists(path.join(folder,"icons",name)));
+  const iconImage=iconAsset?folderPath+"/icons/"+iconAsset:null;
   return {
     id:folderPath.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,""),
     category,platform,name,style,description,tags,icon,palette,
+    ...(iconImage?{iconImage}:{}),
     doc:folderPath+"/"+documentation,folder:folderPath,
     version:manifest.version,
     ...(meta.author?{author:meta.author}:{}),

@@ -308,3 +308,17 @@ details p{padding:0 18px;margin:0 0 16px}
 @media (max-width: 560px) {
   .project-heading-icon { width: 38px; height: 38px; flex-basis: 38px; }
 }
+
+/* Local extension icon imagery on both compact and expanded cards. */
+.project-heading-icon,.gallery-modal-project-icon { overflow: hidden; display: grid; place-items: center; }
+.project-icon-image { width: 100%; height: 100%; object-fit: contain; display: block; }
+.project-heading-icon .project-icon-image { width: 100%; height: 100%; border-radius: inherit; }
+.gallery-modal-identity { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.gallery-modal-identity h2 { min-width: 0; overflow-wrap: anywhere; }
+.gallery-modal-project-icon {
+  width: 44px; height: 44px; flex: 0 0 44px;
+  background: rgba(255,255,255,.06); border: 1px solid var(--line2);
+  border-radius: 12px; color: var(--lav); font-weight: 800;
+}
+.gallery-modal-project-icon .project-icon-image { border-radius: 11px; }
+@media(max-width:560px){.gallery-modal-project-icon{width:36px;height:36px;flex-basis:36px}}
