@@ -13,10 +13,5 @@
     "#75577b",
     "#dbbaf2"
   ],
-  "preview": "UI Doctor Chrome Extension Showcase.png",
-  "previews": [
-    "UI Doctor Chrome Extension Showcase.png",
-    "docs/screenshots/overview.png",
-    "docs/screenshots/diagnostics.png"
-  ]
+  "preview": "UI Doctor Chrome Extension Showcase.png"
 }
