@@ -5,7 +5,8 @@
   "description": "Save named snapshots of open browser tabs and restore them later.",
   "permissions": [
     "tabs",
-    "storage"
+    "storage",
+    "windows"
   ],
   "host_permissions": [
     "https://ruslansharifov.github.io/*"
