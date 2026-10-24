@@ -80,7 +80,7 @@ function readMeta(dir) {
   if(v.iconUrl!==undefined){
     safeText(v.iconUrl,rel(file)+".iconUrl",200);
     const target=path.resolve(dir,v.iconUrl);
-    if(!isInside(dir,target)||!exists(target)||!/^icons[\\/]/.test(v.iconUrl)||!/\\.(png|jpg|jpeg|webp|svg)$/i.test(target))
+    if(!isInside(dir,target)||!exists(target)||!v.iconUrl.startsWith("icons/")||!target.toLowerCase().match(/\.(png|jpg|jpeg|webp|svg)$/))
       throw new Error(rel(file)+": iconUrl must point to an existing image in the local icons folder");
   }
   if(v.preview!==undefined){
