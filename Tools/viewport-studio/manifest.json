@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "Viewport Studio",
+  "version": "1.0.0",
+  "description": "Multi-device responsive viewport previews in a configurable docked workspace.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "action": {
+    "default_title": "Viewport Studio",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "host_permissions": [
+    "https://ruslansharifov.github.io/*"
+  ]
+}
