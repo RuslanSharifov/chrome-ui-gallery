@@ -60,6 +60,7 @@ The project also hosts standalone extensions, separate from visual redesigns.
 
 | Tool | Purpose |
 | --- | --- |
+| [Viewport Studio](./Tools/viewport-studio/README.md) | Compare responsive phone, tablet and desktop views in floating draggable windows — [poster](./Tools/viewport-studio/viewport-studio-poster.svg) |
 | [UI Doctor](./Tools/UI-Doctor-v1.0-Chrome-Extension/README.md) | Visual debugging, responsive testing, layout and CSS inspection |
 | [DevLens](./Tools/devlens/README.md) | Page diagnostics, console activity, JavaScript errors and network monitoring |
 | [ChatGPT Lag Fixer](./Tools/chatgpt-lag-fixer/README.md) | Performance utilities for lengthy conversations |
