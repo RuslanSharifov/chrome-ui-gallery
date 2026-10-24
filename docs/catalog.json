@@ -22,7 +22,8 @@
       "doc": "Tools/cookie-manager-pro/README.md",
       "folder": "Tools/cookie-manager-pro",
       "version": "2.1.0",
-      "preview": "Tools/cookie-manager-pro/width_1600.webp"
+      "preview": "Tools/cookie-manager-pro/width_1600.webp",
+      "iconImage": "Tools/cookie-manager-pro/icons/icon128.png"
     },
     {
       "id": "tools-devlens",
@@ -52,7 +53,8 @@
         "name": "Ruaaln",
         "url": "https://github.com/RuslanSharifov"
       },
-      "preview": "Tools/devlens/preview.png"
+      "preview": "Tools/devlens/preview.png",
+      "iconImage": "Tools/devlens/icons/icon128.png"
     },
     {
       "id": "tools-download-organizer",
@@ -81,7 +83,8 @@
         "name": "RuslanSharifov",
         "url": "https://github.com/RuslanSharifov"
       },
-      "preview": "Tools/download-organizer/preview.svg"
+      "preview": "Tools/download-organizer/preview.svg",
+      "iconImage": "Tools/download-organizer/icons/icon128.png"
     },
     {
       "id": "tools-pixel-lens",
@@ -114,7 +117,8 @@
       "preview": "Tools/pixel-lens/pixel-lens-poster.png",
       "previews": [
         "Tools/pixel-lens/preview.png"
-      ]
+      ],
+      "iconImage": "Tools/pixel-lens/icons/icon128.png"
     },
     {
       "id": "tools-quick-qr",
@@ -143,7 +147,8 @@
         "name": "RuslanSharifov",
         "url": "https://github.com/RuslanSharifov"
       },
-      "preview": "Tools/quick-qr/poster-qr.png"
+      "preview": "Tools/quick-qr/poster-qr.png",
+      "iconImage": "Tools/quick-qr/icons/icon128.png"
     },
     {
       "id": "tools-screen-privacy",
@@ -171,7 +176,8 @@
         "name": "RuslanSharifov",
         "url": "https://github.com/RuslanSharifov"
       },
-      "preview": "Tools/screen-privacy/cover.svg"
+      "preview": "Tools/screen-privacy/cover.svg",
+      "iconImage": "Tools/screen-privacy/icons/icon128.png"
     },
     {
       "id": "tools-tab-memory",
@@ -199,7 +205,8 @@
         "name": "RuslanSharifov",
         "url": "https://github.com/RuslanSharifov"
       },
-      "preview": "Tools/tab-memory/cover.svg"
+      "preview": "Tools/tab-memory/cover.svg",
+      "iconImage": "Tools/tab-memory/icons/icon128.png"
     },
     {
       "id": "tools-tabpocket",
@@ -228,7 +235,8 @@
         "name": "Ruslan Sharifov",
         "url": "https://github.com/RuslanSharifov"
       },
-      "preview": "Tools/tabpocket/download (1).png"
+      "preview": "Tools/tabpocket/download (1).png",
+      "iconImage": "Tools/tabpocket/icons/icon128.png"
     },
     {
       "id": "tools-ui-doctor-v1-0-chrome-extension",
@@ -250,7 +258,8 @@
       "doc": "Tools/UI-Doctor-v1.0-Chrome-Extension/README.md",
       "folder": "Tools/UI-Doctor-v1.0-Chrome-Extension",
       "version": "1.0.0",
-      "preview": "Tools/UI-Doctor-v1.0-Chrome-Extension/UI Doctor Chrome Extension Showcase.png"
+      "preview": "Tools/UI-Doctor-v1.0-Chrome-Extension/UI Doctor Chrome Extension Showcase.png",
+      "iconImage": "Tools/UI-Doctor-v1.0-Chrome-Extension/icons/icon128.png"
     },
     {
       "id": "tools-universal-dark",
@@ -279,7 +288,8 @@
         "name": "RuslanSharifov",
         "url": "https://github.com/RuslanSharifov"
       },
-      "preview": "Tools/universal-dark/poster.png"
+      "preview": "Tools/universal-dark/poster.png",
+      "iconImage": "Tools/universal-dark/icons/icon128.png"
     },
     {
       "id": "tools-viewport-studio",
@@ -309,7 +319,8 @@
         "name": "RuslanSharifov",
         "url": "https://github.com/RuslanSharifov"
       },
-      "preview": "Tools/viewport-studio/viewport-studio-poster.svg"
+      "preview": "Tools/viewport-studio/viewport-studio-poster.svg",
+      "iconImage": "Tools/viewport-studio/icons/icon128.png"
     },
     {
       "id": "tools-chatgpt-lag-fixer",
@@ -331,7 +342,8 @@
       ],
       "doc": "Tools/chatgpt-lag-fixer/README.md",
       "folder": "Tools/chatgpt-lag-fixer",
-      "version": "1.0.0"
+      "version": "1.0.0",
+      "iconImage": "Tools/chatgpt-lag-fixer/icons/icon128.png"
     },
     {
       "id": "ui-designs-chatgpt-claymorphism",
@@ -353,7 +365,8 @@
       ],
       "doc": "ui-designs/chatgpt/claymorphism/design.md",
       "folder": "ui-designs/chatgpt/claymorphism",
-      "version": "1.0.0"
+      "version": "1.0.0",
+      "iconImage": "ui-designs/chatgpt/claymorphism/icons/icon128.png"
     },
     {
       "id": "ui-designs-chatgpt-glassmorphism-ai-prompt-tool",
@@ -375,7 +388,8 @@
       ],
       "doc": "ui-designs/chatgpt/glassmorphism/ai-prompt-tool/design.md",
       "folder": "ui-designs/chatgpt/glassmorphism/ai-prompt-tool",
-      "version": "2.1.0"
+      "version": "2.1.0",
+      "iconImage": "ui-designs/chatgpt/glassmorphism/ai-prompt-tool/icons/icon128.png"
     },
     {
       "id": "ui-designs-chatgpt-dark-gpt",
@@ -397,7 +411,8 @@
       ],
       "doc": "ui-designs/chatgpt/DARK GPT/design.md",
       "folder": "ui-designs/chatgpt/DARK GPT",
-      "version": "1.1.1"
+      "version": "1.1.1",
+      "iconImage": "ui-designs/chatgpt/DARK GPT/icons/icon128.png"
     },
     {
       "id": "ui-designs-gemini-claymorphism-gemini-claymorphism",
@@ -420,7 +435,8 @@
       "doc": "ui-designs/gemini/claymorphism/gemini-claymorphism/design.md",
       "folder": "ui-designs/gemini/claymorphism/gemini-claymorphism",
       "version": "1.1.0",
-      "preview": "ui-designs/gemini/claymorphism/gemini-claymorphism/gemini-claymorphism-preview.gif"
+      "preview": "ui-designs/gemini/claymorphism/gemini-claymorphism/gemini-claymorphism-preview.gif",
+      "iconImage": "ui-designs/gemini/claymorphism/gemini-claymorphism/icons/icon128.png"
     },
     {
       "id": "ui-designs-gemini-glassmorphism-gemini-glassmorphism",
@@ -443,7 +459,8 @@
       "doc": "ui-designs/gemini/glassmorphism/gemini-glassmorphism/design.md",
       "folder": "ui-designs/gemini/glassmorphism/gemini-glassmorphism",
       "version": "1.2.0",
-      "preview": "ui-designs/gemini/glassmorphism/gemini-glassmorphism/gemini-glassmorphism-preview.gif"
+      "preview": "ui-designs/gemini/glassmorphism/gemini-glassmorphism/gemini-glassmorphism-preview.gif",
+      "iconImage": "ui-designs/gemini/glassmorphism/gemini-glassmorphism/icons/icon128.png"
     },
     {
       "id": "ui-designs-github-3d-github",
@@ -465,7 +482,8 @@
       ],
       "doc": "ui-designs/github/3D github/design.md",
       "folder": "ui-designs/github/3D github",
-      "version": "4.0.0"
+      "version": "4.0.0",
+      "iconImage": "ui-designs/github/3D github/icons/icon128.png"
     },
     {
       "id": "ui-designs-github-glassmorphism-github-glassmorphism",
@@ -487,7 +505,8 @@
       ],
       "doc": "ui-designs/github/glassmorphism/github-glassmorphism/design.md",
       "folder": "ui-designs/github/glassmorphism/github-glassmorphism",
-      "version": "4.1.0"
+      "version": "4.1.0",
+      "iconImage": "ui-designs/github/glassmorphism/github-glassmorphism/icons/icon128.png"
     },
     {
       "id": "ui-designs-github-github-liquid-glass",
@@ -509,7 +528,8 @@
       ],
       "doc": "ui-designs/github/github-liquid-glass/design.md",
       "folder": "ui-designs/github/github-liquid-glass",
-      "version": "1.0.0"
+      "version": "1.0.0",
+      "iconImage": "ui-designs/github/github-liquid-glass/icons/icon128.png"
     },
     {
       "id": "ui-designs-lovable-glassmorphism-lovable-glassmorphism",
@@ -531,7 +551,8 @@
       ],
       "doc": "ui-designs/lovable/glassmorphism/lovable-glassmorphism/design.md",
       "folder": "ui-designs/lovable/glassmorphism/lovable-glassmorphism",
-      "version": "1.0.0"
+      "version": "1.0.0",
+      "iconImage": "ui-designs/lovable/glassmorphism/lovable-glassmorphism/icons/icon128.png"
     }
   ]
 }
