@@ -144,6 +144,35 @@
       ]
     },
     {
+      "id": "tools-viewport-studio",
+      "category": "tool",
+      "platform": "browser",
+      "name": "Viewport Studio",
+      "style": "Developer Tool",
+      "description": "Compare responsive layouts across phone, tablet and desktop presets in a draggable multi-device workspace, with configurable dock position, zoom, rotation and custom viewports.",
+      "tags": [
+        "Responsive",
+        "Viewport",
+        "Mobile",
+        "Tablet",
+        "Desktop",
+        "Testing"
+      ],
+      "icon": "VS",
+      "palette": [
+        "#0c1324",
+        "#937cff",
+        "#6ee2cb"
+      ],
+      "doc": "Tools/viewport-studio/README.md",
+      "folder": "Tools/viewport-studio",
+      "version": "1.0.0",
+      "author": {
+        "name": "RuslanSharifov",
+        "url": "https://github.com/RuslanSharifov"
+      }
+    },
+    {
       "id": "tools-chatgpt-lag-fixer",
       "category": "tool",
       "platform": "chatgpt",

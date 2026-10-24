@@ -1,0 +1,24 @@
+{
+  "name": "Viewport Studio",
+  "description": "Compare responsive layouts across phone, tablet and desktop presets in a draggable multi-device workspace, with configurable dock position, zoom, rotation and custom viewports.",
+  "platform": "browser",
+  "style": "Developer Tool",
+  "tags": [
+    "Responsive",
+    "Viewport",
+    "Mobile",
+    "Tablet",
+    "Desktop",
+    "Testing"
+  ],
+  "icon": "VS",
+  "palette": [
+    "#0c1324",
+    "#937cff",
+    "#6ee2cb"
+  ],
+  "author": {
+    "name": "RuslanSharifov",
+    "url": "https://github.com/RuslanSharifov"
+  }
+}
