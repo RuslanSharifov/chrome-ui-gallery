@@ -13,15 +13,18 @@
 
   <main class="card glass">
     <header class="top">
-      <div>
+      <div class="brand-heading"><span class="cookie-brand-icon" aria-hidden="true">🍪</span><div>
+        <span class="brand-eyebrow">PRIVACY TOOLKIT · V2.1</span>
         <h1 data-i18n="title"></h1>
-        <p id="site" class="site">—</p>
+        <p id="site" class="site">—</p></div>
       </div>
       <div class="top-actions">
         <button id="themeBtn" class="icon-btn" data-i18n-title="theme">◐</button>
         <button id="settingsBtn" class="icon-btn" data-i18n-title="settings">⚙</button>
       </div>
     </header>
+
+    <div class="context-banner"><div><span class="context-overline">CURRENT WORKSPACE</span><strong>Cookies at a glance</strong><p>Inspect, manage, and export cookies with confidence.</p></div><a class="repo-chip" href="https://github.com/RuslanSharifov/chrome-ui-gallery/tree/main/Tools/cookie-manager-pro" target="_blank" rel="noopener noreferrer" title="View Cookie Manager Pro source code on GitHub">↗ GitHub <span aria-hidden="true">⌁</span></a></div>
 
     <div class="stats glass-inner">
       <div><span id="count" class="num">0</span><small data-i18n="count"></small></div>
@@ -41,7 +44,7 @@
           <button id="scopeAll" class="seg-btn" data-i18n="scopeAll"></button>
         </div>
       </div>
-      <ul id="list" class="list"></ul>
+      <div class="list-header"><strong>Cookie inventory</strong><span>Click a cookie to inspect or edit</span></div><ul id="list" class="list"></ul>
       <div class="row3">
         <button id="addBtn" class="btn glass-btn" data-i18n="add"></button>
         <button id="exportBtn" class="btn glass-btn" data-i18n="export"></button>
