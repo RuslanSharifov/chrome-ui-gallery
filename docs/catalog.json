@@ -19,11 +19,11 @@
         "#735233",
         "#eec28c"
       ],
+      "iconImage": "Tools/cookie-manager-pro/icons/icon128.png",
       "doc": "Tools/cookie-manager-pro/README.md",
       "folder": "Tools/cookie-manager-pro",
       "version": "2.1.0",
-      "preview": "Tools/cookie-manager-pro/width_1600.webp",
-      "iconImage": "Tools/cookie-manager-pro/icons/icon128.png"
+      "preview": "Tools/cookie-manager-pro/width_1600.webp"
     },
     {
       "id": "tools-devlens",
@@ -46,6 +46,7 @@
         "#6366f1",
         "#34d399"
       ],
+      "iconImage": "Tools/devlens/icons/icon128.png",
       "doc": "Tools/devlens/README.md",
       "folder": "Tools/devlens",
       "version": "1.0.1",
@@ -53,8 +54,7 @@
         "name": "Ruaaln",
         "url": "https://github.com/RuslanSharifov"
       },
-      "preview": "Tools/devlens/preview.png",
-      "iconImage": "Tools/devlens/icons/icon128.png"
+      "preview": "Tools/devlens/preview.png"
     },
     {
       "id": "tools-download-organizer",
@@ -76,6 +76,7 @@
         "#91e8d5",
         "#baa6ff"
       ],
+      "iconImage": "Tools/download-organizer/icons/icon128.png",
       "doc": "Tools/download-organizer/README.md",
       "folder": "Tools/download-organizer",
       "version": "1.0.0",
@@ -83,8 +84,7 @@
         "name": "RuslanSharifov",
         "url": "https://github.com/RuslanSharifov"
       },
-      "preview": "Tools/download-organizer/preview.svg",
-      "iconImage": "Tools/download-organizer/icons/icon128.png"
+      "preview": "Tools/download-organizer/preview.svg"
     },
     {
       "id": "tools-pixel-lens",
@@ -107,6 +107,7 @@
         "#b9a6ff",
         "#8fe8cb"
       ],
+      "iconImage": "Tools/pixel-lens/icons/icon128.png",
       "doc": "Tools/pixel-lens/README.md",
       "folder": "Tools/pixel-lens",
       "version": "1.1.0",
@@ -117,8 +118,7 @@
       "preview": "Tools/pixel-lens/pixel-lens-poster.png",
       "previews": [
         "Tools/pixel-lens/preview.png"
-      ],
-      "iconImage": "Tools/pixel-lens/icons/icon128.png"
+      ]
     },
     {
       "id": "tools-quick-qr",
@@ -140,6 +140,7 @@
         "#b9a6ff",
         "#90e8d1"
       ],
+      "iconImage": "Tools/quick-qr/icons/icon128.png",
       "doc": "Tools/quick-qr/README.md",
       "folder": "Tools/quick-qr",
       "version": "1.0.0",
@@ -147,8 +148,7 @@
         "name": "RuslanSharifov",
         "url": "https://github.com/RuslanSharifov"
       },
-      "preview": "Tools/quick-qr/poster-qr.png",
-      "iconImage": "Tools/quick-qr/icons/icon128.png"
+      "preview": "Tools/quick-qr/poster-qr.png"
     },
     {
       "id": "tools-screen-privacy",
@@ -169,6 +169,7 @@
         "#bdaaff",
         "#95e9d2"
       ],
+      "iconImage": "Tools/screen-privacy/icons/icon128.png",
       "doc": "Tools/screen-privacy/README.md",
       "folder": "Tools/screen-privacy",
       "version": "1.0.0",
@@ -176,8 +177,7 @@
         "name": "RuslanSharifov",
         "url": "https://github.com/RuslanSharifov"
       },
-      "preview": "Tools/screen-privacy/cover.svg",
-      "iconImage": "Tools/screen-privacy/icons/icon128.png"
+      "preview": "Tools/screen-privacy/cover.svg"
     },
     {
       "id": "tools-tab-memory",
@@ -198,6 +198,7 @@
         "#af9eff",
         "#9ee4cf"
       ],
+      "iconImage": "Tools/tab-memory/icons/icon128.png",
       "doc": "Tools/tab-memory/README.md",
       "folder": "Tools/tab-memory",
       "version": "1.0.0",
@@ -205,8 +206,7 @@
         "name": "RuslanSharifov",
         "url": "https://github.com/RuslanSharifov"
       },
-      "preview": "Tools/tab-memory/cover.svg",
-      "iconImage": "Tools/tab-memory/icons/icon128.png"
+      "preview": "Tools/tab-memory/cover.svg"
     },
     {
       "id": "tools-tabpocket",
@@ -228,6 +228,7 @@
         "#4869e8",
         "#77dfd3"
       ],
+      "iconImage": "Tools/tabpocket/icons/icon128.png",
       "doc": "Tools/tabpocket/README.md",
       "folder": "Tools/tabpocket",
       "version": "1.0.0",
@@ -235,8 +236,7 @@
         "name": "Ruslan Sharifov",
         "url": "https://github.com/RuslanSharifov"
       },
-      "preview": "Tools/tabpocket/download (1).png",
-      "iconImage": "Tools/tabpocket/icons/icon128.png"
+      "preview": "Tools/tabpocket/download (1).png"
     },
     {
       "id": "tools-ui-doctor-v1-0-chrome-extension",
@@ -255,11 +255,11 @@
         "#75577b",
         "#dbbaf2"
       ],
+      "iconImage": "Tools/UI-Doctor-v1.0-Chrome-Extension/icons/icon128.png",
       "doc": "Tools/UI-Doctor-v1.0-Chrome-Extension/README.md",
       "folder": "Tools/UI-Doctor-v1.0-Chrome-Extension",
       "version": "1.0.0",
-      "preview": "Tools/UI-Doctor-v1.0-Chrome-Extension/UI Doctor Chrome Extension Showcase.png",
-      "iconImage": "Tools/UI-Doctor-v1.0-Chrome-Extension/icons/icon128.png"
+      "preview": "Tools/UI-Doctor-v1.0-Chrome-Extension/UI Doctor Chrome Extension Showcase.png"
     },
     {
       "id": "tools-universal-dark",
@@ -281,6 +281,7 @@
         "#bda8ff",
         "#91e8cb"
       ],
+      "iconImage": "Tools/universal-dark/icons/icon128.png",
       "doc": "Tools/universal-dark/README.md",
       "folder": "Tools/universal-dark",
       "version": "1.0.0",
@@ -288,8 +289,7 @@
         "name": "RuslanSharifov",
         "url": "https://github.com/RuslanSharifov"
       },
-      "preview": "Tools/universal-dark/poster.png",
-      "iconImage": "Tools/universal-dark/icons/icon128.png"
+      "preview": "Tools/universal-dark/poster.png"
     },
     {
       "id": "tools-viewport-studio",
@@ -312,6 +312,7 @@
         "#937cff",
         "#6ee2cb"
       ],
+      "iconImage": "Tools/viewport-studio/icons/icon128.png",
       "doc": "Tools/viewport-studio/README.md",
       "folder": "Tools/viewport-studio",
       "version": "1.1.1",
@@ -319,8 +320,7 @@
         "name": "RuslanSharifov",
         "url": "https://github.com/RuslanSharifov"
       },
-      "preview": "Tools/viewport-studio/viewport-studio-poster.svg",
-      "iconImage": "Tools/viewport-studio/icons/icon128.png"
+      "preview": "Tools/viewport-studio/viewport-studio-poster.svg"
     },
     {
       "id": "tools-chatgpt-lag-fixer",
@@ -340,10 +340,10 @@
         "#216456",
         "#6cdbc5"
       ],
+      "iconImage": "Tools/chatgpt-lag-fixer/icons/icon128.png",
       "doc": "Tools/chatgpt-lag-fixer/README.md",
       "folder": "Tools/chatgpt-lag-fixer",
-      "version": "1.0.0",
-      "iconImage": "Tools/chatgpt-lag-fixer/icons/icon128.png"
+      "version": "1.0.0"
     },
     {
       "id": "ui-designs-chatgpt-claymorphism",
@@ -363,10 +363,10 @@
         "#77565e",
         "#f0baae"
       ],
+      "iconImage": "ui-designs/chatgpt/claymorphism/icons/icon128.png",
       "doc": "ui-designs/chatgpt/claymorphism/design.md",
       "folder": "ui-designs/chatgpt/claymorphism",
-      "version": "1.0.0",
-      "iconImage": "ui-designs/chatgpt/claymorphism/icons/icon128.png"
+      "version": "1.0.0"
     },
     {
       "id": "ui-designs-chatgpt-glassmorphism-ai-prompt-tool",
@@ -386,10 +386,10 @@
         "#40375c",
         "#ac99fd"
       ],
+      "iconImage": "ui-designs/chatgpt/glassmorphism/ai-prompt-tool/icons/icon128.png",
       "doc": "ui-designs/chatgpt/glassmorphism/ai-prompt-tool/design.md",
       "folder": "ui-designs/chatgpt/glassmorphism/ai-prompt-tool",
-      "version": "2.1.0",
-      "iconImage": "ui-designs/chatgpt/glassmorphism/ai-prompt-tool/icons/icon128.png"
+      "version": "2.1.0"
     },
     {
       "id": "ui-designs-chatgpt-dark-gpt",
@@ -409,10 +409,10 @@
         "#601d35",
         "#ff526f"
       ],
+      "iconImage": "ui-designs/chatgpt/DARK GPT/icons/icon128.png",
       "doc": "ui-designs/chatgpt/DARK GPT/design.md",
       "folder": "ui-designs/chatgpt/DARK GPT",
-      "version": "1.1.1",
-      "iconImage": "ui-designs/chatgpt/DARK GPT/icons/icon128.png"
+      "version": "1.1.1"
     },
     {
       "id": "ui-designs-gemini-claymorphism-gemini-claymorphism",
@@ -432,11 +432,11 @@
         "#75577b",
         "#dbbaf2"
       ],
+      "iconImage": "ui-designs/gemini/claymorphism/gemini-claymorphism/icons/icon128.png",
       "doc": "ui-designs/gemini/claymorphism/gemini-claymorphism/design.md",
       "folder": "ui-designs/gemini/claymorphism/gemini-claymorphism",
       "version": "1.1.0",
-      "preview": "ui-designs/gemini/claymorphism/gemini-claymorphism/gemini-claymorphism-preview.gif",
-      "iconImage": "ui-designs/gemini/claymorphism/gemini-claymorphism/icons/icon128.png"
+      "preview": "ui-designs/gemini/claymorphism/gemini-claymorphism/gemini-claymorphism-preview.gif"
     },
     {
       "id": "ui-designs-gemini-glassmorphism-gemini-glassmorphism",
@@ -456,11 +456,11 @@
         "#35516a",
         "#9fcbff"
       ],
+      "iconImage": "ui-designs/gemini/glassmorphism/gemini-glassmorphism/icons/icon128.png",
       "doc": "ui-designs/gemini/glassmorphism/gemini-glassmorphism/design.md",
       "folder": "ui-designs/gemini/glassmorphism/gemini-glassmorphism",
       "version": "1.2.0",
-      "preview": "ui-designs/gemini/glassmorphism/gemini-glassmorphism/gemini-glassmorphism-preview.gif",
-      "iconImage": "ui-designs/gemini/glassmorphism/gemini-glassmorphism/icons/icon128.png"
+      "preview": "ui-designs/gemini/glassmorphism/gemini-glassmorphism/gemini-glassmorphism-preview.gif"
     },
     {
       "id": "ui-designs-github-3d-github",
@@ -480,10 +480,10 @@
         "#46375c",
         "#a690fe"
       ],
+      "iconImage": "ui-designs/github/3D github/icons/icon128.png",
       "doc": "ui-designs/github/3D github/design.md",
       "folder": "ui-designs/github/3D github",
-      "version": "4.0.0",
-      "iconImage": "ui-designs/github/3D github/icons/icon128.png"
+      "version": "4.0.0"
     },
     {
       "id": "ui-designs-github-glassmorphism-github-glassmorphism",
@@ -503,10 +503,10 @@
         "#1d4c54",
         "#78d4c1"
       ],
+      "iconImage": "ui-designs/github/glassmorphism/github-glassmorphism/icons/icon128.png",
       "doc": "ui-designs/github/glassmorphism/github-glassmorphism/design.md",
       "folder": "ui-designs/github/glassmorphism/github-glassmorphism",
-      "version": "4.1.0",
-      "iconImage": "ui-designs/github/glassmorphism/github-glassmorphism/icons/icon128.png"
+      "version": "4.1.0"
     },
     {
       "id": "ui-designs-github-github-liquid-glass",
@@ -526,10 +526,10 @@
         "#37576a",
         "#6db9f2"
       ],
+      "iconImage": "ui-designs/github/github-liquid-glass/icons/icon128.png",
       "doc": "ui-designs/github/github-liquid-glass/design.md",
       "folder": "ui-designs/github/github-liquid-glass",
-      "version": "1.0.0",
-      "iconImage": "ui-designs/github/github-liquid-glass/icons/icon128.png"
+      "version": "1.0.0"
     },
     {
       "id": "ui-designs-lovable-glassmorphism-lovable-glassmorphism",
@@ -549,10 +549,10 @@
         "#71425e",
         "#f6a7d9"
       ],
+      "iconImage": "ui-designs/lovable/glassmorphism/lovable-glassmorphism/icons/icon128.png",
       "doc": "ui-designs/lovable/glassmorphism/lovable-glassmorphism/design.md",
       "folder": "ui-designs/lovable/glassmorphism/lovable-glassmorphism",
-      "version": "1.0.0",
-      "iconImage": "ui-designs/lovable/glassmorphism/lovable-glassmorphism/icons/icon128.png"
+      "version": "1.0.0"
     }
   ]
 }
