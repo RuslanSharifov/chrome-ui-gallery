@@ -174,6 +174,21 @@ function openDetail(p){
   let touch=0;
   viewer.addEventListener("touchstart",e=>{touch=e.changedTouches[0].clientX},{passive:true});
   viewer.addEventListener("touchend",e=>{const d=e.changedTouches[0].clientX-touch;if(Math.abs(d)>45)showImage(current+(d<0?1:-1))},{passive:true});
+  const featuredSupportIds=new Set(["tools-devlens","ui-designs-gemini-claymorphism-gemini-claymorphism","ui-designs-gemini-glassmorphism-gemini-glassmorphism"]);
+  let featuredSupport=null;
+  if(featuredSupportIds.has(p.id)){
+    featuredSupport=node("aside","gallery-featured-support");
+    featuredSupport.setAttribute("aria-label","Support this open-source project");
+    const emblem=node("div","gallery-support-emblem","♥");emblem.setAttribute("aria-hidden","true");
+    const copy=node("div","gallery-support-copy");
+    copy.append(node("span","gallery-support-eyebrow","COMMUNITY SUPPORTED ✦"),
+      node("h3","","Enjoying this project?"),
+      node("p","","Help keep open-source UI experiments and developer tools growing. Every contribution is appreciated."));
+    const action=node("a","gallery-support-action","Support on Ko-fi ↗");
+    action.href="https://ko-fi.com/ruslansharifov";
+    action.target="_blank";action.rel="noopener noreferrer";
+    featuredSupport.append(emblem,copy,action);
+  }
   const details=node("div","gallery-details");
   const summary=node("div","gallery-detail-summary");
   summary.append(node("p","gallery-meta",p.platform.toUpperCase()+" · "+p.style),node("p","gallery-description",p.description));
@@ -188,7 +203,7 @@ function openDetail(p){
     links.append(a);
   }
   details.append(links);
-  modal.append(header,viewer,thumbs,details);overlay.append(modal);
+  modal.append(header);if(featuredSupport)modal.append(featuredSupport);modal.append(viewer,thumbs,details);overlay.append(modal);
   document.body.append(overlay);
   const oldOverflow=document.body.style.overflow;
   document.body.style.overflow="hidden";
@@ -219,6 +234,19 @@ function openDetail(p){
 }
 const galleryStyles=document.createElement("style");
 galleryStyles.textContent=String.raw`
+
+.gallery-featured-support{display:flex;align-items:center;gap:18px;margin:16px 20px 18px;padding:20px 22px;border:1px solid rgba(185,166,255,.4);border-radius:17px;background:radial-gradient(circle at 10% 20%,rgba(185,166,255,.24),transparent 52%),linear-gradient(115deg,rgba(36,30,65,.98),rgba(19,29,43,.97));box-shadow:0 10px 32px rgba(3,5,16,.36),inset 0 1px rgba(255,255,255,.09);animation:gallery-support-in .36s .1s both}
+.gallery-support-emblem{flex:none;display:grid;place-items:center;width:54px;height:54px;border:1px solid rgba(224,192,255,.48);border-radius:17px;background:linear-gradient(145deg,rgba(200,161,255,.3),rgba(127,225,199,.15));color:#f1b8e9;font-size:29px;box-shadow:0 0 24px rgba(185,166,255,.15)}
+.gallery-support-copy{flex:1;min-width:0}.gallery-support-eyebrow{font-size:10px;letter-spacing:.16em;font-weight:800;color:#9debd7}
+.gallery-support-copy h3{font-size:17px;letter-spacing:-.03em;margin:4px 0 5px;color:#f5f1ff}
+.gallery-support-copy p{font-size:12px;line-height:1.6;color:#b8c2dc;margin:0;max-width:470px}
+.gallery-support-action{flex:none;display:inline-flex;align-items:center;justify-content:center;padding:13px 16px;border-radius:11px;background:linear-gradient(105deg,#c6b3ff,#97e7d6);color:#171629!important;font-size:12px;font-weight:800;text-decoration:none;box-shadow:0 6px 20px rgba(167,195,241,.17);transition:transform .2s,filter .2s}
+.gallery-support-action:hover{filter:brightness(1.09);transform:translateY(-2px)}
+.gallery-support-action:focus-visible{outline:2px solid #fff;outline-offset:3px}
+@keyframes gallery-support-in{from{opacity:0;transform:translateY(-9px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:700px){.gallery-featured-support{flex-wrap:wrap;gap:12px;padding:16px;margin:12px 14px}.gallery-support-emblem{height:42px;width:42px;border-radius:12px;font-size:23px}.gallery-support-copy{flex-basis:calc(100% - 58px)}.gallery-support-action{width:100%;padding:12px}}
+@media(prefers-reduced-motion:reduce){.gallery-featured-support{animation:none}.gallery-support-action{transition:none}}
+
 .project-card{cursor:pointer;transition:transform .28s ease,box-shadow .28s ease}.project-card:hover{transform:translateY(-4px)}.project-card:focus-visible{outline:2px solid var(--lav)}
 .project-preview-stage{position:absolute;inset:0;overflow:hidden;z-index:2;pointer-events:none}
 .project-preview-stage .project-preview-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.35s ease-in-out;display:block}
