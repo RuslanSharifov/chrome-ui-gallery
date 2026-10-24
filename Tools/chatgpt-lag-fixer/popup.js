@@ -34,3 +34,23 @@ ids.forEach((id) => {
 });
 
 load();
+
+// Optional support link: uses shared public configuration, not a hardcoded account.
+async function loadSupport() {
+  const box = document.querySelector(".support");
+  if (!box) return;
+  box.hidden = true;
+  if (!navigator.onLine) return;
+  try {
+    const response = await fetch("https://ruslansharifov.github.io/chrome-ui-gallery/support-config.json", {
+      cache: "no-store", signal: AbortSignal.timeout(5000)
+    });
+    if (!response.ok) return;
+    const config = await response.json();
+    if (config.enabled !== true || config.provider !== "ko-fi" || !/^[\\w-]{2,64}$/.test(config.account)) return;
+    const link = box.querySelector("a");
+    link.href = "https://ko-fi.com/" + encodeURIComponent(config.account);
+    box.hidden = false;
+  } catch { /* Support section stays hidden when offline or unavailable. */ }
+}
+loadSupport();
