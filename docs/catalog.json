@@ -117,6 +117,35 @@
       ]
     },
     {
+      "id": "tools-quick-qr",
+      "category": "tool",
+      "platform": "browser",
+      "name": "Quick QR",
+      "style": "Browser Utility",
+      "description": "Create a scannable QR code from the current tab or any text, copy its contents and save a PNG. QR generation runs entirely in the extension.",
+      "tags": [
+        "QR",
+        "Sharing",
+        "Links",
+        "Productivity",
+        "Offline"
+      ],
+      "icon": "QR",
+      "palette": [
+        "#101528",
+        "#b9a6ff",
+        "#90e8d1"
+      ],
+      "doc": "Tools/quick-qr/README.md",
+      "folder": "Tools/quick-qr",
+      "version": "1.0.0",
+      "author": {
+        "name": "RuslanSharifov",
+        "url": "https://github.com/RuslanSharifov"
+      },
+      "preview": "Tools/quick-qr/icon.svg"
+    },
+    {
       "id": "tools-tabpocket",
       "category": "tool",
       "platform": "browser",
@@ -171,6 +200,35 @@
         "Tools/UI-Doctor-v1.0-Chrome-Extension/docs/screenshots/overview.png",
         "Tools/UI-Doctor-v1.0-Chrome-Extension/docs/screenshots/diagnostics.png"
       ]
+    },
+    {
+      "id": "tools-universal-dark",
+      "category": "tool",
+      "platform": "browser",
+      "name": "Universal Dark",
+      "style": "Browser Utility",
+      "description": "A simple per-website dark mode with adjustable brightness and contrast. Enable it for the current site and save preferences locally.",
+      "tags": [
+        "Dark Mode",
+        "Accessibility",
+        "Reading",
+        "Comfort",
+        "Customization"
+      ],
+      "icon": "UD",
+      "palette": [
+        "#17172f",
+        "#bda8ff",
+        "#91e8cb"
+      ],
+      "doc": "Tools/universal-dark/README.md",
+      "folder": "Tools/universal-dark",
+      "version": "1.0.0",
+      "author": {
+        "name": "RuslanSharifov",
+        "url": "https://github.com/RuslanSharifov"
+      },
+      "preview": "Tools/universal-dark/icon.svg"
     },
     {
       "id": "tools-viewport-studio",
