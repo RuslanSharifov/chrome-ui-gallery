@@ -19,14 +19,14 @@
     "default_title": "Chrome UI Gallery Companion",
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "icons/gallery.png",
-      "48": "icons/gallery.png",
-      "128": "icons/gallery.png"
+      "16": "icons/gallery-logo.png",
+      "48": "icons/gallery-logo.png",
+      "128": "icons/gallery-logo.png"
     }
   },
   "icons": {
-    "16": "icons/gallery.png",
-    "48": "icons/gallery.png",
-    "128": "icons/gallery.png"
+    "16": "icons/gallery-logo.png",
+    "48": "icons/gallery-logo.png",
+    "128": "icons/gallery-logo.png"
   }
 }
