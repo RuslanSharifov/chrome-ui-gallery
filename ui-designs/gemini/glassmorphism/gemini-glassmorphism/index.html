@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Gemini Glassmorphism</title>
     <link rel="stylesheet" href="style.css" />
-  </head>
+  <link rel="stylesheet" href="support.css" />
+</head>
   <body>
     <canvas id="preview" aria-hidden="true"></canvas>
     <div class="bg-fallback"></div>
@@ -34,7 +35,8 @@
       <p id="tabNotice" class="notice" hidden>
         Open gemini.google.com to apply the theme.
       </p>
-      <div id="controls">
+      <aside class="gemini-support" data-support-remote hidden><div class="gemini-support-symbol" aria-hidden="true">♥</div><div class="gemini-support-copy"><span>COMMUNITY SUPPORTED ✦</span><strong>Enjoying this design?</strong><small>Help keep free UI experiments growing.</small></div><a href="#" target="_blank" rel="noopener noreferrer">Support ↗</a></aside>
+    <div id="controls">
         <section class="card">
           <h2>Presets</h2>
           <div id="presets" class="chips"></div>
@@ -76,7 +78,8 @@
       <p id="saveState" class="save-state" data-on="false" aria-live="polite">Saved ✓</p>
       <footer>Gemini Glassmorphism · visual styling only</footer>
     </main>
-    <script src="shared.js"></script>
+    <script src="support-remote.js"></script>
+  <script src="shared.js"></script>
     <script src="fx.js"></script>
     <script src="script.js"></script>
   </body>
