@@ -8,7 +8,7 @@
     label { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 10px 0; font-size: 13px; }
     input[type="number"] { width: 64px; padding: 4px; }
     .hint { font-size: 11px; color: #777; margin-top: 12px; line-height: 1.4; }
-    .support { display: flex; align-items: center; justify-content: center; margin-top: 12px; border-top: 1px solid #e5e7eb; padding-top: 10px; font-size: 12px; }\n    .support a { color: #7c3aed; text-decoration: none; font-weight: 600; }\n    .support a:hover { text-decoration: underline; }\n    .saved { font-size: 11px; color: #2a8; height: 14px; margin-top: 6px; }
+    .support { display: flex; justify-content: center; margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; }\n    .support[hidden] { display: none; }\n    .kofi-button { display: inline-flex; align-items: center; gap: 7px; border: 0; border-radius: 6px; background: #72a4f2; color: #fff; padding: 9px 12px; font-size: 12px; font-weight: 700; text-decoration: none; }\n    .kofi-button:hover { background: #568bdc; }\n    .saved { font-size: 11px; color: #2a8; height: 14px; margin-top: 6px; }
   </style>
 </head>
 <body>
@@ -19,6 +19,6 @@
   <label>Recent messages kept fully active <input type="number" id="keepRecent" min="1" max="500"></label>
   <div class="saved" id="saved"></div>
   <div class="hint">Changes apply immediately. No page reload needed.</div>
-  <div class="support" hidden><a href="#" target="_blank" rel="noopener noreferrer">☕ Support on Ko-fi ↗</a></div>\n  <script src="popup.js"></script>
+  <div class="support"><a class="kofi-button" href="https://ko-fi.com/U0D62868E3" target="_blank" rel="noopener noreferrer">☕ Support me on Ko-fi</a></div>\n  <script src="popup.js"></script>
 </body>
 </html>
