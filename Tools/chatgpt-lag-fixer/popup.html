@@ -1,24 +1,147 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ChatGPT Lag Fixer</title>
+
   <style>
-    body { font-family: system-ui, sans-serif; width: 260px; padding: 14px; margin: 0; color: #222; }
-    h1 { font-size: 15px; margin: 0 0 12px; }
-    label { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 10px 0; font-size: 13px; }
-    input[type="number"] { width: 64px; padding: 4px; }
-    .hint { font-size: 11px; color: #777; margin-top: 12px; line-height: 1.4; }
-    .support { display: flex; justify-content: center; margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; }\n    .support[hidden] { display: none; }\n    .kofi-button { display: inline-flex; align-items: center; gap: 7px; border: 0; border-radius: 6px; background: #72a4f2; color: #fff; padding: 9px 12px; font-size: 12px; font-weight: 700; text-decoration: none; }\n    .kofi-button:hover { background: #568bdc; }\n    .saved { font-size: 11px; color: #2a8; height: 14px; margin-top: 6px; }
+    body {
+      font-family: system-ui, sans-serif;
+      width: 260px;
+      padding: 14px;
+      margin: 0;
+      color: #222;
+      background: #fff;
+    }
+
+    h1 {
+      font-size: 15px;
+      margin: 0 0 12px;
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin: 10px 0;
+      font-size: 13px;
+    }
+
+    input[type="number"] {
+      width: 64px;
+      padding: 4px;
+    }
+
+    .saved {
+      font-size: 11px;
+      color: #2a8;
+      height: 14px;
+      margin-top: 6px;
+    }
+
+    .hint {
+      font-size: 11px;
+      color: #777;
+      margin-top: 12px;
+      line-height: 1.4;
+    }
+
+    .support {
+      display: flex;
+      justify-content: center;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .support[hidden] {
+      display: none;
+    }
+
+    .kofi-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 7px 18px;
+      background: #5cb85c;
+      color: #fff;
+      border: 0;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      line-height: 1.2;
+      transition: background 0.2s ease;
+    }
+
+    .kofi-button:hover {
+      background: #4da64d;
+    }
+
+    .kofi-logo {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      border: 2px solid #303030;
+      border-radius: 10px;
+      font-size: 21px;
+      line-height: 1;
+    }
+
+    .kofi-text {
+      white-space: nowrap;
+    }
   </style>
 </head>
+
 <body>
   <h1>ChatGPT Lag Fixer</h1>
-  <label>Enabled <input type="checkbox" id="enabled"></label>
-  <label>Viewport rendering optimization <input type="checkbox" id="contentVisibility"></label>
-  <label>Lighten effects on older messages <input type="checkbox" id="lightOldTurns"></label>
-  <label>Recent messages kept fully active <input type="number" id="keepRecent" min="1" max="500"></label>
+
+  <label>
+    Enabled
+    <input type="checkbox" id="enabled">
+  </label>
+
+  <label>
+    Viewport rendering optimization
+    <input type="checkbox" id="contentVisibility">
+  </label>
+
+  <label>
+    Lighten effects on older messages
+    <input type="checkbox" id="lightOldTurns">
+  </label>
+
+  <label>
+    Recent messages kept fully active
+    <input type="number" id="keepRecent" min="1" max="500">
+  </label>
+
   <div class="saved" id="saved"></div>
-  <div class="hint">Changes apply immediately. No page reload needed.</div>
-  <div class="support"><a class="kofi-button" href="https://ko-fi.com/U0D62868E3" target="_blank" rel="noopener noreferrer">☕ Support me on Ko-fi</a></div>\n  <script src="popup.js"></script>
+
+  <div class="hint">
+    Changes apply immediately. No page reload needed.
+  </div>
+
+  <div class="support" id="kofi-support" hidden>
+    <a
+      id="kofi-link"
+      class="kofi-button"
+      href="#"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <span class="kofi-logo">❤️</span>
+      <span class="kofi-text">Support me</span>
+    </a>
+  </div>
+
+  <script src="popup.js"></script>
 </body>
 </html>
