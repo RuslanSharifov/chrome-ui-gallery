@@ -34,6 +34,17 @@ function githubPath(path) {
 function sourceLink(path,isFolder) {
   return BASE + (isFolder ? "tree/main/" : "blob/main/") + githubPath(path);
 }
+function projectIcon(project,className) {
+  const holder=node("span",className,project.icon||"◈");
+  holder.setAttribute("aria-hidden","true");
+  if(project.iconImage){
+    const img=node("img","project-icon-image");
+    img.src=RAW+githubPath(project.iconImage);
+    img.alt="";img.loading="lazy";img.decoding="async";
+    img.addEventListener("load",()=>{holder.textContent="";holder.append(img)},{once:true});
+  }
+  return holder;
+}
 function buildCard(project) {
   const card=node("article","project-card");
   const visual=node("div","project-visual"+(project.category==="tool"?" tool-visual":""));
@@ -77,8 +88,7 @@ function buildCard(project) {
   const kicker=node("div","project-kicker");
   kicker.append(node("span","",project.platform.toUpperCase()),node("span","",project.style));
   const heading=node("div","project-heading");
-  const symbol=node("span","project-heading-icon",project.icon||"◈");
-  symbol.setAttribute("aria-hidden","true");
+  const symbol=projectIcon(project,"project-heading-icon");
   const headingText=node("div","project-heading-text");
   headingText.append(kicker,node("h3","",project.name));
   heading.append(symbol,headingText);
@@ -136,8 +146,10 @@ function openDetail(p){
   modal.setAttribute("role","dialog");modal.setAttribute("aria-modal","true");modal.setAttribute("aria-labelledby","gallery-dialog-title");
   const header=node("div","gallery-modal-head");
   const title=node("h2","",p.name);title.id="gallery-dialog-title";
+  const modalIdentity=node("div","gallery-modal-identity");
+  modalIdentity.append(projectIcon(p,"gallery-modal-project-icon"),title);
   const close=node("button","gallery-close","×");close.type="button";close.setAttribute("aria-label","Close details");
-  header.append(title,close);
+  header.append(modalIdentity,close);
   const viewer=node("div","gallery-viewer");
   const media=node("div","gallery-media");
   const first=node("img","gallery-media-image is-visible"),second=node("img","gallery-media-image");
