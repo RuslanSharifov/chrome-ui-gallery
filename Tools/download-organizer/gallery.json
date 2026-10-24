@@ -1,0 +1,24 @@
+{
+  "name": "Download Organizer",
+  "description": "Sort new Chrome downloads automatically into Images, Videos, Music, Documents, Archives and Applications folders with a one-click pause switch. Local-only and no account.",
+  "platform": "browser",
+  "style": "Browser Utility",
+  "tags": [
+    "Downloads",
+    "Organization",
+    "Productivity",
+    "Files",
+    "Privacy"
+  ],
+  "icon": "DO",
+  "palette": [
+    "#111929",
+    "#91e8d5",
+    "#baa6ff"
+  ],
+  "preview": "preview.svg",
+  "author": {
+    "name": "RuslanSharifov",
+    "url": "https://github.com/RuslanSharifov"
+  }
+}
