@@ -1,0 +1,24 @@
+{
+  "name": "Pixel Lens",
+  "description": "Visual CSS inspector for live websites. Hover to view computed colors, dimensions, typography, border and shadow; pin a component to experiment with local CSS edits and copy properties.",
+  "platform": "browser",
+  "style": "Developer Tool",
+  "tags": [
+    "CSS",
+    "Inspector",
+    "Developer",
+    "Design",
+    "Visual",
+    "Editing"
+  ],
+  "icon": "PL",
+  "palette": [
+    "#111827",
+    "#b9a6ff",
+    "#8fe8cb"
+  ],
+  "author": {
+    "name": "RuslanSharifov",
+    "url": "https://github.com/RuslanSharifov"
+  }
+}
