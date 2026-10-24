@@ -82,7 +82,10 @@
         "name": "RuslanSharifov",
         "url": "https://github.com/RuslanSharifov"
       },
-      "preview": "Tools/pixel-lens/preview.png"
+      "preview": "Tools/pixel-lens/pixel-lens-poster.png",
+      "previews": [
+        "Tools/pixel-lens/preview.png"
+      ]
     },
     {
       "id": "tools-tabpocket",

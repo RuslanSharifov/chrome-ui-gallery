@@ -1,5 +1,11 @@
 # Pixel Lens
 
+![Pixel Lens — Inspect. Edit. Refine. — Chrome extension cover](./pixel-lens-poster.png)
+
+[View full-size cover](./pixel-lens-poster.png)
+
+### Pixel Lens logo
+
 ![Pixel Lens logo](./preview.png)
 
 **Pixel Lens** uses its own magnifier-and-pixels logo from the supplied Pixel Lens assets, not the Chrome UI Gallery cube.
