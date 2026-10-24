@@ -65,7 +65,7 @@ function readMeta(dir) {
   if(!exists(file)) return {};
   const v=readJSON(file);
   if(!v || typeof v !== "object" || Array.isArray(v))throw new Error(rel(file)+": metadata must be an object");
-  const allowed=new Set(["name","description","platform","style","tags","palette","icon","author","preview","previews"]);
+  const allowed=new Set(["name","description","platform","style","tags","palette","icon","author","preview","previews","iconUrl"]);
   for(const key of Object.keys(v))if(!allowed.has(key))throw new Error(rel(file)+": unknown field "+key);
   for(const key of ["name","description","platform","style","icon"])if(v[key]!==undefined)safeText(v[key],rel(file)+"."+key,key==="description"?500:100);
   if(v.platform!==undefined&&!/^[a-z0-9][a-z0-9-]*$/.test(v.platform))throw new Error(rel(file)+": platform must be a lowercase slug");
@@ -76,6 +76,12 @@ function readMeta(dir) {
     if(!v.author || typeof v.author!=="object"||Array.isArray(v.author))throw new Error(rel(file)+": author must be an object");
     safeText(v.author.name,rel(file)+".author.name",80);
     if(v.author.url!==undefined&&(!/^https:\/\/github\.com\/[A-Za-z0-9-]+\/?$/.test(v.author.url)))throw new Error(rel(file)+": author.url must be a GitHub profile URL");
+  }
+  if(v.iconUrl!==undefined){
+    safeText(v.iconUrl,rel(file)+".iconUrl",200);
+    const target=path.resolve(dir,v.iconUrl);
+    if(!isInside(dir,target)||!exists(target)||!v.iconUrl.startsWith("icons/")||!target.toLowerCase().match(/\.(png|jpg|jpeg|webp|svg)$/))
+      throw new Error(rel(file)+": iconUrl must point to an existing image in the local icons folder");
   }
   if(v.preview!==undefined){
     safeText(v.preview,rel(file)+".preview",200);
@@ -129,11 +135,11 @@ function addProject(manifestFile,category) {
   const icon=meta.icon??(platform==="github"?"GH":platform==="browser"?"◈":platform.charAt(0).toUpperCase());
   const palette=meta.palette??palettes[hash(folderPath)%palettes.length];
   const iconAsset=["icon128.png","icon48.png","icon32.png","icon16.png"].find(name=>exists(path.join(folder,"icons",name)));
-  const iconImage=iconAsset?folderPath+"/icons/"+iconAsset:null;
+  const iconUrl=meta.iconUrl?folderPath+"/"+meta.iconUrl:(iconAsset?folderPath+"/icons/"+iconAsset:null);
   return {
     id:folderPath.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,""),
     category,platform,name,style,description,tags,icon,palette,
-    ...(iconImage?{iconImage}:{}),
+    ...(iconUrl?{iconUrl}:{}),
     doc:folderPath+"/"+documentation,folder:folderPath,
     version:manifest.version,
     ...(meta.author?{author:meta.author}:{}),

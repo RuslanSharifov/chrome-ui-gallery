@@ -21,5 +21,6 @@
     "name": "RuslanSharifov",
     "url": "https://github.com/RuslanSharifov"
   },
-  "preview": "viewport-studio-poster.svg"
+  "preview": "viewport-studio-poster.svg",
+  "iconUrl": "icons/icon128.png"
 }

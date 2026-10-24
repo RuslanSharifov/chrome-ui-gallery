@@ -322,3 +322,14 @@ details p{padding:0 18px;margin:0 0 16px}
 }
 .gallery-modal-project-icon .project-icon-image { border-radius: 11px; }
 @media(max-width:560px){.gallery-modal-project-icon{width:36px;height:36px;flex-basis:36px}}
+
+/* Always display extension icons against a contrasting project-tinted tile. */
+.project-heading-icon,.gallery-modal-project-icon {
+  background:linear-gradient(135deg,var(--icon-bg1,#171b30),var(--icon-bg2,#343a57)) !important;
+  border:1px solid rgba(255,255,255,.22);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 5px 14px rgba(0,0,0,.22);
+  padding:5px;
+}
+.project-heading-icon .project-icon-image,.gallery-modal-project-icon .project-icon-image {
+  width:100%;height:100%;object-fit:contain;border-radius:7px;
+}

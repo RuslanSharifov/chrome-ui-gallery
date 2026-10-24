@@ -37,9 +37,12 @@ function sourceLink(path,isFolder) {
 function projectIcon(project,className) {
   const holder=node("span",className,project.icon||"◈");
   holder.setAttribute("aria-hidden","true");
-  if(project.iconImage){
+  const palette=project.palette||["#202436","#313b5f","#8fe8cb"];
+  holder.style.setProperty("--icon-bg1",palette[0]);
+  holder.style.setProperty("--icon-bg2",palette[1]);
+  if(project.iconUrl){
     const img=node("img","project-icon-image");
-    img.src=RAW+githubPath(project.iconImage);
+    img.src=RAW+githubPath(project.iconUrl);
     img.alt="";img.loading="lazy";img.decoding="async";
     img.addEventListener("load",()=>{holder.textContent="";holder.append(img)},{once:true});
   }
