@@ -5,16 +5,28 @@
   "description": "A simple customizable dark mode for websites: enable per site, adjust brightness and contrast.",
   "permissions": [
     "storage",
-    "activeTab",
-    "scripting",
     "tabs"
   ],
-  "host_permissions": [],
+  "host_permissions": [
+    "https://ruslansharifov.github.io/*"
+  ],
   "action": {
     "default_title": "Universal Dark",
     "default_popup": "popup.html"
   },
   "background": {
     "service_worker": "background.js"
-  }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_start"
+    }
+  ]
 }
