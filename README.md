@@ -6,7 +6,7 @@
 
 **An open-source gallery of experimental browser interfaces, Chrome extensions, developer tools, and a companion desktop application.**
 
-[**Live Gallery**](https://ruslansharifov.github.io/chrome-ui-gallery/) · [**UI Designs**](./ui-designs/README.md) · [**Developer Tools**](./Tools/README.md) · [**Desktop App**](./apps/desktop/README.md) · [**Releases**](https://github.com/RuslanSharifov/chrome-ui-gallery/releases)
+[**Live Gallery**](https://ruslansharifov.github.io/chrome-ui-gallery/) · [**UI Designs**](./ui-designs/README.md) · [**Developer Tools**](./Tools/README.md) · [**Desktop App Setup**](https://ruslansharifov.github.io/chrome-ui-gallery/desktop.html) · [**Desktop App Source**](./apps/desktop/README.md) · [**Releases**](https://github.com/RuslanSharifov/chrome-ui-gallery/releases)
 
 ![License](https://img.shields.io/badge/license-MIT-8fe8cb?style=flat-square) ![Chrome](https://img.shields.io/badge/Chrome-Manifest%20V3-b9a6ff?style=flat-square) ![Open Source](https://img.shields.io/badge/open%20source-community-8ebfff?style=flat-square)
 

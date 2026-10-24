@@ -2,7 +2,7 @@
 
 Electron + React desktop gallery and optional Chrome extension manager. Its glass-style interface matches the website and all source files are public.
 
-## Clone and launch
+**[Step-by-step beginner installation tutorial (website)](https://ruslansharifov.github.io/chrome-ui-gallery/desktop.html)** — illustrated Windows ZIP download, extraction, Node.js, launch and Chrome Companion pairing. Source ZIP is not a prebuilt installer.\n\n## Clone and launch
 
 Requires [Git](https://git-scm.com/downloads), [Node.js 22+](https://nodejs.org/) and npm. **Run the full sequence in PowerShell, Terminal or Command Prompt:**
 
