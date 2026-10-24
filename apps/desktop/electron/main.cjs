@@ -39,7 +39,7 @@ app.whenReady().then(async()=>{
  ipcMain.handle("bridge:disconnect",()=>bridge.disconnect());
  ipcMain.handle("extensions:prepare",(_event,id)=>prepareInstaller(app,shell)(id));
  ipcMain.handle("extensions:open-chrome",()=>openChromeExtensions());
- ipcMain.handle("shell:open-external",(_event,url)=>{const allowed=/^https:\/\/(github\.com\/RuslanSharifov\/chrome-ui-gallery(?:\/|$)|ruslansharifov\.github\.io\/chrome-ui-gallery(?:\/|$)|ko-fi\.com\/ruslansharifov(?:\/|$))/.test(url);if(!allowed)throw new Error("Blocked external URL");return shell.openExternal(url)});
+ ipcMain.handle("shell:open-external",(_event,url)=>{const allowed=/^https:\/\/(github\.com\/RuslanSharifov\/chrome-ui-gallery(?:\/|$)|ruslansharifov\.github\.io\/chrome-ui-gallery(?:\/|$)|ko-fi\.com\/[A-Za-z0-9_-]{2,64}(?:\/|$))/.test(url);if(!allowed)throw new Error("Blocked external URL");return shell.openExternal(url)});
  ipcMain.handle("updater:get-state",()=>updaterState);
  ipcMain.handle("updater:check",()=>app.isPackaged?autoUpdater.checkForUpdates().then(()=>updaterState):updaterState);
  ipcMain.handle("updater:install",()=>{if(updaterState.status==="ready")autoUpdater.quitAndInstall(false,true);return updaterState});
