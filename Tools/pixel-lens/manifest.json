@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Pixel Lens",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Interactive visual CSS inspector. Hover, pin and locally edit element styles.",
   "permissions": [
     "activeTab",
@@ -19,5 +19,17 @@
   },
   "host_permissions": [
     "https://ruslansharifov.github.io/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "inspector.js"
+      ],
+      "run_at": "document_idle"
+    }
   ]
 }

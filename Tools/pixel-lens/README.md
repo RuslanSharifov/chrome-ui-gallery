@@ -16,15 +16,17 @@ A lightweight **visual CSS inspector** for Chrome. Hover a page element to read 
 - Floating inspector follows the pointer but stays inside the browser viewport.
 - Displays applicable computed CSS: text and background colors, typography, dimensions, margin/padding, border, radius, shadow, opacity, layout and more.
 - Omits many empty/default/no-op properties rather than showing a long unfiltered dump.
-- **Click** an element to pin it and highlight its bounding rectangle. The popup remains visible until unpinned or the inspector is stopped.
+- **Click** an element to pin it and highlight its bounding rectangle. The floating panel follows the element on scroll and hides briefly while scrolling. Click outside the selected element to close the panel.
+- Drag the inspector by its header to reposition it. Its internal scrollbar is hidden, while mouse wheel/touch scrolling still works.
 - **+ Add** applies another CSS property and value to the pinned element.
 - Edit shown property values in the inspector; **Copy CSS** copies the visible computed properties.
 - **Reset edits** restores originally edited inline values. All changes are local to the current page; reload also resets them.
-- **Esc** exits the inspector; popup control can start or stop it again.
+- **Esc** unpins the selection (or stops the inspector when nothing is pinned).
+- **Persistent keyboard shortcut:** defaults to Alt + L. Change it in the extension popup by clicking **Change**, holding Ctrl or Alt and pressing a letter. The choice is stored in `chrome.storage.local` and works on supported websites without opening the popup. Chrome or a website can reserve some combinations; choose a different shortcut if needed.
 
 ## Privacy and permissions
 
-The inspector runs locally in the currently selected web tab using Chrome's `activeTab` and `scripting` permissions. It does **not** upload CSS, page contents, cookies or credentials. Its Ko-fi panel only fetches the public [support configuration](../../docs/support-config.json) from the project's GitHub Pages when online, and remains hidden without a successful fetch. `host_permissions` is limited to that support configuration origin. The external GitHub and Ko-fi links open only when chosen.
+The inspector runs locally in the currently selected web tab using Chrome's `activeTab` and `scripting` permissions. It does **not** upload CSS, page contents, cookies or credentials. A lightweight content script listens for the configurable shortcut on ordinary HTTP/HTTPS pages, but stays inactive until toggled. Its Ko-fi panel only fetches the public [support configuration](../../docs/support-config.json) from the project's GitHub Pages when online, and remains hidden without a successful fetch. `host_permissions` is limited to that support configuration origin. The external GitHub and Ko-fi links open only when chosen.
 
 **Limitations:** Chrome restricts script injection on browser-internal pages, Chrome Web Store and some protected pages. This is an MVP: pseudo-elements, cross-origin iframe contents, CSS cascade origins, multiple selections and saving changes to source stylesheets are not supported. Property editing applies inline styles and may be overridden by page rules with `!important`. Inspecting pages with frequent DOM changes can invalidate the selection.
 
