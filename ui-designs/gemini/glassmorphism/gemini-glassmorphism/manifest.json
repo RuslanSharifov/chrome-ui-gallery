@@ -10,7 +10,10 @@
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
-  "permissions": ["storage", "activeTab"],
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
   "action": {
     "default_title": "Gemini Glassmorphism",
     "default_popup": "index.html",
@@ -21,10 +24,21 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://gemini.google.com/*"],
-      "css": ["glass.css"],
-      "js": ["shared.js", "fx.js", "content.js"],
+      "matches": [
+        "https://gemini.google.com/*"
+      ],
+      "css": [
+        "glass.css"
+      ],
+      "js": [
+        "shared.js",
+        "fx.js",
+        "content.js"
+      ],
       "run_at": "document_start"
     }
+  ],
+  "host_permissions": [
+    "https://ruslansharifov.github.io/*"
   ]
 }

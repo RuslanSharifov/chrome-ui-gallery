@@ -180,7 +180,7 @@ function openDetail(p){
   viewer.addEventListener("touchend",e=>{const d=e.changedTouches[0].clientX-touch;if(Math.abs(d)>45)showImage(current+(d<0?1:-1))},{passive:true});
   const featuredSupportIds=new Set(["tools-devlens","ui-designs-gemini-claymorphism-gemini-claymorphism","ui-designs-gemini-glassmorphism-gemini-glassmorphism"]);
   let featuredSupport=null;
-  if(featuredSupportIds.has(p.id)&&onlineSupport){
+  if(featuredSupportIds.has(p.id)){
     featuredSupport=node("aside","gallery-featured-support");
     featuredSupport.setAttribute("aria-label","Support this open-source project");
     const emblem=node("div","gallery-support-emblem","♥");emblem.setAttribute("aria-hidden","true");
@@ -189,7 +189,7 @@ function openDetail(p){
       node("h3","","Enjoying this project?"),
       node("p","","Help keep open-source UI experiments and developer tools growing. Every contribution is appreciated."));
     const action=node("a","gallery-support-action","Support on Ko-fi ↗");
-    action.href="https://ko-fi.com/"+encodeURIComponent(onlineSupport.account);
+    action.href="#";featuredSupport.hidden=true;const reveal=()=>{if(onlineSupport){action.href="https://ko-fi.com/"+encodeURIComponent(onlineSupport.account);featuredSupport.hidden=false}else featuredSupport.hidden=true};reveal();loadOnlineSupport().then(()=>{if(!closed)reveal()});
     action.target="_blank";action.rel="noopener noreferrer";
     featuredSupport.append(emblem,copy,action);
   }
