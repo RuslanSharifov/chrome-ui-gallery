@@ -6,17 +6,27 @@
   "permissions": [
     "management",
     "storage",
-    "alarms",
-    "clipboardRead"
+    "alarms"
   ],
   "host_permissions": [
-    "http://127.0.0.1:41739/*"
+    "http://127.0.0.1:41739/*",
+    "https://ruslansharifov.github.io/*"
   ],
   "background": {
     "service_worker": "background.js"
   },
   "action": {
     "default_title": "Chrome UI Gallery Companion",
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/gallery.png",
+      "48": "icons/gallery.png",
+      "128": "icons/gallery.png"
+    }
+  },
+  "icons": {
+    "16": "icons/gallery.png",
+    "48": "icons/gallery.png",
+    "128": "icons/gallery.png"
   }
 }

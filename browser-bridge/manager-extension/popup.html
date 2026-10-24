@@ -1,1 +1,34 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Chrome UI Gallery Companion</title><style>body{margin:0;width:320px;background:#10121f;color:#f1f2ff;font:14px system-ui;padding:22px;box-sizing:border-box}h1{font-size:17px;margin:0 0 8px}p{line-height:1.5;color:#a5adca}input{width:100%;box-sizing:border-box;background:#1d2031;border:1px solid #454b6a;border-radius:10px;padding:13px;color:white;text-transform:uppercase;letter-spacing:2px}button{background:#b9a6ff;color:#14101d;border:0;border-radius:10px;font-weight:700;padding:11px 18px;margin-top:14px;cursor:pointer}small{display:block;margin-top:12px;color:#9ad6c7}</style></head><body><h1>✦ Gallery Companion</h1><p>Enter the pairing code shown in the Desktop App to securely connect this browser.</p><input id="code" maxlength="8" placeholder="PAIR CODE" autocomplete="off"/><button id="paste" type="button">Paste code</button><button id="pair">Connect</button><button id="disconnect" hidden>Disconnect</button><small id="status">Checking connection…</small><script src="popup.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chrome UI Gallery Companion</title>
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+<main class="shell">
+ <header class="header">
+  <img class="brand-icon" src="logo.svg" width="44" height="44" alt="">
+  <div class="heading"><span class="eyebrow">CHROME UI GALLERY</span><h1>Gallery Companion</h1><span class="subtitle">Desktop connection manager</span></div>
+ </header>
+ <section class="connection-card" aria-live="polite">
+  <div class="connection-top"><span class="connection-dot" id="dot"></span><strong id="connection-title">Checking connection…</strong></div>
+  <p id="status">Checking Companion connection…</p>
+ </section>
+ <section class="pairing" id="pairing">
+  <label for="code">DESKTOP PAIRING CODE</label>
+  <input id="code" type="text" inputmode="text" maxlength="8" spellcheck="false" placeholder="Enter 8-character code" autocomplete="off">
+  <p class="help">Copy the code from Desktop Settings and paste it here with Ctrl+V.</p>
+  <button class="primary" id="pair" type="button">Connect to Desktop <span aria-hidden="true">↗</span></button>
+ </section>
+ <button class="disconnect" id="disconnect" type="button" hidden>Disconnect Desktop</button>
+ <aside class="support" data-support-remote hidden>
+  <span class="support-symbol" aria-hidden="true">♥</span>
+  <div class="support-copy"><span class="support-eyebrow">COMMUNITY SUPPORTED ✦</span><strong>Enjoying the Gallery?</strong><p>Help keep these open-source tools growing.</p></div>
+  <a href="#" target="_blank" rel="noopener noreferrer">Support on Ko-fi ↗</a>
+ </aside>
+ <footer><span>Local connection · 127.0.0.1</span><a href="https://github.com/RuslanSharifov/chrome-ui-gallery" target="_blank" rel="noopener noreferrer">GitHub ↗</a></footer>
+</main>
+<script src="support-remote.js"></script>
+<script src="popup.js"></script>
+</body></html>
