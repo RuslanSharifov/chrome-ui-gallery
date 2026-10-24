@@ -186,3 +186,10 @@ body {
   font-size: 10px;
   color: var(--pp-muted);
 }
+
+/* Featured voluntary support card, near the beginning of the popup */
+.pp-support{display:grid;grid-template-columns:38px minmax(0,1fr);gap:9px;margin:10px 12px;padding:12px;background:linear-gradient(125deg,rgba(137,99,235,.2),rgba(57,176,167,.12));border:1px solid rgba(174,156,255,.37);border-radius:12px;box-shadow:0 8px 22px rgba(0,0,0,.13);animation:pp-support-in .32s ease both}
+.pp-support-icon{width:36px;height:36px;display:grid;place-items:center;border-radius:11px;background:rgba(171,137,245,.19);color:#f3acd7;font-size:20px}
+.pp-support-copy{min-width:0;display:flex;flex-direction:column;gap:3px}.pp-support-copy span{font-size:8px;letter-spacing:.14em;color:#9ce9cf;font-weight:800}.pp-support-copy strong{font-size:12px;color:var(--pp-text)}.pp-support-copy small{font-size:10px;color:var(--pp-muted);line-height:1.4}
+.pp-support-link{grid-column:1/-1;display:block;text-align:center;padding:9px;border-radius:8px;background:linear-gradient(100deg,#bdabff,#a5ebd6);color:#171727!important;text-decoration:none;font-weight:800;font-size:11px;transition:filter .2s,transform .2s}.pp-support-link:hover{filter:brightness(1.08);transform:translateY(-1px)}.pp-support-link:focus-visible{outline:2px solid #a5ebd6;outline-offset:2px}
+@keyframes pp-support-in{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}@media(prefers-reduced-motion:reduce){.pp-support{animation:none}.pp-support-link{transition:none}}
