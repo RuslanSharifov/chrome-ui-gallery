@@ -1,0 +1,37 @@
+# ◈ Pixel Lens
+
+A lightweight **visual CSS inspector** for Chrome. Hover a page element to read its computed styles beside the pointer, click to pin the element, and edit its CSS **locally** without changing the underlying source files.
+
+[← Developer Tools](../README.md) · [← Chrome UI Gallery](../../README.md) · [Live Gallery](https://ruslansharifov.github.io/chrome-ui-gallery/gallery.html)
+
+## Installation
+
+1. Clone or download the repository.
+2. Open `chrome://extensions` and enable **Developer mode**.
+3. Choose **Load unpacked** and select `Tools/pixel-lens` (the folder with `manifest.json`).
+4. Visit a regular HTTP/HTTPS website, open Pixel Lens and click **Activate Pixel Lens**.
+
+## Features
+
+- Floating inspector follows the pointer but stays inside the browser viewport.
+- Displays applicable computed CSS: text and background colors, typography, dimensions, margin/padding, border, radius, shadow, opacity, layout and more.
+- Omits many empty/default/no-op properties rather than showing a long unfiltered dump.
+- **Click** an element to pin it and highlight its bounding rectangle. The popup remains visible until unpinned or the inspector is stopped.
+- **+ Add** applies another CSS property and value to the pinned element.
+- Edit shown property values in the inspector; **Copy CSS** copies the visible computed properties.
+- **Reset edits** restores originally edited inline values. All changes are local to the current page; reload also resets them.
+- **Esc** exits the inspector; popup control can start or stop it again.
+
+## Privacy and permissions
+
+The inspector runs locally in the currently selected web tab using Chrome's `activeTab` and `scripting` permissions. It does **not** upload CSS, page contents, cookies or credentials. Its Ko-fi panel only fetches the public [support configuration](../../docs/support-config.json) from the project's GitHub Pages when online, and remains hidden without a successful fetch. `host_permissions` is limited to that support configuration origin. The external GitHub and Ko-fi links open only when chosen.
+
+**Limitations:** Chrome restricts script injection on browser-internal pages, Chrome Web Store and some protected pages. This is an MVP: pseudo-elements, cross-origin iframe contents, CSS cascade origins, multiple selections and saving changes to source stylesheets are not supported. Property editing applies inline styles and may be overridden by page rules with `!important`. Inspecting pages with frequent DOM changes can invalidate the selection.
+
+## Source
+
+- [manifest.json](./manifest.json) — MV3 permissions and popup entry
+- [popup.html](./popup.html) · [popup.css](./popup.css) · [popup.js](./popup.js) — extension controls
+- [inspector.js](./inspector.js) — isolated Shadow DOM inspector and CSS editing logic
+- [support.js](./support.js) — centrally configured optional Ko-fi panel
+- [gallery.json](./gallery.json) — catalog metadata
