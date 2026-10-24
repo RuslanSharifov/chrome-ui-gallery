@@ -13,7 +13,8 @@
     "webNavigation"
   ],
   "host_permissions": [
-    "<all_urls>"
+    "<all_urls>",
+    "https://ruslansharifov.github.io/*"
   ],
   "background": {
     "service_worker": "background.js"

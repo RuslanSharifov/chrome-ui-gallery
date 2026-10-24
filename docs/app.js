@@ -117,6 +117,10 @@ function buildCard(project) {
   return card;
 }
 
+const SUPPORT_CONFIG_URL="./support-config.json";
+let onlineSupport=null;
+async function loadOnlineSupport(){if(!navigator.onLine){onlineSupport=null;return}try{const response=await fetch(SUPPORT_CONFIG_URL,{cache:"no-store",signal:AbortSignal.timeout(6500)});if(!response.ok)throw Error("offline");const config=await response.json();onlineSupport=config.enabled===true&&config.provider==="ko-fi"&&/^[A-Za-z0-9_-]{2,64}$/.test(config.account)?config:null}catch{onlineSupport=null}}
+loadOnlineSupport();window.addEventListener("online",loadOnlineSupport);window.addEventListener("offline",()=>{onlineSupport=null});
 function openDetail(p){
   const focused=document.activeElement;
   const photos=[...new Set([p.preview,...(p.previews||[])].filter(Boolean))];
@@ -176,7 +180,7 @@ function openDetail(p){
   viewer.addEventListener("touchend",e=>{const d=e.changedTouches[0].clientX-touch;if(Math.abs(d)>45)showImage(current+(d<0?1:-1))},{passive:true});
   const featuredSupportIds=new Set(["tools-devlens","ui-designs-gemini-claymorphism-gemini-claymorphism","ui-designs-gemini-glassmorphism-gemini-glassmorphism"]);
   let featuredSupport=null;
-  if(featuredSupportIds.has(p.id)){
+  if(featuredSupportIds.has(p.id)&&onlineSupport){
     featuredSupport=node("aside","gallery-featured-support");
     featuredSupport.setAttribute("aria-label","Support this open-source project");
     const emblem=node("div","gallery-support-emblem","♥");emblem.setAttribute("aria-hidden","true");
@@ -185,7 +189,7 @@ function openDetail(p){
       node("h3","","Enjoying this project?"),
       node("p","","Help keep open-source UI experiments and developer tools growing. Every contribution is appreciated."));
     const action=node("a","gallery-support-action","Support on Ko-fi ↗");
-    action.href="https://ko-fi.com/ruslansharifov";
+    action.href="https://ko-fi.com/"+encodeURIComponent(onlineSupport.account);
     action.target="_blank";action.rel="noopener noreferrer";
     featuredSupport.append(emblem,copy,action);
   }

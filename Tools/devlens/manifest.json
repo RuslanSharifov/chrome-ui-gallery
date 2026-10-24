@@ -52,5 +52,8 @@
   "permissions": [
     "storage"
   ],
-  "minimum_chrome_version": "111"
+  "minimum_chrome_version": "111",
+  "host_permissions": [
+    "https://ruslansharifov.github.io/*"
+  ]
 }
