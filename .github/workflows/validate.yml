@@ -28,6 +28,8 @@ jobs:
           node --check scripts/test-catalog.mjs
           node --check scripts/validate.mjs
           node --check docs/app.js
+          node --check Tools/viewport-studio/workspace.js
+          node --check Tools/viewport-studio/popup.js
           node --check templates/chrome-extension-tool/popup.js
       - name: Build catalog from extension manifests
         run: node scripts/build-catalog.mjs

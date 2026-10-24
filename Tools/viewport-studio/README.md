@@ -1,6 +1,6 @@
 # Viewport Studio
 
-**Viewport Studio** is a multi-device responsive design workspace for Chrome. It opens on top of a regular website, with phone, tablet and desktop previews side by side.
+**Viewport Studio** is a multi-device responsive design workspace for Chrome. It opens on top of a regular website as an expandable control rail plus independent floating phone, tablet and desktop preview windows.
 
 [← All tools](../README.md) · [← Gallery](../../README.md) · [Extension popup](./popup.html) · [Manifest](./manifest.json)
 
@@ -13,11 +13,13 @@
 
 ## Features
 
-- Dock the workspace **right**, **left**, **top** or **bottom**.
+- Dock the **collapsible control rail** at the **right**, **left**, **top** or **bottom** of the page; drag its resize handle to make it wider or narrower. Click its compact button to expand or collapse it.
+- Each device opens as an independent floating window. **Left-click and drag a device header** to move it anywhere on the visible page; click a device to bring it forward. Minimize a device to a compact strip and restore it without losing its preset.
+- **Right-click anywhere on the inspected page while Viewport Studio is active** to open a cursor-positioned quick menu: add a device, expand the control panel, minimize all devices or deactivate the extension. Right-click actions take precedence over the website’s normal context menu while active; deactivate Studio to restore normal behavior.
 - Add multiple presets from phones, tablets and desktop displays, including Apple iPhone and iPad, Samsung Galaxy, Google Pixel, laptop and desktop-size viewport presets.
 - Add a **custom width and height** profile.
-- Drag device card headers to rearrange their order. Remove devices, rotate portrait/landscape, reload a device, or change its preset independently.
-- Tune **zoom**, device labels, visual shadows, and optional same-origin scroll syncing. Settings and device list persist in `chrome.storage.local`.
+- Drag individual device windows to arrange them freely. Remove devices, rotate portrait/landscape, reload a device, or change its preset independently.
+- Tune **zoom**, device labels, visual shadows, and optional same-origin scroll syncing. Settings, control-panel width, window positions and device list persist in `chrome.storage.local`.
 - Copy a selected viewport's CSS/media-query dimensions by reading the displayed width and height.
 - An online-only, centrally configured Ko-fi card appears in the extension popup and in the workspace, plus a direct GitHub source link.
 
