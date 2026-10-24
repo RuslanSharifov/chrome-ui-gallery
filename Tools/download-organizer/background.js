@@ -32,7 +32,7 @@ chrome.downloads.onDeterminingFilename.addListener((item,suggest)=>{
     // Preserve nested filenames for deliberate extension-driven downloads and avoid re-routing our own subfolders.
     const raw=String(item.filename||"").replace(/\\/g,"/");
     const normalized=raw.split("/").filter(Boolean);
-    if(normalized.length>1&&!/^[a-z]:$/i.test(normalized[0])){suggest();return}
+    if(normalized.length>1&&!raw.startsWith("/")&&!/^[a-z]:$/i.test(normalized[0])){suggest();return}
     const filename=safeName(raw);
     const category=categoryFor(filename,item.mime||"");
     suggest({filename:"Organized Downloads/"+category+"/"+filename,conflictAction:"uniquify"});

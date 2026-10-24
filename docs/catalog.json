@@ -55,6 +55,35 @@
       "preview": "Tools/devlens/preview.png"
     },
     {
+      "id": "tools-download-organizer",
+      "category": "tool",
+      "platform": "browser",
+      "name": "Download Organizer",
+      "style": "Browser Utility",
+      "description": "Sort new Chrome downloads automatically into Images, Videos, Music, Documents, Archives and Applications folders with a one-click pause switch. Local-only and no account.",
+      "tags": [
+        "Downloads",
+        "Organization",
+        "Productivity",
+        "Files",
+        "Privacy"
+      ],
+      "icon": "DO",
+      "palette": [
+        "#111929",
+        "#91e8d5",
+        "#baa6ff"
+      ],
+      "doc": "Tools/download-organizer/README.md",
+      "folder": "Tools/download-organizer",
+      "version": "1.0.0",
+      "author": {
+        "name": "RuslanSharifov",
+        "url": "https://github.com/RuslanSharifov"
+      },
+      "preview": "Tools/download-organizer/preview.svg"
+    },
+    {
       "id": "tools-pixel-lens",
       "category": "tool",
       "platform": "browser",
