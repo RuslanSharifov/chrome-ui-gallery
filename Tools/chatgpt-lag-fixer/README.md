@@ -12,7 +12,7 @@ A Chrome extension that reduces freezing and lag in long ChatGPT conversations.
 - **Configurable:** toggle features and choose how many recent messages stay fully active.
 - **Privacy-friendly:** no data collection, no network requests.
 
-## Installation
+## Optional support\n\nThe extension popup can display a **Support on Ko-fi** link when enabled by the gallery's shared public `support-config.json`. The link is hidden if offline or disabled. No account or usage data is sent to Ko-fi; only clicking the link opens Ko-fi.\n\n## Installation
 
 See the [Installation Guide](INSTALL.md) for step-by-step instructions on loading the extension in Chrome.
 
