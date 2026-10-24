@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Screen Privacy",
+  "version": "1.0.0",
+  "description": "Temporarily blur sensitive page elements before screen sharing.",
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://ruslansharifov.github.io/*"
+  ],
+  "action": {
+    "default_title": "Screen Privacy",
+    "default_popup": "popup.html"
+  }
+}

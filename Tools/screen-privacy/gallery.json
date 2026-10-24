@@ -1,0 +1,23 @@
+{
+  "name": "Screen Privacy",
+  "description": "Temporarily blur selected elements on the current page before screen sharing. Clear all in one click; no page content leaves the device.",
+  "platform": "browser",
+  "style": "Privacy Utility",
+  "tags": [
+    "Privacy",
+    "Screen Sharing",
+    "Blur",
+    "Presentation"
+  ],
+  "icon": "SP",
+  "palette": [
+    "#12182a",
+    "#bdaaff",
+    "#95e9d2"
+  ],
+  "preview": "cover.svg",
+  "author": {
+    "name": "RuslanSharifov",
+    "url": "https://github.com/RuslanSharifov"
+  }
+}

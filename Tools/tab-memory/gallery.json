@@ -1,0 +1,23 @@
+{
+  "name": "Tab Memory",
+  "description": "Save named snapshots of tabs in the current Chrome window and restore them later in a new window. Lightweight, local and simple.",
+  "platform": "browser",
+  "style": "Productivity",
+  "tags": [
+    "Tabs",
+    "Sessions",
+    "Restore",
+    "Productivity"
+  ],
+  "icon": "TM",
+  "palette": [
+    "#15172c",
+    "#af9eff",
+    "#9ee4cf"
+  ],
+  "preview": "cover.svg",
+  "author": {
+    "name": "RuslanSharifov",
+    "url": "https://github.com/RuslanSharifov"
+  }
+}

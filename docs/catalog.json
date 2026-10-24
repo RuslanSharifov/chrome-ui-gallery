@@ -146,6 +146,62 @@
       "preview": "Tools/quick-qr/icon.svg"
     },
     {
+      "id": "tools-screen-privacy",
+      "category": "tool",
+      "platform": "browser",
+      "name": "Screen Privacy",
+      "style": "Privacy Utility",
+      "description": "Temporarily blur selected elements on the current page before screen sharing. Clear all in one click; no page content leaves the device.",
+      "tags": [
+        "Privacy",
+        "Screen Sharing",
+        "Blur",
+        "Presentation"
+      ],
+      "icon": "SP",
+      "palette": [
+        "#12182a",
+        "#bdaaff",
+        "#95e9d2"
+      ],
+      "doc": "Tools/screen-privacy/README.md",
+      "folder": "Tools/screen-privacy",
+      "version": "1.0.0",
+      "author": {
+        "name": "RuslanSharifov",
+        "url": "https://github.com/RuslanSharifov"
+      },
+      "preview": "Tools/screen-privacy/cover.svg"
+    },
+    {
+      "id": "tools-tab-memory",
+      "category": "tool",
+      "platform": "browser",
+      "name": "Tab Memory",
+      "style": "Productivity",
+      "description": "Save named snapshots of tabs in the current Chrome window and restore them later in a new window. Lightweight, local and simple.",
+      "tags": [
+        "Tabs",
+        "Sessions",
+        "Restore",
+        "Productivity"
+      ],
+      "icon": "TM",
+      "palette": [
+        "#15172c",
+        "#af9eff",
+        "#9ee4cf"
+      ],
+      "doc": "Tools/tab-memory/README.md",
+      "folder": "Tools/tab-memory",
+      "version": "1.0.0",
+      "author": {
+        "name": "RuslanSharifov",
+        "url": "https://github.com/RuslanSharifov"
+      },
+      "preview": "Tools/tab-memory/cover.svg"
+    },
+    {
       "id": "tools-tabpocket",
       "category": "tool",
       "platform": "browser",
