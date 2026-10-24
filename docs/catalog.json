@@ -170,7 +170,8 @@
       "author": {
         "name": "RuslanSharifov",
         "url": "https://github.com/RuslanSharifov"
-      }
+      },
+      "preview": "Tools/viewport-studio/viewport-studio-poster.svg"
     },
     {
       "id": "tools-chatgpt-lag-fixer",

@@ -1,5 +1,10 @@
 # Viewport Studio
 
+![Viewport Studio — Responsive Tester poster](./viewport-studio-poster.svg)
+
+[View full-size showcase poster](./viewport-studio-poster.svg)
+
+
 **Viewport Studio** is a multi-device responsive design workspace for Chrome. It opens on top of a regular website as an expandable control rail plus independent floating phone, tablet and desktop preview windows.
 
 [← All tools](../README.md) · [← Gallery](../../README.md) · [Extension popup](./popup.html) · [Manifest](./manifest.json)
