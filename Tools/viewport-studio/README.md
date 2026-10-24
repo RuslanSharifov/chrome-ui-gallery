@@ -14,6 +14,8 @@
 ## Features
 
 - Dock the **collapsible control rail** at the **right**, **left**, **top** or **bottom** of the page; drag its resize handle to make it wider or narrower. Click its compact button to expand or collapse it.
+- Drag the lower-right corner of an expanded device to resize its **visual preview**. The simulated CSS viewport dimensions stay unchanged; only the preview scale and displayed frame size adjust.
+- GitHub and Ko-fi links are available in the compact control rail as well as the expanded panel. Ko-fi is loaded live from [docs/support-config.json](../../docs/support-config.json) hosted by GitHub Pages, so editing the central account updates it after deployment. Offline or unavailable configuration hides the Ko-fi link.
 - Each device opens as an independent floating window. **Left-click and drag a device header** to move it anywhere on the visible page; click a device to bring it forward. Minimize a device to a compact strip and restore it without losing its preset.
 - **Right-click anywhere on the inspected page while Viewport Studio is active** to open a cursor-positioned quick menu: add a device, expand the control panel, minimize all devices or deactivate the extension. Right-click actions take precedence over the website’s normal context menu while active; deactivate Studio to restore normal behavior.
 - Add multiple presets from phones, tablets and desktop displays, including Apple iPhone and iPad, Samsung Galaxy, Google Pixel, laptop and desktop-size viewport presets.
