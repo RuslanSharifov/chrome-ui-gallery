@@ -15,8 +15,6 @@
   ],
   "preview": "UI Doctor Chrome Extension Showcase.png",
   "previews": [
-    "UI Doctor Chrome Extension Showcase.png",
-    "docs/screenshots/overview.png",
-    "docs/screenshots/diagnostics.png"
+    "UI Doctor Chrome Extension Showcase.png"
   ]
 }
