@@ -76,7 +76,13 @@ function buildCard(project) {
   const info=node("div","project-info");
   const kicker=node("div","project-kicker");
   kicker.append(node("span","",project.platform.toUpperCase()),node("span","",project.style));
-  info.append(kicker,node("h3","",project.name),node("p","",project.description));
+  const heading=node("div","project-heading");
+  const symbol=node("span","project-heading-icon",project.icon||"◈");
+  symbol.setAttribute("aria-hidden","true");
+  const headingText=node("div","project-heading-text");
+  headingText.append(kicker,node("h3","",project.name));
+  heading.append(symbol,headingText);
+  info.append(heading,node("p","",project.description));
   if(project.author) {
     const byline=node("div","author-byline");
     byline.append(node("span","","By "));
