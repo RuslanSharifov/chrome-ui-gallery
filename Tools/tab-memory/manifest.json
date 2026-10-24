@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Tab Memory",
+  "version": "1.0.0",
+  "description": "Save named snapshots of open browser tabs and restore them later.",
+  "permissions": [
+    "tabs",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://ruslansharifov.github.io/*"
+  ],
+  "action": {
+    "default_title": "Tab Memory",
+    "default_popup": "popup.html"
+  }
+}
