@@ -269,3 +269,22 @@ body.popup .card{margin:11px;padding:18px;gap:13px;border-radius:21px}
 @media(prefers-reduced-motion:reduce){.card,.blob{animation:none!important}.repo-chip{transition:none}}
 
 .cookie-support{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:11px 13px;border-radius:12px;border:1px solid rgba(180,158,255,.28);background:rgba(130,105,210,.13);font-size:11px;color:var(--text)}.cookie-support[hidden],.pp-support[hidden]{display:none!important}.cookie-support a{flex:none;color:var(--accent2);font-weight:800;text-decoration:none}.cookie-support a:hover{text-decoration:underline}@media(max-width:400px){.cookie-support{flex-wrap:wrap}}
+
+/* Popup sizing: explicit viewport width prevents Chrome's shrink-to-content loop.
+   Keep options-page styles and cookie interactions unchanged. */
+html:has(body.popup) { width: 440px; min-width: 440px; overflow-x: hidden; }
+body.popup { width: 440px; min-width: 440px; max-width: none; min-height: 560px; overflow-x: hidden; }
+body.popup .card { width: calc(100% - 22px); min-width: 0; margin: 11px; padding: 18px; }
+body.popup .top, body.popup .brand-heading, body.popup .context-banner,
+body.popup .cookie-support, body.popup .toolbar, body.popup .list-header { min-width: 0; }
+body.popup .top { align-items: center; }
+body.popup .brand-heading { flex: 1 1 auto; }
+body.popup .brand-heading h1 { overflow-wrap: anywhere; }
+body.popup .context-banner { display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: center; }
+body.popup .context-banner p { overflow-wrap: break-word; }
+body.popup .repo-chip { white-space: nowrap; }
+body.popup .cookie-support { flex-wrap: wrap; }
+body.popup .list-header span { text-align: right; }
+body.popup .row3 > *, body.popup .row2 > * { min-width: 0; }
+body.popup .profile-create { grid-template-columns: minmax(0,1fr) auto; }
+body.popup .site { max-width: 245px; }
