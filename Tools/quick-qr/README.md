@@ -1,6 +1,6 @@
 # Quick QR
 
-![Quick QR](./icon.svg)
+![Quick QR — QR code generator showcase](./poster-qr.png)
 
 QR sharing for everyone: turn the current browser tab or typed text into a scannable QR code, copy text, or save the QR as PNG. No account or external QR API; generation happens locally.
 
