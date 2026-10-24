@@ -1,6 +1,6 @@
 # Universal Dark
 
-![Universal Dark](./icon.svg)
+![Universal Dark — Light and Dark Mode](./poster.png)
 
 Give the current website a dark appearance. Simple controls for per-site on/off, brightness and contrast. Settings are stored locally in Chrome.
 
