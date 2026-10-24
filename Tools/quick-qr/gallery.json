@@ -1,0 +1,24 @@
+{
+  "name": "Quick QR",
+  "description": "Create a scannable QR code from the current tab or any text, copy its contents and save a PNG. QR generation runs entirely in the extension.",
+  "platform": "browser",
+  "style": "Browser Utility",
+  "tags": [
+    "QR",
+    "Sharing",
+    "Links",
+    "Productivity",
+    "Offline"
+  ],
+  "icon": "QR",
+  "palette": [
+    "#101528",
+    "#b9a6ff",
+    "#90e8d1"
+  ],
+  "preview": "icon.svg",
+  "author": {
+    "name": "RuslanSharifov",
+    "url": "https://github.com/RuslanSharifov"
+  }
+}

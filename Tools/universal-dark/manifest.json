@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "Universal Dark",
+  "version": "1.0.0",
+  "description": "A simple customizable dark mode for websites: enable per site, adjust brightness and contrast.",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "tabs"
+  ],
+  "host_permissions": [],
+  "action": {
+    "default_title": "Universal Dark",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}

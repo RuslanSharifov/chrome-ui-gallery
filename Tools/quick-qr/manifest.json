@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Quick QR",
+  "version": "1.0.0",
+  "description": "Turn links or text into QR codes, copy links and save a PNG, entirely offline.",
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "storage"
+  ],
+  "action": {
+    "default_title": "Quick QR",
+    "default_popup": "popup.html"
+  }
+}

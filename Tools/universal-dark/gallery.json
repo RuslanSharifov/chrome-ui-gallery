@@ -1,0 +1,24 @@
+{
+  "name": "Universal Dark",
+  "description": "A simple per-website dark mode with adjustable brightness and contrast. Enable it for the current site and save preferences locally.",
+  "platform": "browser",
+  "style": "Browser Utility",
+  "tags": [
+    "Dark Mode",
+    "Accessibility",
+    "Reading",
+    "Comfort",
+    "Customization"
+  ],
+  "icon": "UD",
+  "palette": [
+    "#17172f",
+    "#bda8ff",
+    "#91e8cb"
+  ],
+  "preview": "icon.svg",
+  "author": {
+    "name": "RuslanSharifov",
+    "url": "https://github.com/RuslanSharifov"
+  }
+}
