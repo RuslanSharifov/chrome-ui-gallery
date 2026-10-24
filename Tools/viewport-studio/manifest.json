@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Viewport Studio",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Multi-device responsive viewport previews in a configurable docked workspace.",
   "permissions": [
     "activeTab",
