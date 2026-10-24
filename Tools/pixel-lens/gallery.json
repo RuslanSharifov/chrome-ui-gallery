@@ -24,5 +24,6 @@
   "preview": "pixel-lens-poster.png",
   "previews": [
     "preview.png"
-  ]
+  ],
+  "iconUrl": "icons/icon128.png"
 }
