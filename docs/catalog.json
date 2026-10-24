@@ -55,6 +55,35 @@
       "preview": "Tools/devlens/preview.png"
     },
     {
+      "id": "tools-pixel-lens",
+      "category": "tool",
+      "platform": "browser",
+      "name": "Pixel Lens",
+      "style": "Developer Tool",
+      "description": "Visual CSS inspector for live websites. Hover to view computed colors, dimensions, typography, border and shadow; pin a component to experiment with local CSS edits and copy properties.",
+      "tags": [
+        "CSS",
+        "Inspector",
+        "Developer",
+        "Design",
+        "Visual",
+        "Editing"
+      ],
+      "icon": "PL",
+      "palette": [
+        "#111827",
+        "#b9a6ff",
+        "#8fe8cb"
+      ],
+      "doc": "Tools/pixel-lens/README.md",
+      "folder": "Tools/pixel-lens",
+      "version": "1.0.0",
+      "author": {
+        "name": "RuslanSharifov",
+        "url": "https://github.com/RuslanSharifov"
+      }
+    },
+    {
       "id": "tools-tabpocket",
       "category": "tool",
       "platform": "browser",
