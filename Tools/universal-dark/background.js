@@ -1,0 +1,1 @@
+chrome.runtime.onInstalled.addListener(async()=>{const v=await chrome.storage.local.get("udSettings");if(!v.udSettings)await chrome.storage.local.set({udSettings:{enabled:{},brightness:100,contrast:100}})});
