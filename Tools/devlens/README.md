@@ -30,6 +30,12 @@
 - Catches **unhandled Promise rejections** (`unhandledrejection`)
 - Full stack trace stored for every error
 
+### 📈 Floating Network Statistics
+- Click **▥** on the mini HUD to open a live graph card on the page. Press **+** in any card to open additional charts (up to six).
+- By default each chart is **linked** to the HUD and follows its location. **Unlink** detaches the card; drag its header anywhere on screen. **Link** reattaches it.
+- Pick **Wave area**, **Line**, **Bars**, or **Dots**, and choose recent request count, failures, or average latency.
+- Charts show a bounded rolling series of approximately 90 one-second samples, based on observed fetch/XHR completions. Counts reflect the limited in-memory event buffer, not total browser traffic. The charts do not access response bodies or send data externally.
+
 ### 🌐 Network Monitor
 - Patches **`fetch`** and **`XMLHttpRequest`** in the page world at document start (only requests made after injection and via those APIs are visible)
 - Captures: method, URL, HTTP status, duration (ms), and reported response size when available; does not read response bodies

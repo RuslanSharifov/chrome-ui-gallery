@@ -65,6 +65,7 @@
         <div class="dl-hud-controls">
           <button class="dl-btn dl-pin" title="Pin/Unpin">📌</button>
           <button class="dl-btn dl-clear" title="Clear logs">🗑</button>
+          <button class="dl-btn dl-stats-open" title="Open live network statistics" aria-label="Open live network statistics">▥</button>
           <button class="dl-btn dl-open" title="Open full panel">⛶</button>
           <button class="dl-btn dl-hide" title="Minimize">−</button>
         </div>
@@ -85,6 +86,7 @@
 
     // ── Control buttons ────────────────────────────────────────────────────
     hudEl.querySelector('.dl-open').addEventListener('click', openFullPanel);
+    hudEl.querySelector('.dl-stats-open').addEventListener('click', () => window.dispatchEvent(new Event('devlens:stats-open')));
     hudEl.querySelector('.dl-hide').addEventListener('click', minimizeHUD);
     hudEl.querySelector('.dl-clear').addEventListener('click', () => { clearLogs(); chrome.runtime.sendMessage({action:'clearLogs'}).catch(() => {}); });
     hudEl.querySelector('.dl-pin').addEventListener('click', function () {
@@ -178,6 +180,7 @@
     ny = Math.max(0, Math.min(ny, window.innerHeight - hudEl.offsetHeight));
     hudEl.style.left = nx + 'px';
     hudEl.style.top  = ny + 'px';
+    window.dispatchEvent(new Event('devlens:hud-move'));
   }
 
   function onDragEnd() {

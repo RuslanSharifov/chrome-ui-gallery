@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "DevLens",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Developer HUD for console errors, logs and fetch/XHR requests on supported web pages.",
   "icons": {
     "16": "icons/icon16.png",
@@ -37,10 +37,12 @@
       ],
       "js": [
         "content/interceptor.js",
-        "content/hud.js"
+        "content/hud.js",
+        "content/stats.js"
       ],
       "css": [
-        "content/hud.css"
+        "content/hud.css",
+        "content/stats.css"
       ],
       "run_at": "document_start",
       "all_frames": false
