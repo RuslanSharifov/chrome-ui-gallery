@@ -180,6 +180,7 @@
     ny = Math.max(0, Math.min(ny, window.innerHeight - hudEl.offsetHeight));
     hudEl.style.left = nx + 'px';
     hudEl.style.top  = ny + 'px';
+    window.dispatchEvent(new Event('devlens:hud-move'));
   }
 
   function onDragEnd() {
