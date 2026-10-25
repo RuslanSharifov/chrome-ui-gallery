@@ -69,6 +69,7 @@ function make(){
  document.documentElement.appendChild(el);boards.set(id,board);position(board);draw(board);
 }
 window.addEventListener('devlens:stats-open',make);
+window.addEventListener('devlens:hud-move',()=>boards.forEach(b=>{if(b.linked)position(b)}));
 window.addEventListener('resize',()=>boards.forEach(position));
 window.addEventListener('scroll',()=>boards.forEach(b=>{if(b.linked)position(b)}),true);
 const interval=setInterval(()=>{if(boards.size===0)return;record();boards.forEach(b=>{if(b.linked)position(b)})},1000);
