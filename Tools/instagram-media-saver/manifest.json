@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "Instagram Media Saver",
+  "version": "1.0.0",
+  "description": "One click saves for accessible Instagram post, Reel and Story media.",
+  "permissions": [
+    "downloads"
+  ],
+  "host_permissions": [
+    "https://www.instagram.com/*",
+    "https://*.cdninstagram.com/*",
+    "https://*.fbcdn.net/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.instagram.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "style.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "Instagram Media Saver"
+  }
+}
