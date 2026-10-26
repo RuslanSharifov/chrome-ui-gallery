@@ -1,0 +1,26 @@
+{
+  "name": "Instagram Media Saver",
+  "description": "One-click download for directly accessible Instagram media with a minimizable activity indicator.",
+  "platform": "instagram",
+  "style": "Media Tool",
+  "tags": [
+    "Instagram",
+    "Reels",
+    "Stories",
+    "Download",
+    "Media",
+    "Chrome"
+  ],
+  "icon": "IM",
+  "palette": [
+    "#20132d",
+    "#dc4d8b",
+    "#8459e9"
+  ],
+  "author": {
+    "name": "RuslanSharifov",
+    "url": "https://github.com/RuslanSharifov"
+  },
+  "preview": "poster.svg",
+  "iconUrl": "icon.svg"
+}
