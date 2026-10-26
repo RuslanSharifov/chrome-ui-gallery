@@ -1,6 +1,6 @@
 {
   "name": "Instagram Media Saver",
-  "description": "One-click download for directly accessible Instagram media with a minimizable activity indicator.",
+  "description": "Always-visible draggable Instagram media island with a three-state HUD, download library, video preview, link input and appearance settings.",
   "platform": "instagram",
   "style": "Media Tool",
   "tags": [
