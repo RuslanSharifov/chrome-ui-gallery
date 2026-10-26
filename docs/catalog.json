@@ -351,7 +351,7 @@
       "platform": "instagram",
       "name": "Instagram Media Saver",
       "style": "Media Tool",
-      "description": "One-click download for directly accessible Instagram media with a minimizable activity indicator.",
+      "description": "Always-visible draggable Instagram media island with a three-state HUD, download library, video preview, link input and appearance settings.",
       "tags": [
         "Instagram",
         "Reels",
@@ -369,7 +369,7 @@
       "iconUrl": "Tools/instagram-media-saver/icons/icon.svg",
       "doc": "Tools/instagram-media-saver/README.md",
       "folder": "Tools/instagram-media-saver",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "author": {
         "name": "RuslanSharifov",
         "url": "https://github.com/RuslanSharifov"

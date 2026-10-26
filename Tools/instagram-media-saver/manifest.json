@@ -1,10 +1,11 @@
 {
   "manifest_version": 3,
   "name": "Instagram Media Saver",
-  "version": "1.0.0",
-  "description": "One click saves for accessible Instagram post, Reel and Story media.",
+  "version": "2.0.0",
+  "description": "Three-state draggable media island, download library, video preview and custom themes.",
   "permissions": [
-    "downloads"
+    "downloads",
+    "storage"
   ],
   "host_permissions": [
     "https://www.instagram.com/*",
