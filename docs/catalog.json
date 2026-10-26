@@ -346,6 +346,37 @@
       "version": "1.0.0"
     },
     {
+      "id": "tools-instagram-media-saver",
+      "category": "tool",
+      "platform": "instagram",
+      "name": "Instagram Media Saver",
+      "style": "Media Tool",
+      "description": "One-click download for directly accessible Instagram media with a minimizable activity indicator.",
+      "tags": [
+        "Instagram",
+        "Reels",
+        "Stories",
+        "Download",
+        "Media",
+        "Chrome"
+      ],
+      "icon": "IM",
+      "palette": [
+        "#20132d",
+        "#dc4d8b",
+        "#8459e9"
+      ],
+      "iconUrl": "Tools/instagram-media-saver/icons/icon.svg",
+      "doc": "Tools/instagram-media-saver/README.md",
+      "folder": "Tools/instagram-media-saver",
+      "version": "1.0.0",
+      "author": {
+        "name": "RuslanSharifov",
+        "url": "https://github.com/RuslanSharifov"
+      },
+      "preview": "Tools/instagram-media-saver/poster.svg"
+    },
+    {
       "id": "ui-designs-chatgpt-claymorphism",
       "category": "ui",
       "platform": "chatgpt",
