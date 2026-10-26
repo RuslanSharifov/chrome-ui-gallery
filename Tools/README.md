@@ -12,7 +12,7 @@ Tools are **standalone extensions**, separate from visual UI redesigns. Each too
 
 | Tool | Category | Description | Source |
 | :--- | :--- | :--- | :--- |
-| **[ChatGPT Lag Fixer](./chatgpt-lag-fixer/README.md)** | Performance | Reduce lag in long ChatGPT chats | [Open folder](./chatgpt-lag-fixer/) |
+| **[Instagram Media Saver](./instagram-media-saver/README.md)** | Media utility | One-click save button for accessible Instagram posts, Stories and Reels with a minimizable floating download HUD | [Poster](./instagram-media-saver/poster.svg) · [Icon](./instagram-media-saver/icon.svg) · [Source](./instagram-media-saver/) · [Manifest](./instagram-media-saver/manifest.json) |\n| **[ChatGPT Lag Fixer](./chatgpt-lag-fixer/README.md)** | Performance | Reduce lag in long ChatGPT chats | [Open folder](./chatgpt-lag-fixer/) |
 | **[Quick QR](./quick-qr/README.md)** | Link sharing | Create QR codes from current tab or custom text; save PNG offline | [Preview](./quick-qr/icon.svg) · [Source](./quick-qr/) |
 | **[Universal Dark](./universal-dark/README.md)** | Browsing comfort | Per-site dark mode, saved brightness and contrast controls | [Preview](./universal-dark/icon.svg) · [Source](./universal-dark/) |
 | **[Screen Privacy](./screen-privacy/README.md)** | Privacy | Blur selected page elements before sharing a screen | [Preview](./screen-privacy/cover.svg) · [Source](./screen-privacy/) |
