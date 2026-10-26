@@ -1,22 +1,26 @@
-# Instagram Media Saver design
+# Media Island v2 — Design documentation
 
-**Platform:** Instagram  
-**Style:** Dark glass HUD with gradient accents  
-**Technology:** Chrome Manifest V3, JavaScript, CSS, SVG  
-**Purpose:** Save directly accessible visible media from a contextual action button while observing the download's completion status.
+**Platform:** Instagram / Chrome  
+**Style:** Gradient-glass + slime morphing island  
+**Stack:** Manifest V3, JS, CSS and SVG  
+**Goal:** A small always-on media saving utility that smoothly transitions between idle, active download, and detailed library/player/settings views.
 
-Open media → click **↓** → bottom-right status panel animates into view → dismiss to a compact pill without canceling → reopen via the pill. The background service worker starts each download and reports completion/error.
+## Three states
 
-## Files
+1. **Small** floating pill (always visible, movable).
+2. **Medium** horizontal rectangle appearing during active downloads.
+3. **Large** floating container with media library, video preview and player controls (play/pause, previous, next, volume).
 
-- [manifest.json](./manifest.json)
-- [content.js](./content.js)
-- [background.js](./background.js)
-- [style.css](./style.css)
-- [poster.svg](./poster.svg)
-- [icon.svg](./icon.svg)
-- [gallery.json](./gallery.json)
+The big view contains back navigation, link entry, remove-from-list-only, and customizable themes. UI uses system fonts, translucent blurred surfaces, gradient accent, reduced-motion support and draggable coordinates persisted in extension storage.
 
-![Poster](./poster.svg)
+## Architecture
 
-**Reuse:** Dynamic SPA UI injection, accessible on-page media detection, and Chrome download status UI. There is no cookie or token extraction and no bypass of restricted accounts. [Install and limitations](./README.md).
+- [content.js](./content.js) scans dynamically loaded media and owns island UI.
+- [background.js](./background.js) saves through `chrome.downloads.download`, persists library metadata, reports completion/error.
+- [style.css](./style.css) handles all three morphing sizes and theme variables.
+- [manifest.json](./manifest.json) scopes Chrome permissions.
+- [gallery.json](./gallery.json) controls automatic catalog metadata.
+- [icons/icon.svg](./icons/icon.svg) shows logo.
+- [poster.svg](./poster.svg) is the gallery illustration.
+
+[← Installation and limitations](./README.md)
