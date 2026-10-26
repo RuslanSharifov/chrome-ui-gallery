@@ -14,7 +14,7 @@ The library lists completed and in-progress downloads. Video preview uses the or
 
 ## Media controls
 
-The extension adds contextual **↓** buttons beside Instagram content action menus and on visible video containers, including Reels and video messages when Instagram exposes the media in the page DOM. Right-clicking visible media also opens a compact **Download** context menu. This uses right-click intentionally to avoid interfering with the native left-click video playback. Story actions are attached to available menu controls. Since Instagram frequently changes its DOM, placement may require maintenance.
+The extension adds contextual **↓** buttons beside Instagram content action menus and on visible video containers, including Reels and video messages when Instagram exposes the media in the page DOM. Right-clicking visible media or using **Alt + left-click** opens a compact **Download** context menu. This uses right-click intentionally to avoid interfering with the native left-click video playback. Story actions are attached to available menu controls. Since Instagram frequently changes its DOM, placement may require maintenance.
 
 Paste an Instagram post/Reel/Story URL into the large island to **open that page**; click its visible-media download control there. Direct accessible Instagram-hosted media URLs can download immediately. Arbitrary page links cannot be reliably converted to files without server APIs.
 
