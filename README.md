@@ -18,6 +18,7 @@
 
 - [About](#about)
 - [Live repository analytics](#-live-repository-analytics)
+- [Social post analytics dashboard](#social-post-analytics-dashboard)
 - [Explore the collections](#explore-the-collections)
 - [Project navigation](#project-navigation)
 - [Live website and automatic catalog](#live-website-and-automatic-catalog)
@@ -43,6 +44,12 @@
 ![Rolling 14-day GitHub traffic dashboard](https://raw.githubusercontent.com/RuslanSharifov/chrome-ui-gallery/analytics-data/traffic.svg)
 
 > **Setup required:** Add a repository Actions secret named `TRAFFIC_TOKEN` with read-only **Administration** permission for this repository. Run the **Repository analytics** workflow manually once to publish the first chart. The workflow publishes aggregate traffic counts publicly to the `analytics-data` branch; do not enable it if these counts should remain private. The workflow uses the built-in `GITHUB_TOKEN` with `contents: write` to publish the chart. GitHub Traffic provides only a rolling 14-day window; figures are not lifetime totals. [View owner-only traffic details](https://github.com/RuslanSharifov/chrome-ui-gallery/graphs/traffic).
+
+## Social post analytics dashboard
+
+[**Open the interactive Social Analytics Dashboard**](https://ruslansharifov.github.io/chrome-ui-gallery/social-analytics/) · [Source and usage](./docs/social-analytics/README.md)
+
+Compare Chrome UI Gallery promotional posts on Peerlist, LinkedIn, X, Hashnode, Product Hunt and DEV Community. Select individual platforms or all of them, switch between bar and line charts, and enter verified views, likes, comments, shares and clicks. The dashboard stores your entries locally in your browser and supports JSON export/import. **Cross-platform metrics are not fetched automatically**: missing figures remain blank until supplied from each platform's analytics. Unconfirmed posts are labeled accordingly.
 
 ## About
 
