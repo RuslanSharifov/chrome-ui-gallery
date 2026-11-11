@@ -1,7 +1,5 @@
-# YouTube UI & extensions
+# YouTube extensions and UI
 
-YouTube-focused experiments and browser enhancements in Chrome UI Gallery.
+- [YouTube Ambient Light](../ui-designs/youtube-ambient-light/README.md) — glassmorphism extension with ambient lighting, focus and lyrics modes.
 
-## Extensions
-
-- [Ambient Glow Lite](./extensions/ambient-glow-lite/README.md) — dynamic video-edge lighting for desktop YouTube ([design notes](./extensions/ambient-glow-lite/design.md))
+See [design notes](../ui-designs/youtube-ambient-light/design.md).

@@ -1,0 +1,163 @@
+/* =========================================================
+   GLASS THEME
+   ========================================================= */
+:root { --yal-glass: rgba(255,255,255,.08); --yal-glass-border: rgba(255,255,255,.18); --yal-accent: #3ea6ff; }
+
+/* ---------- Ambient glow ---------- */
+#yal-ambient { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+#yal-ambient canvas {
+  position: absolute; left: 50%; top: 50%;
+  width: calc(100vw * var(--yal-scale, 1.2)); height: calc(100vh * var(--yal-scale, 1.2));
+  transform: translate(-50%, -50%); object-fit: cover;
+  filter: blur(var(--yal-blur, 60px)) saturate(1.5); opacity: var(--yal-opacity, .8);
+}
+#yal-ambient::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,.15), rgba(0,0,0,.45)); }
+
+html.yal-on body, html.yal-on ytd-app, html.yal-on ytd-page-manager, html.yal-on #content,
+html.yal-on ytd-watch-flexy, html.yal-on #columns, html.yal-on ytd-masthead,
+html.yal-on #masthead-container { background: transparent !important; }
+html.yal-on ytd-app { position: relative; z-index: 1; }
+
+/* Video frame: rounded corners always; LED glow only when enabled */
+html.yal-on #movie_player { border-radius: 22px; box-shadow: inset 0 0 0 1px var(--yal-glass-border); }
+html.yal-on #movie_player video, html.yal-on #movie_player .html5-video-container { border-radius: 22px; }
+html.yal-led.yal-on #movie_player { box-shadow: inset 0 0 0 1px var(--yal-glass-border), 0 0 24px rgba(62,166,255,.55), 0 0 80px rgba(139,92,246,.45); }
+
+/* Glass info cards under the video */
+html.yal-on ytd-watch-metadata, html.yal-on ytd-comments, html.yal-on ytd-video-secondary-info-renderer {
+  background: var(--yal-glass) !important; backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid var(--yal-glass-border); border-radius: 18px; padding: 8px 12px;
+}
+
+/* Video picture off: sound keeps playing */
+html.yal-audio-only #movie_player video { opacity: 0 !important; }
+html.yal-audio-only #movie_player { background: radial-gradient(circle at 50% 40%, #2a1a4a, #05050a) !important; }
+
+/* ---------- Right panel: one glass card with tabs ---------- */
+#secondary { position: sticky !important; top: 72px; height: calc(100vh - 88px); overflow: hidden !important; }
+#secondary-inner { height: 100%; display: flex; flex-direction: column; }
+#yal-side {
+  display: flex; flex-direction: column; flex: 1; min-height: 0; height: 100%;
+  background: var(--yal-glass); backdrop-filter: blur(22px) saturate(170%);
+  border: 1px solid var(--yal-glass-border); border-radius: 22px; overflow: hidden;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 20px 50px rgba(0,0,0,.35);
+}
+#yal-side .yal-tabs { display: flex; gap: 6px; padding: 8px; border-bottom: 1px solid var(--yal-glass-border); }
+#yal-side .yal-tabs button {
+  flex: 1; padding: 8px; border: 0; border-radius: 14px; background: transparent;
+  color: #e8e8f0; cursor: pointer; font: 600 13px Roboto, Arial, sans-serif;
+}
+#yal-side .yal-tabs button.on { background: rgba(255,255,255,.16); color: #fff; }
+#yal-side .yal-slot { flex: 1; overflow-y: auto; min-height: 0; padding: 0 8px; scrollbar-width: thin; }
+#yal-side .yal-slot[hidden] { display: none; }
+#secondary #chat, #secondary #chat-container { display: none !important; }
+
+/* ---------- Player bar buttons ---------- */
+.yal-ctrl svg, .yal-focus-ctrl svg { display: block; margin: auto; }
+.yal-ctrl.on, .yal-focus-ctrl.on { color: var(--yal-accent) !important; }
+
+/* ---------- Focus mode: hidden siblings via data-yal-hidden ---------- */
+[data-yal-hidden] { display: none !important; }
+html.yal-focus .ytp-caption-window-container { display: none !important; }
+
+/* Focus: the video box is placed by JS (applyLayout) from the viewport size */
+html.yal-focus #movie_player {
+  position: fixed !important;
+  left: var(--yal-vid-left, 0px) !important; top: var(--yal-vid-top, 0px) !important;
+  width: var(--yal-vid-w, 60vw) !important; height: var(--yal-vid-h, 34vw) !important;
+  transform: none !important; z-index: 5 !important;
+  max-width: none !important; max-height: none !important;
+}
+html.yal-focus #movie_player .html5-video-container,
+html.yal-focus #movie_player video { width: 100% !important; height: 100% !important; }
+html.yal-focus #movie_player .ytp-chrome-bottom { width: calc(100% - 24px) !important; left: 12px !important; }
+
+/* ---------- Lyrics column: strictly the right half, never over the video ---------- */
+#yal-lyrics { display: none; }
+html.yal-focus-lyrics #yal-lyrics {
+  display: block; position: fixed; top: 0; bottom: 0;
+  left: calc(50vw + var(--yal-gap, 40px)); right: var(--yal-gap, 40px);
+  overflow: hidden; pointer-events: none; z-index: 4;
+  -webkit-mask-image: linear-gradient(transparent, #000 16%, #000 84%, transparent);
+          mask-image: linear-gradient(transparent, #000 16%, #000 84%, transparent);
+}
+#yal-track { position: relative; width: 100%; transition: transform .9s cubic-bezier(.34, 1.56, .64, 1); }
+#yal-lyrics .yal-line {
+  font: 600 clamp(14px, 1.25vw, 32px)/1.4 Roboto, Arial, sans-serif; color: #c9cdd6; opacity: .6;
+  padding: .35em 0; transition: opacity .5s, color .5s, transform .5s; transform-origin: left center;
+}
+#yal-lyrics .yal-line.now { color: #fff; opacity: 1; font-size: clamp(18px, 1.9vw, 44px); }
+#yal-lyrics .yal-line.past { opacity: .3; color: #9aa0ad; }
+#yal-lyrics .yal-w { display: inline-block; transition: color .15s, transform .15s; }
+#yal-lyrics .yal-w.spk { color: #fff; font-weight: 700; }
+#yal-lyrics .yal-w.cw { color: #fff; transform: scale(1.12); }
+#yal-lyrics .yal-line.yal-music { color: #3ea6ff; opacity: .9; }
+#yal-lyrics .yal-note { width: 1.3em; height: 1.3em; vertical-align: -0.2em; fill: none; }
+
+/* ---------- Always-visible reset button (outside the player) ---------- */
+#yal-reset {
+  position: fixed; left: 16px; bottom: 16px; z-index: 2147483647;
+  width: 42px; height: 42px; border-radius: 50%; cursor: pointer;
+  background: rgba(24,24,30,.55); backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid var(--yal-glass-border); color: #f1f1f5; font-size: 20px; line-height: 1;
+  box-shadow: 0 8px 24px rgba(0,0,0,.4);
+}
+#yal-reset:hover { background: rgba(24,24,30,.8); }
+
+/* =========================================================
+   SETTINGS WINDOW (glass)
+   ========================================================= */
+#yal-window {
+  position: fixed; right: 16px; bottom: 64px; width: 340px; max-height: 72vh;
+  z-index: 2147483646; display: flex; flex-direction: column;
+  background: rgba(24,24,30,.55); backdrop-filter: blur(26px) saturate(170%);
+  border: 1px solid var(--yal-glass-border); border-radius: 22px; color: #f1f1f5;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 16px 48px rgba(0,0,0,.5);
+  font: 13px/1.4 Roboto, Arial, sans-serif; overflow: hidden;
+  opacity: 0; transform: translateY(12px) scale(.96); transform-origin: bottom right;
+  pointer-events: none; transition: opacity .2s, transform .25s cubic-bezier(.2,.8,.2,1);
+}
+#yal-window.open { opacity: 1; transform: none; pointer-events: auto; }
+#yal-window .yal-head { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; gap: 8px; }
+#yal-window .yal-head b { color: var(--yal-accent); font-size: 18px; font-weight: 700; }
+#yal-window .yal-head-actions { display: flex; align-items: center; gap: 8px; }
+#yal-window .yal-reset-btn {
+  padding: 6px 10px; border-radius: 12px; border: 1px solid var(--yal-glass-border);
+  background: rgba(255,255,255,.08); color: #f1f1f5; cursor: pointer; font: inherit; font-size: 12px;
+}
+#yal-window .yal-reset-btn:hover { background: rgba(255,255,255,.18); }
+#yal-window .yal-x { background: rgba(255,255,255,.1); border: 0; color: #ddd; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; }
+#yal-window .yal-scroll { overflow-y: auto; padding-bottom: 8px; }
+#yal-window .yal-sec { border-top: 1px solid rgba(255,255,255,.1); }
+#yal-window .yal-sec summary {
+  padding: 10px 16px; font-weight: 600; color: #eef; cursor: pointer; list-style: none;
+  display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,.05);
+}
+#yal-window .yal-sec summary::-webkit-details-marker { display: none; }
+#yal-window .yal-sec summary::after { content: "▾"; color: #aaa; transition: transform .2s; }
+#yal-window .yal-sec:not([open]) summary::after { transform: rotate(-90deg); }
+#yal-window .yal-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 16px; gap: 8px; cursor: pointer; }
+#yal-window .yal-slider { flex-direction: column; align-items: stretch; cursor: default; gap: 2px; }
+#yal-window .yal-top { display: flex; justify-content: space-between; }
+#yal-window output { color: #b5b9c4; font-size: 12px; }
+#yal-window input[type=range] { width: 100%; margin: 4px 0; accent-color: var(--yal-accent); cursor: pointer; }
+#yal-window .yal-sw { position: relative; width: 36px; height: 20px; flex: none; }
+#yal-window .yal-sw input { opacity: 0; position: absolute; inset: 0; margin: 0; cursor: pointer; z-index: 1; }
+#yal-window .yal-sw i { position: absolute; inset: 0; border-radius: 10px; background: rgba(255,255,255,.22); transition: background .2s; }
+#yal-window .yal-sw i::after { content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff; transition: transform .2s; }
+#yal-window .yal-sw input:checked + i { background: var(--yal-accent); }
+#yal-window .yal-sw input:checked + i::after { transform: translateX(16px); }
+#yal-window .yal-chips { display: flex; gap: 6px; padding: 4px 16px 10px; }
+#yal-window .yal-chip, #yal-window .yal-btn {
+  flex: 1; padding: 7px; border-radius: 14px; border: 1px solid rgba(255,255,255,.15);
+  background: rgba(255,255,255,.08); color: #f1f1f5; cursor: pointer; font: inherit;
+}
+#yal-window .yal-chip:hover, #yal-window .yal-btn:hover { background: rgba(255,255,255,.18); }
+#yal-window .yal-status { padding: 6px 16px 12px; color: #b5b9c4; font-size: 12px; min-height: 18px; }
+
+#yal-track .yal-group { margin-bottom: 1.2em; }
+#yal-track .yal-group.done { opacity: .25; }
+#yal-track .yal-group.live .yal-line { color: #c9cdd6; opacity: .6; }
+#yal-track .yal-group.live .yal-line.now { color: #fff; opacity: 1; font-size: clamp(18px, 1.9vw, 44px); }
+#yal-track .yal-group.live .yal-line.past { opacity: .35; color: #9aa0ad; }
+#yal-track .yal-group.live .yal-line { font: 600 clamp(14px, 1.25vw, 32px)/1.4 Roboto, Arial, sans-serif; padding: .35em 0; transition: opacity .5s, color .5s; }

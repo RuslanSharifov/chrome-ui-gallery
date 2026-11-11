@@ -1,3 +1,3 @@
 # YouTube extensions
 
-- [Ambient Glow Lite](./ambient-glow-lite/README.md) — lightweight, configurable dynamic lighting for YouTube watch pages.
+- [YouTube Ambient Light](../../ui-designs/youtube-ambient-light/README.md) — installed from its `ui-designs/youtube-ambient-light` folder.
