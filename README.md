@@ -81,7 +81,7 @@ The project also hosts standalone extensions, separate from visual redesigns.
 
 | Tool | Purpose |
 | --- | --- |
-| [YouTube Ambient Glow Lite](./youtube/extensions/ambient-glow-lite/README.md) | Dynamic ambient lighting around YouTube videos |\n| [Instagram Media Saver](./Tools/instagram-media-saver/README.md) | Save directly accessible Instagram post, Reel and Story media with an unobtrusive download HUD — [poster](./Tools/instagram-media-saver/poster.svg) |\n| [Viewport Studio](./Tools/viewport-studio/README.md) | Compare responsive phone, tablet and desktop views in floating draggable windows — [poster](./Tools/viewport-studio/viewport-studio-poster.svg) |
+| [YouTube Ambient Light](./ui-designs/youtube-ambient-light/README.md) | Ambient lighting, focus modes, captions and equalizer for YouTube |\n| [Instagram Media Saver](./Tools/instagram-media-saver/README.md) | Save directly accessible Instagram post, Reel and Story media with an unobtrusive download HUD — [poster](./Tools/instagram-media-saver/poster.svg) |\n| [Viewport Studio](./Tools/viewport-studio/README.md) | Compare responsive phone, tablet and desktop views in floating draggable windows — [poster](./Tools/viewport-studio/viewport-studio-poster.svg) |
 | [UI Doctor](./Tools/UI-Doctor-v1.0-Chrome-Extension/README.md) | Visual debugging, responsive testing, layout and CSS inspection |
 | [DevLens](./Tools/devlens/README.md) | Page diagnostics, console activity, JavaScript errors and network monitoring |
 | [ChatGPT Lag Fixer](./Tools/chatgpt-lag-fixer/README.md) | Performance utilities for lengthy conversations |
