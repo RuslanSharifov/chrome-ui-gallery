@@ -377,6 +377,28 @@
       "preview": "Tools/instagram-media-saver/poster.svg"
     },
     {
+      "id": "youtube-extensions-ambient-glow-lite",
+      "category": "tool",
+      "platform": "youtube",
+      "name": "YouTube Ambient Glow Lite",
+      "style": "Ambient Lighting",
+      "description": "Color-responsive ambient glow around YouTube videos with simple, lightweight controls.",
+      "tags": [
+        "YouTube",
+        "Ambient",
+        "Glow"
+      ],
+      "icon": "✦",
+      "palette": [
+        "#151526",
+        "#624bc9",
+        "#8dd7ff"
+      ],
+      "doc": "youtube/extensions/ambient-glow-lite/README.md",
+      "folder": "youtube/extensions/ambient-glow-lite",
+      "version": "1.0.0"
+    },
+    {
       "id": "ui-designs-chatgpt-claymorphism",
       "category": "ui",
       "platform": "chatgpt",
