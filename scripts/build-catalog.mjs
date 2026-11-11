@@ -115,7 +115,7 @@ function addProject(manifestFile,category) {
   const folderPath=rel(folder);
   const parts=folderPath.split("/");
   if(category==="tool"&&parts.length!==2 && folderPath.split("/").slice(0,2).join("/")!=="youtube/extensions")
-    throw new Error(folderPath+": tools must use Tools/<slug> or youtube/extensions/<slug>/manifest.json");
+    throw new Error(folderPath+": tools must have an approved tool folder");
   if(category==="ui"&&parts.length<3)
     throw new Error(folderPath+": UI designs need a platform/style folder");
   const manifest=readJSON(manifestFile);
@@ -150,7 +150,9 @@ function addProject(manifestFile,category) {
 const projects=[];
 for(const manifest of findManifests(path.join(root,"Tools")))projects.push(addProject(manifest,"tool"));
 for(const manifest of findManifests(path.join(root,"youtube","extensions")))projects.push(addProject(manifest,"tool"));
+for(const manifest of findManifests(path.join(root,"ui-designs","youtube-ambient-light")))projects.push(addProject(manifest,"tool"));
 for(const folder of visibleDirs(path.join(root,"ui-designs"))) {
+  if(path.basename(folder)==="youtube-ambient-light")continue;
   for(const manifest of findManifests(folder)) projects.push(addProject(manifest,"ui"));
 }
 const ids=new Set();
