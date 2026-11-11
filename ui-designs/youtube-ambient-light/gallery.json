@@ -1,0 +1,21 @@
+{
+  "name": "YouTube Ambient Light",
+  "description": "Glass-style YouTube player with ambient lighting, focus layouts, captions, lyrics and a five-band equalizer.",
+  "platform": "youtube",
+  "style": "Glassmorphism",
+  "tags": [
+    "YouTube",
+    "Ambient glow",
+    "Focus",
+    "Lyrics",
+    "Equalizer",
+    "Extension"
+  ],
+  "icon": "▶",
+  "palette": [
+    "#101629",
+    "#284c82",
+    "#65baff"
+  ],
+  "iconUrl": "icons/icon128.png"
+}
