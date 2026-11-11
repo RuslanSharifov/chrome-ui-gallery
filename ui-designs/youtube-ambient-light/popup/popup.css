@@ -1,0 +1,32 @@
+* { box-sizing: border-box; }
+body {
+  width: 320px; margin: 0; padding: 14px;
+  font-family: "Segoe UI", Roboto, system-ui, sans-serif;
+  background: linear-gradient(160deg, #15121f, #0b0b12); color: #f2f2f8; font-size: 13px;
+}
+header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+h1 { font-size: 16px; margin: 0; }
+h2 { font-size: 12px; margin: 0 0 8px; opacity: .7; text-transform: uppercase; letter-spacing: .05em; }
+.ver { opacity: .5; font-size: 11px; }
+.card {
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+  border-radius: 14px; padding: 10px 12px; margin-bottom: 10px;
+  backdrop-filter: blur(10px);
+}
+.switch { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; cursor: pointer; }
+.switch input { appearance: none; width: 34px; height: 20px; border-radius: 999px; background: #3a3a4a; position: relative; cursor: pointer; transition: background .2s; }
+.switch input::after { content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff; transition: transform .2s; }
+.switch input:checked { background: #8b5cf6; }
+.switch input:checked::after { transform: translateX(14px); }
+.range { display: grid; grid-template-columns: 1fr 1.6fr 36px; align-items: center; gap: 8px; padding: 5px 0; }
+.range input { width: 100%; accent-color: #8b5cf6; }
+.range b { font-weight: 500; opacity: .75; text-align: right; font-size: 12px; }
+.eq { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; text-align: center; font-size: 11px; }
+.eq input { writing-mode: vertical-lr; direction: rtl; width: 22px; height: 90px; accent-color: #8b5cf6; margin: 0 auto; display: block; }
+.presets { display: flex; gap: 6px; margin-top: 8px; }
+.presets button {
+  flex: 1; padding: 6px 0; border-radius: 10px; border: 1px solid rgba(255,255,255,.15);
+  background: rgba(255,255,255,.06); color: inherit; cursor: pointer; font: inherit;
+}
+.presets button:hover { background: rgba(139,92,246,.35); }
+.hint { font-size: 11px; opacity: .55; margin: 4px 0 0; text-align: center; }

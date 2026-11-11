@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="az">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header><h1>Ambient Light</h1><span class="ver">v1.0</span></header>
+
+  <section class="card">
+    <label class="switch"><span>Ambient işıq</span><input type="checkbox" id="ambientOn"></label>
+    <label class="switch"><span>Yalnız səs (video gizlənir)</span><input type="checkbox" id="audioOnly"></label>
+    <label class="switch"><span>Altyazı</span><input type="checkbox" id="captions"></label>
+    <label class="switch"><span>Ekvalayzer</span><input type="checkbox" id="eqOn"></label>
+  </section>
+
+  <section class="card">
+    <div class="range"><span>Bulanıqlıq</span><input type="range" id="ambientBlur" min="10" max="150"><b id="v_ambientBlur"></b></div>
+    <div class="range"><span>Yayılma (%)</span><input type="range" id="ambientSpread" min="100" max="150"><b id="v_ambientSpread"></b></div>
+    <div class="range"><span>Intensivlik</span><input type="range" id="ambientIntensity" min="0.1" max="1" step="0.05"><b id="v_ambientIntensity"></b></div>
+  </section>
+
+  <section class="card">
+    <h2>Ekvalayzer</h2>
+    <div class="eq" id="eq"></div>
+    <div class="presets">
+      <button data-preset="flat">Flat</button>
+      <button data-preset="bass">Bass</button>
+      <button data-preset="vocal">Vokal</button>
+      <button data-preset="cinema">Kino</button>
+    </div>
+  </section>
+
+  <p class="hint">Ayarlar YouTube səhifəsində dərhal tətbiq olunur.</p>
+  <script src="popup.js"></script>
+</body>
+</html>
