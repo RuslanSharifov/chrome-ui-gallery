@@ -377,26 +377,30 @@
       "preview": "Tools/instagram-media-saver/poster.svg"
     },
     {
-      "id": "youtube-extensions-ambient-glow-lite",
+      "id": "ui-designs-youtube-ambient-light",
       "category": "tool",
       "platform": "youtube",
-      "name": "YouTube Ambient Glow Lite",
-      "style": "Ambient Lighting",
-      "description": "Color-responsive ambient glow around YouTube videos with simple, lightweight controls.",
+      "name": "YouTube Ambient Light",
+      "style": "Glassmorphism",
+      "description": "Glass-style YouTube player with ambient lighting, focus layouts, captions, lyrics and a five-band equalizer.",
       "tags": [
         "YouTube",
-        "Ambient",
-        "Glow"
+        "Ambient glow",
+        "Focus",
+        "Lyrics",
+        "Equalizer",
+        "Extension"
       ],
-      "icon": "✦",
+      "icon": "▶",
       "palette": [
-        "#151526",
-        "#624bc9",
-        "#8dd7ff"
+        "#101629",
+        "#284c82",
+        "#65baff"
       ],
-      "doc": "youtube/extensions/ambient-glow-lite/README.md",
-      "folder": "youtube/extensions/ambient-glow-lite",
-      "version": "1.0.0"
+      "iconUrl": "ui-designs/youtube-ambient-light/icons/icon128.png",
+      "doc": "ui-designs/youtube-ambient-light/README.md",
+      "folder": "ui-designs/youtube-ambient-light",
+      "version": "1.1.0"
     },
     {
       "id": "ui-designs-chatgpt-claymorphism",
