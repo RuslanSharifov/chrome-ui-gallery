@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Ambient Glow Lite</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main>
+    <header><span class="icon">✦</span><div><h1>Ambient Glow</h1><p>YouTube · Lite Edition</p></div></header>
+    <label class="switchrow"><span>Dynamic ambient lighting</span><input id="enabled" type="checkbox" aria-label="Enable ambient lighting"></label>
+    <label class="range"><span>Intensity <output id="intensityValue">65%</output></span><input id="intensity" type="range" min="0" max="100" step="5" value="65"></label>
+    <label class="range"><span>Glow spread <output id="blurValue">55%</output></span><input id="blur" type="range" min="0" max="100" step="5" value="55"></label>
+    <label class="range"><span>Updates per second <output id="fpsValue">4 fps</output></span><input id="fps" type="range" min="1" max="8" step="1" value="4"></label>
+    <p id="status" role="status" aria-live="polite">Settings are saved automatically.</p>
+    <small>Only runs on YouTube watch pages. No tracking or external requests.</small>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>

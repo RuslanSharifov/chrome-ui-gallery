@@ -1,0 +1,25 @@
+/* Ambient lighting lives outside the player; never intercepts clicks. */
+.yagl-active {
+  --yagl-top: rgba(94, 99, 190, .48);
+  --yagl-right: rgba(94, 99, 190, .48);
+  --yagl-bottom: rgba(94, 99, 190, .48);
+  --yagl-left: rgba(94, 99, 190, .48);
+  --yagl-spread: 65px;
+  --yagl-opacity: .7;
+  --yagl-blur: 24px;
+  overflow: visible !important;
+  box-shadow:
+    0 calc(-1 * var(--yagl-spread) * .45) var(--yagl-blur) calc(var(--yagl-spread) * -.15) var(--yagl-top),
+    calc(var(--yagl-spread) * .45) 0 var(--yagl-blur) calc(var(--yagl-spread) * -.15) var(--yagl-right),
+    0 calc(var(--yagl-spread) * .45) var(--yagl-blur) calc(var(--yagl-spread) * -.15) var(--yagl-bottom),
+    calc(-1 * var(--yagl-spread) * .45) 0 var(--yagl-blur) calc(var(--yagl-spread) * -.15) var(--yagl-left);
+  transition: box-shadow 220ms linear;
+}
+.yagl-active:fullscreen,
+:fullscreen .yagl-active,
+.yagl-active.ytp-fullscreen {
+  box-shadow: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .yagl-active { transition: none; }
+}
