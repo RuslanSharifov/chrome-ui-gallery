@@ -1,0 +1,17 @@
+{
+  "name": "YouTube Ambient Glow Lite",
+  "description": "Color-responsive ambient glow around YouTube videos with simple, lightweight controls.",
+  "platform": "youtube",
+  "style": "Ambient Lighting",
+  "tags": [
+    "YouTube",
+    "Ambient",
+    "Glow"
+  ],
+  "icon": "✦",
+  "palette": [
+    "#151526",
+    "#624bc9",
+    "#8dd7ff"
+  ]
+}
