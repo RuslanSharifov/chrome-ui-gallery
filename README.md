@@ -71,7 +71,7 @@ Themes and functional interface concepts are grouped by platform and design styl
 | Gemini | [Gemini designs](./ui-designs/gemini/README.md) |
 | GitHub | [GitHub designs](./ui-designs/github/README.md) |
 | Lovable | [Lovable designs](./ui-designs/lovable/README.md) |
-| All collections | [UI Designs](./ui-designs/README.md) |
+| YouTube | [YouTube extensions](./youtube/README.md) |\n| All collections | [UI Designs](./ui-designs/README.md) |
 
 Each project keeps its own implementation and design documentation, with links to relevant HTML, CSS, JavaScript, extension manifests, screenshots, and other files where provided.
 
@@ -81,7 +81,7 @@ The project also hosts standalone extensions, separate from visual redesigns.
 
 | Tool | Purpose |
 | --- | --- |
-| [Instagram Media Saver](./Tools/instagram-media-saver/README.md) | Save directly accessible Instagram post, Reel and Story media with an unobtrusive download HUD — [poster](./Tools/instagram-media-saver/poster.svg) |\n| [Viewport Studio](./Tools/viewport-studio/README.md) | Compare responsive phone, tablet and desktop views in floating draggable windows — [poster](./Tools/viewport-studio/viewport-studio-poster.svg) |
+| [YouTube Ambient Glow Lite](./youtube/extensions/ambient-glow-lite/README.md) | Dynamic ambient lighting around YouTube videos |\n| [Instagram Media Saver](./Tools/instagram-media-saver/README.md) | Save directly accessible Instagram post, Reel and Story media with an unobtrusive download HUD — [poster](./Tools/instagram-media-saver/poster.svg) |\n| [Viewport Studio](./Tools/viewport-studio/README.md) | Compare responsive phone, tablet and desktop views in floating draggable windows — [poster](./Tools/viewport-studio/viewport-studio-poster.svg) |
 | [UI Doctor](./Tools/UI-Doctor-v1.0-Chrome-Extension/README.md) | Visual debugging, responsive testing, layout and CSS inspection |
 | [DevLens](./Tools/devlens/README.md) | Page diagnostics, console activity, JavaScript errors and network monitoring |
 | [ChatGPT Lag Fixer](./Tools/chatgpt-lag-fixer/README.md) | Performance utilities for lengthy conversations |
@@ -96,7 +96,7 @@ Explore the [complete Tools directory](./Tools/README.md). Each extension has it
 | --- | --- |
 | [Live Gallery](https://ruslansharifov.github.io/chrome-ui-gallery/) | Searchable, responsive project showcase with previews and filters |
 | [UI Designs](./ui-designs/README.md) | Platform-based collections of custom browser interfaces |
-| [Tools](./Tools/README.md) | Standalone extensions and browser utilities |
+| [Tools](./Tools/README.md) | Standalone extensions and browser utilities |\n| [YouTube](./youtube/README.md) | YouTube extensions and interface experiments |
 | [Applications](./apps/README.md) | Website and desktop application overview |
 | [Desktop App](./apps/desktop/README.md) | Electron/React source code, setup and release information |
 | [Browser Companion](./browser-bridge/manager-extension/README.md) | Local connection between Chrome and the Desktop Manager |
@@ -168,7 +168,7 @@ chrome-ui-gallery/
 │   ├── gemini/
 │   ├── github/
 │   └── lovable/
-├── Tools/                  # Standalone Chrome extensions
+├── youtube/                # YouTube extension experiments\n├── Tools/                  # Standalone Chrome extensions
 ├── apps/
 │   ├── desktop/            # Electron + React Desktop Manager
 │   └── website/            # Website entry documentation
