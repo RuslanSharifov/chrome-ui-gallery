@@ -150,7 +150,8 @@ function addProject(manifestFile,category) {
 const projects=[];
 for(const manifest of findManifests(path.join(root,"Tools")))projects.push(addProject(manifest,"tool"));
 for(const manifest of findManifests(path.join(root,"youtube","extensions")))projects.push(addProject(manifest,"tool"));
-for(const manifest of findManifests(path.join(root,"ui-designs","youtube-ambient-light")))projects.push(addProject(manifest,"tool"));
+const youtubeExtension = path.join(root,"ui-designs","youtube-ambient-light","manifest.json");
+if(exists(youtubeExtension))projects.push(addProject(youtubeExtension,"tool"));
 for(const folder of visibleDirs(path.join(root,"ui-designs"))) {
   if(path.basename(folder)==="youtube-ambient-light")continue;
   for(const manifest of findManifests(folder)) projects.push(addProject(manifest,"ui"));
