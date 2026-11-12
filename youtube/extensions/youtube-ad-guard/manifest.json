@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Ad Guard — Block & Auto Skip",
+  "version": "1.0.0",
+  "description": "Independently control YouTube ad request blocking and automatic ad skipping.",
+  "minimum_chrome_version": "120",
+  "permissions": [
+    "storage",
+    "declarativeNetRequest"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "youtube_ads",
+        "enabled": false,
+        "path": "rules/ads.json"
+      }
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.youtube.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "action": {
+    "default_title": "YouTube Ad Guard",
+    "default_popup": "popup.html"
+  }
+}
