@@ -34,6 +34,8 @@ jobs:
           node --check ui-designs/youtube-ambient-light/background.js
           node --check ui-designs/youtube-ambient-light/content/content.js
           node --check ui-designs/youtube-ambient-light/popup/popup.js
+      - name: Check YouTube Ad Guard extension
+        run: node --test youtube/extensions/youtube-ad-guard/tests/smoke.test.cjs
       - name: Build catalog from extension manifests
         run: node scripts/build-catalog.mjs
       - name: Ensure committed catalog matches extension manifests

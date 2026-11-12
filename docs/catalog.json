@@ -377,6 +377,35 @@
       "preview": "Tools/instagram-media-saver/poster.svg"
     },
     {
+      "id": "youtube-extensions-youtube-ad-guard",
+      "category": "tool",
+      "platform": "youtube",
+      "name": "YouTube Ad Guard — Block & Auto Skip",
+      "style": "Playback Utility",
+      "description": "Two independent YouTube ad controls: scoped request blocking and automatic ad skipping with fallback seeking or acceleration.",
+      "tags": [
+        "YouTube",
+        "Ad blocking",
+        "Auto skip",
+        "Chrome",
+        "MV3",
+        "Open Source"
+      ],
+      "icon": "▶",
+      "palette": [
+        "#0b101b",
+        "#233a59",
+        "#39b98a"
+      ],
+      "doc": "youtube/extensions/youtube-ad-guard/README.md",
+      "folder": "youtube/extensions/youtube-ad-guard",
+      "version": "1.0.0",
+      "author": {
+        "name": "RuslanSharifov",
+        "url": "https://github.com/RuslanSharifov"
+      }
+    },
+    {
       "id": "ui-designs-youtube-ambient-light",
       "category": "tool",
       "platform": "youtube",
