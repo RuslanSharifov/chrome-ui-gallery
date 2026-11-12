@@ -397,13 +397,13 @@
         "#233a59",
         "#39b98a"
       ],
+      "doc": "youtube/extensions/youtube-ad-guard/README.md",
+      "folder": "youtube/extensions/youtube-ad-guard",
+      "version": "1.0.0",
       "author": {
         "name": "RuslanSharifov",
         "url": "https://github.com/RuslanSharifov"
-      },
-      "doc": "youtube/extensions/youtube-ad-guard/README.md",
-      "folder": "youtube/extensions/youtube-ad-guard",
-      "version": "1.0.0"
+      }
     },
     {
       "id": "ui-designs-youtube-ambient-light",
