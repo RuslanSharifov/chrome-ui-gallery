@@ -1,27 +1,21 @@
-# 🎨 UI Design Gallery
+# UI Design Gallery
 
-[← Home](../README.md) · [Tools instead →](../Tools/README.md) · [DevLens developer tool →](../Tools/devlens/README.md) · [Setup →](../GETTING_STARTED.md)
+[← Home](../README.md) · [Platform directory](../ui-designs/README.md) · [Tools](../Tools/README.md) · [Setup](../GETTING_STARTED.md)
 
-Choose a **platform**, then a **style**, then open **design.md** for implementation details. The table below features the original designs; **[the searchable website](https://ruslansharifov.github.io/chrome-ui-gallery/)** automatically lists every approved UI design, including future platforms.
+**Browse by platform → style/category → project → documentation/source.** The full [gallery website](https://ruslansharifov.github.io/chrome-ui-gallery/gallery.html) additionally supports UI/Tool, platform, style and search filters.
 
-| Platform | Styles and designs |
-| :--- | :--- |
-| **[ChatGPT](../ui-designs/chatgpt/README.md)** | [Glassmorphism](../ui-designs/chatgpt/glassmorphism/ai-prompt-tool/design.md) · [Claymorphism](../ui-designs/chatgpt/claymorphism/design.md) · [DARK GPT](../ui-designs/chatgpt/DARK%20GPT/design.md) |
-| **[Gemini](../ui-designs/gemini/README.md)** | [Glassmorphism](../ui-designs/gemini/glassmorphism/gemini-glassmorphism/design.md) · [Claymorphism](../ui-designs/gemini/claymorphism/gemini-claymorphism/design.md) |
-| **[GitHub](../ui-designs/github/README.md)** | [Glassmorphism](../ui-designs/github/glassmorphism/github-glassmorphism/design.md) · [Liquid Glass](../ui-designs/github/github-liquid-glass/design.md) · [3D GitHub](../ui-designs/github/3D%20github/design.md) |
-| **[Lovable](../ui-designs/lovable/README.md)** | [Glassmorphism](../ui-designs/lovable/glassmorphism/lovable-glassmorphism/design.md) |
+| Platform | Designs |
+| --- | --- |
+| [ChatGPT](../ui-designs/chatgpt/README.md) | [DARK GPT](../ui-designs/chatgpt/DARK%20GPT/design.md) · [Claymorphism](../ui-designs/chatgpt/claymorphism/design.md) · [Glassmorphism](../ui-designs/chatgpt/glassmorphism/ai-prompt-tool/design.md) |
+| [Gemini](../ui-designs/gemini/README.md) | [Claymorphism](../ui-designs/gemini/claymorphism/gemini-claymorphism/design.md) · [Glassmorphism](../ui-designs/gemini/glassmorphism/gemini-glassmorphism/design.md) |
+| [GitHub](../ui-designs/github/README.md) | [3D GitHub](../ui-designs/github/3D%20github/design.md) · [Liquid Glass](../ui-designs/github/github-liquid-glass/design.md) · [Glassmorphism](../ui-designs/github/glassmorphism/github-glassmorphism/design.md) |
+| [Lovable](../ui-designs/lovable/README.md) | [Glassmorphism](../ui-designs/lovable/glassmorphism/lovable-glassmorphism/design.md) |
+| [YouTube](../ui-designs/youtube/README.md) | [Ambient Light](../ui-designs/youtube/glassmorphism/youtube-ambient-light/README.md) · [Ad Guard](../ui-designs/youtube/utilities/youtube-ad-guard/README.md) |
 
-## How to use a design
+## Install
 
-1. Open any design document above.
-2. Find the extension folder containing **manifest.json**.
-3. Follow the [beginner installation guide](../GETTING_STARTED.md).
-4. Experiment with the design's supported settings.
+From a project's README, open its `manifest.json` folder and load it via `chrome://extensions` → Developer mode → Load unpacked. [Getting started](../GETTING_STARTED.md) provides more details.
 
-## Want to publish your design?
+## Collection policy
 
-Use the [design documentation template](../templates/ui-design/design-template.md) and follow the [contribution instructions](../CONTRIBUTING.md#add-a-new-ui-design).
-
-> Existing source folders intentionally stay at the repository root to preserve public URLs. This page is the dedicated UI section; Tools live separately in [Tools/](../Tools/README.md).
-
-New UI designs enter the website automatically after merging to main. Optional [gallery.json metadata](../docs/CATALOG.md) customizes display, author and preview.
+General tools live in [Tools/](../Tools/README.md); a platform-specific tool can live in its platform's utility category while still appearing under Tool on the website. [Documentation conventions](../docs/NAVIGATION.md) · [Contributing](../CONTRIBUTING.md).

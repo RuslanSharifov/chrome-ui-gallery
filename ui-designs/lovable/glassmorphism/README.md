@@ -24,3 +24,7 @@ A colorful glassmorphism layer for Lovable with translucent panels, soft gradien
 - [HTML](./lovable-glassmorphism/index.html)
 - [CSS](./lovable-glassmorphism/glass.css)
 - [JavaScript](./lovable-glassmorphism/content.js)
+
+## Browse this collection
+
+[← Lovable](../README.md) · [All platforms](../../README.md) · [Home](../../../README.md)

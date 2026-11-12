@@ -27,20 +27,23 @@ jobs:
           node --check scripts/build-catalog.mjs
           node --check scripts/test-catalog.mjs
           node --check scripts/validate.mjs
+          node --check scripts/test-navigation.mjs
           node --check docs/app.js
           node --check Tools/viewport-studio/workspace.js
           node --check Tools/viewport-studio/popup.js
           node --check templates/chrome-extension-tool/popup.js
-          node --check ui-designs/youtube-ambient-light/background.js
-          node --check ui-designs/youtube-ambient-light/content/content.js
-          node --check ui-designs/youtube-ambient-light/popup/popup.js
+          node --check ui-designs/youtube/glassmorphism/youtube-ambient-light/background.js
+          node --check ui-designs/youtube/glassmorphism/youtube-ambient-light/content/content.js
+          node --check ui-designs/youtube/glassmorphism/youtube-ambient-light/popup/popup.js
       - name: Check YouTube Ad Guard extension
-        run: node --test youtube/extensions/youtube-ad-guard/tests/smoke.test.cjs
+        run: node --test ui-designs/youtube/utilities/youtube-ad-guard/tests/smoke.test.cjs
       - name: Build catalog from extension manifests
         run: node scripts/build-catalog.mjs
       - name: Ensure committed catalog matches extension manifests
         run: git diff --exit-code -- docs/catalog.json
       - name: Confirm new projects are auto-discovered
         run: node scripts/test-catalog.mjs
+      - name: Verify README navigation and platform structure
+        run: node scripts/test-navigation.mjs
       - name: Validate source links, manifests and generated catalog
         run: node scripts/validate.mjs

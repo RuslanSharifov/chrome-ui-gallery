@@ -24,3 +24,7 @@ A transparent, layered glass UI for ChatGPT with soft blur, hairline borders, ad
 - [HTML](./ai-prompt-tool/index.html)
 - [CSS](./ai-prompt-tool/glass.css)
 - [JavaScript](./ai-prompt-tool/content.js)
+
+## Browse this collection
+
+[← ChatGPT](../README.md) · [All platforms](../../README.md) · [Home](../../../README.md)

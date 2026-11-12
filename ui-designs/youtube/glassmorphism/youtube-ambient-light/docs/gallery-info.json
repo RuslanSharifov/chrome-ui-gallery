@@ -1,0 +1,25 @@
+{
+  "name": "YouTube Ambient Light",
+  "folder": "ui-designs/youtube/glassmorphism/youtube-ambient-light",
+  "type": "Chrome Extension (Manifest V3)",
+  "description": "YouTube üçün ambient işıq, yalnız səs rejimi, altyazı, transkript və ekvalayzer.",
+  "features": [
+    "Ambient glow",
+    "Audio only",
+    "Captions",
+    "Transcript",
+    "5-band equalizer",
+    "Expanding control panel",
+    "Popup settings"
+  ],
+  "tags": [
+    "youtube",
+    "ambient",
+    "glow",
+    "equalizer",
+    "glassmorphism",
+    "extension"
+  ],
+  "thumbnail": "icons/icon128.png",
+  "status": "ready"
+}

@@ -10,3 +10,7 @@ Glassmorphism designs inspired by GitHub's developer-focused interface, adapted 
 
 - [GitHub UI Designs](../README.md)
 - [Back to repository](../../../README.md)
+
+## Browse this collection
+
+[← GitHub](../README.md) · [All platforms](../../README.md) · [Home](../../../README.md)

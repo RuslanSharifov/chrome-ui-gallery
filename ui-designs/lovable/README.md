@@ -1,5 +1,11 @@
-# Lovable UI Designs
+# Lovable — UI Designs
 
-Chrome UI themes and extension experiments for lovable. Select a design style to explore its code and documentation.
+[← All platforms](../README.md) · [Home](../../README.md) · [Live gallery](https://ruslansharifov.github.io/chrome-ui-gallery/gallery.html?platform=lovable)
 
-- [glassmorphism](./glassmorphism/README.md)
+Lovable interface experiments, grouped by visual style.
+
+| Style | Overview | Implementation |
+| --- | --- | --- |
+| Glassmorphism | [Style overview](./glassmorphism/README.md) | [Lovable Glassmorphism README](./glassmorphism/lovable-glassmorphism/README.md) · [design.md](./glassmorphism/lovable-glassmorphism/design.md) |
+
+[Getting started](../../GETTING_STARTED.md) · [Contribute a design](../../CONTRIBUTING.md).

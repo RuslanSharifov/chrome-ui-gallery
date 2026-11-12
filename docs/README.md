@@ -1,6 +1,6 @@
 # Automatic Gallery Catalog
 
-[← Main README](../README.md) · [Browse tools](../Tools/README.md) · [DevLens](../Tools/devlens/README.md) · [Showcase HTML](./index.html) · [Contributor instructions](../CONTRIBUTING.md) · [Metadata specification](./CATALOG.md)
+[← Main README](../README.md) · [Platforms](../ui-designs/README.md) · [Browse tools](../Tools/README.md) · [DevLens](../Tools/devlens/README.md) · [Showcase HTML](./index.html) · [Contributor instructions](../CONTRIBUTING.md) · [Metadata specification](./CATALOG.md)
 
 **No manual HTML or JavaScript project arrays.** Every approved extension appears automatically.
 
@@ -10,7 +10,7 @@
 
 ## How updates work
 
-1. Add **Tools/new-tool/manifest.json** with **README.md**, or a UI design under a platform/style folder with **design.md**.
+1. Add **Tools/new-tool/manifest.json** with **README.md**, or use **ui-designs/platform/style/design/** with README, design.md and manifest. Platform-specific tools may set `gallery.json.category` to `tool`. Follow [folder and navigation rules](./NAVIGATION.md).
 2. Pull Request runs **Validate gallery** and automatic-discovery integration tests.
 3. A maintainer reviews the contribution and merges it to **main**.
 4. **Publish automatic gallery** rebuilds **catalog.json** from all approved folders and deploys via GitHub Actions.

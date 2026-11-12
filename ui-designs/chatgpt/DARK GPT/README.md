@@ -20,3 +20,7 @@ On a new chat, the greeting ("Ready when you are.") turns into particles. Move t
 
 ## Install
 `chrome://extensions` → Developer mode → Load unpacked → select this folder. After editing, press Reload and refresh ChatGPT.
+
+## Browse this collection
+
+[← ChatGPT](../README.md) · [All platforms](../../README.md) · [Home](../../../README.md)

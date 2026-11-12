@@ -6,7 +6,8 @@ You can install the gallery's extensions without writing code.
 
 ## Step 1 — Find what you want
 
-- **Appearance and themes?** Open the [UI gallery](./ui/README.md).
+- **Appearance and themes?** Open the [UI gallery](./ui/README.md) or the [platform directory](./ui-designs/README.md).
+- **YouTube-specific extensions?** Open [YouTube](./ui-designs/youtube/README.md), then choose [Ambient Light](./ui-designs/youtube/glassmorphism/youtube-ambient-light/README.md) or [Ad Guard](./ui-designs/youtube/utilities/youtube-ad-guard/README.md).
 - **Useful utilities?** Open the [Tools directory](./Tools/README.md). For example, [DevLens](./Tools/devlens/README.md) is a developer diagnostics extension.
 
 Choose a design/tool and open its documentation before installing.

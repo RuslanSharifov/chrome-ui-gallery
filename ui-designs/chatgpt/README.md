@@ -1,7 +1,13 @@
-# ChatGPT UI Designs
+# ChatGPT — UI Designs
 
-Chrome UI themes and extension experiments for chatgpt. Select a design style to explore its code and documentation.
+[← All platforms](../README.md) · [Home](../../README.md) · [Live gallery](https://ruslansharifov.github.io/chrome-ui-gallery/gallery.html?platform=chatgpt)
 
-- [DARK GPT](./DARK%20GPT/README.md)
-- [claymorphism](./claymorphism/README.md)
-- [glassmorphism](./glassmorphism/README.md)
+ChatGPT interface experiments grouped by visual design style.
+
+| Style | Overview | Implementation |
+| --- | --- | --- |
+| Dark / red ambient | [DARK GPT](./DARK%20GPT/README.md) | [design.md](./DARK%20GPT/design.md) |
+| Claymorphism | [Claymorphism](./claymorphism/README.md) | [design.md](./claymorphism/design.md) |
+| Glassmorphism | [Glassmorphism](./glassmorphism/README.md) | [AI Prompt Tool design.md](./glassmorphism/ai-prompt-tool/design.md) |
+
+Choose the folder containing `manifest.json` when loading in Chrome. [Getting started](../../GETTING_STARTED.md) · [General tools](../../Tools/README.md).

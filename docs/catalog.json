@@ -377,7 +377,7 @@
       "preview": "Tools/instagram-media-saver/poster.svg"
     },
     {
-      "id": "youtube-extensions-youtube-ad-guard",
+      "id": "ui-designs-youtube-utilities-youtube-ad-guard",
       "category": "tool",
       "platform": "youtube",
       "name": "YouTube Ad Guard — Block & Auto Skip",
@@ -397,8 +397,8 @@
         "#233a59",
         "#39b98a"
       ],
-      "doc": "youtube/extensions/youtube-ad-guard/README.md",
-      "folder": "youtube/extensions/youtube-ad-guard",
+      "doc": "ui-designs/youtube/utilities/youtube-ad-guard/README.md",
+      "folder": "ui-designs/youtube/utilities/youtube-ad-guard",
       "version": "1.0.0",
       "author": {
         "name": "RuslanSharifov",
@@ -406,7 +406,7 @@
       }
     },
     {
-      "id": "ui-designs-youtube-ambient-light",
+      "id": "ui-designs-youtube-glassmorphism-youtube-ambient-light",
       "category": "tool",
       "platform": "youtube",
       "name": "YouTube Ambient Light",
@@ -426,9 +426,9 @@
         "#284c82",
         "#65baff"
       ],
-      "iconUrl": "ui-designs/youtube-ambient-light/icons/icon128.png",
-      "doc": "ui-designs/youtube-ambient-light/README.md",
-      "folder": "ui-designs/youtube-ambient-light",
+      "iconUrl": "ui-designs/youtube/glassmorphism/youtube-ambient-light/icons/icon128.png",
+      "doc": "ui-designs/youtube/glassmorphism/youtube-ambient-light/README.md",
+      "folder": "ui-designs/youtube/glassmorphism/youtube-ambient-light",
       "version": "1.1.0"
     },
     {

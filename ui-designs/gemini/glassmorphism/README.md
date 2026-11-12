@@ -24,3 +24,7 @@ A frosted-glass visual layer for Gemini with translucent surfaces, atmospheric l
 - [HTML](./gemini-glassmorphism/index.html)
 - [CSS](./gemini-glassmorphism/glass.css)
 - [JavaScript](./gemini-glassmorphism/content.js)
+
+## Browse this collection
+
+[← Gemini](../README.md) · [All platforms](../../README.md) · [Home](../../../README.md)

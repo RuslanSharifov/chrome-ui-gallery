@@ -17,3 +17,7 @@
 ## Use
 
 See [installation and testing](./README.md). Block mode controls the Chrome static ruleset and ad-slot CSS. Auto skip acts only while the page identifies an ad player, attempting button clicks, seeking and temporary accelerated muted ad playback. Once the ad state ends it restores playback settings where possible.
+
+## Navigation
+
+[← Ad Guard](./README.md) · [YouTube utilities](../README.md) · [YouTube](../../README.md)
