@@ -14,3 +14,7 @@ Settings: toolbar icon (popup) or "Full page ↗" (wide settings tab). Click any
 Notes: GitHub's DOM is not a public API; if a surface is missed, add its selector to the matching zone in glass.css.
 Liquid edge refraction is an SVG backdrop-filter (Chrome/Edge); elsewhere blur + specular edges remain.
 Matches: github.com and gist.github.com. Visual styling only; no network access, no data collected.
+
+## Browse this collection
+
+[← GitHub](../README.md) · [All platforms](../../README.md) · [Home](../../../README.md) · [Design notes](./design.md)

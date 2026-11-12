@@ -171,3 +171,7 @@ You can customize presets by:
 **v3.0.0** - Original release with core effects
 
 Enjoy enhanced GitHub! 🎨
+
+## Browse this collection
+
+[← GitHub](../README.md) · [All platforms](../../README.md) · [Home](../../../README.md) · [Design notes](./design.md)

@@ -25,3 +25,7 @@ A soft 3D clay interface for Gemini built from rounded surfaces, sculpted shadow
 - [CSS](./gemini-claymorphism/clay.css)
 - [Cloud CSS](./gemini-claymorphism/clouds.css)
 - [JavaScript](./gemini-claymorphism/content.js)
+
+## Browse this collection
+
+[← Gemini](../README.md) · [All platforms](../../README.md) · [Home](../../../README.md)
