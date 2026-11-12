@@ -39,3 +39,7 @@ YouTube videosunun ətrafında ambient işıq, həmçinin səs və altyazı üç
 - **LED parıltı:** videonun kənar işığı ayarlardan (Ambient işıq bölməsi) söndürülüb yandırıla bilir.
 - **Fokus rejimi:** iki seçim var. "Yalnız video" videonu ortada saxlayır. "Fokusda sözlər" videonu solda kiçik hissədə, sözləri sağda Apple Music üslubunda yuxarı axan şəkildə göstərir (alt yazı avtomatik açılır).
 - **Təhlükəsizlik:** pleyer ölçüsü etibarsız olarsa və ya ekran dəyişəndə fokus rejimi yenidən tətbiq olunur, problem davam edərsə avtomatik söndürülür.
+
+## Navigation
+
+[← Ambient Light](../README.md) · [Design notes](../design.md) · [YouTube](../../../README.md)

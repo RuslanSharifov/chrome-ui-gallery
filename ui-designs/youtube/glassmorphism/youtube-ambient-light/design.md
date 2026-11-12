@@ -22,4 +22,6 @@ Load this exact folder via `chrome://extensions` → Developer mode → Load unp
 
 ## Gallery
 
-The site catalog treats this as a browser tool while preserving the provided folder and all behavior. The PNG icons are used for the public gallery card and Chrome extension listing.
+The site catalog treats this as a YouTube-specific browser tool. Only its folder path and documentation were changed; player code and settings remain untouched. The PNG icons are used for the public gallery card and Chrome extension listing.
+
+[← Ambient Light README](./README.md) · [Glassmorphism](../README.md) · [YouTube](../../README.md)

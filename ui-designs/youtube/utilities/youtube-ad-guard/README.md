@@ -11,12 +11,12 @@ Chrome Manifest V3 extension with **two independently configurable features**.
 
 1. Download or clone [Chrome UI Gallery](https://github.com/RuslanSharifov/chrome-ui-gallery).
 2. Go to `chrome://extensions` in Google Chrome; turn on **Developer mode**.
-3. Click **Load unpacked** and select the exact `youtube/extensions/youtube-ad-guard/` folder.
+3. Click **Load unpacked** and select the exact `ui-designs/youtube/utilities/youtube-ad-guard/` folder.
 4. Open YouTube and click the extension icon (pin it from the Extensions menu if necessary).
 5. Both switches start ON. Switch off either one independently to customize behavior.
 6. Reload any YouTube tab opened before installation, especially after enabling network blocking.
 
-Once this PR merges and GitHub Pages publishing succeeds, the [Chrome UI Gallery website](https://ruslansharifov.github.io/chrome-ui-gallery/) will automatically discover the extension and provide a ZIP build.
+After a successful publishing workflow, the [Chrome UI Gallery website](https://ruslansharifov.github.io/chrome-ui-gallery/) will automatically discover the extension and provide a ZIP build.
 
 ## Independent switches
 
@@ -53,7 +53,7 @@ Once this PR merges and GitHub Pages publishing succeeds, the [Chrome UI Gallery
 Run from the repository root:
 
 ```sh
-node --test youtube/extensions/youtube-ad-guard/tests/smoke.test.cjs
+node --test ui-designs/youtube/utilities/youtube-ad-guard/tests/smoke.test.cjs
 node scripts/build-catalog.mjs
 node scripts/test-catalog.mjs
 node scripts/validate.mjs
@@ -69,3 +69,7 @@ If playback breaks, disable **Block ad requests** first to isolate network filte
 - [Support on Ko-fi](https://ko-fi.com/ruslansharifov)
 
 Independent community project, not affiliated with YouTube or Google.
+
+## Navigation
+
+[← YouTube utilities](../README.md) · [← YouTube](../../README.md) · [← All platforms](../../../README.md) · [Home](../../../../README.md) · [Ambient Light](../../glassmorphism/youtube-ambient-light/README.md)

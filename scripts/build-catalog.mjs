@@ -65,9 +65,10 @@ function readMeta(dir) {
   if(!exists(file)) return {};
   const v=readJSON(file);
   if(!v || typeof v !== "object" || Array.isArray(v))throw new Error(rel(file)+": metadata must be an object");
-  const allowed=new Set(["name","description","platform","style","tags","palette","icon","author","preview","previews","iconUrl"]);
+  const allowed=new Set(["name","description","platform","style","tags","palette","icon","author","preview","previews","iconUrl","category"]);
   for(const key of Object.keys(v))if(!allowed.has(key))throw new Error(rel(file)+": unknown field "+key);
   for(const key of ["name","description","platform","style","icon"])if(v[key]!==undefined)safeText(v[key],rel(file)+"."+key,key==="description"?500:100);
+  if(v.category!==undefined&&!["tool","ui"].includes(v.category))throw new Error(rel(file)+": category must be ui or tool");
   if(v.platform!==undefined&&!/^[a-z0-9][a-z0-9-]*$/.test(v.platform))throw new Error(rel(file)+": platform must be a lowercase slug");
   if(v.tags!==undefined&&(!Array.isArray(v.tags)||v.tags.length>6||v.tags.some(t=>typeof t!=="string"||t.length>24||!t.trim())))throw new Error(rel(file)+": tags must contain at most 6 short strings");
   if(v.palette!==undefined&&(!Array.isArray(v.palette)||v.palette.length!==3||v.palette.some(c=>typeof c!=="string"||!/^#[0-9a-fA-F]{6}$/.test(c))))throw new Error(rel(file)+": palette must be 3 hex RGB colors");
@@ -110,21 +111,24 @@ function findManifests(dir,depth=0){
     return findManifests(child,depth+1);
   });
 }
-function addProject(manifestFile,category) {
+function addProject(manifestFile,sourceCategory) {
   const folder=path.dirname(manifestFile);
   const folderPath=rel(folder);
   const parts=folderPath.split("/");
-  if(category==="tool"&&parts.length!==2 && folderPath.split("/").slice(0,2).join("/")!=="youtube/extensions")
-    throw new Error(folderPath+": tools must have an approved tool folder");
-  if(category==="ui"&&parts.length<3)
+  if(sourceCategory==="tool"&&(parts[0]!=="Tools"||parts.length!==2))
+    throw new Error(folderPath+": standalone tools belong in Tools/<name>");
+  if(sourceCategory==="ui"&&parts.length<3)
     throw new Error(folderPath+": UI designs need a platform/style folder");
   const manifest=readJSON(manifestFile);
   if(manifest.manifest_version!==3)throw new Error(folderPath+": Chrome Manifest V3 is required");
+  const meta=readMeta(folder);
+  const category=meta.category??sourceCategory;
+  if(sourceCategory==="tool"&&category!=="tool")
+    throw new Error(folderPath+": standalone Tools cannot override category to ui");
   const docs=category==="tool" ? ["README.md"] : ["design.md","DESIGN.md"];
   const documentation=docs.find(name=>exists(path.join(folder,name)));
   if(!documentation) throw new Error(folderPath+": missing "+docs.join(" or "));
-  const meta=readMeta(folder);
-  const platform=category==="ui" ? parts[1] : meta.platform??inferPlatform(manifest);
+  const platform=sourceCategory==="ui" ? parts[1] : meta.platform??inferPlatform(manifest);
   if(category==="ui"&&meta.platform!==undefined&&meta.platform!==parts[0])
     throw new Error(folderPath+": metadata platform must match the parent platform folder");
   const style=meta.style??(category==="tool"?"Browser Tool":titleCase(parts[2]));
@@ -149,11 +153,7 @@ function addProject(manifestFile,category) {
 }
 const projects=[];
 for(const manifest of findManifests(path.join(root,"Tools")))projects.push(addProject(manifest,"tool"));
-for(const manifest of findManifests(path.join(root,"youtube","extensions")))projects.push(addProject(manifest,"tool"));
-const youtubeExtension = path.join(root,"ui-designs","youtube-ambient-light","manifest.json");
-if(exists(youtubeExtension))projects.push(addProject(youtubeExtension,"tool"));
 for(const folder of visibleDirs(path.join(root,"ui-designs"))) {
-  if(path.basename(folder)==="youtube-ambient-light")continue;
   for(const manifest of findManifests(folder)) projects.push(addProject(manifest,"ui"));
 }
 const ids=new Set();
