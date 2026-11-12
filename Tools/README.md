@@ -1,6 +1,6 @@
 # 🧰 Chrome Extension Tools
 
-[← Home](../README.md) · [UI Gallery →](../ui/README.md) · [DevLens →](./devlens/README.md) · [Contribute a tool →](../CONTRIBUTING.md#add-a-new-tool)
+[← Home](../README.md) · [All platforms](../ui-designs/README.md) · [UI Gallery →](../ui/README.md) · [DevLens →](./devlens/README.md) · [Contribute a tool →](../CONTRIBUTING.md#add-a-new-tool)
 
 Tools are **standalone extensions**, separate from visual UI redesigns. Each tool includes its own installation instructions, source files and license information.
 
@@ -12,7 +12,8 @@ Tools are **standalone extensions**, separate from visual UI redesigns. Each too
 
 | Tool | Category | Description | Source |
 | :--- | :--- | :--- | :--- |
-| **[Instagram Media Saver](./instagram-media-saver/README.md)** | Media utility | One-click save button for accessible Instagram posts, Stories and Reels with a minimizable floating download HUD | [Poster](./instagram-media-saver/poster.svg) · [Icon](./instagram-media-saver/icon.svg) · [Source](./instagram-media-saver/) · [Manifest](./instagram-media-saver/manifest.json) |\n| **[ChatGPT Lag Fixer](./chatgpt-lag-fixer/README.md)** | Performance | Reduce lag in long ChatGPT chats | [Open folder](./chatgpt-lag-fixer/) |
+| **[Instagram Media Saver](./instagram-media-saver/README.md)** | Media utility | One-click save button for accessible Instagram posts, Stories and Reels with a minimizable floating download HUD | [Poster](./instagram-media-saver/poster.svg) · [Icon](./instagram-media-saver/icon.svg) · [Source](./instagram-media-saver/) · [Manifest](./instagram-media-saver/manifest.json) |
+| **[ChatGPT Lag Fixer](./chatgpt-lag-fixer/README.md)** | Performance | Reduce lag in long ChatGPT chats | [Open folder](./chatgpt-lag-fixer/) |
 | **[Quick QR](./quick-qr/README.md)** | Link sharing | Create QR codes from current tab or custom text; save PNG offline | [Preview](./quick-qr/icon.svg) · [Source](./quick-qr/) |
 | **[Universal Dark](./universal-dark/README.md)** | Browsing comfort | Per-site dark mode, saved brightness and contrast controls | [Preview](./universal-dark/icon.svg) · [Source](./universal-dark/) |
 | **[Screen Privacy](./screen-privacy/README.md)** | Privacy | Blur selected page elements before sharing a screen | [Preview](./screen-privacy/cover.svg) · [Source](./screen-privacy/) |
@@ -24,6 +25,17 @@ Tools are **standalone extensions**, separate from visual UI redesigns. Each too
 | **[Viewport Studio](./viewport-studio/README.md)** | Responsive testing | Multiple movable phone/tablet/desktop previews, custom dimensions and four panel positions | [Poster](./viewport-studio/viewport-studio-poster.svg) · [Source files](./viewport-studio/) · [Manifest](./viewport-studio/manifest.json) |
 | **[UI Doctor](./UI-Doctor-v1.0-Chrome-Extension/README.md)** | Developer diagnostics | Visual inspection, spacing, responsive testing, layout diagnostics and temporary CSS playground | [Source files](./UI-Doctor-v1.0-Chrome-Extension/) · [Manifest](./UI-Doctor-v1.0-Chrome-Extension/manifest.json) |
 | **[TabPocket](./tabpocket/README.md)** | Productivity | Save, search, organize and restore tab collections; local storage | [Source files](./tabpocket/) · [Manifest](./tabpocket/manifest.json) |
+
+## Platform-specific tools
+
+These utilities live under **their platform folder**, rather than a duplicate path under `Tools/`. Both remain discoverable under the gallery's Tool category.
+
+| Platform | Tool | Documentation |
+| --- | --- | --- |
+| YouTube | Ambient Light (glassmorphism) | [README](../ui-designs/youtube/glassmorphism/youtube-ambient-light/README.md) · [Design](../ui-designs/youtube/glassmorphism/youtube-ambient-light/design.md) |
+| YouTube | Ad Guard (playback utility) | [README](../ui-designs/youtube/utilities/youtube-ad-guard/README.md) · [Design](../ui-designs/youtube/utilities/youtube-ad-guard/design.md) |
+
+[All platform designs](../ui-designs/README.md) · [YouTube index](../ui-designs/youtube/README.md).
 
 ## Install a tool
 

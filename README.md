@@ -71,7 +71,8 @@ Themes and functional interface concepts are grouped by platform and design styl
 | Gemini | [Gemini designs](./ui-designs/gemini/README.md) |
 | GitHub | [GitHub designs](./ui-designs/github/README.md) |
 | Lovable | [Lovable designs](./ui-designs/lovable/README.md) |
-| YouTube | [YouTube extensions](./youtube/README.md) |\n| All collections | [UI Designs](./ui-designs/README.md) |
+| YouTube | [YouTube designs and extensions](./ui-designs/youtube/README.md) |
+| All collections | [UI Designs](./ui-designs/README.md) |
 
 Each project keeps its own implementation and design documentation, with links to relevant HTML, CSS, JavaScript, extension manifests, screenshots, and other files where provided.
 
@@ -81,7 +82,10 @@ The project also hosts standalone extensions, separate from visual redesigns.
 
 | Tool | Purpose |
 | --- | --- |
-| [YouTube Ambient Light](./ui-designs/youtube-ambient-light/README.md) | Ambient lighting, focus modes, captions and equalizer for YouTube |\n| [Instagram Media Saver](./Tools/instagram-media-saver/README.md) | Save directly accessible Instagram post, Reel and Story media with an unobtrusive download HUD — [poster](./Tools/instagram-media-saver/poster.svg) |\n| [Viewport Studio](./Tools/viewport-studio/README.md) | Compare responsive phone, tablet and desktop views in floating draggable windows — [poster](./Tools/viewport-studio/viewport-studio-poster.svg) |
+| [YouTube Ambient Light](./ui-designs/youtube/glassmorphism/youtube-ambient-light/README.md) | Ambient lighting, focus modes, captions and equalizer for YouTube |
+| [YouTube Ad Guard](./ui-designs/youtube/utilities/youtube-ad-guard/README.md) | Independent ad blocking and automatic skipping controls; effectiveness depends on YouTube |
+| [Instagram Media Saver](./Tools/instagram-media-saver/README.md) | Save directly accessible Instagram post, Reel and Story media with an unobtrusive download HUD — [poster](./Tools/instagram-media-saver/poster.svg) |
+| [Viewport Studio](./Tools/viewport-studio/README.md) | Compare responsive phone, tablet and desktop views in floating draggable windows — [poster](./Tools/viewport-studio/viewport-studio-poster.svg) |
 | [UI Doctor](./Tools/UI-Doctor-v1.0-Chrome-Extension/README.md) | Visual debugging, responsive testing, layout and CSS inspection |
 | [DevLens](./Tools/devlens/README.md) | Page diagnostics, console activity, JavaScript errors and network monitoring |
 | [ChatGPT Lag Fixer](./Tools/chatgpt-lag-fixer/README.md) | Performance utilities for lengthy conversations |
@@ -92,11 +96,15 @@ Explore the [complete Tools directory](./Tools/README.md). Each extension has it
 
 ## Project navigation
 
+Browse through **collection → platform → design style or utility category → project → documentation and source code**. Start with [UI Designs](./ui-designs/README.md) for ChatGPT, Gemini, GitHub, Lovable and YouTube; use [Tools](./Tools/README.md) for standalone browser utilities. [Navigation conventions](./docs/NAVIGATION.md) explain how to contribute new projects.
+
+
 | Area | What you will find |
 | --- | --- |
 | [Live Gallery](https://ruslansharifov.github.io/chrome-ui-gallery/) | Searchable, responsive project showcase with previews and filters |
 | [UI Designs](./ui-designs/README.md) | Platform-based collections of custom browser interfaces |
-| [Tools](./Tools/README.md) | Standalone extensions and browser utilities |\n| [YouTube](./youtube/README.md) | YouTube extensions and interface experiments |
+| [Tools](./Tools/README.md) | Standalone extensions and browser utilities |
+| [YouTube](./ui-designs/youtube/README.md) | YouTube ambient UI and playback utilities organized by category |
 | [Applications](./apps/README.md) | Website and desktop application overview |
 | [Desktop App](./apps/desktop/README.md) | Electron/React source code, setup and release information |
 | [Browser Companion](./browser-bridge/manager-extension/README.md) | Local connection between Chrome and the Desktop Manager |
@@ -167,8 +175,9 @@ chrome-ui-gallery/
 │   ├── chatgpt/
 │   ├── gemini/
 │   ├── github/
-│   └── lovable/
-├── youtube/                # YouTube extension experiments\n├── Tools/                  # Standalone Chrome extensions
+│   ├── lovable/
+│   └── youtube/              # Glassmorphism and YouTube utilities
+├── Tools/                  # Standalone Chrome extensions
 ├── apps/
 │   ├── desktop/            # Electron + React Desktop Manager
 │   └── website/            # Website entry documentation

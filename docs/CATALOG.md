@@ -29,6 +29,7 @@ A valid extension is published from its **manifest.json** and required README/de
 | name | No | manifest.name |
 | description | No | manifest.description |
 | platform | No | Parent UI platform, or inferred site/browse category for Tools |
+| category | No | `ui` for visual designs; `tool` for standalone utilities (can override in a platform folder) |
 | style | No | Platform's style folder / Browser Tool |
 | tags | No | Category and style |
 | icon | No | Platform monogram |
@@ -40,6 +41,12 @@ A valid extension is published from its **manifest.json** and required README/de
 Rules: maximum six tags, three 6-digit hex palette colors, GitHub profile URL for author.url, and local PNG/JPG/WebP/SVG/GIF preview files inside the extension folder only. All optional fields are verified by the generator. Never submit secrets or misleading author attribution.
 
 The generated catalog automatically links to the project's README.md or design.md and GitHub source folder. The starter template under [templates](../templates/README.md) is excluded.
+
+## Platform-specific extensions
+
+Keep utilities for a particular website with that platform, for example `ui-designs/youtube/utilities/youtube-ad-guard/`. To list one under the gallery's **Tool** filter while retaining its source location, set `"category": "tool"` in its `gallery.json`. General browser tools stay in `Tools/<tool>/` and cannot override their category to `ui`.
+
+[UI platform directory](../ui-designs/README.md) · [Navigation policy](./NAVIGATION.md).
 
 ## Usage
 
