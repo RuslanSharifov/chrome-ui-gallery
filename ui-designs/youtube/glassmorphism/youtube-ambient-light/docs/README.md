@@ -6,7 +6,7 @@ YouTube videosunun ətrafında ambient işıq, həmçinin səs və altyazı üç
 - **Ambient işıq:** videonun kadrından rəng götürüb səhifənin arxasına bulanıq işıq verir. Bulanıqlıq, yayılma və intensivlik ayarlana bilir.
 - **Player düyməsi:** video idarə panelində dişli (ayarlar) və teatr düymələri arasında yerləşir. Basanda ayarlar pəncərəsi açılır. Bütün ayarlar bu düymə ilə idarə olunur.
 - **Toolbar ikonu:** yalnız aktiv/deaktiv edir (ON/OFF işarəsi ilə). Ayarlar menyusu yoxdur.
-- **Ayarlar pəncərəsi:** açılan kateqoriyalar: Ambient işıq, Video yüklənməsi, Səsin ayrıca yüklənməsi (ekvalayzer), Alt yazı yüklənməsi.
+- **Ayarlar pəncərəsi:** üç tab: İşıq, Səs (ekvalayzer), Rejim (video, altyazı, fokus).
 - **Sağ panel:** yorumlar yuxarıda, video tövsiyələri aşağıda; hər biri ayrıca scroll olunur, əsas video yerində qalır.
 - **Video yüklənməsi:** videonu göstərməyi söndürmək olar, səs davam edir.
 - **Ekvalayzer:** 5 zolaq (60 Hz – 12 kHz), Flat / Bass / Vokal / Kino preset-ləri.
@@ -43,3 +43,10 @@ YouTube videosunun ətrafında ambient işıq, həmçinin səs və altyazı üç
 ## Navigation
 
 [← Ambient Light](../README.md) · [Design notes](../design.md) · [YouTube](../../../README.md)
+
+## Versiya 1.5 (1.2.0 manifest)
+- **Yeni ayarlar pəncərəsi:** neumorphism üslubu, sadə tünd tonlar, neon yoxdur. Başlıqdakı ☀/☾ düyməsi ilə tünd və işıqlı rejim arasında keçid; seçim yadda qalır.
+- **Daha sadə ayarlar:** beş açılan bölmə əvəzinə üç tab (İşıq · Səs · Rejim). Fabrika ayarları altda "Sıfırla" kimi, təsadüfi basılmasın deyə iki addımlıdır. Həmişə görünən ↺ düyməsi yalnız fokus rejimində göstərilir.
+- **Video kənarında parıltı** artıq standart olaraq söndürülüdür və tək yumşaq rəngdədir.
+- **Sürət:** ambient yalnız video oynayanda, tab görünəndə və tam ekranda olmayanda çəkilir; üç ayrı taymer bir animasiya dövrəsinə birləşdi; DOM müşahidəçisi throttle olunub və öz elementlərimizə reaksiya vermir; sürüşdürmə zamanı yalnız lazımi hissə yenilənir.
+- **Düzəlişlər:** canlı söz rejimindəki `splitWords` xətası; sliderlərin `chrome.storage.sync` yazı limitini aşması (indi 400 ms-lik batch yazı); slider hərəkətinin əllə açılmış altyazını söndürməsi; ekvalayzer yadda qalıbsa səhifə açılanda səsin kəsilməsi (indi ilk toxunuşdan sonra qoşulur); yeni player strukturunda düymənin əlavə olunmaması riski; YouTube işıqlı temasında oxunmayan mətn.

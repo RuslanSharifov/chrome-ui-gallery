@@ -3,7 +3,7 @@ const DEFAULTS = { ambientOn: true };
 
 async function refreshBadge(on) {
   await chrome.action.setBadgeText({ text: on ? "ON" : "OFF" });
-  await chrome.action.setBadgeBackgroundColor({ color: on ? "#3ea6ff" : "#555555" });
+  await chrome.action.setBadgeBackgroundColor({ color: on ? "#5aa2ff" : "#555555" });
   await chrome.action.setTitle({ title: on ? "Ambient Light: aktiv (klik = söndür)" : "Ambient Light: deaktiv (klik = yandır)" });
 }
 
