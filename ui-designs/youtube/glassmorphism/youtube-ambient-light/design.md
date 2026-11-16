@@ -1,7 +1,7 @@
 # YouTube Ambient Light — Design
 
 - **Platform:** YouTube
-- **Style:** Glassmorphism / ambient video lighting
+- **Style:** Neumorphism settings window (dark / light) + glass page cards + ambient video lighting
 - **Type:** Chrome Manifest V3 extension
 - **Technologies:** JavaScript, CSS, Canvas 2D, Web Audio, Chrome Storage
 - **Purpose:** Ambient-light YouTube player enhancements, focus modes, subtitle/lyrics presentation, optional equalizer

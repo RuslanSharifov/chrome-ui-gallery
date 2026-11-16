@@ -1,6 +1,6 @@
 # YouTube Ambient Light
 
-A YouTube browser extension with an ambient light effect, glass controls, focus layouts, subtitles/lyrics view and an optional five-band audio equalizer.
+A YouTube browser extension with an ambient light effect, a neumorphic dark/light settings window, focus layouts, subtitles/lyrics view and an optional five-band audio equalizer.
 
 > This is the upgraded extension supplied in the `update-gallery` branch. Its player interactions and implementation are kept unchanged.
 
@@ -17,7 +17,7 @@ A YouTube browser extension with an ambient light effect, glass controls, focus 
 ## Features
 
 - Live ambient colors and adjustable brightness, blur and spread
-- Video-only / focus-with-lyrics modes, player buttons and right-side glass tabs
+- Video-only / focus-with-lyrics modes, player buttons and right-side tabs
 - Optional audio-only mode and five-band equalizer
 - Captions and lyrics display using available YouTube subtitle data
 - Factory reset via the settings interface

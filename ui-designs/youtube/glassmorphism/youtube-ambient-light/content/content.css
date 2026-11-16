@@ -1,53 +1,111 @@
 /* =========================================================
-   GLASS THEME
+   TOKENS
+   Page side (video cards, side panel) follows YouTube's own theme via html[dark].
+   Settings window follows its own switch via html[data-yal-theme].
    ========================================================= */
-:root { --yal-glass: rgba(255,255,255,.08); --yal-glass-border: rgba(255,255,255,.18); --yal-accent: #3ea6ff; }
+:root {
+  --yal-card-a: .5;
+  --yal-card-bg: rgba(20,22,28,var(--yal-card-a));
+  --yal-shadow-a: .27;
+  --yal-shadow-col: 0,0,0;
+  --yal-lyr-font: Roboto, Arial, sans-serif;
+  --yal-lyr-align: left;
+  --yal-lyr-size: 1;
+  --yal-lyr-weight: 600;
+  --yal-lyr-line: 1.4;
+  --yal-lyr-pad: 0px;
+  --yal-lyr-top: 42%;
+  --yal-accent: #5aa2ff;
+  --yal-glass: rgba(255,255,255,.08);
+  --yal-glass-border: rgba(255,255,255,.16);
+  --yal-page-text: #f1f1f1;
+  --yal-tab-on: rgba(255,255,255,.16);
+
+  /* neumorphism: dark (default) */
+  --n-bg: #25282f;
+  --n-dark: rgba(8,9,12,.62);
+  --n-light: rgba(255,255,255,.055);
+  --n-text: #dde1ea;
+  --n-muted: #8b92a0;
+  --n-accent: #6aa9ff;
+  --n-edge: rgba(255,255,255,.05);
+  --n-float: rgba(0,0,0,.45);
+  --n-danger: #e0776f;
+}
+:root[data-yal-theme="light"] {
+  --n-bg: #e6eaf0;
+  --n-dark: rgba(150,160,181,.55);
+  --n-light: rgba(255,255,255,.95);
+  --n-text: #394152;
+  --n-muted: #7a8396;
+  --n-accent: #3f83e8;
+  --n-edge: rgba(255,255,255,.65);
+  --n-float: rgba(30,40,60,.28);
+  --n-danger: #d0564d;
+}
+/* YouTube light theme: dark text must stay readable on top of the ambient layer */
+html:not([dark]) {
+  --yal-card-bg: rgba(255,255,255,var(--yal-card-a));
+  --yal-shadow-col: 255,255,255;
+  --yal-glass: rgba(255,255,255,.62);
+  --yal-glass-border: rgba(0,0,0,.08);
+  --yal-page-text: #0f0f0f;
+  --yal-tab-on: rgba(0,0,0,.08);
+}
 
 /* ---------- Ambient glow ---------- */
-#yal-ambient { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+#yal-ambient { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; contain: strict; }
 #yal-ambient canvas {
   position: absolute; left: 50%; top: 50%;
   width: calc(100vw * var(--yal-scale, 1.2)); height: calc(100vh * var(--yal-scale, 1.2));
-  transform: translate(-50%, -50%); object-fit: cover;
-  filter: blur(var(--yal-blur, 60px)) saturate(1.5); opacity: var(--yal-opacity, .8);
+  transform: translate(-50%, -50%) translateZ(0); object-fit: cover; will-change: transform;
+  filter: blur(var(--yal-blur, 60px)) saturate(1.4); opacity: var(--yal-opacity, .8);
 }
 #yal-ambient::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,.15), rgba(0,0,0,.45)); }
+html:not([dark]) #yal-ambient::after { background: linear-gradient(to bottom, rgba(255,255,255,.35), rgba(255,255,255,.62)); }
+html.yal-focus #yal-ambient::after { background: linear-gradient(to bottom, rgba(0,0,0,.3), rgba(0,0,0,.6)); }
+
+/* focus mode without ambient: keep a calm dark stage so the light lyrics stay readable in YouTube's light theme too */
+html.yal-focus:not(.yal-on), html.yal-focus:not(.yal-on) body,
+html.yal-focus:not(.yal-on) ytd-app, html.yal-focus:not(.yal-on) ytd-watch-flexy { background: #0d0e12 !important; }
 
 html.yal-on body, html.yal-on ytd-app, html.yal-on ytd-page-manager, html.yal-on #content,
 html.yal-on ytd-watch-flexy, html.yal-on #columns, html.yal-on ytd-masthead,
 html.yal-on #masthead-container { background: transparent !important; }
 html.yal-on ytd-app { position: relative; z-index: 1; }
 
-/* Video frame: rounded corners always; LED glow only when enabled */
-html.yal-on #movie_player { border-radius: 22px; box-shadow: inset 0 0 0 1px var(--yal-glass-border); }
-html.yal-on #movie_player video, html.yal-on #movie_player .html5-video-container { border-radius: 22px; }
-html.yal-led.yal-on #movie_player { box-shadow: inset 0 0 0 1px var(--yal-glass-border), 0 0 24px rgba(62,166,255,.55), 0 0 80px rgba(139,92,246,.45); }
+/* Video frame: rounded corners always; soft edge glow only when enabled */
+html.yal-on #movie_player { border-radius: 20px; box-shadow: inset 0 0 0 1px var(--yal-glass-border); }
+html.yal-on #movie_player video, html.yal-on #movie_player .html5-video-container { border-radius: 20px; }
+html.yal-led.yal-on #movie_player { box-shadow: inset 0 0 0 1px var(--yal-glass-border), 0 0 34px rgba(90,162,255,.32); }
 
-/* Glass info cards under the video */
+/* Info cards under the video */
 html.yal-on ytd-watch-metadata, html.yal-on ytd-comments, html.yal-on ytd-video-secondary-info-renderer {
-  background: var(--yal-glass) !important; backdrop-filter: blur(18px) saturate(160%);
+  background: var(--yal-card-bg) !important; backdrop-filter: blur(18px) saturate(150%);
   border: 1px solid var(--yal-glass-border); border-radius: 18px; padding: 8px 12px;
 }
 
 /* Video picture off: sound keeps playing */
 html.yal-audio-only #movie_player video { opacity: 0 !important; }
-html.yal-audio-only #movie_player { background: radial-gradient(circle at 50% 40%, #2a1a4a, #05050a) !important; }
+html.yal-audio-only #movie_player { background: radial-gradient(circle at 50% 40%, #232a3d, #07080c) !important; }
 
-/* ---------- Right panel: one glass card with tabs ---------- */
+/* ---------- Right panel: one card with tabs ---------- */
 #secondary { position: sticky !important; top: 72px; height: calc(100vh - 88px); overflow: hidden !important; }
 #secondary-inner { height: 100%; display: flex; flex-direction: column; }
 #yal-side {
   display: flex; flex-direction: column; flex: 1; min-height: 0; height: 100%;
-  background: var(--yal-glass); backdrop-filter: blur(22px) saturate(170%);
-  border: 1px solid var(--yal-glass-border); border-radius: 22px; overflow: hidden;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 20px 50px rgba(0,0,0,.35);
+  background: var(--yal-card-bg); backdrop-filter: blur(22px) saturate(150%);
+  border: 1px solid var(--yal-glass-border); border-radius: 20px; overflow: hidden;
+  box-shadow: 0 14px 40px rgba(0,0,0,.22);
 }
 #yal-side .yal-tabs { display: flex; gap: 6px; padding: 8px; border-bottom: 1px solid var(--yal-glass-border); }
 #yal-side .yal-tabs button {
   flex: 1; padding: 8px; border: 0; border-radius: 14px; background: transparent;
-  color: #e8e8f0; cursor: pointer; font: 600 13px Roboto, Arial, sans-serif;
+  color: var(--yal-page-text); opacity: .72; cursor: pointer; font: 600 13px Roboto, Arial, sans-serif;
+  transition: background .15s, opacity .15s;
 }
-#yal-side .yal-tabs button.on { background: rgba(255,255,255,.16); color: #fff; }
+#yal-side .yal-tabs button:hover { opacity: 1; }
+#yal-side .yal-tabs button.on { background: var(--yal-tab-on); opacity: 1; }
 #yal-side .yal-slot { flex: 1; overflow-y: auto; min-height: 0; padding: 0 8px; scrollbar-width: thin; }
 #yal-side .yal-slot[hidden] { display: none; }
 #secondary #chat, #secondary #chat-container { display: none !important; }
@@ -82,78 +140,186 @@ html.yal-focus-lyrics #yal-lyrics {
           mask-image: linear-gradient(transparent, #000 16%, #000 84%, transparent);
 }
 #yal-track { position: relative; width: 100%; transition: transform .9s cubic-bezier(.34, 1.56, .64, 1); }
-#yal-lyrics .yal-line {
-  font: 600 clamp(14px, 1.25vw, 32px)/1.4 Roboto, Arial, sans-serif; color: #c9cdd6; opacity: .6;
-  padding: .35em 0; transition: opacity .5s, color .5s, transform .5s; transform-origin: left center;
+
+/* One line style for the column and the settings preview. Set by applyLyrics() from saved settings. */
+#yal-lyrics .yal-line, .yal-preview .yal-line {
+  font-family: var(--yal-lyr-font); font-weight: var(--yal-lyr-weight); line-height: var(--yal-lyr-line);
+  font-size: calc(clamp(14px, 1.25vw, 32px) * var(--yal-lyr-size));
+  text-align: var(--yal-lyr-align); padding: .35em var(--yal-lyr-pad);
+  color: #c9cdd6; opacity: .6; transition: opacity .5s, color .5s; transform-origin: left center;
 }
-#yal-lyrics .yal-line.now { color: #fff; opacity: 1; font-size: clamp(18px, 1.9vw, 44px); }
-#yal-lyrics .yal-line.past { opacity: .3; color: #9aa0ad; }
+#yal-lyrics .yal-line.now, .yal-preview .yal-line.now {
+  color: #fff; opacity: 1; font-size: calc(clamp(18px, 1.9vw, 44px) * var(--yal-lyr-size));
+}
+#yal-lyrics .yal-line.past, .yal-preview .yal-line.past { opacity: .3; color: #9aa0ad; }
 #yal-lyrics .yal-w { display: inline-block; transition: color .15s, transform .15s; }
 #yal-lyrics .yal-w.spk { color: #fff; font-weight: 700; }
 #yal-lyrics .yal-w.cw { color: #fff; transform: scale(1.12); }
-#yal-lyrics .yal-line.yal-music { color: #3ea6ff; opacity: .9; }
+#yal-lyrics .yal-line.yal-music { color: var(--yal-accent); opacity: .9; }
 #yal-lyrics .yal-note { width: 1.3em; height: 1.3em; vertical-align: -0.2em; fill: none; }
+#yal-track .yal-group { margin-bottom: 1.2em; }
+#yal-track .yal-group.done { opacity: .25; }
 
-/* ---------- Always-visible reset button (outside the player) ---------- */
+/* Focus: the rest of the watch page is hidden by CSS as well as by the DOM pass,
+   so a video change never shows the old video's description, ads or comments for a moment. */
+html.yal-focus ytd-watch-flexy #secondary,
+html.yal-focus ytd-watch-flexy #below,
+html.yal-focus ytd-watch-flexy #chat,
+html.yal-focus ytd-watch-flexy #chat-container,
+html.yal-focus ytd-watch-flexy #primary-inner > :not(#player),
+html.yal-focus ytd-watch-flexy #primary > :not(#primary-inner):not(#player),
+html.yal-focus ytd-watch-flexy #columns > :not(#primary),
+html.yal-focus ytd-masthead,
+html.yal-focus #masthead-container,
+html.yal-focus ytd-watch-metadata,
+html.yal-focus ytd-comments,
+html.yal-focus ytd-video-secondary-info-renderer { display: none !important; }
+
+/* ---------- Reset button: shown only in focus mode (otherwise "Sıfırla" lives in the window) ---------- */
 #yal-reset {
-  position: fixed; left: 16px; bottom: 16px; z-index: 2147483647;
-  width: 42px; height: 42px; border-radius: 50%; cursor: pointer;
-  background: rgba(24,24,30,.55); backdrop-filter: blur(16px) saturate(160%);
-  border: 1px solid var(--yal-glass-border); color: #f1f1f5; font-size: 20px; line-height: 1;
-  box-shadow: 0 8px 24px rgba(0,0,0,.4);
+  display: none; position: fixed; left: 16px; bottom: 16px; z-index: 2147483647;
+  width: 40px; height: 40px; border-radius: 50%; cursor: pointer; place-items: center;
+  background: var(--n-bg); color: var(--n-muted); border: 0; font-size: 18px; line-height: 1;
+  box-shadow: 5px 5px 12px var(--n-dark), -4px -4px 10px var(--n-light);
+  transition: color .15s, box-shadow .15s;
 }
-#yal-reset:hover { background: rgba(24,24,30,.8); }
+html.yal-focus #yal-reset { display: grid; }
+#yal-reset:hover { color: var(--n-text); }
+#yal-reset:active { box-shadow: inset 3px 3px 7px var(--n-dark), inset -3px -3px 7px var(--n-light); }
 
 /* =========================================================
-   SETTINGS WINDOW (glass)
+   SETTINGS WINDOW: neumorphism, dark / light
+   raised  = 5px 5px 12px dark, -5px -5px 12px light
+   pressed = inset of the same
    ========================================================= */
 #yal-window {
-  position: fixed; right: 16px; bottom: 64px; width: 340px; max-height: 72vh;
+  position: fixed; left: 50%; top: 50%; width: min(1000px, 94vw); max-height: min(88vh, 920px);
   z-index: 2147483646; display: flex; flex-direction: column;
-  background: rgba(24,24,30,.55); backdrop-filter: blur(26px) saturate(170%);
-  border: 1px solid var(--yal-glass-border); border-radius: 22px; color: #f1f1f5;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 16px 48px rgba(0,0,0,.5);
-  font: 13px/1.4 Roboto, Arial, sans-serif; overflow: hidden;
-  opacity: 0; transform: translateY(12px) scale(.96); transform-origin: bottom right;
-  pointer-events: none; transition: opacity .2s, transform .25s cubic-bezier(.2,.8,.2,1);
+  background: var(--n-bg); color: var(--n-text);
+  border: 1px solid var(--n-edge); border-radius: 26px;
+  box-shadow: 12px 12px 30px var(--n-dark), -8px -8px 22px var(--n-light), 0 22px 56px var(--n-float);
+  font: 13px/1.4 Roboto, "Segoe UI", system-ui, Arial, sans-serif; overflow: hidden;
+  opacity: 0; transform: translate(-50%, -46%) scale(.97); transform-origin: center;
+  pointer-events: none; transition: opacity .18s, transform .22s cubic-bezier(.2,.8,.2,1);
+  -webkit-font-smoothing: antialiased;
 }
-#yal-window.open { opacity: 1; transform: none; pointer-events: auto; }
-#yal-window .yal-head { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; gap: 8px; }
-#yal-window .yal-head b { color: var(--yal-accent); font-size: 18px; font-weight: 700; }
-#yal-window .yal-head-actions { display: flex; align-items: center; gap: 8px; }
-#yal-window .yal-reset-btn {
-  padding: 6px 10px; border-radius: 12px; border: 1px solid var(--yal-glass-border);
-  background: rgba(255,255,255,.08); color: #f1f1f5; cursor: pointer; font: inherit; font-size: 12px;
+#yal-window.open { opacity: 1; transform: translate(-50%, -50%); pointer-events: auto; }
+#yal-window *, #yal-window *::before, #yal-window *::after { box-sizing: border-box; }
+#yal-window button { font: inherit; }
+#yal-window :focus { outline: none; }
+#yal-window :focus-visible { outline: 2px solid var(--n-accent); outline-offset: 2px; }
+
+/* header */
+#yal-window .yal-head { display: flex; align-items: center; justify-content: space-between; padding: 18px 18px 10px; gap: 8px; }
+#yal-window .yal-title { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; letter-spacing: .01em; }
+#yal-window .yal-title i {
+  width: 10px; height: 10px; border-radius: 50%; background: var(--n-accent);
+  box-shadow: inset 1px 1px 2px rgba(255,255,255,.35), inset -1px -1px 2px rgba(0,0,0,.25);
 }
-#yal-window .yal-reset-btn:hover { background: rgba(255,255,255,.18); }
-#yal-window .yal-x { background: rgba(255,255,255,.1); border: 0; color: #ddd; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; }
-#yal-window .yal-scroll { overflow-y: auto; padding-bottom: 8px; }
-#yal-window .yal-sec { border-top: 1px solid rgba(255,255,255,.1); }
-#yal-window .yal-sec summary {
-  padding: 10px 16px; font-weight: 600; color: #eef; cursor: pointer; list-style: none;
-  display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,.05);
+#yal-window .yal-head-actions { display: flex; align-items: center; gap: 10px; }
+#yal-window .yal-ib {
+  width: 32px; height: 32px; border: 0; border-radius: 50%; padding: 0; cursor: pointer;
+  display: grid; place-items: center; background: var(--n-bg); color: var(--n-muted);
+  box-shadow: 4px 4px 9px var(--n-dark), -3px -3px 8px var(--n-light);
+  transition: color .15s, box-shadow .15s;
 }
-#yal-window .yal-sec summary::-webkit-details-marker { display: none; }
-#yal-window .yal-sec summary::after { content: "▾"; color: #aaa; transition: transform .2s; }
-#yal-window .yal-sec:not([open]) summary::after { transform: rotate(-90deg); }
-#yal-window .yal-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 16px; gap: 8px; cursor: pointer; }
-#yal-window .yal-slider { flex-direction: column; align-items: stretch; cursor: default; gap: 2px; }
-#yal-window .yal-top { display: flex; justify-content: space-between; }
-#yal-window output { color: #b5b9c4; font-size: 12px; }
-#yal-window input[type=range] { width: 100%; margin: 4px 0; accent-color: var(--yal-accent); cursor: pointer; }
-#yal-window .yal-sw { position: relative; width: 36px; height: 20px; flex: none; }
-#yal-window .yal-sw input { opacity: 0; position: absolute; inset: 0; margin: 0; cursor: pointer; z-index: 1; }
-#yal-window .yal-sw i { position: absolute; inset: 0; border-radius: 10px; background: rgba(255,255,255,.22); transition: background .2s; }
-#yal-window .yal-sw i::after { content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff; transition: transform .2s; }
-#yal-window .yal-sw input:checked + i { background: var(--yal-accent); }
-#yal-window .yal-sw input:checked + i::after { transform: translateX(16px); }
-#yal-window .yal-chips { display: flex; gap: 6px; padding: 4px 16px 10px; }
+#yal-window .yal-ib:hover { color: var(--n-text); }
+#yal-window .yal-ib:active { box-shadow: inset 3px 3px 6px var(--n-dark), inset -2px -2px 5px var(--n-light); }
+
+/* tabs: pressed tray, raised active tab */
+#yal-window .yal-tabbar {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin: 6px 18px 2px; padding: 4px;
+  border-radius: 16px; background: var(--n-bg);
+  box-shadow: inset 3px 3px 7px var(--n-dark), inset -3px -3px 7px var(--n-light);
+}
+#yal-window .yal-tabbar button {
+  border: 0; padding: 8px 0; border-radius: 12px; background: transparent; color: var(--n-muted);
+  font-weight: 600; font-size: 12.5px; cursor: pointer; transition: color .15s, box-shadow .15s, background .15s;
+}
+#yal-window .yal-tabbar button:hover { color: var(--n-text); }
+#yal-window .yal-tabbar button[aria-selected="true"] {
+  background: var(--n-bg); color: var(--n-accent);
+  box-shadow: 3px 3px 7px var(--n-dark), -2px -2px 6px var(--n-light);
+}
+
+/* body + panels */
+#yal-window .yal-body {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 18px; padding: 10px 22px 6px;
+  overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--n-muted) transparent;
+}
+#yal-window .yal-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 2px; cursor: pointer; transition: opacity .2s; }
+#yal-window .yal-slider { flex-direction: column; align-items: stretch; gap: 8px; cursor: default; }
+#yal-window .yal-top { display: flex; justify-content: space-between; align-items: baseline; }
+#yal-window output { color: var(--n-muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+#yal-window.yal-focus-off .yal-needs-focus { opacity: .45; }
+
+/* switch: pressed track, raised knob (knob takes the accent when on) */
+#yal-window .yal-sw { position: relative; width: 46px; height: 26px; flex: none; }
+#yal-window .yal-sw input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; z-index: 1; }
+#yal-window .yal-sw i {
+  position: absolute; inset: 0; border-radius: 13px; background: var(--n-bg);
+  box-shadow: inset 3px 3px 6px var(--n-dark), inset -3px -3px 6px var(--n-light);
+}
+#yal-window .yal-sw i::after {
+  content: ""; position: absolute; top: 4px; left: 4px; width: 18px; height: 18px; border-radius: 50%;
+  background: var(--n-muted); box-shadow: 2px 2px 5px var(--n-dark), -1px -1px 4px var(--n-light);
+  transition: transform .2s cubic-bezier(.3,.8,.3,1), background .2s;
+}
+#yal-window .yal-sw input:checked + i::after { transform: translateX(20px); background: var(--n-accent); }
+#yal-window .yal-sw input:focus-visible + i { outline: 2px solid var(--n-accent); outline-offset: 2px; }
+
+/* sliders: pressed groove with accent fill, raised thumb */
+#yal-window input[type=range] {
+  -webkit-appearance: none; appearance: none; width: 100%; height: 20px; margin: 0; padding: 0;
+  background: transparent; cursor: pointer; --p: 50%;
+}
+#yal-window input[type=range]::-webkit-slider-runnable-track {
+  height: 8px; border-radius: 4px;
+  background: linear-gradient(90deg, var(--n-accent) var(--p), transparent var(--p)), var(--n-bg);
+  box-shadow: inset 2px 2px 4px var(--n-dark), inset -2px -2px 4px var(--n-light);
+}
+#yal-window input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none; width: 20px; height: 20px; margin-top: -6px;
+  border: 0; border-radius: 50%; background: var(--n-bg);
+  box-shadow: 3px 3px 7px var(--n-dark), -2px -2px 6px var(--n-light);
+  transition: box-shadow .15s;
+}
+#yal-window input[type=range]:active::-webkit-slider-thumb { box-shadow: 2px 2px 5px var(--n-dark), -1px -1px 4px var(--n-light), inset 0 0 0 5px var(--n-accent); }
+#yal-window input[type=range]:focus-visible::-webkit-slider-thumb { outline: 2px solid var(--n-accent); outline-offset: 2px; }
+
+/* equalizer: five vertical sliders (horizontal ones rotated, so the styling above stays identical) */
+#yal-window .yal-eq { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; padding: 10px 0 4px; text-align: center; }
+#yal-window .yal-eqcol { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+#yal-window .yal-eqcol span, #yal-window .yal-eqcol output { font-size: 11px; color: var(--n-muted); min-height: 14px; }
+#yal-window .yal-eqtrack { position: relative; width: 100%; height: 124px; }
+#yal-window .yal-eqtrack input { position: absolute; left: 50%; top: 50%; width: 112px; transform: translate(-50%, -50%) rotate(-90deg); }
+#yal-window .yal-eqtrack input[type=range]::-webkit-slider-runnable-track { background: var(--n-bg); }
+
+/* chips + buttons: raised, pressed when active */
+#yal-window .yal-chips { display: flex; gap: 8px; padding: 10px 0 6px; }
 #yal-window .yal-chip, #yal-window .yal-btn {
-  flex: 1; padding: 7px; border-radius: 14px; border: 1px solid rgba(255,255,255,.15);
-  background: rgba(255,255,255,.08); color: #f1f1f5; cursor: pointer; font: inherit;
+  flex: 1; padding: 9px 0; border: 0; border-radius: 14px; background: var(--n-bg); color: var(--n-muted);
+  font-size: 12.5px; font-weight: 600; cursor: pointer;
+  box-shadow: 4px 4px 9px var(--n-dark), -3px -3px 8px var(--n-light);
+  transition: color .15s, box-shadow .15s;
 }
-#yal-window .yal-chip:hover, #yal-window .yal-btn:hover { background: rgba(255,255,255,.18); }
-#yal-window .yal-status { padding: 6px 16px 12px; color: #b5b9c4; font-size: 12px; min-height: 18px; }
+#yal-window .yal-chip:hover, #yal-window .yal-btn:hover { color: var(--n-text); }
+#yal-window .yal-chip:active, #yal-window .yal-btn:active,
+#yal-window .yal-chip.on {
+  box-shadow: inset 3px 3px 7px var(--n-dark), inset -3px -3px 7px var(--n-light);
+}
+#yal-window .yal-chip.on { color: var(--n-accent); }
+
+/* footer */
+#yal-window .yal-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 18px 16px; }
+#yal-window .yal-status { flex: 1; min-width: 0; min-height: 16px; color: var(--n-muted); font-size: 11.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#yal-window .yal-ghost { border: 0; background: transparent; color: var(--n-muted); font-size: 12px; font-weight: 600; cursor: pointer; padding: 6px 4px; border-radius: 8px; }
+#yal-window .yal-ghost:hover { color: var(--n-text); }
+#yal-window .yal-ghost.armed { color: var(--n-danger); }
+
+@media (prefers-reduced-motion: reduce) {
+  #yal-window, #yal-window * { transition: none !important; }
+}
 
 #yal-track .yal-group { margin-bottom: 1.2em; }
 #yal-track .yal-group.done { opacity: .25; }
@@ -161,3 +327,127 @@ html.yal-focus-lyrics #yal-lyrics {
 #yal-track .yal-group.live .yal-line.now { color: #fff; opacity: 1; font-size: clamp(18px, 1.9vw, 44px); }
 #yal-track .yal-group.live .yal-line.past { opacity: .35; color: #9aa0ad; }
 #yal-track .yal-group.live .yal-line { font: 600 clamp(14px, 1.25vw, 32px)/1.4 Roboto, Arial, sans-serif; padding: .35em 0; transition: opacity .5s, color .5s; }
+
+/* ---------- Settings page: premium cards ---------- */
+#yal-window .yal-title span { font-weight: 700; letter-spacing: .02em; }
+#yal-window .yal-title small {
+  font-size: 11px; font-weight: 600; color: var(--n-muted); letter-spacing: .14em; text-transform: uppercase; margin-left: 2px;
+}
+#yal-window .yal-card {
+  min-width: 0; padding: 16px 20px 12px; border-radius: 22px; background: var(--n-bg);
+  box-shadow: 6px 6px 14px var(--n-dark), -5px -5px 12px var(--n-light);
+}
+#yal-window .yal-card.yal-wide { grid-column: 1 / -1; }
+#yal-window .yal-card h3 {
+  margin: 2px 0 6px; font-size: 11.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--n-accent);
+}
+#yal-window .yal-group-label { margin: 14px 0 2px; font-size: 11.5px; font-weight: 600; color: var(--n-muted); }
+#yal-window .yal-card .yal-chips { padding: 8px 0 4px; }
+#yal-window .yal-card .yal-chip { font-size: 13px; }
+
+/* lyric preview: a dark stage, always, so the style reads the same in both themes */
+#yal-window .yal-preview {
+  display: flex; flex-direction: column; justify-content: center; gap: 2px; min-height: 168px; margin-bottom: 4px;
+  padding: 18px 22px; border-radius: 18px; background: #0d0e12; overflow: hidden;
+  box-shadow: inset 4px 4px 10px rgba(0,0,0,.6), inset -2px -2px 6px rgba(255,255,255,.04);
+}
+
+@media (max-width: 760px) {
+  #yal-window .yal-body { grid-template-columns: 1fr; }
+}
+
+/* ---------- Text animations: letters for lyrics, the settings preview and the picker ---------- */
+:root { --yal-anim: none; --yal-fx-step: 40ms; --yal-fx-dur: .6s; }
+.fx-none { --yal-anim: none; }
+.fx-typewriter { --yal-anim: yal-fx-typewriter; }
+.fx-drop { --yal-anim: yal-fx-drop; }
+.fx-rise { --yal-anim: yal-fx-rise; }
+.fx-scatter { --yal-anim: yal-fx-scatter; }
+.fx-spin { --yal-anim: yal-fx-spin; }
+.fx-blur { --yal-anim: yal-fx-blur; }
+.fx-zoom { --yal-anim: yal-fx-zoom; }
+.yal-ch { display: inline-block; }
+
+/* lyrics play on the active line; the preview and picker samples play on hover */
+#yal-lyrics .yal-line.now .yal-ch,
+.yal-preview:hover .yal-ch,
+.yal-fxtile:hover .yal-ch {
+  animation-name: var(--yal-anim); animation-duration: var(--yal-fx-dur); animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(.2, .7, .2, 1);
+  animation-delay: calc(var(--i, 0) * var(--yal-fx-step));
+}
+.yal-ch.yal-done { animation: none !important; }
+
+@keyframes yal-fx-typewriter { 0% { opacity: 0; } 1% { opacity: 1; } 100% { opacity: 1; } }
+@keyframes yal-fx-drop {
+  0% { opacity: 0; transform: translateY(-.9em); }
+  60% { opacity: 1; transform: translateY(.12em); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes yal-fx-rise {
+  0% { opacity: 0; transform: translateY(.9em); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes yal-fx-scatter {
+  0% { opacity: 0; transform: translate(var(--dx), var(--dy)) rotate(var(--rot)); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes yal-fx-spin {
+  0% { opacity: 0; transform: perspective(400px) rotateX(90deg) rotateZ(-160deg) scale(.4); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes yal-fx-blur {
+  0% { opacity: 0; filter: blur(14px); }
+  100% { opacity: 1; filter: none; }
+}
+@keyframes yal-fx-zoom {
+  0% { opacity: 0; transform: scale(2.4); }
+  100% { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) { .yal-ch { animation: none !important; } }
+
+/* ---------- Animation picker (opens above the settings page) ---------- */
+#yal-window .yal-fxpop {
+  display: none; position: absolute; inset: 0; z-index: 5; align-items: center; justify-content: center;
+  padding: 24px; border-radius: 26px; background: rgba(8, 9, 12, .42); backdrop-filter: blur(6px);
+}
+#yal-window.yal-fx-open .yal-fxpop { display: flex; }
+#yal-window .yal-fxcard {
+  width: min(840px, 100%); max-height: 100%; overflow-y: auto; padding: 20px 22px; border-radius: 26px;
+  background: var(--n-bg); box-shadow: 10px 10px 24px var(--n-dark), -6px -6px 18px var(--n-light);
+}
+#yal-window .yal-fxhead { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; font-size: 15px; font-weight: 700; }
+#yal-window .yal-fxgrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+#yal-window .yal-fxtile {
+  display: flex; flex-direction: column; gap: 8px; padding: 12px; border: 0; border-radius: 18px; cursor: pointer;
+  background: var(--n-bg); color: var(--n-muted); text-align: left; font: inherit;
+  box-shadow: 5px 5px 11px var(--n-dark), -4px -4px 9px var(--n-light); transition: color .15s, box-shadow .15s;
+}
+#yal-window .yal-fxtile:hover { color: var(--n-text); }
+#yal-window .yal-fxtile.on { color: var(--n-accent); box-shadow: inset 3px 3px 7px var(--n-dark), inset -3px -3px 7px var(--n-light); }
+#yal-window .yal-fxname { font-size: 12px; font-weight: 600; }
+#yal-window .yal-fxsample {
+  display: flex; align-items: center; justify-content: center; min-height: 72px; padding: 8px; border-radius: 14px;
+  background: #0d0e12; overflow: hidden;
+}
+#yal-window .yal-fxsample .yal-line { padding: 0; opacity: 1; }
+#yal-window .yal-fxhint { margin: 14px 0 0; font-size: 11.5px; color: var(--n-muted); }
+@media (max-width: 760px) { #yal-window .yal-fxgrid { grid-template-columns: repeat(2, 1fr); } }
+
+/* ---------- Ko-fi support card ---------- */
+#yal-window .yal-kofi-card { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+#yal-window .yal-kofi-card p { margin: 4px 0 0; font-size: 12.5px; color: var(--n-muted); line-height: 1.5; }
+#yal-window .yal-kofi {
+  display: inline-flex; align-items: center; gap: 10px; padding: 12px 24px; border-radius: 999px;
+  background: #ff5e5b; color: #fff; font-size: 14px; font-weight: 700; text-decoration: none;
+  box-shadow: 0 8px 20px rgba(255, 94, 91, .35); transition: transform .15s, box-shadow .15s;
+}
+#yal-window .yal-kofi:hover { transform: translateY(-1px); box-shadow: 0 12px 26px rgba(255, 94, 91, .45); }
+#yal-window .yal-kofi:active { transform: translateY(1px); }
+#yal-window .yal-kofi:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+/* text shadow inside the cards: strength from settings, white glow in YouTube's light theme */
+html.yal-on ytd-watch-metadata, html.yal-on ytd-comments, html.yal-on ytd-video-secondary-info-renderer, #yal-side {
+  text-shadow: 0 1px 3px rgba(var(--yal-shadow-col), var(--yal-shadow-a)),
+               0 0 10px rgba(var(--yal-shadow-col), calc(var(--yal-shadow-a) * .6));
+}
